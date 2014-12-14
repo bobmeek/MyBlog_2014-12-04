@@ -29,7 +29,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <form action="index" method="post">
     	用户名：<input type="text" name="name" /><br />
     	密码：<input type="text" name="pass" />
-    	<input type="submit" value="登录xxx" />
+    	<input type="submit" value="登录" />
     	<img alt="jingshan" src="resources/front_base/img/jingshan.jpg">
     </form>
   </body>

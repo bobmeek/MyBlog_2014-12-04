@@ -35,7 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     		<div class="left">
     			欢迎${name }！
     		</div>
-    	</div>
+    	</div> 
     	
     	
     	
