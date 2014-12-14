@@ -1,0 +1,31 @@
+.header
+{
+	width:100%;
+	height:50px;
+	color:red;
+	border: 1px solid;
+}
+
+.content
+{
+	width:100%;
+	height:600px;
+	color:blue;
+	border:1px solid;
+}
+
+.content .left
+{
+	width:70%;
+	height:600px;
+	color:green;
+	border:1px solid;
+}
+
+.content .right
+{
+	width:30%;
+	height:600px;
+	color:yellow;
+	border:1px solid;
+}
