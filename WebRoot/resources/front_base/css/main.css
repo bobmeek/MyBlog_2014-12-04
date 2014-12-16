@@ -1,31 +1,56 @@
+
+.pagecontain {
+	width: 1366px;
+	height:1200px;
+	background-color: #FFFFFF;
+	text-align: left;
+	margin:0 auto; 
+}
 .header
 {
 	width:100%;
-	height:50px;
+	height:100px;
+	background-color: red;
+}
+.banner
+{
+	width:100%;
+	height:100px;
 	color:red;
+	border: 1px solid;
+}
+
+.navigate
+{
+	width:100%;
+	height:58px;
+	color:black;
 	border: 1px solid;
 }
 
 .content
 {
 	width:100%;
-	height:600px;
+	height:1000px;
 	color:blue;
 	border:1px solid;
 }
 
 .content .left
 {
-	width:70%;
-	height:600px;
+	width:60%;
+	height:1000px;
+	float:left;
 	color:green;
 	border:1px solid;
 }
 
 .content .right
 {
-	width:30%;
-	height:600px;
-	color:yellow;
+	width:40%;
+	height:1000px;
+	float:right;
+	color:green;
+	background-color:yellow;
 	border:1px solid;
 }

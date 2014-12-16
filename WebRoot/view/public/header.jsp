@@ -17,163 +17,54 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 
+<link rel="stylesheet" type="text/css" href="resources/front_base/css/main.css" />
 <link rel="stylesheet" type="text/css" href="resources/front_frame/bootstrap/css/bootstrap.css" />
+<style type="text/css">
 
+
+</style>
 </head>
 
 <body>
-	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">夏煜正</a>
-    </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <li class="active"><a href="#">首页</a></li>
-        <li><a href="#">读书</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">编程 <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-            <li class="divider"></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
-aa<br/>
+	<div class="banner">
+		<span style="color:gray;font-size:40px;margin-left:0px">夏煜正官方网站</span><br/>
+		<span style="color:red;font-size:12px;margin-left:0px">研究互联网产品和技术，提供原创中文精品教程</span>
+	</div>
+		
+	<div class="navigate">
+
+		<nav class="navbar navbar-default " role="navigation"> 
+<!-- 		  <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> -->
+		<div class="container-fluid">
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left" style="margin-left:0px">
+					<li class="active"><a href="javascript:void(0)">首页</a></li>
+					<li><a href="javascript:void(0)">读书</a></li>
+					<li class="dropdown"><a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">编程 <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Separated link</a></li>
+							<li class="divider"></li>
+							<li><a href="#">One more separated link</a></li>
+						</ul></li>
+				</ul>
+				<form class="navbar-form navbar-left" style="margin-left:435px" role="search">
+					<div class="form-group">
+						<input type="text" class="form-control" placeholder="Search">
+					</div>
+					<button type="submit" class="btn btn-default">搜索</button>
+				</form>
+
+			</div>
+		</div>
+		</nav>
+
+	</div>
+	
 </body>
 </html>
