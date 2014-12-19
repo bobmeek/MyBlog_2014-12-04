@@ -22,10 +22,6 @@
 
 <style type="text/css">
 
-body
-{
-	text-align: 
-}
 </style>
 
 </head>
@@ -34,17 +30,42 @@ body
 
 
 
-<div class="pagecontain">
+<div id="pagecontain">
 		<jsp:include page="public/header.jsp" flush="true"></jsp:include>
 	
 	
 	
-		<div class="content">
-			<div class="left">欢迎${name }！</div>
-			<div class="right">欢迎${name }！</div>
+		<div id="content">
+			<div id="content-left">
+				<div class="content-title">热门推荐</div>	
+				<div id="content-left-top">
+							
+					<img src="resources/front_base/img/successful.png" width="100%" height="100%" />
+				
+				</div>
+				<div class="content-title">推荐教程</div>
+				<div id="content-left-bottom">
+				
+					欢迎啊${name }！
+				
+				</div>
+			</div>
+			
+			<div id="right">
+				<div class="content-title">最后发表</div>	
+				<div>
+					<ul>
+						<c:forEach var="article" items="${articles}">
+							<li><a href="javascript:void(0)" >${article.title}</a></li>
+						</c:forEach>
+						
+					</ul>
+					
+				</div>
+			</div>
 		</div>
 
-	</div>
+</div>
 	
 </body>
 </html>

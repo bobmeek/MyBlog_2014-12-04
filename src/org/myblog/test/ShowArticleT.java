@@ -10,6 +10,8 @@ package org.myblog.test;
 
 import java.util.List;
 
+import org.myblog.controller.ArticleController;
+import org.myblog.controller.CategoryController;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.ICategoryService;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +24,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
  */
-public class MyBlogSpringT
+public class ShowArticleT
 {
 	private static ApplicationContext ctx;
 	static
@@ -39,11 +41,11 @@ public class MyBlogSpringT
 	//3.SpringMVC
 	public static void main(String[] args)
 	{
-		ICategoryService categoryService = (ICategoryService) ctx.getBean("categoryService");
+		ArticleController article = (ArticleController) ctx.getBean("articleController");
 		
-		List<CategoryVO> allCategoryVOs = categoryService.getAllCategories();
+		article.showArticles("aa", "bb",null);
 		// 使用StringBuilder的append操作代替字符串的“+”
 		// 操作可提高执行效率
-		System.out.println("数目:"+allCategoryVOs.size());
+		
 	}
 }

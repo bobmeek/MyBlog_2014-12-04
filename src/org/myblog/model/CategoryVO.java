@@ -8,15 +8,22 @@
  */
 package org.myblog.model;
 
+import java.io.Serializable;
+
 /**
  * @ClassName: CategoryVO
- * @Description: TODO
+ * @Description: 栏目
  * @author bobmeek
  * @date Dec 4, 2014 9:35:40 PM
  */
-public class CategoryVO
+public class CategoryVO implements Serializable
 {
 	
+	/**
+	  * @Fields serialVersionUID : TODO
+	*/
+	private static final long serialVersionUID = 1L;
+
 	private int id;
 	
 	private String name;

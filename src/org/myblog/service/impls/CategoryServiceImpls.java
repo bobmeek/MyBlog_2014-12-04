@@ -13,6 +13,7 @@ import java.util.List;
 import org.myblog.dao.facade.ICategoryDao;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.ICategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * @ClassName: CategoryServiceImpls
@@ -23,7 +24,8 @@ import org.myblog.service.facade.ICategoryService;
 public class CategoryServiceImpls implements ICategoryService
 {
 
-	private ICategoryDao categoryDao = null;
+	@Autowired
+	private ICategoryDao categoryDao;
 	
 	
 	@Override

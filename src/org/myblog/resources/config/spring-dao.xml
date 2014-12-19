@@ -6,5 +6,7 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
      </bean>
 	
-	
+	<bean id="articleDao" class="org.myblog.dao.impls.ArticleDaoImpls">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+     </bean>
 </beans>
