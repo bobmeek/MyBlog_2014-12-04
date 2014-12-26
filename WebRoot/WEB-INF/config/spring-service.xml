@@ -8,4 +8,7 @@
 	 <bean id="articleService" class="org.myblog.service.impls.ArticleServiceImpls">
         <property name="articleDao" ref="articleDao"></property>
      </bean>
+     <bean id="usersService" class="org.myblog.service.impls.UsersServiceImpls">
+        <property name="usersDao" ref="usersDao"></property>
+     </bean>
 </beans>

@@ -19,6 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 	<link rel="stylesheet" type="text/css" href="resources/front_base/css/main.css">
+		
 	
 	
 
@@ -26,10 +27,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   
-    <form action="article/showArticles" method="post">
-    	用户名：<input type="text" name="name" /><br />
-    	密码：<input type="text" name="pass" />
-    	<input type="submit" value="登录 " />
-    </form>
+	  <div id="pagecontain">
+	    <form action="article/showArticles" method="post">
+	    	用户名：<input type="text" name="name" /><br />
+	    	密码：<input type="text" name="pass" />
+	    	<input type="submit" value="登录 " />
+	    </form>
+	  </div>
   </body>
 </html>

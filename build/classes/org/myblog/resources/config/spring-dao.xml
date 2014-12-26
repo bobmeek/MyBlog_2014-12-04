@@ -9,4 +9,8 @@
 	<bean id="articleDao" class="org.myblog.dao.impls.ArticleDaoImpls">
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
      </bean>
+     
+     <bean id="usersDao" class="org.myblog.dao.impls.UsersDaoImpls">
+        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+     </bean>
 </beans>

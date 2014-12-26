@@ -30,10 +30,8 @@
 
 
 
-<div id="pagecontain">
+<div>
 		<jsp:include page="public/header.jsp" flush="true"></jsp:include>
-	
-	
 	
 		<div id="content">
 			<div id="content-left">

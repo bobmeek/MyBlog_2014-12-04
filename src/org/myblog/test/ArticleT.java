@@ -24,7 +24,7 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
  */
-public class ShowArticleT
+public class ArticleT
 {
 	private static ApplicationContext ctx;
 	static

@@ -9,10 +9,12 @@
 	<typeAliases>
 		<typeAlias alias="CategoryVO" type="org.myblog.model.CategoryVO" />
 		<typeAlias alias="ArticleVO" type="org.myblog.model.ArticleVO" />
+		<typeAlias alias="UsersVO" type="org.myblog.model.UsersVO" />
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="org/myblog/mapper/CategoryMapper.xml" />
 		<mapper resource="org/myblog/mapper/ArticleMapper.xml" />
+		<mapper resource="org/myblog/mapper/UsersMapper.xml" />
 	</mappers>
 </configuration>
