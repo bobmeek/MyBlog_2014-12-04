@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.myblog.dao.facade.IUsersDao">
+<mapper namespace="org.myblog.model.UsersVO">
 
-	<resultMap id="usersResultMap" type="UsersVO">
+	<resultMap id="usersResultMap" type="users">
 		<id property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="userpwd" column="userpwd" />
@@ -13,14 +13,14 @@
 		<result property="birthday" column="birthday" />
 	</resultMap>
 
-	<select id="getUsersAll" parameterType="int" resultMap="usersResultMap">
-		SELECT *
-		FROM users
+	<!-- 查询全部操作 -->
+	<select id="findAll"  resultMap="usersResultMap">
+		select  * from users
 	</select>
+	
+	<!-- 添加用户信息操作 -->
 	<insert id="addUser" parameterType="org.myblog.model.UsersVO" useGeneratedKeys="true" keyProperty="id">
-	    insert into users(username,userpwd,mail,phone,sex,birthday)
-	    values(#{username},#{userpwd},#{mail},#{phone},#{sex},#{birthday})
+	    insert into users(username,userpwd,mail,phone,sex,birthday) values(#{username},#{userpwd},#{mail},#{phone},#{sex},#{birthday})
 	</insert>
-
 
 </mapper>

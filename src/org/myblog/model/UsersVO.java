@@ -18,8 +18,6 @@ import java.sql.Timestamp;
  */
 public class UsersVO
 {
-	
-	
 	private int id;
 	
 	private String username;
