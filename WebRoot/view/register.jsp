@@ -77,6 +77,14 @@
 								<input type="password" class="form-control input-lg" id="sure_password" placeholder="再一次输入密码"  >
 							</div>
 						</div>
+						
+						
+						
+						<div class="alert alert-danger" role="alert">
+  							<h4><i class="icon-remove-sign">&nbsp;&nbsp;&nbsp;输入的用户名已经存在，请重新输入</i></h4>
+						</div>
+						
+						
 						<div class="form-group">
 							<div class="col-md-12">
 								<label><input type="checkbox">	点击注册，表明你同意我们的 <a href="javascript:;" data-toggle="modal" data-target="#templatemo_modal">服务条款</a></label>
@@ -90,7 +98,10 @@
 					</div>
 				</form>
 			</div>
+			
 		</div>
+		
+		
 		
 		
 		
