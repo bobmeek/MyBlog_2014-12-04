@@ -9,16 +9,14 @@
 package org.myblog.controller;
 
 import java.util.List;
-
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.myblog.model.ArticleVO;
-import org.myblog.service.facade.IArticleService;
-import org.myblog.service.impls.ArticleServiceImpls;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.myblog.service.ArticleService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * @ClassName: ArticleController
@@ -27,41 +25,44 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @date Dec 18, 2014 11:51:26 AM
  */
 @Controller
-@RequestMapping(value = "/article")
 public class ArticleController
 {
-	@Autowired
-	private IArticleService articleService;
-	@RequestMapping(value="/showArticles",method=RequestMethod.POST)
-	public String showArticles(String name,String pass,HttpSession session)
+	@Resource(name = "articleServiceImpls")
+	private ArticleService articleService;
+	
+	@RequestMapping("/article/showArticles")
+	public String showArticles(String name, String pass, HttpSession session)
 	{
-		List<ArticleVO> articles = articleService.getAllArticles();
-		System.out.println("文章的篇数："+articles.size());
+		System.out.println("1111111111111111111");
+		List<ArticleVO> articles = articleService.findAll();
+		
+		System.out.println("文章的篇数：" + articles.size());
+		
 		for (ArticleVO articleVO : articles)
 		{
-			System.out.println("文章名称："+articleVO.getTitle()+"==文章内容:"+articleVO.getContent());
+			System.out.println("文章名称：" + articleVO.getTitle() + "==文章内容：" + articleVO.getContent());
 		}
+		
 		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		session.setAttribute("articles", articles);
+		System.out.println("22222222222222222222222");
 		return "index";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	public IArticleService getArticleService()
+	/**
+	 * 最新文章下文章内容的显示
+	 * @param request
+	 * @param model
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value="/new_articles")
+	public String list(HttpServletRequest request, ModelMap model, Integer id)
 	{
-		return articleService;
+		/*ArticleVO articleVO = articleService.findById(id);
+		model.addAttribute("article", articleVO);*/
+		
+		return "index";
 	}
-	public void setArticleService(IArticleService articleService)
-	{
-		this.articleService = articleService;
-	}
-	
 }

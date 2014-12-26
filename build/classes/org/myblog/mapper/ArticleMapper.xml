@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.myblog.dao.facade.IArticleDao">
-
-	<resultMap id="articleResultMap" type="ArticleVO">
-		<id property="id" column="id"/>
-		<result property="categoryId" column="categoryId"/>
-		<result property="title" column="title"/>
-		<result property="author" column="author"/>
-		<result property="content" column="content"/>
-		<result property="time" column="time"/>
-		<result property="readCount" column="readCount"/>
-	</resultMap>
+<mapper namespace="org.myblog.model.ArticleVO">
 	
-	<select id="getAllArticles" parameterType="int" resultMap="articleResultMap">
-	
-		SELECT *
-		FROM article
+	<!-- 查询全部操作 -->
+	<select id="findAll" resultType="article">
+		select * from article
 	</select>
 
+	<!-- 查询操作，根据ID进行查询 -->
+	<select id="findById" parameterType="int" resultType="article">
+		select * from article where id=#{id}
+	</select>
 
 </mapper>
