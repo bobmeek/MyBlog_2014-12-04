@@ -14,7 +14,7 @@ import org.myblog.service.CategoryService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryServiceImpls extends AbstractBaseDao<CategoryVO, Integer> implements CategoryService
+public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> implements CategoryService
 {
 	
 }

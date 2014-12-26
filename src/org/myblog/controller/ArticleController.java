@@ -18,22 +18,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- * @ClassName: ArticleController
- * @Description: TODO
- * @author bobmeek
- * @date Dec 18, 2014 11:51:26 AM
- */
 @Controller
 public class ArticleController
 {
-	@Resource(name = "articleServiceImpls")
+	@Resource(name = "articleServiceImpl")
 	private ArticleService articleService;
 	
 	@RequestMapping("/article/showArticles")
 	public String showArticles(String name, String pass, HttpSession session)
 	{
-		System.out.println("1111111111111111111");
 		List<ArticleVO> articles = articleService.findAll();
 		
 		System.out.println("文章的篇数：" + articles.size());
@@ -46,7 +39,7 @@ public class ArticleController
 		session.setAttribute("name", name);
 		session.setAttribute("pass", pass);
 		session.setAttribute("articles", articles);
-		System.out.println("22222222222222222222222");
+		
 		return "index";
 	}
 	

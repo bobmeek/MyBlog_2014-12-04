@@ -22,7 +22,7 @@ import freemarker.template.Template;
 @Controller
 public class ArticleMakeController 
 {
-	@Resource(name = "articleServiceImpls")
+	@Resource(name = "articleServiceImpl")
 	private ArticleService articleService;
 	
 	/**

@@ -1,3 +1,5 @@
 /org
 /applicationContext.xml
 /springmvc-servlet.xml
+/mybatis-config.xml
+/com
