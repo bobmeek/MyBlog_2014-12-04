@@ -2,6 +2,7 @@ package org.myblog.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public interface IDao<T, PK extends Serializable>  
 {	
@@ -22,4 +23,28 @@ public interface IDao<T, PK extends Serializable>
 	
 	// 登录
 	public T login(T entity);
+	
+	
+	/**
+    * 判断某个值是否存在
+    * @param entityClass
+    * @param maps
+    * @param operate
+    * @return
+    */
+	public int isExist(Class<T> entityClass,Map<String, Object> maps,String operate);
+	
+	
+	/**
+	 * @Description 通过一个参数取到对应的对象  
+	 * @author bobmeek
+	 * @Title findByParam
+	 * @param @param entityClass
+	 * @param @param maps
+	 * @param @param operate
+	 * @param @return
+	 * @return T    返回类型
+	 */
+	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
 }

@@ -2,6 +2,7 @@ package org.myblog.base;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -32,7 +33,7 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	@Override
 	public void save(T entity) 
 	{
-		
+		idao.save(entity);
 	}
 	
 	@Override
@@ -44,7 +45,7 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	@Override
 	public void update(T entity) 
 	{
-		
+		idao.update(entity);
 	}
 	
 	@Override
@@ -52,4 +53,18 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	{
 		return null;
 	}
+	
+
+	@SuppressWarnings("unchecked")
+	public int isExist(Map<String, Object> maps, String operate)
+	{
+		return idao.isExist(entityClass, maps, operate);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public T findByParam(Map<String, Object> maps, String operate)
+	{
+		return idao.findByParam(entityClass, maps, operate);
+	}
+	
 }

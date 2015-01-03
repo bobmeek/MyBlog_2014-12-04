@@ -18,13 +18,15 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
  */
+
+@RunWith
 public class ArticleT
 {
-	private static ApplicationContext ctx;
+/*	private static ApplicationContext ctx;
 	static
 	{
 	
-		ctx = new ClassPathXmlApplicationContext("org/myblog/resources/config/applicationContext.xml");
+		ctx = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 //		ctx = new FileSystemXmlApplicationContext("WebRoot/WEB-INF/config/applicationContext.xml");		
 		
 		
@@ -42,4 +44,11 @@ public class ArticleT
 		// 操作可提高执行效率
 		
 	}
+	*/
+	
+	public void showArticle()
+	{
+		
+	}
+	
 }

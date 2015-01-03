@@ -19,12 +19,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/article/")
 public class ArticleController
 {
 	@Resource(name = "articleServiceImpl")
 	private ArticleService articleService;
 	
-	@RequestMapping("/article/showArticles")
+	@RequestMapping("/showArticles")
 	public String showArticles(String name, String pass, HttpSession session)
 	{
 		List<ArticleVO> articles = articleService.findAll();

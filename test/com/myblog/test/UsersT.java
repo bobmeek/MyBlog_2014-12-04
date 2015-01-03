@@ -10,7 +10,7 @@ package com.myblog.test;
 
 import java.util.List;
 import org.myblog.controller.ArticleController;
-import org.myblog.model.UsersVO;
+import org.myblog.model.UserVO;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -42,7 +42,7 @@ public class UsersT
 //			}
 			
 			
-			UsersVO u = new UsersVO();
+			UserVO u = new UserVO();
 			u.setUsername("b");
 			u.setUserpwd("aa");
 			

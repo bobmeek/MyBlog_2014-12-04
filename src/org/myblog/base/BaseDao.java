@@ -2,6 +2,7 @@ package org.myblog.base;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 public interface BaseDao<T, PK extends Serializable>  
 {
@@ -22,5 +23,9 @@ public interface BaseDao<T, PK extends Serializable>
 	
 	// 登录
 	public T login(T entity); 
+	
+	// 判断某个值是否存在（parameter-Map, example：username, password ...）operate标识唯一的mapper
+	// 返回值类型为int类型是想判断 'select count(*) table..., 返回的数据是0还是1 ?'
+	public int isExist(Map<String, Object> maps, String operate);
 	
 }

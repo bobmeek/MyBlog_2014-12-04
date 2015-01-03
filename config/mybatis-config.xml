@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias type="org.myblog.model.ArticleVO" alias="article" />
 		<typeAlias type="org.myblog.model.CategoryVO" alias="category" />
-		<typeAlias type="org.myblog.model.UsersVO" alias="users" />
+		<typeAlias type="org.myblog.model.UserVO" alias="user" />
 	</typeAliases>
 	
 </configuration>

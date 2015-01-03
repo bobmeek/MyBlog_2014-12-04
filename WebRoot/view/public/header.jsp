@@ -18,10 +18,12 @@
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
 
-<link rel="stylesheet" href="resources/front_base/css/main.css" />
+
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
+<link rel="stylesheet" href="resources/front_base/css/main.css" />
 <style type="text/css">
+/* body { padding-bottom: 100px; } */
 </style>
 </head>
 
@@ -33,7 +35,8 @@
 
 	<div class="navigate">
 
-		<nav class="navbar navbar-default " role="navigation"> <!-- 		  <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> -->
+		<nav class="navbar navbar-default " role="navigation"> 
+<!-- 				  <nav class="navbar navbar-default navbar-fixed-top" role="navigation"> -->
 
 		<ul class="nav navbar-nav navbar-left" style="margin-left:180px">
 			<li class="active"><a href="javascript:void(0)">首页</a></li>
@@ -49,8 +52,8 @@
 			</div>
 			<button type="submit" class="btn btn-default">搜索</button>
 			
-			<a href="${basePath}view/register.jsp" class="btn btn-primary btn-large">注册</a>
-			<a href="${basePath}view/login.jsp" class="btn">登录</a>
+			<a href="${basePath}view/user/register.jsp" class="btn btn-primary btn-large">注册</a>
+			<a href="${basePath}view/user/login.jsp" class="btn">登录</a>
 			<a href="#login" data-toggle="modal" class="btn">登录</a>
 		</form>
 

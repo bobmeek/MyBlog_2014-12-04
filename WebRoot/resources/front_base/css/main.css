@@ -1,105 +1,129 @@
-
-body
-{
+/* body {
 	text-align: center;
-}
+} */
 
 #pagecontain {
 	width: 1366px;
-	height:1200px;
+	height: 1200px;
 	background-color: #FFFFFF;
 	text-align: left;
-	margin:0 auto; 
-}
-.banner
-{
-	width:100%;
-	height:100px;
-	text-align:left;
-	color:red;
-	border: 1px solid;
+	margin: 0 auto;
 }
 
-.navigate
-{
-	width:100%;
-	height:58px;
-	color:black;
-	border: 1px solid;
-}
-
-#content
-{
-	width: 1366px;
-	height:1000px;
+.banner {
+	width: 100%;
+	height: 100px;
 	text-align: left;
-	margin:0 auto; 
-	color:blue;
-	border:1px solid;
+	color: red;
+	border: 1px solid;
 }
 
-#content-left
-{
-	width:60%;
-	height:1000px;
-	float:left;
-	border:1px solid;
+.navigate {
+	width: 100%;
+	height: 58px;
+	color: black;
+	border: 1px solid;
 }
 
-#content-left-top
-{
-	width:100%;
-	height:40%;
-	background-color:green;
-	
+#content {
+	width: 1366px;
+	height: 1000px;
+	text-align: left;
+	margin: 0 auto;
+	color: blue;
+	border: 1px solid;
 }
 
-#content-left-bottom
-{
-	width:100%;
-	height:54%;
-	background-color:yellow;
-	
+#content-left {
+	width: 60%;
+	height: 1000px;
+	float: left;
+	border: 1px solid;
 }
 
-#content-right
-{
-	width:40%;
-	height:1000px;
-	float:right;
-	color:green;
-	background-color:yellow;
-	border:1px solid;
+#content-left-top {
+	width: 100%;
+	height: 40%;
+	background-color: green;
 }
 
-.content-title
-{
-	width:100%;
-	height:3%;
+#content-left-bottom {
+	width: 100%;
+	height: 54%;
+	background-color: yellow;
+}
+
+#content-right {
+	width: 40%;
+	height: 1000px;
+	float: right;
+	color: green;
+	background-color: yellow;
+	border: 1px solid;
+}
+
+.content-title {
+	width: 100%;
+	height: 3%;
 	font-size: 20px;
-	background-color:red;
+	background-color: red;
 }
 
-
-a:hover
-{
+a:hover {
 	text-decoration: none;
 	background-color: red;
 }
 
-ul
-{
-	list-style-type:none;
-	line-height: 30px; 
-	color:red;
+ul {
+	list-style-type: none;
+	line-height: 30px;
+	color: red;
 }
 
 /* 注册页面面板 */
-#reg-panel {
+#reg_panel {
 	width: 800px;
-	height:600px;
+	height: 600px;
 	background-color: #FFFFFF;
 	text-align: left;
-	margin: 0 auto; 
+	margin: 0 auto;
 	margin-top: 30px;
+	/* 	阴影 */
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: #666 0px 0px 10px;
+	-moz-box-shadow: #666 0px 0px 10px;
+	box-shadow: #666 0px 0px 10px;
+	behavior: url(/PIE.htc);
+}
+
+/* 注册页面面板 */
+#reg_panel_return {
+	width: 800px;
+	height: 600px;
+	background-color: #FFFFFF;
+	text-align: left;
+	margin: 0 auto;
+	margin-top: 30px;
+	/* 	阴影 */
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: #666 0px 0px 10px;
+	-moz-box-shadow: #666 0px 0px 10px;
+	box-shadow: #666 0px 0px 10px;
+	behavior: url(/PIE.htc);
+}
+
+.active-info {
+	/* background-color:gray; */
+	height: 400px; 
+	width : 400px;
+	line-height:20px;
+	position : relative; 
+	top : 20%; 
+	left : 30%; 
+	font-family: "微软雅黑";
+	font-size: 20px;
 }

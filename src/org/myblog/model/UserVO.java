@@ -16,9 +16,9 @@ import java.sql.Timestamp;
  * @author bobmeek
  * @date Dec 24, 2014 7:43:47 PM
  */
-public class UsersVO
+public class UserVO
 {
-	private int id;
+	private Integer id;
 	
 	private String username;
 	
@@ -31,13 +31,26 @@ public class UsersVO
 	private String sex;
 	
 	private Timestamp birthday;
+	
+	
+	private Integer mailActive;
+	
+	public Integer getMailActive()
+	{
+		return mailActive;
+	}
+	
+	public void setMailActive(Integer mailActive)
+	{
+		this.mailActive = mailActive;
+	}
 
-	public int getId()
+	public Integer getId()
 	{
 		return id;
 	}
 
-	public void setId(int id)
+	public void setId(Integer id)
 	{
 		this.id = id;
 	}
