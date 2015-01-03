@@ -18,11 +18,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
  */
-
-@RunWith
 public class ArticleT
 {
-/*	private static ApplicationContext ctx;
+	private static ApplicationContext ctx;
 	static
 	{
 	
@@ -42,12 +40,6 @@ public class ArticleT
 		article.showArticles("aa", "bb",null);
 		// 使用StringBuilder的append操作代替字符串的“+”
 		// 操作可提高执行效率
-		
-	}
-	*/
-	
-	public void showArticle()
-	{
 		
 	}
 	
