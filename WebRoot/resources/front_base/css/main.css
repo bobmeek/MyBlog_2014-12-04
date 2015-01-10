@@ -1,6 +1,20 @@
-/* body {
-	text-align: center;
-} */
+body {
+	/* text-align: center; */
+	min-height:100%;
+	background-color: #f0f0f0;
+	font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
+}
+
+.container{
+	 width: 1366px !important;
+}
+.container-fluid{
+	width: 1366px !important;
+}
 
 #pagecontain {
 	width: 1366px;
@@ -71,7 +85,6 @@
 
 a:hover {
 	text-decoration: none;
-	background-color: red;
 }
 
 ul {
@@ -83,7 +96,10 @@ ul {
 /* 注册页面面板 */
 #reg_panel {
 	width: 800px;
-	height: 600px;
+	 /*兼容IE6*/
+	_height:500px; 
+	 /*div height自适应*/
+	min-height:500px;
 	background-color: #FFFFFF;
 	text-align: left;
 	margin: 0 auto;

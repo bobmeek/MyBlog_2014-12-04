@@ -10,6 +10,7 @@ package org.myblog.model;
 
 import java.sql.Timestamp;
 
+
 /**
  * @ClassName: UsersVO
  * @Description: 用户类
@@ -24,25 +25,39 @@ public class UserVO
 	
 	private String userpwd;
 	
-	private String mail;
+	private String email;
 	
-	private String phone;
+	private Timestamp registerTime;
 	
-	private String sex;
+	private String registerIP;
 	
-	private Timestamp birthday;
+	private Timestamp lastLoginTime;
 	
+	private String lastLoginIP;
 	
-	private Integer mailActive;
+	private Integer isDisabled;
 	
-	public Integer getMailActive()
+	private Integer isEmailActive;
+
+	public UserVO()
 	{
-		return mailActive;
+		super();
 	}
-	
-	public void setMailActive(Integer mailActive)
+
+	public UserVO(Integer id, String username, String userpwd, String email, Timestamp registerTime, String registerIP, Timestamp lastLoginTime, String lastLoginIP, Integer isDisabled,
+			Integer isEmailActive)
 	{
-		this.mailActive = mailActive;
+		super();
+		this.id = id;
+		this.username = username;
+		this.userpwd = userpwd;
+		this.email = email;
+		this.registerTime = registerTime;
+		this.registerIP = registerIP;
+		this.lastLoginTime = lastLoginTime;
+		this.lastLoginIP = lastLoginIP;
+		this.isDisabled = isDisabled;
+		this.isEmailActive = isEmailActive;
 	}
 
 	public Integer getId()
@@ -75,51 +90,83 @@ public class UserVO
 		this.userpwd = userpwd;
 	}
 
-	public String getMail()
+	public String getEmail()
 	{
-		return mail;
+		return email;
 	}
 
-	public void setMail(String mail)
+	public void setEmail(String email)
 	{
-		this.mail = mail;
+		this.email = email;
 	}
 
-	public String getPhone()
+	public Timestamp getRegisterTime()
 	{
-		return phone;
+		return registerTime;
 	}
 
-	public void setPhone(String phone)
+	public void setRegisterTime(Timestamp registerTime)
 	{
-		this.phone = phone;
+		this.registerTime = registerTime;
 	}
 
-	public String getSex()
+	public String getRegisterIP()
 	{
-		return sex;
+		return registerIP;
 	}
 
-	public void setSex(String sex)
+	public void setRegisterIP(String registerIP)
 	{
-		this.sex = sex;
+		this.registerIP = registerIP;
 	}
 
-	public Timestamp getBirthday()
+	public Timestamp getLastLoginTime()
 	{
-		return birthday;
+		return lastLoginTime;
 	}
 
-	public void setBirthday(Timestamp birthday)
+	public void setLastLoginTime(Timestamp lastLoginTime)
 	{
-		this.birthday = birthday;
+		this.lastLoginTime = lastLoginTime;
 	}
-	
-	
-	
-	
-	
-	
+
+	public String getLastLoginIP()
+	{
+		return lastLoginIP;
+	}
+
+	public void setLastLoginIP(String lastLoginIP)
+	{
+		this.lastLoginIP = lastLoginIP;
+	}
+
+	public Integer getIsDisabled()
+	{
+		return isDisabled;
+	}
+
+	public void setIsDisabled(Integer isDisabled)
+	{
+		this.isDisabled = isDisabled;
+	}
+
+	public Integer getIsEmailActive()
+	{
+		return isEmailActive;
+	}
+
+	public void setIsEmailActive(Integer isEmailActive)
+	{
+		this.isEmailActive = isEmailActive;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "UserVO [id=" + id + ", username=" + username + ", userpwd=" + userpwd + ", email=" + email + ", registerTime=" + registerTime + ", registerIP=" + registerIP + ", lastLoginTime="
+				+ lastLoginTime + ", lastLoginIP=" + lastLoginIP + ", isDisabled=" + isDisabled + ", isEmailActive=" + isEmailActive + "]";
+	}
+
 	
 	
 	

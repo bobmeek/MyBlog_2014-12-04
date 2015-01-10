@@ -21,7 +21,7 @@ import org.myblog.model.UserVO;
  * @author bobmeek
  * @date Dec 30, 2014 10:42:24 AM
  */
-public class GenerateLinkUtils
+public class GenerateLinkUtil
 {
 	private static final String CHECK_CODE = "checkCode";  
     
@@ -29,8 +29,8 @@ public class GenerateLinkUtils
      * 生成帐户激活链接 
      */  
     public static String generateActivateLink(UserVO user) {  
-        return "http://192.168.1.104:8080/MyBlog_2014-12-04/user/activeMail.do?mail="   
-                + user.getMail() + "&" + CHECK_CODE + "=" + generateCheckcode(user);  
+        return "http://localhost:8888/MyBlog_2014-12-04/user/activeMail.do?mail="   
+                + user.getEmail() + "&" + CHECK_CODE + "=" + generateCheckcode(user);  
     }  
       
     /** 

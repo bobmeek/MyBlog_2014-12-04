@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
 <mapper namespace="org.myblog.model.UserVO">
 
 	<resultMap id="userResultMap" type="user">
 		<id property="id" column="id" />
 		<result property="username" column="username" />
 		<result property="userpwd" column="userpwd" />
-		<result property="mail" column="mail" />
-		<result property="phone" column="phone" />
-		<result property="sex" column="sex" />
-		<result property="birthday" column="birthday" />
-
-		<result property="mailActive" column="mailActive" />
+		<result property="email" column="email" />
+		<result property="registerTime" column="register_time"/>
+		<result property="registerIP" column="register_IP"/>
+		<result property="lastLoginTime" column="last_login_time"/>
+		<result property="lastLoginIP" column="last_login_IP"/>
+		<result property="isDisabled" column="is_disabled"/>
+		<result property="isEmailActive" column="is_email_active"/>
 	</resultMap>
 
 
 	<!-- 添加用户信息操作 -->
 	<insert id="add" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-		insert into user(username,userpwd,mail,phone,sex,birthday,mailActive) values(#{username},#{userpwd},#{mail},#{phone},#{sex},#{birthday},#{mailActive})
+		insert into user(username,userpwd,email,register_time,register_IP,last_login_time,last_login_IP,is_disabled,is_email_active) values(#{username},#{userpwd},#{email},#{registerTime},#{registerIP},#{lastLoginTime},#{lastLoginIP},#{isDisabled},#{isEmailActive})
 	</insert>
 
 	<!-- 用户的修改操作 -->
 	<update id="update" parameterType="user">
-		update user set username=#{username},userpwd=#{userpwd},mail=#{mail},phone=#{phone},sex=#{sex},birthday=#{birthday},mailActive=#{mailActive} where
-		mail=#{mail}
+		update user set username=#{username},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive} where
+		email=#{email}
 	</update>
 
 
@@ -40,17 +40,31 @@
 	</select>
 
 	<!-- 邮箱是否存在 -->
-	<select id="mailIsExist" resultType="int" parameterType="map">
-		select count(*) from user where mail=#{mail}
+	<select id="emailIsExist" resultType="int" parameterType="map">
+		select count(*) from user where email=#{email}
 	</select>
 
 
 
 	<!-- 根据邮箱获得对象 -->
 	<select id="findByMail" resultType="user" parameterType="map">
-		select * from user where mail = #{mail}
+		select * from user where email = #{email}
+	</select>
+	
+	<!-- 根据邮箱获得对象 -->
+	<select id="findByUsername" resultType="user" parameterType="map">
+		select * from user where username = #{username}
+	</select>
+	
+	<!-- 根据用户名登录-->
+	<select id="nameLogin" resultType="int" parameterType="map">
+		select count(*) from user where username=#{username} and userpwd=#{userpwd}
 	</select>
 
-
-
+	<!-- 根据邮箱登录-->
+	<select id="emailLogin" resultType="int" parameterType="map">
+		select count(*) from user where email=#{email} and userpwd=#{userpwd}
+	</select>
+	
+	
 </mapper>

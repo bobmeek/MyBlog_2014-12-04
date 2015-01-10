@@ -44,7 +44,7 @@
 				<div class="content-title">推荐教程</div>
 				<div id="content-left-bottom">
 				
-					欢迎啊${name }！
+					欢迎啊${username }！!
 				
 				</div>
 			</div>

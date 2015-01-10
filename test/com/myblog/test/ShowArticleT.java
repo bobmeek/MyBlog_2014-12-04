@@ -37,7 +37,7 @@ public class ShowArticleT
 	{
 		ArticleController article = (ArticleController) ctx.getBean("articleController");
 		
-		article.showArticles("aa", "bb",null);
+		article.showArticles("aa",null);
 		// 使用StringBuilder的append操作代替字符串的“+”
 		// 操作可提高执行效率
 		

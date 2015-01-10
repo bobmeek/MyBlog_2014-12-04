@@ -38,6 +38,24 @@ public class ArticleVO implements Serializable
 	
 	private int readCount;
 
+	
+	
+	public ArticleVO()
+	{
+		super();
+	}
+
+	public ArticleVO(int categoryId, String title, String content, String author, Timestamp time, int readCount)
+	{
+		super();
+		this.categoryId = categoryId;
+		this.title = title;
+		this.content = content;
+		this.author = author;
+		this.time = time;
+		this.readCount = readCount;
+	}
+
 	public int getId()
 	{
 		return id;

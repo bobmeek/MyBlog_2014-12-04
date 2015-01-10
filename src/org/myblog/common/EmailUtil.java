@@ -29,7 +29,7 @@ import org.myblog.model.UserVO;
  * @author bobmeek
  * @date Dec 30, 2014 10:40:58 AM
  */
-public class EmailUtils 
+public class EmailUtil 
 {
 	 private static final String FROM = "xiayuzheng521@163.com";  
 	  
@@ -38,11 +38,11 @@ public class EmailUtils
 	     * @param user 未激活的用户 
 	     */  
 	    public static void sendAccountActivateEmail(UserVO user) {
-	    	String link = GenerateLinkUtils.generateActivateLink(user);
+	    	String link = GenerateLinkUtil.generateActivateLink(user);
 	    	String content = "<div style='background-color:gray'>" +
 	    			"<hr/>" + 
 	    			"Hi," + user.getUsername()+"<br/>"+
-	    			"感谢注册<a href='http://192.168.1.104:8080/MyBlog_2014-12-04/view/index.jsp'>keven官方博客</a>" + "<br/>"+
+	    			"感谢注册<a href='http://localhost:8888/MyBlog_2014-12-04/view/index.jsp'>keven官方博客</a>" + "<br/>"+
 	    			"请点击以下链接激活你的账户并设置您的账号密码：" + "<br/>" +
 	    			"<a href='" + link +"'>"+link+"</a>" + "<br/>" +
 	    			"请勿回复此邮件，如果有疑问，请联系我们：xiayuzheng@supermap.com" + "<br/><br/>" +
@@ -55,7 +55,7 @@ public class EmailUtils
 	            message.setSubject("帐户激活邮件");  
 	            message.setSentDate(new Date());  
 	            message.setFrom(new InternetAddress(FROM));  
-	            message.setRecipient(RecipientType.TO, new InternetAddress(user.getMail()));  
+	            message.setRecipient(RecipientType.TO, new InternetAddress(user.getEmail()));  
 	            //message.setContent("<a href='" + GenerateLinkUtils.generateActivateLink(user)+"'>点击激活帐户</a>","text/html;charset=utf-8");
 	            message.setContent(content,"text/html;charset=utf-8");
 	            // 发送邮件  
@@ -75,8 +75,8 @@ public class EmailUtils
 	            message.setSubject("找回您的帐户与密码");  
 	            message.setSentDate(new Date());  
 	            message.setFrom(new InternetAddress(FROM));  
-	            message.setRecipient(RecipientType.TO, new InternetAddress(user.getMail()));  
-	            message.setContent("要使用新的密码, 请使用以下链接启用密码:<br/><a href='" + GenerateLinkUtils.generateResetPwdLink(user) +"'>点击重新设置密码</a>","text/html;charset=utf-8");  
+	            message.setRecipient(RecipientType.TO, new InternetAddress(user.getEmail()));  
+	            message.setContent("要使用新的密码, 请使用以下链接启用密码:<br/><a href='" + GenerateLinkUtil.generateResetPwdLink(user) +"'>点击重新设置密码</a>","text/html;charset=utf-8");  
 	            // 发送邮件  
 	            Transport.send(message);  
 	        } catch (Exception e) {  
@@ -94,7 +94,7 @@ public class EmailUtils
 	            @Override  
 	            protected PasswordAuthentication getPasswordAuthentication() {  
 	                String password = null;  
-	                InputStream is = EmailUtils.class.getResourceAsStream("password.dat");  
+	                InputStream is = EmailUtil.class.getResourceAsStream("password.dat");  
 	                byte[] b = new byte[1024];  
 	                try {  
 	                    int len = is.read(b);  

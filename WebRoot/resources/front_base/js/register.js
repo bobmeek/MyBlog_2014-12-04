@@ -6,6 +6,10 @@ $(function()
  	//alert(screen.width);
 	
 	
+/*	$.post("user/test.do","",function(result){
+		alert(result);
+	},"json");*/
+	
 	
 	/**
 	 * 一、用户名：
@@ -30,30 +34,43 @@ $(function()
 	 */
 	
 	
-	$(".alert-danger").hide();
-	$("#reg_panel_return").hide();
+	/**
+	 * 1.enter提交
+	 * 2.一对一 userExt扩展信息
+	 * 3.用户列表显示
+	 * 4.bing chrome plugin
+	 * */
+	
+	//$(".alert-danger").hide();
+	//$("#reg_panel_return").hide();
+	
+	
+	//Enter注册
+	$("input").keyup(function(event){
+	
+		//keyCode=13是enter键
+		if(event.keyCode==13)
+		{
+			//模拟提交
+			$("#register_btn").click();
+		}
+	});
+	
 	
 	$("#register_btn").on("click",function()
 	{
 		var username = $("#name").val();
-		var mail = $("#mail").val();
-		var phone = $("#phone").val();
-		var birthday = $("#birthday").val();
-		birthday = Math.round(new Date(birthday).getTime()/1000); 
-		var sex = $("input:radio:checked").val();
+		var email = $("#email").val();
 		var userpwd = $("#password").val();
 		var userpwd_sure=$("#password_sure").val();
 		
-		var u = new User(username,mail,phone,birthday,sex,userpwd,userpwd_sure);
-		
+		var u = new User(username,email,userpwd,userpwd_sure);
 		//用户输入全部正确则将提示框隐藏.
-		if(u.checked())
+		if(checked(u))
 		{
 			$(".alert-danger").hide();
 			addUser(u);
 			//邮箱激活active
-			
-			
 		}
 		else
 		{
@@ -64,128 +81,214 @@ $(function()
 	});
 	
 	
-	
-	
-	function User(username,mail,phone,birthday,sex,userpwd,userpwd_sure)
+	function getInputInfo()
 	{
-		
-		
-		
-		this.username = username;
-		this.mail = mail;
-		this.phone = phone;
-		this.birthday = birthday;
-		this.sex = sex;
-		this.userpwd = userpwd;
-		this.userpwd_sure = userpwd_sure;
-		var space = "&nbsp;&nbsp;&nbsp;";
-		console.log("username="+username+",mail="+mail+",phone="+phone+",birthday="+birthday+",sex="+sex+",userpwd="+userpwd+",userpwd_sure="+userpwd_sure);
-		//判断User.prototype.validate是否存在，如果不存在就创建。
-
-		if(!User.prototype.checked)
-		{
-			User.prototype.checked = function()
-			{
-				var format_username = /^[a-zA-Z][a-zA-Z0-9_]{2,30}$/;  
-				var format_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-				var format_phone = /^(13|14|15|18)\d{9}$/;
-				var format_userpwd = /^[a-z0-9_-]{6,18}$/;
-				var flag = false;
-				debugger;
-				if(this.username=="")
-					$(".icon-remove-sign").html(" 输入的用户名不能为空");
-				else if(!format_username.test(this.username))
-					$(".icon-remove-sign").html(" 用户名必须为3-30个字符, 可以是字母、数字、下划线");
-				else if(isExist("username",this.username))
-					$(".icon-remove-sign").html(" 输入的用户名已经存在，请重新输入");
-				else if(this.mail=="")
-					$(".icon-remove-sign").html(" 输入的邮箱不能为空");
-				else if(!format_email.test(this.mail))
-					$(".icon-remove-sign").html(" 输入邮件的格式不正确");
-				else if(isExist("mail",this.mail))
-					$(".icon-remove-sign").html(" 该邮箱地址已经被注册，请重新输入");
-				else if(this.phone!="" && !format_phone.test(this.phone))
-						$(".icon-remove-sign").html(" 输入手机号的格式不正确");
-				else if(this.userpwd=="")
-					$(".icon-remove-sign").html(" 输入的密码不能为空");
-				else if(!format_userpwd.test(this.userpwd))
-					$(".icon-remove-sign").html(" 输入的密码长度不能小于6且不能大于16");
-				else if(userpwd_sure=="" || this.userpwd_sure!=this.userpwd)
-					$(".icon-remove-sign").html(" 两次填写的密码不一致");
-				else
-					flag = true;
-				
-					
-				return flag;
-					
-			}
-			
-			
-		}
 		
 	}
 	
 	
 	
-				
-			/**
-			 * 判断某个值是否存在
-			 * attr:属性 用户名？邮箱
-			 * value:值
-			 */
-			function isExist(attr,value)
-			{
-				var flag = false;
-				
-				var d = "attr="+attr+"&value="+value;
-				debugger;
-				$.ajax(
-				{
-					type:"post",
-					url:"user/checked.do",
-					data:d,
-					dataType:"json",
-					async:false,  //同步，否则还没得到success返回的值，就会直接下面的return。
-					success:function(result)
-					{
-						flag = result;
-					},
-					error:function(result)
-					{
-						alert("Ajax返回错误");
-					}
-				});
-				
-				return flag;
-			}
-				
+	function User(username,email,userpwd,userpwd_sure)
+	{
+		this.username = username;
+		this.email = email;
+		this.userpwd = userpwd;
+		this.userpwd_sure = userpwd_sure;
+		console.log("username="+username+",email="+email+",userpwd="+userpwd+",userpwd_sure="+userpwd_sure);
+	}
 	
-			/**添加用户**/
-			function addUser(user)
-			{
-				console.log("log=="+JSON.stringify(user));
-				$.ajax(
-				{
-					type:"post",
-					url:"user/add.do",
-//					data:$.toJSON(user),
-					data:"username="+user.username+"&userpwd="+user.userpwd+"&mail="+user.mail,  
-					dataType:"json",
-					success:function(result)
-					{
-						//alert(result);
-						$("#reg_panel").hide();
-						$("#reg_panel_return").show();
-						$("#mail_return").html(result.mail);
-						setTimeout("location.href='http://localhost:8080/MyBlog_2014-12-04/article/showArticles'",5000);
-					},
-					error:function(result)
-					{
-						alert("Ajax返回错误");
-					}
-				});
-			}
+	function checked(u)
+	{
+		var format_username = /^[a-zA-Z][a-zA-Z0-9_]{2,30}$/;  
+		var format_email = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+		var format_userpwd = /^[a-z0-9_-]{6,18}$/;
+		var flag = false;
+		if(u.username=="")
+		{
+			groupDefault("email");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入的用户名不能为空");
+			groupError("username");
+		}
+		else if(!format_username.test(u.username))
+		{
+			groupDefault("email");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 用户名必须为3-30个字符, 可以是字母、数字、下划线");
+			groupError("username");
+		}
+		else if(isExist("username",u.username))
+		{
+			groupDefault("email");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入的用户名已经存在，请重新输入");
+			groupError("username");
+		}
+		else if(u.email=="")
+		{
+			groupSuccess("username");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入的邮箱不能为空");
+			groupError("email");
+		}
+		else if(!format_email.test(u.email))
+		{
+			groupSuccess("username");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入邮件的格式不正确");
+			groupError("email");
+		}
+		else if(isExist("email",u.email))
+		{
+			groupSuccess("username");
+			groupDefault("password");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 该邮箱地址已经被注册，请重新输入");
+			groupError("email");
+		}
+		else if(u.userpwd=="")
+		{
+			groupSuccess("username");
+			groupSuccess("email");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入的密码不能为空");
+			groupError("password");
+		}
+		else if(!format_userpwd.test(u.userpwd))
+		{
+			groupSuccess("username");
+			groupSuccess("email");
+			groupDefault("password_sure");
+			$(".icon-remove-sign").html(" 输入的密码长度不能小于6且不能大于16");
+			groupError("password");
+		}
+		else if(u.userpwd_sure=="" || u.userpwd_sure!=u.userpwd)
+		{
+			groupSuccess("username");
+			groupSuccess("email");
+			groupSuccess("password");
+			$(".icon-remove-sign").html(" 两次填写的密码不一致");
+			groupError("password_sure");
+		}
+		else
+		{
+			groupSuccess("username");
+			groupSuccess("email");
+			groupSuccess("password");
+			groupSuccess("password_sure");
+			flag = true;
+			
+		}
+		
+			
+		return flag;
+	}
 	
+	
+	
+	
+	
+	/**取消输入框消息提示**/
+	function groupDefault(groupName)
+	{
+		
+		if(null!=$("#"+groupName+"_group i"))
+		{
+			$("#"+groupName+"_group").attr("class","form-group");
+			$("#"+groupName+"_group i").remove();
+		}
+	}
+	
+	/**输入框错误提示**/
+	function groupError(groupName)
+	{
+		groupDefault(groupName);
+		$("#"+groupName+"_group").attr("class","form-group has-error has-feedback");
+		$("#"+groupName+"_group").append("<i class='glyphicon glyphicon-remove form-control-feedback'></i>");
+		
+	}
+	
+	/**输入框正确提示**/
+	function groupSuccess(groupName)
+	{
+		groupDefault(groupName);
+		$("#"+groupName+"_group").attr("class","form-group has-success has-feedback");
+		$("#"+groupName+"_group").append("<i class='glyphicon glyphicon-ok form-control-feedback'></i>");
+	}
+	
+				
+	/**
+	 * 判断某个值是否存在
+	 * attr:属性 用户名？邮箱
+	 * value:值
+	 */
+	function isExist(attr,value)
+	{
+		var flag = false;
+		var data = {"attr":attr,"value":value};
+		$.ajax(
+		{
+			type:"post",
+			url:"user/checked.do",
+			data:data,
+			dataType:"json",
+			async:false,  //同步，否则还没得到success返回的值，就会直接下面的return。
+			success:function(result)
+			{
+				flag = result;
+			},
+			error:function(result)
+			{
+				alert("Ajax返回错误");
+			}
+		});
+		
+		return flag;
+	}
+		
 
+	/**添加用户**/
+	function addUser(user)
+	{
+		$.ajax(
+		{
+			type:"post",
+			url:"user/add.do",
+			data:user,  
+			dataType:"json",
+			success:function(result)
+			{
+				$("#reg_panel").hide();
+				$("#reg_panel_return").show();
+				$("#email_return").html(result.email);
+				setTimeout(_redirectIndex(result),5000);
+			},
+			error:function(result)
+			{
+				alert("Ajax返回错误");
+			}
+		});
+	}
+	
+	/**跳转到首页**/
+	function redirectIndex(user)
+	{
+		
+		location.href="http://localhost:8888/MyBlog_2014-12-04/article/showArticles?username="+user.username;
+	}
+
+	/**通过该函数实现setTimeout可传参的效果**/
+	function _redirectIndex(user)
+	{
+		return function()
+		{
+			redirectIndex(user);
+		}
+	}
 });
 

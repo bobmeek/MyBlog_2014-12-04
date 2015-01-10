@@ -26,7 +26,7 @@ public class ArticleController
 	private ArticleService articleService;
 	
 	@RequestMapping("/showArticles")
-	public String showArticles(String name, String pass, HttpSession session)
+	public String showArticles(String username, HttpSession session)
 	{
 		List<ArticleVO> articles = articleService.findAll();
 		
@@ -37,8 +37,7 @@ public class ArticleController
 			System.out.println("文章名称：" + articleVO.getTitle() + "==文章内容：" + articleVO.getContent());
 		}
 		
-		session.setAttribute("name", name);
-		session.setAttribute("pass", pass);
+		session.setAttribute("username", username);
 		session.setAttribute("articles", articles);
 		
 		return "index";

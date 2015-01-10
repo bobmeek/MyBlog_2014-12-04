@@ -29,6 +29,23 @@ public class CategoryVO implements Serializable
 	private String name;
 	
 	private String desc;
+	
+	public CategoryVO()
+	{
+		super();
+	}
+
+	
+	public CategoryVO(String name, String desc)
+	{
+		super();
+		this.name = name;
+		this.desc = desc;
+	}
+
+
+
+
 
 	public int getId()
 	{

@@ -24,6 +24,10 @@ public interface IDao<T, PK extends Serializable>
 	// 登录
 	public T login(T entity);
 	
+	//根据用户名/邮箱登录
+	public int login(Class<T> entityClass,Map<String,Object> maps,String operate);
+		
+
 	
 	/**
     * 判断某个值是否存在
@@ -45,6 +49,6 @@ public interface IDao<T, PK extends Serializable>
 	 * @param @return
 	 * @return T    返回类型
 	 */
-	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
+	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);	
 	
 }

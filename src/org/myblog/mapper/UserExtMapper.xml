@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.UserExtVO">
+
+	<!-- 一对一，用户基本信息表与用户扩展信息表 -->
+	<resultMap id="userExtResultMap" type="userExt">
+		<id property="id" column="id" />
+		<result property="gender" column="gender" />
+		<result property="birthday" column="birthday" />
+		<result property="mobile" column="mobile" />
+		<result property="headImg" column="head_img"/>
+		<result property="signature" column="signature"/>
+		<result property="qq" column="qq"/>
+		<result property="intro" column="intro"/>
+		<!-- javaType为主表对应实体类的完全限定名或者别名 -->
+		<association property="user" javaType="user">
+			<id property="id" column="id" />
+			<result property="username" column="username" />
+			<result property="userpwd" column="userpwd" />
+			<result property="email" column="email" />
+			<result property="registerTime" column="register_time"/>
+			<result property="registerIP" column="register_IP"/>
+			<result property="lastLoginTime" column="last_login_time"/>
+			<result property="lastLoginIP" column="last_login_IP"/>
+			<result property="isDisabled" column="is_disabled"/>
+			<result property="isEmailActive" column="is_email_active"/>
+		</association>
+	</resultMap>
+	<select id="findDetailInfoById" resultMap="userExtResultMap" parameterType="map">
+		SELECT * FROM user u,user_ext uext WHERE u.id=uext.id_user AND u.id=#{id}
+	</select>
+	
+<!-- 	注意：因插入时，id_user在表中int类型，而传过来的UserExtVO中封装的对应属性user是UserVO对象，所以在这里取其id即可 -->
+	<insert id="add" parameterType="userExt" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO user_ext (id_user,gender,birthday,mobile,head_img,signature,qq,intro)VALUES (#{user.id},#{gender},#{birthday},#{mobile},#{headImg},#{signature},#{qq},#{intro})
+	</insert>
+	
+</mapper>

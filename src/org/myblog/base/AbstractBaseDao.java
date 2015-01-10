@@ -51,9 +51,14 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	@Override
 	public T login(T entity) 
 	{
-		return null;
+		return idao.login(entity);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int login(Map<String,Object> maps,String operate)
+	{
+		return idao.login(entityClass, maps, operate);
+	}
 
 	@SuppressWarnings("unchecked")
 	public int isExist(Map<String, Object> maps, String operate)

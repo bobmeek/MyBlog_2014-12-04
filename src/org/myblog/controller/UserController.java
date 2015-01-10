@@ -10,18 +10,26 @@ package org.myblog.controller;
 
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.myblog.common.EmailUtils;
+import org.myblog.common.CommonUtils;
+import org.myblog.common.DateUtil;
+import org.myblog.common.EmailUtil;
 import org.myblog.common.MD5;
+import org.myblog.model.UserExtVO;
 import org.myblog.model.UserVO;
+import org.myblog.service.facade.UserExtService;
 import org.myblog.service.facade.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @ClassName: LoginControllerr
@@ -36,6 +44,9 @@ public class UserController
 
 	@Resource(name = "userServiceImpl")
 	private UserService userService;
+	
+	@Resource(name = "userExtServiceImpl")
+	private UserExtService userExtService;
 
 	
 	/**
@@ -60,7 +71,7 @@ public class UserController
 		}
 		else
 		{
-			count = userService.mailIsExist(value);
+			count = userService.emailIsExist(value);
 		}
 
 		if (count > 0)
@@ -81,55 +92,102 @@ public class UserController
 	 * @param @param user
 	 * @param @return
 	 * @return String    返回类型
+	 * @throws Exception 
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/add.do",produces = "application/json")
-	public UserVO add(HttpServletRequest request, String username,String userpwd,String mail)
+	public UserVO add(HttpServletRequest request, UserVO user) throws Exception
 	{	
+		user.setRegisterTime(DateUtil.convertTimestamp(new Date()));
+		user.setRegisterIP(CommonUtils.getPublidIp());
+		user.setIsEmailActive(0);
+		user.setIsDisabled(1);
 		
-		
-		UserVO user = new UserVO();
-//		Timestamp birthdayTime = Timestamp.valueOf(birthday);
-		user.setUsername(username);
-		user.setMail(mail);
-//		user.setBirthday(birthdayTime);
-//		user.setSex(sex);
-//		
 		// 对密码进行MD5加密  + 盐值
-		user.setUserpwd(MD5.MD5Encode(username,userpwd));
-		user.setMailActive(0);
+		user.setUserpwd(MD5.MD5Encode(user.getUsername(),user.getUserpwd()));
 		// 发送激活邮件
-		EmailUtils.sendAccountActivateEmail(user);
+		EmailUtil.sendAccountActivateEmail(user);
 		
-		//保存用户
+		//保存用户基本信息
 		userService.saveUser(user);
+		
+		//保存用户扩展信息
+		UserExtVO userExtVO = new UserExtVO();
+		userExtVO.setUser(user);
+		userExtService.save(userExtVO);
 		
 		return user; 
 	}
 		
+	
 	@RequestMapping(value="/activeMail.do")
 	public String activeMail(String mail,String checkCode)
 	{
 		UserVO user = userService.findByMail(mail);
-		System.out.println("user:"+user);
-		user.setMailActive(1);
+		user.setIsEmailActive(1);
 		userService.update(user);
 		System.out.println("激活成功======mail:"+mail+"==checkCode:"+checkCode+"======激活成功");
 		return "redirect:../article/showArticles";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/login.do",produces="application/json")
+	public int login(String attr,String userpwd) throws Exception
+	{
+		
+		UserVO user = userService.findByMail(attr);
+		//如果得到空对象，证明是用用户名登录，否则是用邮箱登录
+		if(null==user)  
+		{
+			userpwd = MD5.MD5Encode(attr,userpwd);
+			user = userService.findByUsername(attr);
+		}
+		else
+		{
+			userpwd = MD5.MD5Encode(user.getUsername(), userpwd);
+		}
+		
+		if(userService.nameIsExist(attr)>0 || userService.emailIsExist(attr)>0)
+		{
+			//用户名登录
+			if(userService.nameLogin(attr, userpwd)>0 || userService.emailLogin(attr, userpwd)>0)
+			{
+				
+				user.setLastLoginTime(DateUtil.convertTimestamp(new Date()));
+				user.setLastLoginIP(CommonUtils.getPublidIp());
+				userService.update(user);
+				//正确
+				return 1;
+			}
+			else
+			{ 
+				//密码错误
+				return 0;
+			}
+		}
+		else
+		{
+			//没有该用户
+			return -1;
+		}
+	}
 	
 	
+	@RequestMapping(value="/test.do",produces="application/json;charest=utf-8")
+    @ResponseBody 
+	public UserExtVO showUserDatilInfo()
+	{
+		UserExtVO userDatilInfo = userExtService.findDetailInfoById(2);
+		return userDatilInfo;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	 
+//    @RequestMapping(value="/test.do",produces="application/json;charest=utf-8")
+//    @ResponseBody
+//    public UserVO accountAuthentication(ModelAndView view,UserVO user){
+//                
+//    			return user;
+//      }
 	
 	
 
