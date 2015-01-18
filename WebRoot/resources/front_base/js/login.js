@@ -20,6 +20,7 @@ $(function()
 		if(u.checked())
 		{
 			$(".alert-danger").hide();
+			$("#login_modal").modal("hide");
 			location.href="http://localhost:8888/MyBlog_2014-12-04/article/showArticles?username="+username;
 		}
 		else

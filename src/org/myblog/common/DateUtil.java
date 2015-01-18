@@ -25,7 +25,7 @@ public class DateUtil
 	{
 		//将字符串转换成date类型
 		String time = "2014-01-08 22:22";
-		System.out.println(convertDate(Long.parseLong("1389193877464")));
+		System.out.println(convertDate("yyyy/MM/dd HH:mm", 1389193877464L));
 		
 	}
 	
@@ -37,9 +37,9 @@ public class DateUtil
 	 * @param @return
 	 * @return SimpleDateFormat    返回类型
 	 */
-	public static SimpleDateFormat getSimpleDateFormat()
-	{
-		String pattern = "yyyy-MM-dd HH:mm:ss";
+	public static SimpleDateFormat getSimpleDateFormat(String pattern)
+	{	if("".equals(pattern) || null==pattern)
+			pattern = "yyyy-MM-dd HH:mm";
 		return new SimpleDateFormat(pattern);
 	}
 	
@@ -52,9 +52,9 @@ public class DateUtil
 	 * @param @throws Exception
 	 * @return Date    返回类型
 	 */
-	public static Date convertDate(String time) throws Exception
+	public static Date convertDate(String pattern,String time) throws Exception
 	{
-		return getSimpleDateFormat().parse(time);
+		return getSimpleDateFormat(pattern).parse(time);
 	}
 	
 	/**
@@ -66,9 +66,9 @@ public class DateUtil
 	 * @param @throws Exception
 	 * @return Date    返回类型
 	 */
-	public static Date convertDate(long time) throws Exception
+	public static Date convertDate(String pattern,long time) throws Exception
 	{
-		return getSimpleDateFormat().parse(getSimpleDateFormat().format(new Date(time)));
+		return getSimpleDateFormat(pattern).parse(getSimpleDateFormat(pattern).format(new Date(time)));
 	}
 	
 	/**
@@ -80,9 +80,24 @@ public class DateUtil
 	 * @param @throws Exception
 	 * @return String    返回类型
 	 */
-	public static String convertDateFormat(Date time) throws Exception
+	public static String convertDateFormat(String pattern,Date time) throws Exception
 	{
-		return getSimpleDateFormat().format(time);
+		return getSimpleDateFormat(pattern).format(time);
+	}
+	
+	
+	/**
+	 * @Description 将timestamp类型时间格式化  
+	 * @author bobmeek
+	 * @Title convertTimestamp
+	 * @param @param time
+	 * @param @return
+	 * @param @throws Exception
+	 * @return String    返回类型
+	 */
+	public static String convertTimestamp(String pattern,Timestamp time)throws Exception
+	{
+		return getSimpleDateFormat(pattern).format(time);
 	}
 	
 	/**
@@ -94,11 +109,11 @@ public class DateUtil
 	 * @param @throws Exception
 	 * @return Timestamp    返回类型
 	 */
-    public static Timestamp convertTimestamp(Date time) throws Exception
+    public static Timestamp convertTimestamp(String pattern,Date time) throws Exception
     {
 
     	//传了一个String字符串日期 
-    	return convertTimestamp(getSimpleDateFormat().format(time));
+    	return convertTimestamp(pattern,getSimpleDateFormat(pattern).format(time));
     }
     
     /***
@@ -110,11 +125,11 @@ public class DateUtil
      * @param @throws Exception
      * @return Timestamp    返回类型
      */
-    public static Timestamp convertTimestamp(String time) throws Exception
+    public static Timestamp convertTimestamp(String pattern,String time) throws Exception
     {
 
     	//传了一个long类型的日期
-    	return new Timestamp(getSimpleDateFormat().parse(time).getTime());
+    	return new Timestamp(getSimpleDateFormat(pattern).parse(time).getTime());
     }
     
     /**
@@ -127,11 +142,11 @@ public class DateUtil
      * @param @throws Exception
      * @return Timestamp    返回类型
      */
-    public static Timestamp convertTimestamp(long time) throws Exception
+    public static Timestamp convertTimestamp(String pattern,long time) throws Exception
     {
 
     	//传了一个Date类型的日期
-    	return convertTimestamp(new Date(time));
+    	return convertTimestamp(pattern,new Date(time));
     }
 	
 }

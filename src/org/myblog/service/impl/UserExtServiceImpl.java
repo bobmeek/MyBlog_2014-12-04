@@ -28,13 +28,21 @@ public class UserExtServiceImpl extends AbstractBaseDao<UserExtVO, Integer> impl
 {
 
 	
-	public UserExtVO findDetailInfoById(Integer id)
+	public UserExtVO findExtById(Integer id)
 	{
-		String operate = ".findDetailInfoById";
+		String operate = ".findExtById";
 		Map<String,Object> maps = new HashMap<String,Object>();
 		maps.put("id", id);
 		return findByParam(maps, operate);
 		
+	}
+	
+	public void deleteBatch(List<Integer> ids)
+	{
+		String operate = ".deleteBatch";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("ids", ids);
+		delete(maps, operate);
 	}
 
 }

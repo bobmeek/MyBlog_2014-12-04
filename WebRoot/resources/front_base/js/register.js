@@ -5,12 +5,6 @@ $(function()
 	//alert(screen.height);
  	//alert(screen.width);
 	
-	
-/*	$.post("user/test.do","",function(result){
-		alert(result);
-	},"json");*/
-	
-	
 	/**
 	 * 一、用户名：
 	 * 1.用户名不能为空。
@@ -34,12 +28,6 @@ $(function()
 	 */
 	
 	
-	/**
-	 * 1.enter提交
-	 * 2.一对一 userExt扩展信息
-	 * 3.用户列表显示
-	 * 4.bing chrome plugin
-	 * */
 	
 	//$(".alert-danger").hide();
 	//$("#reg_panel_return").hide();
@@ -105,49 +93,49 @@ $(function()
 		var flag = false;
 		if(u.username=="")
 		{
-			groupDefault("email");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("email");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入的用户名不能为空");
 			groupError("username");
 		}
 		else if(!format_username.test(u.username))
 		{
-			groupDefault("email");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("email");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 用户名必须为3-30个字符, 可以是字母、数字、下划线");
 			groupError("username");
 		}
 		else if(isExist("username",u.username))
 		{
-			groupDefault("email");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("email");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入的用户名已经存在，请重新输入");
 			groupError("username");
 		}
 		else if(u.email=="")
 		{
 			groupSuccess("username");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入的邮箱不能为空");
 			groupError("email");
 		}
 		else if(!format_email.test(u.email))
 		{
 			groupSuccess("username");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入邮件的格式不正确");
 			groupError("email");
 		}
 		else if(isExist("email",u.email))
 		{
 			groupSuccess("username");
-			groupDefault("password");
-			groupDefault("password_sure");
+			reset("password");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 该邮箱地址已经被注册，请重新输入");
 			groupError("email");
 		}
@@ -155,7 +143,7 @@ $(function()
 		{
 			groupSuccess("username");
 			groupSuccess("email");
-			groupDefault("password_sure");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入的密码不能为空");
 			groupError("password");
 		}
@@ -163,7 +151,7 @@ $(function()
 		{
 			groupSuccess("username");
 			groupSuccess("email");
-			groupDefault("password_sure");
+			reset("password_sure");
 			$(".icon-remove-sign").html(" 输入的密码长度不能小于6且不能大于16");
 			groupError("password");
 		}
@@ -193,8 +181,8 @@ $(function()
 	
 	
 	
-	/**取消输入框消息提示**/
-	function groupDefault(groupName)
+	/**取消输入框消息提示*/
+	function reset(groupName)
 	{
 		
 		if(null!=$("#"+groupName+"_group i"))
@@ -207,7 +195,7 @@ $(function()
 	/**输入框错误提示**/
 	function groupError(groupName)
 	{
-		groupDefault(groupName);
+		reset(groupName);
 		$("#"+groupName+"_group").attr("class","form-group has-error has-feedback");
 		$("#"+groupName+"_group").append("<i class='glyphicon glyphicon-remove form-control-feedback'></i>");
 		
@@ -216,7 +204,7 @@ $(function()
 	/**输入框正确提示**/
 	function groupSuccess(groupName)
 	{
-		groupDefault(groupName);
+		reset(groupName);
 		$("#"+groupName+"_group").attr("class","form-group has-success has-feedback");
 		$("#"+groupName+"_group").append("<i class='glyphicon glyphicon-ok form-control-feedback'></i>");
 	}

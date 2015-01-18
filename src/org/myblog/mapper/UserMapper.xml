@@ -13,39 +13,31 @@
 		<result property="lastLoginIP" column="last_login_IP"/>
 		<result property="isDisabled" column="is_disabled"/>
 		<result property="isEmailActive" column="is_email_active"/>
+		<result property="uid" column="uid"/>
 	</resultMap>
 
 
 	<!-- 添加用户信息操作 -->
 	<insert id="add" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-		insert into user(username,userpwd,email,register_time,register_IP,last_login_time,last_login_IP,is_disabled,is_email_active) values(#{username},#{userpwd},#{email},#{registerTime},#{registerIP},#{lastLoginTime},#{lastLoginIP},#{isDisabled},#{isEmailActive})
+		insert into user(username,userpwd,email,register_time,register_IP,last_login_time,last_login_IP,is_disabled,is_email_active,uid) values(#{username},#{userpwd},#{email},#{registerTime},#{registerIP},#{lastLoginTime},#{lastLoginIP},#{isDisabled},#{isEmailActive},#{uid})
 	</insert>
 
 	<!-- 用户的修改操作 -->
 	<update id="update" parameterType="user">
-		update user set username=#{username},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive} where
+		update user set username=#{username},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
 		email=#{email}
 	</update>
-
-
+	
+	<delete id="delete" parameterType="int">
+		delete from user where id = #{id}
+	</delete>
+	
 	<!-- 查询全部操作 -->
 	<select id="findAll" resultMap="userResultMap">  <!-- 调用的是resultMap的影射关系，否则类中的字段必须与数据库中的字段相同 -->
 		select * from user
 	</select>
-
-
-	<!-- 用户名是否存在 -->
-	<select id="nameIsExist" resultType="int" parameterType="map">
-		select count(*) from user where username=#{username}
-	</select>
-
-	<!-- 邮箱是否存在 -->
-	<select id="emailIsExist" resultType="int" parameterType="map">
-		select count(*) from user where email=#{email}
-	</select>
-
-
-
+	
+	
 	<!-- 根据邮箱获得对象 -->
 	<select id="findByMail" resultType="user" parameterType="map">
 		select * from user where email = #{email}
@@ -56,6 +48,16 @@
 		select * from user where username = #{username}
 	</select>
 	
+	<!-- 用户名是否存在 -->
+	<select id="nameIsExist" resultType="int" parameterType="map">
+		select count(*) from user where username=#{username}
+	</select>
+
+	<!-- 邮箱是否存在 -->
+	<select id="emailIsExist" resultType="int" parameterType="map">
+		select count(*) from user where email=#{email}
+	</select>
+
 	<!-- 根据用户名登录-->
 	<select id="nameLogin" resultType="int" parameterType="map">
 		select count(*) from user where username=#{username} and userpwd=#{userpwd}
@@ -65,6 +67,17 @@
 	<select id="emailLogin" resultType="int" parameterType="map">
 		select count(*) from user where email=#{email} and userpwd=#{userpwd}
 	</select>
+
+	
+	<!-- 用户分页查询 -->
+	<select id="findByPage" resultType="user" parameterType="map">
+		select * from user limit #{pageNo}, #{pageSize}   
+	</select>
+	
+	<!-- 用户分页查询所需要用到的总数 -->
+	<select id="findTotal" resultType="int" parameterType="int">
+		select count(*) from user
+	</select>	
 	
 	
 </mapper>

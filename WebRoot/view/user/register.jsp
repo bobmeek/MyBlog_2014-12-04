@@ -42,9 +42,6 @@
 		</div>
 		<div class="panel-body">
 
-
-
-<!-- 	form-horizontal templatemo-create-account templatemo-container -->
 				<form class="" role="form" action="#" method="post">
 						<div class="form-group" id="username_group">
 								<label for="name" class="control-label">用户名</label>

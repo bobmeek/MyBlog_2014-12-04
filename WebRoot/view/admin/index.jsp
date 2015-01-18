@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%
+<% 
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
@@ -35,36 +35,40 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
-			<li class="panel">
+<!-- 			<li class="panel"> -->
 				
-				<a href="#collapse" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
-					<i class="icon-wrench icon-large"></i> 个人信息<b class="caret"></b>
-				</a>
-				<ul id="collapse" class="collapse list-unstyled sednav">
-					<li><a href="#">用户信息管理</a></li>
-					<li><a href="#">用户组管理</a></li>
-					<li><a href="#">用户角色管理</a></li>
-				</ul>
-			</li>
+<!-- 				<a href="#personal_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"> -->
+<!-- 					<i class="icon-wrench icon-large"></i> 个人信息<b class="caret"></b> -->
+<!-- 				</a> -->
+<!-- 				<ul id="personal_manage" class="collapse list-unstyled sednav"> -->
+<!-- 					<li><a href="#">详细信息</a></li> -->
+<!-- 					<li><a href="#">密码修改</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</li> -->
 			<li class="panel">
-				<a href="#collapse1" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
 					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
 				</a>
-				<ul id="collapse1" class="collapse list-unstyled sednav">
-					<li><a href="#">用户信息管理</a></li>
-					<li><a href="#">用户组管理</a></li>
-					<li><a href="#">用户角色管理</a></li>
+				<ul id="users_manage" class="collapse list-unstyled sednav">
+					<li><a href="#" id="personInfo">个人资料</a></li>
+					<li><a href="#">密码修改</a></li>
+					<li><a href="#" id="allUsersInfo">用户信息管理</a></li>
+					<li><a href="#" id="allUsersGroup">用户组管理</a></li>
+					<li><a href="#" id="allUsersRole">用户角色管理</a></li>
 				</ul>
 			</li>
-			<li class="panel"><a href="#collapse2" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
+			<li class="panel">
+				<a href="#topic_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
 					class="caret"></b></a>
-				<ul id="collapse2" class="list-unstyled sednav collapse" style="height: 0px;">
-					<li><a href="#">栏目信息管理</a></li>
-					<li><a href="#">文章信息管理</a></li>
+				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
+					<li><a href="#">发布文章</a></li>
+					<li><a href="#">文章信息</a></li>
+					<li><a href="#">栏目信息</a></li>
 				</ul></li>
-			<li class="panel active"><a href="#collapse3"  class="dropdown-toggle collapsed"  data-toggle="collapse" data-parent="#accordion"><i class="icon-cogs icon-large"></i> 系统配置<b
+			<li class="panel">
+				<a href="#system_manage"  class="dropdown-toggle collapsed"  data-toggle="collapse" data-parent="#accordion"><i class="icon-cogs icon-large"></i> 系统配置<b
 					class="caret"></b></a>
-				<ul id="collapse3" class="list-unstyled sednav collapse" style="height: 0px;">
+				<ul id="system_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#">超级链接管理</a></li>
 					<li><a href="#">网站信息管理</a></li>
 					<li><a href="#">首页图片管理</a></li>
@@ -73,7 +77,7 @@
 				</ul></li>
 		</ul>
 	</div>
-	<!-- /.navbar-collapse --> </nav>
+	</nav>
 
 
 	<div class="containerk">
@@ -96,11 +100,37 @@
 				</div>					
 			</div>
 		</div>
+		
+		<div id="show" >
+<%-- 			<div id="personInfoPage" class="page" style="display:visibility;">
+				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
+			</div>		
+			<div id="allUsersInfoPage" class="page" style="display:none;">
+				<jsp:include page="user/allUsersInfo.jsp" flush="true"></jsp:include>
+			</div> --%>
+			<div id="personInfoPage" class="page" style="display:none;">
+				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
+			</div>		
+			<div id="allUsersInfoPage" class="page" style="display:visibility;">
+				<jsp:include page="user/allUsersInfo.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="allUsersGroupPage" class="page" style="display: none;">
+				<jsp:include page="user/allUsersGroup.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="allUsersRolePage" class="page" style="display: none;">
+				<jsp:include page="user/allUsersRole.jsp" flush="true"></jsp:include>
+			</div>
+		</div>
+		
 	</div>
 	
 	
 	
 		<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
 		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.file-input.js"></script>
+		<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
+		<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
+		<script type="text/javascript" src="resources/front_base/js/admin/userManage.js"></script>
 </body>
 </html>

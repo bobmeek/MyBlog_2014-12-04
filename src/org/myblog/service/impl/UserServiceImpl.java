@@ -13,10 +13,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.myblog.base.AbstractBaseDao;
+import org.myblog.common.Pager;
 import org.myblog.model.UserExtVO;
 import org.myblog.model.UserVO;
 import org.myblog.service.facade.UserService;
 import org.springframework.stereotype.Service;
+
 
 /**
  * @ClassName: UserServiceImpl
@@ -28,6 +30,25 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends AbstractBaseDao<UserVO, Integer> implements UserService
 {
 
+	
+	public int nameLogin(String username,String userpwd)
+	{
+		String operate = ".nameLogin";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("username", username);
+		maps.put("userpwd", userpwd);
+		return login(maps,operate);
+	}
+	
+	public int emailLogin(String email,String userpwd)
+	{
+		String operate = ".emailLogin";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("email", email);
+		maps.put("userpwd", userpwd);
+		return login(maps,operate);
+	}
+	
 	public int nameIsExist(String name) 
 	{
 		String operate = ".nameIsExist";
@@ -57,7 +78,7 @@ public class UserServiceImpl extends AbstractBaseDao<UserVO, Integer> implements
 	{
 		save(user); // 保存用户信息
 	}
-	
+
 	public UserVO findByMail(String email)
 	{
 		String operate = ".findByMail";
@@ -75,23 +96,15 @@ public class UserServiceImpl extends AbstractBaseDao<UserVO, Integer> implements
 		return findByParam(maps, operate);
 	}
 	
-	
-	public int nameLogin(String username,String userpwd)
+	public Pager<UserVO> findByKey(int pageNo, int pageSize)
 	{
-		String operate = ".nameLogin";
-		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("username", username);
-		maps.put("userpwd", userpwd);
-		return login(maps,operate);
+		String operate = ".findByPage";
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("pageNo", pageNo);
+		maps.put("pageSize", pageSize);
+		return findByKey(maps, operate); 
+		
 	}
 	
-	public int emailLogin(String email,String userpwd)
-	{
-		String operate = ".emailLogin";
-		Map<String,Object> maps = new HashMap<String,Object>();
-		maps.put("email", email);
-		maps.put("userpwd", userpwd);
-		return login(maps,operate);
-	}
 	
 }

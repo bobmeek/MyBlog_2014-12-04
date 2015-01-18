@@ -25,9 +25,15 @@
 			<result property="lastLoginIP" column="last_login_IP"/>
 			<result property="isDisabled" column="is_disabled"/>
 			<result property="isEmailActive" column="is_email_active"/>
+			<result property="uid" column="uid"/>
 		</association>
 	</resultMap>
-	<select id="findDetailInfoById" resultMap="userExtResultMap" parameterType="map">
+	
+	<select id="findAll" resultMap="userExtResultMap" parameterType="map">
+		select * from user u ,user_ext uext where u.id=uext.id_user;
+	</select>
+	
+	<select id="findExtById" resultMap="userExtResultMap" parameterType="map">
 		SELECT * FROM user u,user_ext uext WHERE u.id=uext.id_user AND u.id=#{id}
 	</select>
 	
@@ -35,5 +41,24 @@
 	<insert id="add" parameterType="userExt" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO user_ext (id_user,gender,birthday,mobile,head_img,signature,qq,intro)VALUES (#{user.id},#{gender},#{birthday},#{mobile},#{headImg},#{signature},#{qq},#{intro})
 	</insert>
+	
+	<update id="update" parameterType="userExt">
+<!-- 		UPDATE USER u,user_ext uext SET u.`username`=#{user.username},u.`userpwd`=#{user.userpwd},u.`email`=#{user.email},u.`register_time`=#{user.registerTime},u.`register_ip`=#{user.registerIP},u.`last_login_time`=#{user.lastLoginTime},u.`last_login_ip`=#{user.lastLoginIP},u.`is_email_active`=#{user.isEmailActive},u.`is_disabled`=#{user.isDisabled},u.`uid`=#{user.uid},uext.`id_user`=#{user.id}, uext.`gender`=#{gender},uext.`birthday`=#{birthday},uext.`mobile`=#{mobile},uext.`head_img`=#{headImg},uext.`signature`=#{signature},uext.`qq`=#{qq},uext.`intro`=#{intro} WHERE u.`id`=uext.`id_user` AND uext.`id_user`=#{user.id} -->
+		UPDATE USER u,user_ext uext SET u.`email`=#{user.email},u.`is_disabled`=#{user.isDisabled},uext.`id_user`=#{user.id}, uext.`gender`=#{gender},uext.`birthday`=#{birthday},uext.`mobile`=#{mobile},uext.`head_img`=#{headImg},uext.`signature`=#{signature},uext.`qq`=#{qq},uext.`intro`=#{intro} WHERE u.`id`=uext.`id_user` AND uext.`id_user`=#{user.id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE u,uext FROM USER u,user_ext uext WHERE u.id=uext.id_user AND uext.id_user = #{id}
+	</delete>
+	
+	
+	<delete id="deleteBatch" parameterType="java.util.List">  
+	   DELETE u,uext FROM USER u,user_ext uext WHERE u.id=uext.id_user AND uext.id_user in
+	    <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}
+	    </foreach>  
+	</delete>  
+	
+	
 	
 </mapper>

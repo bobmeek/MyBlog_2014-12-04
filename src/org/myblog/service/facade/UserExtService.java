@@ -9,6 +9,7 @@
 package org.myblog.service.facade;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.myblog.base.BaseDao;
@@ -24,5 +25,8 @@ import org.myblog.model.UserExtVO;
 public interface UserExtService extends BaseDao<UserExtVO, Integer>
 {
 	/**根据ID查找该用户详细信息**/
-	public UserExtVO findDetailInfoById(Integer id);
+	public UserExtVO findExtById(Integer id);
+	
+	/**批量删除用户**/
+	public void deleteBatch(List<Integer> ids);
 }

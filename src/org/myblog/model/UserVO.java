@@ -10,6 +10,9 @@ package org.myblog.model;
 
 import java.sql.Timestamp;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.myblog.common.CustomDateSerializer;
+
 
 /**
  * @ClassName: UsersVO
@@ -27,6 +30,7 @@ public class UserVO
 	
 	private String email;
 	
+	
 	private Timestamp registerTime;
 	
 	private String registerIP;
@@ -38,6 +42,8 @@ public class UserVO
 	private Integer isDisabled;
 	
 	private Integer isEmailActive;
+	
+	private Integer uid;
 
 	public UserVO()
 	{
@@ -45,7 +51,7 @@ public class UserVO
 	}
 
 	public UserVO(Integer id, String username, String userpwd, String email, Timestamp registerTime, String registerIP, Timestamp lastLoginTime, String lastLoginIP, Integer isDisabled,
-			Integer isEmailActive)
+			Integer isEmailActive,Integer uid)
 	{
 		super();
 		this.id = id;
@@ -58,6 +64,7 @@ public class UserVO
 		this.lastLoginIP = lastLoginIP;
 		this.isDisabled = isDisabled;
 		this.isEmailActive = isEmailActive;
+		this.uid = uid;
 	}
 
 	public Integer getId()
@@ -100,6 +107,7 @@ public class UserVO
 		this.email = email;
 	}
 
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Timestamp getRegisterTime()
 	{
 		return registerTime;
@@ -120,6 +128,7 @@ public class UserVO
 		this.registerIP = registerIP;
 	}
 
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Timestamp getLastLoginTime()
 	{
 		return lastLoginTime;
@@ -159,12 +168,22 @@ public class UserVO
 	{
 		this.isEmailActive = isEmailActive;
 	}
+	
+	public Integer getUid()
+	{
+		return uid;
+	}
+	
+	public void setUid(Integer uid)
+	{
+		this.uid = uid;
+	}
 
 	@Override
 	public String toString()
 	{
 		return "UserVO [id=" + id + ", username=" + username + ", userpwd=" + userpwd + ", email=" + email + ", registerTime=" + registerTime + ", registerIP=" + registerIP + ", lastLoginTime="
-				+ lastLoginTime + ", lastLoginIP=" + lastLoginIP + ", isDisabled=" + isDisabled + ", isEmailActive=" + isEmailActive + "]";
+				+ lastLoginTime + ", lastLoginIP=" + lastLoginIP + ", isDisabled=" + isDisabled + ", isEmailActive=" + isEmailActive + ", uid=" + uid+ " ]";
 	}
 
 	

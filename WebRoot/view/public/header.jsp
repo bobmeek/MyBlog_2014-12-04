@@ -83,16 +83,16 @@
 					<li><a href="javascript:void(0)">Git编程</a></li>
 					<li><a href="javascript:void(0)">问答</a></li>
 				</ul>
-				<form class="navbar-form navbar-left" role="search">
+				<form class="navbar-form navbar-search navbar-left" role="search">
 					<div class="form-group">
-						<input type="text" class="form-control" placeholder="搜索">
+						<input type="text" class="form-control search-query" placeholder="搜索">
 					</div>
 				</form>
 				<ul class="nav navbar-nav navbar-right">
 				<c:choose>
 					<c:when test="${null==username}">
 						<li><a href="${basePath}view/user/register.jsp">注册</a></li>
-						<li><a href="#login" data-target="#login" data-toggle="modal">登录</a></li>
+						<li><a href="#login_modal" data-target="#login_modal" data-toggle="modal">登录</a></li>
 					</c:when>
 					<c:otherwise>
 						<li class="dropdown">
@@ -119,14 +119,14 @@
 
 
 
-	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="login_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">
 						<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
 					</button>
-					<h2 class="modal-title" id="myModalLabel">用户登录</h2>
+					<h2 class="modal-title" style="text-align: center;" id="myModalLabel">用户登录</h2>
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" action="article/showArticles">

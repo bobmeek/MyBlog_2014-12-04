@@ -4,30 +4,44 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import org.myblog.common.Pager;
+
+
 public interface IDao<T, PK extends Serializable>  
 {	
+	// 保存操作
+	public void save(T entity); 
+	
+	// 修改操作
+	public void update(T entity); 
+	
+	// 删除操作通过主键
+	public void delete(Class<T> entityClass, PK pk);  
+	
+	// 批量删除
+	public void delete(Class<T> entityClass,Map<String,Object> maps,String operate);
+	
+		
 	// 查询全部（之所以要加上泛型Class,是因为要通过class取得类路径调用相应的处理方法）
 	public List<T> findAll(Class<T> entityClass);
 	
 	// 根据主键进行查询操作
 	public T findById(PK pk); 
 	
-	// 保存操作
-	public void save(T entity); 
+	// 分页（pageNo：发往服务器端的页码信息, pageSize：每页显示的条数）
+	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize);
 	
-	// 删除操作通过主键
-	public void delete(PK pk); 
+	// 一个带条件的分页
+	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize, Object key); 
 	
-	// 修改操作
-	public void update(T entity); 
+	// 带多个条件的分页
+	public Pager<T> findByKey(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
 	// 登录
 	public T login(T entity);
 	
 	//根据用户名/邮箱登录
 	public int login(Class<T> entityClass,Map<String,Object> maps,String operate);
-		
-
 	
 	/**
     * 判断某个值是否存在
