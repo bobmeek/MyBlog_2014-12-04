@@ -47,4 +47,6 @@ public interface BaseDao<T, PK extends Serializable>
 	// 返回值类型为int类型是想判断 'select count(*) table..., 返回的数据是0还是1 ?'
 	public int isExist(Map<String, Object> maps, String operate);
 	
+	public void save(Map<String, Object> maps, String operate);
+	
 }

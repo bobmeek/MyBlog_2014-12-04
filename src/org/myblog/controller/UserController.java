@@ -9,32 +9,29 @@
 package org.myblog.controller;
 
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
-import org.codehaus.jackson.map.util.JSONPObject;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.myblog.common.CommonUtils;
 import org.myblog.common.DateUtil;
 import org.myblog.common.EmailUtil;
 import org.myblog.common.MD5;
 import org.myblog.common.Pager;
+import org.myblog.model.RoleVO;
 import org.myblog.model.UserExtVO;
 import org.myblog.model.UserVO;
+import org.myblog.service.facade.RoleService;
 import org.myblog.service.facade.UserExtService;
 import org.myblog.service.facade.UserService;
 import org.springframework.stereotype.Controller;
@@ -43,15 +40,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.sun.corba.se.spi.servicecontext.UEInfoServiceContext;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @ClassName: LoginControllerr
@@ -69,6 +60,9 @@ public class UserController
 	
 	@Resource(name = "userExtServiceImpl")
 	private UserExtService userExtService;
+	
+	@Resource(name = "roleServiceImpl")
+	private RoleService roleService;
 
 	
 	/**
@@ -212,12 +206,15 @@ public class UserController
 		return 1;
 	}
 	
-	@RequestMapping(value="/delete/ids",produces="application/json")
+	@RequestMapping(value="/delete/idArr",produces=("application/json"))
 	@ResponseBody
-	public int deleteUserBatch(List<Integer> ids)
+	public int deleteUserBatch(@RequestBody int[] idArr)
 	{
-		System.out.println(ids);
-
+		List<Integer> ids = new ArrayList<Integer>();
+		for (int i : idArr)
+		{
+			ids.add(i);
+		}
 		userExtService.deleteBatch(ids);
 		return 1;
 	}
@@ -233,12 +230,44 @@ public class UserController
 //		return allUsers;
 //	}
 	 
-	@RequestMapping(value="/show/allUsers",produces="application/json")
+	/*@RequestMapping(value="/show/allUsers",produces="application/json")
 	@ResponseBody
-	public Pager<UserVO> showAllUsersByPager(int pageNo,int pageSize)
+	public Pager<UserVO> showAllUsersByPager(int pageNo,int pageSize,ModelMap modelMap)
 	{
 		Pager<UserVO> pagers = userService.findByPage(pageNo, pageSize);
+		List<RoleVO> roles = roleService.findAll();
+		modelMap.addAttribute("pagers",pagers);
+		modelMap.addAttribute("roles",roles);
 		return pagers;
+	}*/
+	
+	@RequestMapping(value="/show/allUsers",produces="application/json")
+	@ResponseBody
+	public ModelMap showAllUsersByPager(int pageNo,int pageSize,ModelMap modelMap)
+	{
+		Pager<UserVO> pagers = userService.findByPage(pageNo, pageSize);
+		List<RoleVO> roles = roleService.findAll();
+		modelMap.addAttribute("pagers",pagers);
+		modelMap.addAttribute("roles",roles);
+		return modelMap;
+	}
+	
+	@RequestMapping(value="/add/roleRelation")
+	@ResponseBody
+	public void addRoleRelation(int userId,int roleId)
+	{
+		
+		userService.addRoleRelation(userId, roleId);
+		
+	}
+	
+	@RequestMapping(value="/delete/roleRelation")
+	@ResponseBody
+	public void deleteRoleRelation(int userId,int roleId)
+	{
+		
+		userService.deleteRoleRelation(userId, roleId);
+		
 	}
 	
 	
@@ -309,17 +338,21 @@ public class UserController
 	}
 	
 	
+	 @RequestMapping(value="/login",method=RequestMethod.GET)  
+	    public String login(String username,String userpwd,RedirectAttributes redirectAttributes){  
+	            //使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！  
+	            SecurityUtils.getSubject().login(new UsernamePasswordToken(username, userpwd));  
+	            return "redirect:/user";  
+	    }  
+	
+	 @RequestMapping(value="/logout",method=RequestMethod.GET)    
+	 public String logout(RedirectAttributes redirectAttributes ){   
+	        //使用权限管理工具进行用户的退出，跳出登录，给出提示信息  
+	        SecurityUtils.getSubject().logout();    
+	        redirectAttributes.addFlashAttribute("message", "您已安全退出");    
+	        return "redirect:/login";  
+	    }   
 	
 	
-	@RequestMapping(value="/test")
-	@ResponseBody
-	public UserVO test()
-	{
-		UserVO user = new UserVO();
-		user.setUsername("bobmeek");
-		System.out.println("test");
-		
-		return user;
-	}
 
 }

@@ -18,7 +18,7 @@ public interface IDao<T, PK extends Serializable>
 	// 删除操作通过主键
 	public void delete(Class<T> entityClass, PK pk);  
 	
-	// 批量删除
+	// 传参删除
 	public void delete(Class<T> entityClass,Map<String,Object> maps,String operate);
 	
 		
@@ -64,5 +64,10 @@ public interface IDao<T, PK extends Serializable>
 	 * @return T    返回类型
 	 */
 	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);	
+	
+	/**存储关联表关系**/
+	public void save(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	/**删除关联表关系**/
 	
 }

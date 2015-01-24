@@ -8,7 +8,9 @@
  */
 package org.myblog.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.myblog.common.CustomDateSerializer;
@@ -20,8 +22,13 @@ import org.myblog.common.CustomDateSerializer;
  * @author bobmeek
  * @date Dec 24, 2014 7:43:47 PM
  */
-public class UserVO
+public class UserVO implements Serializable
 {
+	/**
+	  * @Fields serialVersionUID : TODO
+	*/
+	private static final long serialVersionUID = 1L;
+
 	private Integer id;
 	
 	private String username;
@@ -44,6 +51,10 @@ public class UserVO
 	private Integer isEmailActive;
 	
 	private Integer uid;
+	
+	private List<RoleVO> listRole;
+	
+	
 
 	public UserVO()
 	{
@@ -51,7 +62,7 @@ public class UserVO
 	}
 
 	public UserVO(Integer id, String username, String userpwd, String email, Timestamp registerTime, String registerIP, Timestamp lastLoginTime, String lastLoginIP, Integer isDisabled,
-			Integer isEmailActive,Integer uid)
+			Integer isEmailActive,Integer uid,List<RoleVO> listRole)
 	{
 		super();
 		this.id = id;
@@ -65,6 +76,7 @@ public class UserVO
 		this.isDisabled = isDisabled;
 		this.isEmailActive = isEmailActive;
 		this.uid = uid;
+		this.listRole = listRole;
 	}
 
 	public Integer getId()
@@ -179,13 +191,24 @@ public class UserVO
 		this.uid = uid;
 	}
 
+	public List<RoleVO> getListRole()
+	{
+		return listRole;
+	}
+	
+	public void setListRole(List<RoleVO> listRole)
+	{
+		this.listRole = listRole;
+	}
+
 	@Override
 	public String toString()
 	{
 		return "UserVO [id=" + id + ", username=" + username + ", userpwd=" + userpwd + ", email=" + email + ", registerTime=" + registerTime + ", registerIP=" + registerIP + ", lastLoginTime="
-				+ lastLoginTime + ", lastLoginIP=" + lastLoginIP + ", isDisabled=" + isDisabled + ", isEmailActive=" + isEmailActive + ", uid=" + uid+ " ]";
+				+ lastLoginTime + ", lastLoginIP=" + lastLoginIP + ", isDisabled=" + isDisabled + ", isEmailActive=" + isEmailActive + ", uid=" + uid + ", listRole=" + listRole + "]";
 	}
-
+	
+	
 	
 	
 	

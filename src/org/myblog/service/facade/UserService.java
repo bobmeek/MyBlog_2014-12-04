@@ -44,4 +44,10 @@ public interface UserService extends BaseDao<UserVO, Integer>
 	
 	/**多条件查询**/
 	public Pager<UserVO> findByKey(int pageNo, int pageSize);
+	
+	/**添加用户角色关系**/
+	public void addRoleRelation(int userId,int roleId);
+	
+	/**删除用户角色关系**/
+	public void deleteRoleRelation(int userId,int roleId);
 }

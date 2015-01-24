@@ -106,5 +106,23 @@ public class UserServiceImpl extends AbstractBaseDao<UserVO, Integer> implements
 		
 	}
 	
+	public void addRoleRelation(int userId,int roleId)
+	{
+		String operate = ".addRoleRelation";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("userId", userId);
+		maps.put("roleId", roleId);
+		save(maps, operate);
+	}
+	
+	public void deleteRoleRelation(int userId,int roleId)
+	{
+		String operate = ".deleteRoleRelation";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("userId", userId);
+		maps.put("roleId", roleId);
+		delete(maps, operate);
+	}
+	
 	
 }

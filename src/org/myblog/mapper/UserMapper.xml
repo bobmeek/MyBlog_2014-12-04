@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.myblog.model.UserVO">
 
-	<resultMap id="userResultMap" type="user">
-		<id property="id" column="id" />
+	<resultMap type="user" id="userResultMap" >
+		<id property="id" column="u_id" />
 		<result property="username" column="username" />
 		<result property="userpwd" column="userpwd" />
 		<result property="email" column="email" />
@@ -14,6 +14,7 @@
 		<result property="isDisabled" column="is_disabled"/>
 		<result property="isEmailActive" column="is_email_active"/>
 		<result property="uid" column="uid"/>
+		<collection property="listRole" ofType="role" javaType="ArrayList" resultMap="org.myblog.model.RoleVO.roleResultMap"></collection>
 	</resultMap>
 
 
@@ -29,8 +30,9 @@
 	</update>
 	
 	<delete id="delete" parameterType="int">
-		delete from user where id = #{id}
+		delete u,ur FROM `user` u,user_role ur WHERE u.id=ur.user_id AND u.id=#{id}
 	</delete>
+	
 	
 	<!-- 查询全部操作 -->
 	<select id="findAll" resultMap="userResultMap">  <!-- 调用的是resultMap的影射关系，否则类中的字段必须与数据库中的字段相同 -->
@@ -70,14 +72,28 @@
 
 	
 	<!-- 用户分页查询 -->
-	<select id="findByPage" resultType="user" parameterType="map">
-		select * from user limit #{pageNo}, #{pageSize}   
+<!-- 	<select id="findByPage" resultType="user" parameterType="map"> -->
+<!-- 		select * from user limit #{pageNo}, #{pageSize}    -->
+<!-- 	</select> -->
+	<select id="findByPage" resultMap="userResultMap" parameterType="map">
+		 <!-- SELECT u.id u_id,r.id r_id,u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u ,role r,user_role ur WHERE u.`id`=ur.`user_id` AND r.`id`=ur.`role_id` limit #{pageNo}, #{pageSize} -->
+		 
+		SELECT u.id u_id,r.id r_id, u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u LEFT JOIN `user_role` ur ON u.`id`=ur.`user_id` LEFT JOIN `role` r ON r.`id`=ur.`role_id`
+		   
 	</select>
+	
 	
 	<!-- 用户分页查询所需要用到的总数 -->
 	<select id="findTotal" resultType="int" parameterType="int">
 		select count(*) from user
 	</select>	
 	
+	<insert id="addRoleRelation">
+		insert into user_role (user_id,role_id) values (#{userId},#{roleId})
+	</insert>
+	
+	<delete id="deleteRoleRelation">
+		delete from user_role where user_id=#{userId} and role_id=#{roleId}
+	</delete>
 	
 </mapper>

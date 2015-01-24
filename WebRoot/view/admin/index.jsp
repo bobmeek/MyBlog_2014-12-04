@@ -19,6 +19,8 @@
 <link rel="stylesheet" href="resources/front_base/css/tree-menu.css">
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
+<link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
+<link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
 </head>
 
 <body>
@@ -52,9 +54,10 @@
 				<ul id="users_manage" class="collapse list-unstyled sednav">
 					<li><a href="#" id="personInfo">个人资料</a></li>
 					<li><a href="#">密码修改</a></li>
-					<li><a href="#" id="allUsersInfo">用户信息管理</a></li>
-					<li><a href="#" id="allUsersGroup">用户组管理</a></li>
-					<li><a href="#" id="allUsersRole">用户角色管理</a></li>
+					<li><a href="#" id="usersInfo">用户信息管理</a></li>
+					<li><a href="#" id="usersGroup">用户组管理</a></li>
+					<li><a href="#" id="usersRole">用户角色管理</a></li>
+					<li><a href="#" id="usersResources">用户资源管理</a></li>
 				</ul>
 			</li>
 			<li class="panel">
@@ -97,6 +100,7 @@
 				<div class="btn-group users_info" style="padding-top: 8px;padding-right:50px;">
 					<i class="icon-flag" style="margin-right:20px;"> 2015.01.09</i> 
 					<i class="icon-time"> 2015.01</i> 
+					
 				</div>					
 			</div>
 		</div>
@@ -105,20 +109,20 @@
 <%-- 			<div id="personInfoPage" class="page" style="display:visibility;">
 				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
 			</div>		
-			<div id="allUsersInfoPage" class="page" style="display:none;">
-				<jsp:include page="user/allUsersInfo.jsp" flush="true"></jsp:include>
+			<div id="usersInfoPage" class="page" style="display:none;">
+				<jsp:include page="user/usersInfo.jsp" flush="true"></jsp:include>
 			</div> --%>
 			<div id="personInfoPage" class="page" style="display:none;">
 				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
 			</div>		
-			<div id="allUsersInfoPage" class="page" style="display:visibility;">
-				<jsp:include page="user/allUsersInfo.jsp" flush="true"></jsp:include>
+			<div id="usersInfoPage" class="page" style="display:none;">
+				<jsp:include page="user/usersInfo.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="allUsersGroupPage" class="page" style="display: none;">
-				<jsp:include page="user/allUsersGroup.jsp" flush="true"></jsp:include>
+			<div id="usersGroupPage" class="page" style="display: none;">
+				<jsp:include page="user/usersGroup.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="allUsersRolePage" class="page" style="display: none;">
-				<jsp:include page="user/allUsersRole.jsp" flush="true"></jsp:include>
+			<div id="usersRolePage" class="page" style="display:visibility;">
+				<jsp:include page="user/usersRole.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -128,9 +132,12 @@
 	
 		<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
 		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
+		<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
 		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.file-input.js"></script>
+		<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
 		<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
 		<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
-		<script type="text/javascript" src="resources/front_base/js/admin/userManage.js"></script>
+		<script type="text/javascript" src="resources/front_base/js/admin/usersInfo.js"></script>
+		<script type="text/javascript" src="resources/front_base/js/admin/usersRole.js"></script>
 </body>
 </html>

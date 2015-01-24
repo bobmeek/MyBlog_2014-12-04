@@ -104,4 +104,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 		return idao.findByKey(entityClass, maps, operate);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public void save(Map<String, Object> maps, String operate)
+	{
+		idao.save(entityClass, maps, operate);
+	}
+	
 }

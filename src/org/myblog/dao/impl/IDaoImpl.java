@@ -192,6 +192,11 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	
 	
 	
+	public void save(Class<T> entityClass, Map<String, Object> maps, String operate)
+	{
+		getSqlSession().insert(entityClass.getName() + operate, maps);
+	}
+	
 	
 	
 	

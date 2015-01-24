@@ -4,7 +4,7 @@
 <mapper namespace="org.myblog.model.UserExtVO">
 
 	<!-- 一对一，用户基本信息表与用户扩展信息表 -->
-	<resultMap id="userExtResultMap" type="userExt">
+	<resultMap type="userExt" id="userExtResultMap">
 		<id property="id" column="id" />
 		<result property="gender" column="gender" />
 		<result property="birthday" column="birthday" />
@@ -14,7 +14,7 @@
 		<result property="qq" column="qq"/>
 		<result property="intro" column="intro"/>
 		<!-- javaType为主表对应实体类的完全限定名或者别名 -->
-		<association property="user" javaType="user">
+		<association property="user" javaType="user" >
 			<id property="id" column="id" />
 			<result property="username" column="username" />
 			<result property="userpwd" column="userpwd" />

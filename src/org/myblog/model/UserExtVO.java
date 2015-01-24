@@ -8,6 +8,7 @@
  */
 package org.myblog.model;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 /**
@@ -16,8 +17,13 @@ import java.sql.Date;
  * @author bobmeek
  * @date Jan 10, 2015 4:44:19 PM
  */
-public class UserExtVO
+public class UserExtVO implements Serializable
 {
+	
+	/**
+	  * @Fields serialVersionUID : TODO
+	*/
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private Integer gender;
