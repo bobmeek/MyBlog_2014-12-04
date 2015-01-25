@@ -16,6 +16,11 @@
 		SELECT ro.`id` ro_id,re.`id` re_id,ro.`role`,ro.`desc`,re.`name`,re.`url`,re.`permission`,re.`type`,re.`parent_id`,re.`parend_ids` FROM role ro LEFT JOIN role_resource rr ON ro.`id`=rr.`role_id` LEFT JOIN resource re ON rr.`resource_id`=re.`id` 
 	</select>
 	
+	<select id="findByName" resultMap = "roleResultMap">
+		<!-- SELECT ro.`id` ro_id,re.`id` re_id,r.role, FROM  USER u , role r, user_role ur WHERE u.id=ur.user_id AND r.id=ur.role_id AND u.username=#{username} -->
+		SELECT r.`id` r_id,res.`id` res_id,r.role,res.name,res.permission FROM  USER u , role r,resource res, user_role ur,role_resource rr WHERE u.id=ur.user_id AND r.id=ur.role_id AND r.id=rr.role_id AND res.id=rr.resource_id AND u.username=#{username}
+	</select>
+	
 	<insert id="addResourceRelation">
 		INSERT INTO role_resource VALUES (#{roleId},#{resourceId})
 	</insert>

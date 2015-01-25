@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%> 
+<%@ taglib prefix="role" uri="http://shiro.apache.org/tags" %>
 <head>
 	<style>
 		ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4;width:180px;height:200px;overflow-y:scroll;overflow-x:auto;}
@@ -15,8 +16,12 @@
 			</ol>
 		</div>
 		<div style="float:right;margin-bottom:10px;">
-			<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除职位</a>
-			<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加职位</a>
+			<role:hasPermission name="role:delete">
+				<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除角色</a>
+			</role:hasPermission>
+			<role:hasPermission name="role:add">
+				<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加角色</a>			
+			</role:hasPermission>
 		</div>
 	</div>
 	

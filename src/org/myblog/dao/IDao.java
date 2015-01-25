@@ -3,6 +3,7 @@ package org.myblog.dao;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.myblog.common.Pager;
 
@@ -63,7 +64,10 @@ public interface IDao<T, PK extends Serializable>
 	 * @param @return
 	 * @return T    返回类型
 	 */
-	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);	
+	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	/**通过一个参数获取对应的集合**/
+	public List<T> findListByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
 	/**存储关联表关系**/
 	public void save(Class<T> entityClass, Map<String, Object> maps, String operate);

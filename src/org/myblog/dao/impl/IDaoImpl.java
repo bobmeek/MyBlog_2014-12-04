@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.myblog.common.Pager;
@@ -88,6 +89,11 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	public T findByParam(Class<T> entityClass, Map<String, Object> maps, String operate)
 	{
 		return getSqlSession().selectOne(entityClass.getName() + operate, maps);
+	}
+	
+	public List<T> findListByParam(Class<T> entityClass, Map<String, Object> maps, String operate)
+	{
+		return getSqlSession().selectList(entityClass.getName() + operate, maps);
 	}
 	
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize)

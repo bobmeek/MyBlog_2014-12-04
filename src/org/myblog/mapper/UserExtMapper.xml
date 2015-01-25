@@ -18,6 +18,7 @@
 			<id property="id" column="id" />
 			<result property="username" column="username" />
 			<result property="userpwd" column="userpwd" />
+			<result property="salt" column="salt" />
 			<result property="email" column="email" />
 			<result property="registerTime" column="register_time"/>
 			<result property="registerIP" column="register_IP"/>

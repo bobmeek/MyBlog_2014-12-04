@@ -2,7 +2,6 @@ $(function(){
 	
 	
 	$(".panel").on("click",function(event){
-	
 		var obj = $($(event.target).parent());
 		if(obj.attr("class")=="panel")
 		{
@@ -16,7 +15,6 @@ $(function(){
 	
 	
 	$(".panel ul").on("click",function(event){
-		
 		$(".page").hide();
 		var id = event.target.id;
 		$("#"+id+"Page").show();

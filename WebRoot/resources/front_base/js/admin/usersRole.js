@@ -1,9 +1,29 @@
 $(function(){
 	
 	
-	
+   /** 角色分配：
+	 * 1、得到所有角色。
+	 * 2、遍历拼接成checkbox。
+	 * 3、当点击的时候判断当前button中的值，如果与checkbox中的值有相同的，则将对应的checkbox高亮。
+	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)。
+	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入。
+	 * 6、权限拦截filterChainDefinitions配置，现在加上后，登录不了。
+	 * 7、拦截Request method 'GET' not supported
+	 * 8、项目后台管理文件夹整理
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * **/
 	//初始化角色管理所有的资源
 	var allResources;
+	
+	function loadPage()
+	{
+		$("#usersRolePage").load("view/admin/user/usersRole.jsp");
+		showRoles();
+	}
 	
 	showRoles();
 	function showRoles()
@@ -103,7 +123,10 @@ $(function(){
 		//定位问题
 		debugger;
 		if(!(e.target.text=="详细" || e.target.id=="resourceTree" ||$(event.target).parents("#resourceTree").length>0))
+		{
        		$("#resourceTree").fadeOut("fast");
+       		loadPage();
+		}
 		 
 	} 
 	

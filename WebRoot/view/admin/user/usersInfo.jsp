@@ -1,6 +1,6 @@
-
 <%@ page pageEncoding="UTF-8"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <head>
 	<style type="text/css">
 		
@@ -25,8 +25,12 @@
 			</ol>
 		</div>
 		<div style="float:right;margin-bottom:10px;">
-			<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除用户</a>
-			<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加用户</a>
+			<shiro:hasPermission name="user:delete">
+				<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除用户</a>
+			</shiro:hasPermission>
+			<shiro:hasPermission name="user:add">
+				<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加用户</a>
+			</shiro:hasPermission>
 		</div>
 	</div>
 

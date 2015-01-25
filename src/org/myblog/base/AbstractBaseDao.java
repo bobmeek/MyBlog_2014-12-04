@@ -3,6 +3,7 @@ package org.myblog.base;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -84,7 +85,11 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 		return idao.findByParam(entityClass, maps, operate);
 	}
 	
-	
+	@SuppressWarnings("unchecked")
+	public List<T> findListByParam(Map<String, Object> maps, String operate)
+	{
+		return idao.findListByParam(entityClass, maps, operate);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Pager<T> findByPage(int pageNo, int pageSize)

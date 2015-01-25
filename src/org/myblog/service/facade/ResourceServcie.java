@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.myblog.base.BaseDao;
 import org.myblog.model.ResourceVO;
+import org.myblog.model.RoleVO;
 
 /**
  * @ClassName: ResourceServcie
@@ -22,4 +23,6 @@ import org.myblog.model.ResourceVO;
 public interface ResourceServcie extends BaseDao<ResourceVO,Integer>
 {
 	public List<ResourceVO> findResources(); 
+	
+	public List<ResourceVO> findByName(String username);
 }

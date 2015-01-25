@@ -6,6 +6,7 @@
 		<id property="id" column="u_id" />
 		<result property="username" column="username" />
 		<result property="userpwd" column="userpwd" />
+		<result property="salt" column="salt" />
 		<result property="email" column="email" />
 		<result property="registerTime" column="register_time"/>
 		<result property="registerIP" column="register_IP"/>
@@ -20,12 +21,12 @@
 
 	<!-- 添加用户信息操作 -->
 	<insert id="add" parameterType="user" useGeneratedKeys="true" keyProperty="id">
-		insert into user(username,userpwd,email,register_time,register_IP,last_login_time,last_login_IP,is_disabled,is_email_active,uid) values(#{username},#{userpwd},#{email},#{registerTime},#{registerIP},#{lastLoginTime},#{lastLoginIP},#{isDisabled},#{isEmailActive},#{uid})
+		insert into user(username,userpwd,salt,email,register_time,register_IP,last_login_time,last_login_IP,is_disabled,is_email_active,uid) values(#{username},#{userpwd},#{salt},#{email},#{registerTime},#{registerIP},#{lastLoginTime},#{lastLoginIP},#{isDisabled},#{isEmailActive},#{uid})
 	</insert>
 
 	<!-- 用户的修改操作 -->
 	<update id="update" parameterType="user">
-		update user set username=#{username},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
+		update user set username=#{username},salt=#{salt},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
 		email=#{email}
 	</update>
 	
@@ -95,5 +96,6 @@
 	<delete id="deleteRoleRelation">
 		delete from user_role where user_id=#{userId} and role_id=#{roleId}
 	</delete>
+	
 	
 </mapper>

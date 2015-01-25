@@ -9,6 +9,7 @@
 package org.myblog.service.facade;
 
 import java.util.List;
+import java.util.Set;
 
 import org.myblog.base.BaseDao;
 import org.myblog.model.RoleVO;
@@ -23,8 +24,12 @@ public interface RoleService extends BaseDao<RoleVO,Integer>
 {
 	public List<RoleVO> findRoles();
 	
+	public List<RoleVO> findByName(String username);
+	
 	public void addResourceRelation(int roleId,int resourceId);
 	
 	public void deleteResourceRelation(int roleId,int resourceId);
+	
+	
 
 }

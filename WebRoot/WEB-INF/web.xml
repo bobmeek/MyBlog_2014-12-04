@@ -66,6 +66,22 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-
+	
+	<error-page>  
+        <error-code>405</error-code>  
+        <location>/view/exception/405.html</location>  
+    </error-page>  
+    <error-page>  
+        <error-code>404</error-code>  
+        <location>/view/exception/404.jsp</location>  
+    </error-page>  
+    <error-page>  
+        <error-code>500</error-code>  
+        <location>/view/exception/500.jsp</location>  
+    </error-page>  
+    <error-page>  
+        <exception-type>java.lang.Throwable</exception-type>  
+        <location>/view/exception/500.jsp</location>  
+    </error-page>  
 
 </web-app>

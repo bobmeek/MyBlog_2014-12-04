@@ -11,6 +11,7 @@ package org.myblog.service.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.myblog.base.AbstractBaseDao;
 import org.myblog.model.RoleVO;
@@ -33,6 +34,14 @@ public class RoleServiceImpl extends AbstractBaseDao<RoleVO, Integer> implements
 	{
 		
 		return null;
+	}
+	@Override
+	public List<RoleVO> findByName(String username)
+	{
+		String operate =".findByName";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("username", username);
+		return findListByParam(maps, operate);
 	}
 	
 	public void addResourceRelation(int roleId,int resourceId)

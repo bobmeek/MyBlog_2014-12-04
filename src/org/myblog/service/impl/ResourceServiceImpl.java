@@ -8,11 +8,11 @@
  */
 package org.myblog.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.myblog.base.AbstractBaseDao;
-import org.myblog.common.Pager;
 import org.myblog.model.ResourceVO;
 import org.myblog.service.facade.ResourceServcie;
 import org.springframework.stereotype.Service;
@@ -32,6 +32,15 @@ public class ResourceServiceImpl extends AbstractBaseDao<ResourceVO, Integer> im
 	{
 		
 		return null;
+	}
+	
+	public List<ResourceVO> findByName(String username)
+	{
+		String operate = ".findByName";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("username", username);
+		return findListByParam(maps, operate);
+		
 	}
 
 }

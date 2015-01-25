@@ -3,6 +3,7 @@ package org.myblog.base;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.myblog.common.Pager;
 
@@ -36,6 +37,10 @@ public interface BaseDao<T, PK extends Serializable>
 	
 	// 多条件的查询分页
 	public Pager<T> findByKey(Map<String, Object> maps, String operate);
+	
+	public T findByParam(Map<String, Object> maps, String operate);
+	
+	public List<T> findListByParam(Map<String, Object> maps, String operate);
 	
 	// 登录
 	public T login(T entity); 

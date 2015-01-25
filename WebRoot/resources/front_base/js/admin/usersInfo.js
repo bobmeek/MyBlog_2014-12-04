@@ -6,12 +6,11 @@ $(function(){
 	 * 编辑时，下方按钮标记将改为保存,点span就显示text,即为可编辑,编辑完保存。
 	 * *详情->下方保存按钮改为关闭,单击span显示当前span所对应的text可编辑>编辑完毕,失去焦点自动保存，将当前改好的text的值传给span,显示span。
 	 * x号关闭还原。
-	 * 分页查询时间未显示。
 	 * 将查出来为null的都替换为“”。
 	 * 在第几页删除完成，那么还是在第几页。
 	 * 将单个删除按钮修改为设置为管理员等下拉框，只用选择删除。
 	 * 查询所有用户的时候，分页问题
-	 *
+	 * shiro拦截后时间格式
 	 * 
 	 * 功能：
 	 * 保存头像：
@@ -26,8 +25,18 @@ $(function(){
 	 * 1、得到所有角色。
 	 * 2、遍历拼接成checkbox。
 	 * 3、当点击的时候判断当前button中的值，如果与checkbox中的值有相同的，则将对应的checkbox高亮。
-	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)
+	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)。
+	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入。
+	 * 6、权限拦截filterChainDefinitions配置，现在加上后，登录不了。
+	 * 
+	 * 
 	 */
+	
+	function loadPage()
+	{
+		$("#usersInfoPage").load("view/admin/user/usersInfo.jsp");
+		showUsers(currentPage*pageSize,pageSize);
+	}
 	
 	function  User(id,username,userpwd,email,registerTime,registerIP,lastLoginTime,lastLoginIP,isDisabled,isEmailActive,uid)
 	{
@@ -74,10 +83,12 @@ $(function(){
 	//实际查出来的条数
 	var findNumReality = 0; 
 	$("#user_pre").attr("class","previous disabled");
-	showUsers(pageNo,pageSize);
+//	showUsers(pageNo,pageSize);
+	$(document).on("click","#usersInfo",function(e){
+		loadPage();
+	});
 	function showUsers(pageNo,pageSize)
 	{
-		
 		$("#allUsers_check").prop("checked",function(){
 			return false;
 		});
@@ -200,15 +211,13 @@ $(function(){
 		if(flag)
 		{
 			$.post("user/add/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-			
-				//showUsers(currentPage*pageSize,pageSize);
+				loadPage();
 			},"json")
 		}
 		else
 		{
 			$.post("user/delete/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-			
-				//showUsers(currentPage*pageSize,pageSize);
+				loadPage();
 			},"json")
 		}
 		
@@ -361,6 +370,7 @@ $(function(){
 		
 		$.post("user/add.do",user,function(result){
 			debugger;
+			
 			showUsers(currentPage*pageSize,pageSize);
 				
 		},"json");

@@ -94,7 +94,7 @@
 						<li><a href="#">信息</a></li>
 						<li><a href="#">设置</a></li>
 						<li class="divider"></li>
-						<li><a href="#">退出登录</a></li>
+						<li><a href="<%=request.getContextPath()%>/user/logout">退出登录</a></li>
 					</ul>
 				</div>
 				<div class="btn-group users_info" style="padding-top: 8px;padding-right:50px;">
