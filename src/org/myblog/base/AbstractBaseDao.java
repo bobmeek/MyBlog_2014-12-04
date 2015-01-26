@@ -72,10 +72,12 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 		return idao.findAll(entityClass);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public T findById(PK pk) 
 	{
-		return null;
+		System.out.println(entityClass.toString() + ", id = " + pk);
+		return idao.findById(entityClass, pk);
 	}
 	
 	

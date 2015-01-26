@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<% 
+<%  
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
@@ -8,7 +8,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-
+ 
 <title>后台管理</title>
 
 <meta http-equiv="pragma" content="no-cache">
@@ -20,7 +20,9 @@
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
 <link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
+<link rel="stylesheet" href="resources/front_frame/bootstrao_treegrid/css/treegird.bootstrap3.css" />
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
+
 </head>
 
 <body>
@@ -55,9 +57,8 @@
 					<li><a href="#" id="personInfo">个人资料</a></li>
 					<li><a href="#">密码修改</a></li>
 					<li><a href="#" id="usersInfo">用户信息管理</a></li>
-					<li><a href="#" id="usersGroup">用户组管理</a></li>
 					<li><a href="#" id="usersRole">用户角色管理</a></li>
-					<li><a href="#" id="usersResources">用户资源管理</a></li>
+					<li><a href="#" id="usersResource">用户资源管理</a></li>
 				</ul>
 			</li>
 			<li class="panel">
@@ -106,23 +107,17 @@
 		</div>
 		
 		<div id="show" >
-<%-- 			<div id="personInfoPage" class="page" style="display:visibility;">
-				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
-			</div>		
-			<div id="usersInfoPage" class="page" style="display:none;">
-				<jsp:include page="user/usersInfo.jsp" flush="true"></jsp:include>
-			</div> --%>
 			<div id="personInfoPage" class="page" style="display:none;">
 				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
 			</div>		
 			<div id="usersInfoPage" class="page" style="display:none;">
 				<jsp:include page="user/usersInfo.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="usersGroupPage" class="page" style="display: none;">
-				<jsp:include page="user/usersGroup.jsp" flush="true"></jsp:include>
-			</div>
-			<div id="usersRolePage" class="page" style="display:visibility;">
+			<div id="usersRolePage" class="page" style="display:none;">
 				<jsp:include page="user/usersRole.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="usersResourcePage" class="page" style="display: visibility;">
+				<jsp:include page="user/usersResource.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -130,14 +125,17 @@
 	
 	
 	
-		<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
-		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
-		<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
-		<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.file-input.js"></script>
-		<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
-		<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
-		<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
-		<script type="text/javascript" src="resources/front_base/js/admin/usersInfo.js"></script>
-		<script type="text/javascript" src="resources/front_base/js/admin/usersRole.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
+	<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
+	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.js"></script>
+	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.file-input.js"></script>
+	<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/usersInfo.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/usersRole.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/usersResource.js"></script>
 </body>
 </html>

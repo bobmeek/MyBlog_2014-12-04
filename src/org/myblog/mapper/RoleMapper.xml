@@ -13,7 +13,7 @@
 	</resultMap>
 	
 	<select id="findAll" resultMap="roleResultMap">
-		SELECT ro.`id` ro_id,re.`id` re_id,ro.`role`,ro.`desc`,re.`name`,re.`url`,re.`permission`,re.`type`,re.`parent_id`,re.`parend_ids` FROM role ro LEFT JOIN role_resource rr ON ro.`id`=rr.`role_id` LEFT JOIN resource re ON rr.`resource_id`=re.`id` 
+		SELECT ro.`id` ro_id,re.`id` re_id,ro.`role`,ro.`desc`,re.`name`,re.`url`,re.`permission`,re.`type`,re.`parent_id`,re.`parent_ids` FROM role ro LEFT JOIN role_resource rr ON ro.`id`=rr.`role_id` LEFT JOIN resource re ON rr.`resource_id`=re.`id` 
 	</select>
 	
 	<select id="findByName" resultMap = "roleResultMap">

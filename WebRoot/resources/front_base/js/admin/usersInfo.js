@@ -109,13 +109,11 @@ $(function(){
 			
 			$("#allUsers tbody").html("");
 			$.each(users,function(n,user){
-				var disabled = "";
-				if(user.isDisabled==0)
-					disabled="<span class='label label-danger'>停用</span>";
-				else
-					disabled="<span class='label label-success'>使用</span>";
-					
-				debugger;	
+				debugger;
+				var disabled = (user.isDisabled==0)?"<span class='label label-danger'>停用</span>":"<span class='label label-success'>使用</span>";
+				var registerTime = (null==user.registerTime)?"":user.registerTime;
+				var lastLoginTime = (null==user.lastLoginTime)?"":user.lastLoginTime;
+				 	
 				//拥有角色拼接
 				var roleArr = [];
 				var roleStr = "";
@@ -161,8 +159,8 @@ $(function(){
 						"<td><input type='checkbox' value="+user.id+"></td>" +
 						"<td>"+user.username+"</td>" +
 						"<td>"+user.email+"</td>" +
-						"<td>"+user.registerTime+"</td>" +
-						"<td>"+user.lastLoginTime+"</td>" +
+						"<td>"+registerTime+"</td>" +
+						"<td>"+lastLoginTime+"</td>" +
 						"<td width='5%' style='vertical-align: middle;'>"+disabled+"</td>" +
 						"<td width='5%' style='vertical-align: middle;'><a href='#show_userext_modal' data-target='#show_userext_modal' data-toggle='modal' class='btn btn-sm btn-success detail'>详细</a></td>" +
 						"<td width='14%'>" +
@@ -225,39 +223,6 @@ $(function(){
 	
 	
 	
-	$("#allUsers .detail").live("click",function(event){
-		
-		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
-		debugger;
-		$.post("user/show/"+id+"/ext","",function(result){
-			$("#id_span_update").html(result.user.id);
-			$("#username_span_update").html(result.user.username);
-			$("#email_span_update").html(result.user.email);
-			$("#qq_span_update").html(result.qq);
-			$("#mobile_span_update").html(result.mobile);
-			$("#birthday_span_update").html(result.birthday);
-			$("#signature_span_update").html(result.signature);
-			$("#intro_span_update").html(result.intro);
-			
-			
-			$("#id_text_update").val(result.user.id);
-			$("#username_text_update").val(result.user.username);
-			$("#email_text_update").val(result.user.email);
-			$("#qq_text_update").val(result.qq);
-			$("#mobile_text_update").val(result.mobile);
-			$("#birthday_text_update").val(result.birthday);
-			$("#signature_text_update").val(result.signature);
-			$("#intro_text_update").val(result.intro);
-			
-			$("#head_img").attr("src",result.headImg);
-	//			$("#username").val(result.user.username);
-	//			$("#email").val(result.user.email);
-	//			$(".page").hide();
-	//			$("#personInfoPage").show();
-			
-		},"json")
-		
-	});
 	
 	$(document).on("click","#allUsers .delete",function(){
 		debugger;
@@ -359,8 +324,8 @@ $(function(){
 
 	
 	//添加用户
-	$("#add_user_btn").on("click",function(event){
-		
+	$(document).on("click","#add_user_btn",function(event){
+		debugger;
 		$("#add_user_modal").modal("hide");
 		
 		var username = $("#username_text_add").val();
@@ -395,17 +360,51 @@ $(function(){
 	
 	$("#show_userext_table .sp").on("click",function(event){
 		debugger;
-		//$(this);
-		//$("#email_text_update").focus();
 		$("#show_userext_table .sp").hide();
 		$("#show_userext_table .in").show();
 		
 	});
 	
 	
-	//编辑用户
-	$("#update_user_btn").on("click",function(event){
 	
+	$("#allUsers .detail").live("click",function(event){
+		
+		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
+		debugger;
+		$.post("user/show/"+id+"/ext","",function(result){
+			$("#id_span_update").html(result.user.id);
+			$("#username_span_update").html(result.user.username);
+			$("#email_span_update").html(result.user.email);
+			$("#qq_span_update").html(result.qq);
+			$("#mobile_span_update").html(result.mobile);
+			$("#birthday_span_update").html(result.birthday);
+			$("#signature_span_update").html(result.signature);
+			$("#intro_span_update").html(result.intro);
+			
+			
+			$("#id_text_update").val(result.user.id);
+			$("#username_text_update").val(result.user.username);
+			$("#email_text_update").val(result.user.email);
+			$("#qq_text_update").val(result.qq);
+			$("#mobile_text_update").val(result.mobile);
+			$("#birthday_text_update").val(result.birthday);
+			$("#signature_text_update").val(result.signature);
+			$("#intro_text_update").val(result.intro);
+			
+			$("#head_img").attr("src",result.headImg);
+	//			$("#username").val(result.user.username);
+	//			$("#email").val(result.user.email);
+	//			$(".page").hide();
+	//			$("#personInfoPage").show();
+			
+		},"json")
+		
+	});
+	
+	
+	
+	//编辑用户更新信息
+	$(document).on("click","#update_user_btn",function(event){
 		$("#show_userext_table .sp").hide();
 		$("#show_userext_table .in").show();
 		reset();
@@ -451,20 +450,20 @@ $(function(){
 		});
 			
 		
-	})
+	});
 	
 	//点击上传头像按钮可选图片文件
-	$("#head_pic_btn").on("click",function(){
+	$(document).on("click","#head_pic_btn",function(){
 	
-		
+		debugger;
 		$("#head_pic_file").click();
 		
 		
 	});
 	//点击头像本身可选图片文件
-	$("#head_img").on("click",function(){
+	$(document).on("click","#head_img",function(){
 	
-		
+		debugger;
 		$("#head_pic_file").click();
 		
 	});

@@ -14,11 +14,19 @@
 	</resultMap>
 	
 	<select id="findAll" resultMap="resourceResultMap">
-		select id,name,parent_id from resource
+		select * from resource
+	</select>
+	
+	<select id="findById" resultMap="resourceResultMap">
+	    select * from resource where id=#{id}
 	</select>
 	
 	<select id="findByName" resultMap = "resourceResultMap">
 		SELECT DISTINCT res.permission  FROM `user` u,role r, `resource` res,user_role ur,role_resource rr WHERE u.`id`=ur.`user_id` AND r.`id`=ur.`role_id` AND r.`id`=rr.role_id AND res.id=rr.resource_id AND u.`username`=#{username}
 	</select>
+	
+	<update id="update" parameterType="resource">
+		update resource set name=#{name},type=#{type},url=#{url},permission=#{permission} where id=#{id}
+	</update>
 	
 </mapper>

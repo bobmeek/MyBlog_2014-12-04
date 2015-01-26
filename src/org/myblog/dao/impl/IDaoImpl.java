@@ -80,9 +80,10 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	}
 
 	@Override
-	public T findById(Serializable pk) 
+	public T findById(Class<T> entityClass,Serializable pk) 
 	{
-		return null;
+		System.out.println("IDaoImpl findById method invoked - > Class: " + entityClass + " - > pk" + pk);
+		return getSqlSession().selectOne(entityClass.getName() + ".findById", pk);
 	}
 
 	@Override

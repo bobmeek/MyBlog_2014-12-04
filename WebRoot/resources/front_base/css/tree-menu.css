@@ -305,6 +305,12 @@ ul.navbar-nav{
 }
 
 
-
+.show-resource
+{
+	line-height: 10px;
+	width:350px;
+	height: 200px;
+	margin: 0px auto;
+}
 
 

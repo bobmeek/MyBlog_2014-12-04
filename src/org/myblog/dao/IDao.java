@@ -27,7 +27,7 @@ public interface IDao<T, PK extends Serializable>
 	public List<T> findAll(Class<T> entityClass);
 	
 	// 根据主键进行查询操作
-	public T findById(PK pk); 
+	public T findById(Class<T> entityClass,Serializable pk); 
 	
 	// 分页（pageNo：发往服务器端的页码信息, pageSize：每页显示的条数）
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize);

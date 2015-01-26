@@ -158,7 +158,7 @@ public class UserVO implements Serializable
 	}
 
 
-
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Timestamp getRegisterTime()
 	{
 		return registerTime;
@@ -186,7 +186,7 @@ public class UserVO implements Serializable
 	}
 
 
-
+	@JsonSerialize(using = CustomDateSerializer.class)
 	public Timestamp getLastLoginTime()
 	{
 		return lastLoginTime;

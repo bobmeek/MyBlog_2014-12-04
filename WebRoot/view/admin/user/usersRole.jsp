@@ -40,48 +40,9 @@
 			</thead>
 			
 			<tbody>
-				<tr>
-					<td>ROLE_CEO</td>
-					<td>首席执行官</td>
-					<td>用户管理、文章管理、系统管理</td>
-					<td><a href='#' class='btn btn-sm btn-success'>详细</a></td>
-				</tr>
-				<tr>
-					<td>ROLE_CTO</td>
-					<td>首席技术官</td>
-					<td>用户管理、文章管理、系统管理</td>
-					<td><a href='#' class='btn btn-sm btn-success'>详细</a></td>
-				</tr>
-				<tr>
-					<td>ROLE_CIO</td>
-					<td>首席信息官</td>
-					<td>用户管理、文章管理、系统管理</td>
-					<td><a href='#' class='btn btn-sm btn-success'>详细</a></td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
-	
-	
-	
-<!-- 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" id="show_role_modal"> -->
-<!-- 		<div class="modal-dialog"> -->
-<!-- 			<div class="modal-content"> -->
-<!-- 				<div class="modal-header"> -->
-<!-- 					<button type="button" class="close" data-dismiss="modal"> -->
-<!-- 					<span aria-hidden="true" id="close_update">&times;</span><span class="sr-only">Close</span> -->
-<!-- 				</button> -->
-<!-- 				<h2 class="modal-title" style="text-align: center" id="myModalLabel">角色设置</h2> -->
-<!-- 				</div> -->
-<!-- 				<div class="modal-body" style="height:500px;"> -->
-<!-- 					<div id="resourceTree"> -->
-						<!-- <ul id="tree" class="ztree"></ul> -->
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 				<div class="modal-footer"></div> -->
-<!-- 			</div>	 -->
-<!-- 		</div> -->
-<!-- 	</div> -->
 	
 	
 	<div id="resourceTree" style="display:none; position: absolute;">
