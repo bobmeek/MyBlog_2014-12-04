@@ -8,6 +8,8 @@
 		<typeAlias type="org.myblog.model.CategoryVO" alias="category" />
 		<typeAlias type="org.myblog.model.UserVO" alias="user" />
 		<typeAlias type="org.myblog.model.UserExtVO" alias="userExt" />
+		<typeAlias type="org.myblog.model.RoleVO" alias="role" />
+		<typeAlias type="org.myblog.model.ResourceVO" alias="resource" />
 	</typeAliases>
 	
 </configuration>
