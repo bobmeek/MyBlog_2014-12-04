@@ -61,5 +61,21 @@ public class RoleServiceImpl extends AbstractBaseDao<RoleVO, Integer> implements
 		maps.put("resourceId",resourceId);
 		delete(maps, operate);
 	}
+	
+	public void deleteResourceRelation(int roleId)
+	{
+		String operate = ".deleteResourceRelationByRoleId";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("roleId", roleId);
+		delete(maps, operate);
+	}
+	
+	public void deleteUserRelation(int roleId)
+	{
+		String operate = ".deleteUserRelationByRoleId";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("roleId", roleId);
+		delete(maps, operate);
+	}
 
 }

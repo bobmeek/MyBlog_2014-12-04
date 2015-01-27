@@ -19,7 +19,7 @@ import org.apache.shiro.util.ByteSource;
 import org.myblog.model.ResourceVO;
 import org.myblog.model.RoleVO;
 import org.myblog.model.UserVO;
-import org.myblog.service.facade.ResourceServcie;
+import org.myblog.service.facade.ResourceService;
 import org.myblog.service.facade.RoleService;
 import org.myblog.service.facade.UserService;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class UserRealm extends AuthorizingRealm{
     private RoleService roleService;
     
     @Resource(name = "resourceServiceImpl")
-    private ResourceServcie resourceServcie;
+    private ResourceService resourceServcie;
     /** 
      * 权限认证 
      */  

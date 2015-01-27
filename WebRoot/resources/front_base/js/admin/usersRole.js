@@ -4,13 +4,13 @@ $(function(){
    /** 角色分配：
 	 * 1、得到所有角色。
 	 * 2、遍历拼接成checkbox。
-	 * 3、当点击的时候判断当前button中的值，如果与checkbox中的值有相同的，则将对应的checkbox高亮。
-	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)。
-	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入。
+	 * 3、当点击的时候判断当前button中的值，如果与checkbox中的值有相同的，则将对应的checkbox高亮。↑
+	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)。↑
+	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入;在jquery中加入shiro拦截。
 	 * 6、权限拦截filterChainDefinitions配置，现在加上后，登录不了。
-	 * 7、拦截Request method 'GET' not supported
-	 * 8、项目后台管理文件夹整理
-	 * 
+	 * 7、拦截Request method 'GET' not supported。
+	 * 8、项目后台管理文件夹整理。
+	 * 9、资源树取消问题。
 	 * 
 	 * bug：
 	 * 1、编辑用户信息事件不触发。
@@ -51,7 +51,10 @@ $(function(){
 							"<td>"+role.role+"</td>" +
 							"<td>"+role.desc+"</td>" +
 							"<td>"+resourceStr+"</td>" +
-							"<td width='5%' style='vertical-align: middle;'><a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a></td>" +
+							"<td width='10%' style='vertical-align: middle;'>" +
+							"<a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a>" +
+							"<a href='javascript:void(0)' class='btn btn-sm btn-danger role_delete' >删除</a>" +
+							"</td>" +
 							"</tr>"
 							
 					
@@ -64,7 +67,12 @@ $(function(){
 	
 	}
 	
-	
+	function Role(id,role,desc)
+	{
+		this.id = id;
+		this.role = role;
+		this.desc = desc;
+	}
 	function Resource(id,parentId,name,checked)
 	{
 		this.id = id;
@@ -101,13 +109,16 @@ $(function(){
 			zNodes.push(resource);
 		});
         
+		debugger;
 		showResourceTree($(this),zNodes);
-
+		$(this).unbind("click");
+		$(this).bind("click",hideResourceTree($(this),zNodes));
 		
 		
 	});
 	
-	$(document).on("click","body",hideResourceTree);
+	//$(document).on("click","body",hideResourceTree);
+	
 	
 	
 	function showResourceTree(currentBtn,zNodes)
@@ -117,17 +128,22 @@ $(function(){
         var roleDetailObjOffset = currentBtn.offset();
         $("#resourceTree").css({left:roleDetailObjOffset.left-120 + "px", top:roleDetailObjOffset.top + roleDetailObj.outerHeight() + "px"}).slideDown("fast");
 		initResourceTree(currentBtn,zNodes);
+		
+		
+		
 	}
 	
-	function hideResourceTree(e)
+	function hideResourceTree(currentBtn,zNodes)
 	{
+		$("#resourceTree").fadeOut("fast");
+		$("#allRoles .role_detail").unbind("click");
+		$("#allRoles .role_detail").bind("click",showResourceTree(currentBtn,zNodes));
 		//定位问题
-		debugger;
-		if(!(e.target.text=="详细" || e.target.id=="resourceTree" ||$(event.target).parents("#resourceTree").length>0))
-		{
-       		$("#resourceTree").fadeOut("fast");
-       		loadPage();
-		}
+//		if(!(e.target.text=="详细" || e.target.id=="resourceTree" ||$(event.target).parents("#resourceTree").length>0))
+//		{
+//       		$("#resourceTree").fadeOut("fast");
+//       		loadPage();
+//		}
 		 
 	} 
 	
@@ -196,4 +212,34 @@ $(function(){
 		if(cNodes.length>0) treeObj.selectNode(allNodes[0].children[0]);
 
 	}
+	
+	//删除角色
+	$(document).on("click","#allRoles .role_delete",function(e){
+		
+		var roleId =  $($(this).closest("tr").children("td")[0]).text();
+		$.post("role/delete/"+roleId,"",function(result){
+		
+			showRoles();
+			
+		},"json")
+		
+	});
+	
+	//添加角色
+	$(document).on("click","#add_role_btn",function(e){
+		debugger;
+		$("#add_role_modal").modal("hide");
+		
+		var role = $("#role_add_role").val();
+		var desc = $("#desc_add_role").val();
+		var role = new Role(0,role,desc);
+		
+		$.post("role/add",role,function(result){
+			showRoles();
+		},"json");
+		
+	});
+	
+	
+	
 });

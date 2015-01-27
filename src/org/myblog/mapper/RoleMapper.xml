@@ -12,6 +12,15 @@
 		<collection property="listResource" ofType="resource" javaType="ArrayList" resultMap="org.myblog.model.ResourceVO.resourceResultMap"></collection>
 	</resultMap>
 	
+	
+	<delete id="delete">
+		delete from role where id = #{id}
+	</delete>
+	
+	<insert id="add"  parameterType="role" useGeneratedKeys="true" keyProperty="id">
+		insert into role (role,`desc`) values (#{role},#{desc});
+	</insert>
+	
 	<select id="findAll" resultMap="roleResultMap">
 		SELECT ro.`id` ro_id,re.`id` re_id,ro.`role`,ro.`desc`,re.`name`,re.`url`,re.`permission`,re.`type`,re.`parent_id`,re.`parent_ids` FROM role ro LEFT JOIN role_resource rr ON ro.`id`=rr.`role_id` LEFT JOIN resource re ON rr.`resource_id`=re.`id` 
 	</select>
@@ -27,5 +36,14 @@
 	<delete id="deleteResourceRelation">
 		delete from role_resource where role_id=#{roleId} and resource_id=#{resourceId}
 	</delete>
+	
+	<delete id="deleteResourceRelationByRoleId">
+		delete from role_resource where role_id=#{roleId}
+	</delete>
+		<delete id="deleteUserRelationByRoleId">
+		delete from user_role where role_id=#{roleId}
+	</delete>
+	
+	
 
 </mapper>

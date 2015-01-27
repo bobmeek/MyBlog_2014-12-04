@@ -53,12 +53,11 @@
 				 				<td>类型</td>
 				 				<td>
 				 					<span class="sp" id="type_res_span_update"></span>
-<!-- 				 					<input type="text" class="form-control in" style="display: none;" id="type_res_text_update"/> -->
 				 					<div class="btn-group in" style="display: none;" id="type_res_text_update">
 									  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">按钮<span class="caret"></span></button>
 									    <ul class="dropdown-menu">
-  									      <li><input type="radio" id="menu" name="NAME" value="VALUE"><label for="menu">菜单</label></li>
-									      <li><input type="radio" id="betton" name="NAME" value="VALUE" checked="checked"><label for="betton">按钮</label></li>
+  									      <li><input type="radio" id="menu_update" name="NAME" value="VALUE"><label for="menu_update">菜单</label></li>
+									      <li><input type="radio" id="button_update" name="NAME" value="VALUE" checked="checked"><label for="button_update">按钮</label></li>
 									    </ul>
 									</div>
 				 				
@@ -82,5 +81,74 @@
 		</div>
 	</div>
 	
+	
+	<div class="modal fade" id="add_resource_modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						&times;
+					</button>
+					<h2 class="modal-title" style="text-align: center">添加子节点</h2>
+				</div>
+				<div class="modal-body" style="height:300px;margin-top:20px;">
+					<form class="form-horizontal">
+						 <div class="form-group" style="display: none;">
+						    <label for="parentids_add_res" class="col-sm-3 control-label">父节点IDS</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" id="parentids_add_res"  placeholder="父节点ID">
+						    </div>
+						  </div>
+						 <div class="form-group" style="display: none;">
+						    <label for="parentid_add_res" class="col-sm-3 control-label">父节点ID</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" id="parentid_add_res"  placeholder="父节点ID">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="parentname_add_res" class="col-sm-3 control-label">父节点名称</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" disabled="disabled" id="parentname_add_res"  placeholder="父节点名称">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="childrenname_add_res" class="col-sm-3 control-label">子节点名称</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" id="childrenname_add_res" placeholder="子节点名称">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label class="col-sm-3 control-label">类型</label>
+						    <div class="col-sm-8">
+								<div class="btn-group">
+								  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="type_add_res">按钮<span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								      <li><input type="radio" name="NAME" value="VALUE" checked="checked" id="button_add" ><label for="button_add">按钮</label></li>
+								      <li><input type="radio" name="NAME" value="VALUE" id="menu_add" ><label for="menu_add" >菜单</label></li>
+								    </ul>
+								</div>								            
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="url_add_res" class="col-sm-3 control-label">URL路径</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control"  id="url_add_res" placeholder="例子：/user">
+						    </div>
+						  </div>
+						  <div class="form-group">
+						    <label for="permission_add_res" class="col-sm-3 control-label">权限字符串</label>
+						    <div class="col-sm-8">
+						      <input type="text" class="form-control" id="permission_add_res" placeholder="例子：user:add">
+						    </div>
+						  </div>
+					</form>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-lg btn-block" id="add_resource_btn">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
  </body>

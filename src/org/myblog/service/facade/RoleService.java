@@ -30,6 +30,10 @@ public interface RoleService extends BaseDao<RoleVO,Integer>
 	
 	public void deleteResourceRelation(int roleId,int resourceId);
 	
+	public void deleteResourceRelation(int roleId);
+	
+	public void deleteUserRelation(int roleId);
+	
 	
 
 }

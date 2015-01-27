@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<select id="findAll" resultMap="resourceResultMap">
-		select * from resource
+		select * from resource ORDER BY permission
 	</select>
 	
 	<select id="findById" resultMap="resourceResultMap">
@@ -25,8 +25,20 @@
 		SELECT DISTINCT res.permission  FROM `user` u,role r, `resource` res,user_role ur,role_resource rr WHERE u.`id`=ur.`user_id` AND r.`id`=ur.`role_id` AND r.`id`=rr.role_id AND res.id=rr.resource_id AND u.`username`=#{username}
 	</select>
 	
+	<insert id="add" parameterType="resource">
+		insert into resource (name,url,permission,type,parent_id,parent_ids) values (#{name},#{url},#{permission},#{type},#{parentId},#{parentIds})
+	</insert>
+	
 	<update id="update" parameterType="resource">
 		update resource set name=#{name},type=#{type},url=#{url},permission=#{permission} where id=#{id}
 	</update>
+	
+	<delete id="delete" parameterType="resource">
+		delete from resource where id = #{id}
+	</delete>
+	
+	<delete id="deleteRoleRelation">
+		delete from role_resource where resource_id=#{id} 
+	</delete>
 	
 </mapper>

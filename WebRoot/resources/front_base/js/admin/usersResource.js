@@ -1,12 +1,19 @@
 $(function(){
 
-	function Resource(id,name,type,url,permission)
+	
+	/**
+	 * bug：
+	 * 1、当拦截类型为button时，url框应为只读。
+	 */
+	function Resource(id,name,type,url,permission,parentId,parentIds)
 	{
 		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.url = url;
 		this.permission = permission;
+		this.parentId = parentId;
+		this.parentIds = parentIds;
 	}
 	
 	
@@ -36,8 +43,8 @@ $(function(){
 					
 					debugger;
 					//当拦截类型为菜单时，存在"添加子节点"按钮，当节点类型不为根节点时存在删除按钮
-					var addChildrenLink = (resource.type=="menu")?"<a href='#show_resource_modal' data-target='#show_resource_modal' data-toggle='modal' class='btn btn-sm btn-warning resource_detail' >添加子节点</a>":"";
-					var deleteLink = (resource.parentId!=0)?"<a href='#show_resource_modal' data-target='#show_resource_modal' data-toggle='modal' class='btn btn-sm btn-danger resource_detail' >删除</a>":"";
+					var addChildrenLink = (resource.type=="menu")?"<a href='#add_resource_modal' data-target='#add_resource_modal' data-toggle='modal' class='btn btn-sm btn-warning resource_add' >添加子节点</a>":"";
+					var deleteLink = (resource.parentId!=0)?"<a href='javascript:void(0)' class='btn btn-sm btn-danger resource_delete' >删除</a>":"";
 					
 					var detailLink = "<a href='#show_resource_modal' data-target='#show_resource_modal' data-toggle='modal' class='btn btn-sm btn-success resource_detail' >详细</a>";
 					var treeGridClass = (resource.parentId==0) ? "treegrid-"+resource.id : "treegrid-"+resource.id+' '+"treegrid-parent-"+resource.parentId;
@@ -45,6 +52,7 @@ $(function(){
 					var content = "<tr>" +
 								"<td style='text-align:left;'>"+resource.name+"</td>" +
 								"<td style='display:none;'>"+resource.id+"</td>" +
+								"<td style='display:none;'>"+resource.parentIds+"</td>" +
 								"<td>"+type+"</td>" +
 								"<td>"+resource.url+"</td>" +
 								"<td>"+resource.permission+"</td>" +
@@ -62,6 +70,54 @@ $(function(){
 		
 	}
 	
+	//点击"添加子节点按钮"，将父节点ID与名称带给modal
+	$(document).on("click","#allResources .resource_add",function(e){
+	
+		$("#parentname_add_res").val($(this).closest("tr").children("td:eq(0)").text());
+		$("#parentid_add_res").val($(this).closest("tr").children("td:eq(1)").text());
+		$("#parentids_add_res").val($(this).closest("tr").children("td:eq(2)").text());
+	});
+	
+	$(document).on("change","#type_add_res~ul",function(e){
+		debugger;
+		//$("#type_add_res").text()=="菜单"?$("#url_add_res").removeProp("readonly"):$("#url_add_res").prop("readonly","true");
+	});
+	
+	//添加用户 - 提交到数据库
+	$(document).on("click","#add_resource_btn",function(event){
+		debugger;
+		$("#add_resource_modal").modal("hide");
+		
+		var name = $("#childrenname_add_res").val();
+		var type = ($("#type_add_res").text()=="菜单")?"menu":"button";
+		var url = $("#url_add_res").val();
+		var permission = $("#permission_add_res").val();
+		var parentId = $("#parentid_add_res").val();
+		var parentIds = $("#parentids_add_res").val()+"/"+parentId;
+		
+		
+		var resource = new Resource(0,name,type,url,permission,parentId,parentIds);
+		
+		
+		$.post("resource/add",resource,function(result){
+			debugger;
+			
+			showResources();
+				
+		},"json");
+		
+	});
+	
+	$(document).on("click","#allResources .resource_delete",function(e){
+		
+		var id = $(this).closest("tr").children("td:eq(1)").text();
+		$.post("resource/delete/"+id,"",function(result){
+			
+			showResources();
+			
+		},"json");		
+		
+	});
 	
 	
 	$.each($("#show_resource_table tr"),function(n,tr){

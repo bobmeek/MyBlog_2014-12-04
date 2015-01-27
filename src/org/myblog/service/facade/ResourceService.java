@@ -20,9 +20,11 @@ import org.myblog.model.RoleVO;
  * @author bobmeek
  * @date Jan 23, 2015 9:16:04 PM
  */
-public interface ResourceServcie extends BaseDao<ResourceVO,Integer>
+public interface ResourceService extends BaseDao<ResourceVO,Integer>
 {
 	public List<ResourceVO> findResources(); 
 	
 	public List<ResourceVO> findByName(String username);
+	
+	public void deleteRoleRelation(int id);
 }
