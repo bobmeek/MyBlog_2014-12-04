@@ -17,6 +17,8 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler />
 
+<!-- 	<mvc:view-controller path="/" view-name="forward:/login.jsp"/> -->
+	  
 	<!-- 对控制器返回的逻辑路径指定对应的视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
@@ -39,11 +41,6 @@
                 <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
             </props>
         </property>
-    </bean>
-    
-  	<aop:config proxy-target-class="true"></aop:config>
-    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
-        <property name="securityManager" ref="securityManager"/>
     </bean>
     
 </beans>

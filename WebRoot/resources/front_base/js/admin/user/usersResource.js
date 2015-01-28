@@ -78,9 +78,9 @@ $(function(){
 		$("#parentids_add_res").val($(this).closest("tr").children("td:eq(2)").text());
 	});
 	
+	//当拦截类型为菜单时可填写url地址，为按钮时，则不能填写
 	$(document).on("change","#type_add_res~ul",function(e){
-		debugger;
-		//$("#type_add_res").text()=="菜单"?$("#url_add_res").removeProp("readonly"):$("#url_add_res").prop("readonly","true");
+		$("#type_add_res").text().trim()=="菜单"?$("#url_add_res").removeAttr("readonly"):$("#url_add_res").attr("readonly","true");
 	});
 	
 	//添加用户 - 提交到数据库
@@ -122,7 +122,7 @@ $(function(){
 	
 	$.each($("#show_resource_table tr"),function(n,tr){
 		debugger;
-		$(tr).children("td").eq(0).css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
+		$(tr).children("td").eq(0).css("width","90px").css("background-color","#EDF3F4").css("text-align","right");
 		$(tr).children("td").eq(1).css("padding-left","10px").css("padding-top","15px").css("text-align","left");
 		
 	});

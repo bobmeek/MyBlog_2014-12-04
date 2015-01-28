@@ -17,7 +17,7 @@
  	
  	<div style="width:100%;height:800px;border:1px solid green;">
  		<div class="head-img" style="width:300;height:300px;border:1px solid blue;float:left;margin-top:200px;margin-left:100px;">
-			<img src="resources/front_base/img/head/02.jpg" alt="..." class="img-circle">
+			<img src="" alt="..." class="img-circle">
  		</div>
  		<div class="user-info" style="width:800;height:500px;border:1px solid red;display:inline-block;">
  		

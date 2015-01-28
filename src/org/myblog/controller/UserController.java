@@ -430,7 +430,7 @@ public class UserController
         }  
         //验证是否登录成功  
         if(currentUser.isAuthenticated()){  
-            System.out.println("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)");  
+            System.out.println("用户[" + username + "]登录认证通过(这里可以进行一些认证通过后的一些系统参数初始化操作)"); 
         }else{  
             token.clear();  
         }  

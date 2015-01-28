@@ -132,7 +132,7 @@
 						  <div class="form-group">
 						    <label for="url_add_res" class="col-sm-3 control-label">URL路径</label>
 						    <div class="col-sm-8">
-						      <input type="text" class="form-control"  id="url_add_res" placeholder="例子：/user">
+						      <input type="text" class="form-control" readonly="readonly"  id="url_add_res" placeholder="例子：/user">
 						    </div>
 						  </div>
 						  <div class="form-group">

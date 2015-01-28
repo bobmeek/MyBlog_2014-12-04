@@ -176,9 +176,6 @@ $(function(){
 				$("#allUsers tbody").append(content);					
 					
 				
-					
-					
-				
 			});
 			
 			
@@ -325,7 +322,6 @@ $(function(){
 	
 	//添加用户
 	$(document).on("click","#add_user_btn",function(event){
-		debugger;
 		$("#add_user_modal").modal("hide");
 		
 		var username = $("#username_text_add").val();
@@ -334,7 +330,6 @@ $(function(){
 		
 		
 		$.post("user/add.do",user,function(result){
-			debugger;
 			
 			showUsers(currentPage*pageSize,pageSize);
 				
@@ -346,20 +341,22 @@ $(function(){
 	
 	
 	/****
+	 * 用户详细信息样式
 	 * 1.将每个tr的第一个td变色，并且居右对齐。
 	 * 2.点击详细，默认数据显示在label里，点击编辑按钮，数据变为可编辑状态，底部编辑按钮变为更新按钮。
 	 */
-	
-	$.each($("#show_userext_table tr"),function(n,trs){
-		//$(this) = $(trs)
-		$(trs).children("td").eq(0).css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
-		$(trs).children("td").eq(1).css("padding-left","10px").css("text-align","left");
+	function showUserExtCss()
+	{
+		$.each($("#show_userext_table tr"),function(n,tr){
+		$(tr).children("td:eq(0)").css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
+		$(tr).children("td:eq(1)").css("padding-left","10px").css("text-align","left");
 		
-	});
+		});
+	}
 	
 	
-	$("#show_userext_table .sp").on("click",function(event){
-		debugger;
+	//span隐藏，text显示
+	$(document).on("click","#show_userext_table .sp",function(event){
 		$("#show_userext_table .sp").hide();
 		$("#show_userext_table .in").show();
 		
@@ -368,9 +365,8 @@ $(function(){
 	
 	
 	$("#allUsers .detail").live("click",function(event){
-		
+		showUserExtCss();
 		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
-		debugger;
 		$.post("user/show/"+id+"/ext","",function(result){
 			$("#id_span_update").html(result.user.id);
 			$("#username_span_update").html(result.user.username);

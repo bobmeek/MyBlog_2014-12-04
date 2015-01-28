@@ -39,7 +39,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/guava-17.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/gson-2.1.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-all-1.2.2.jar" sourcepath="H:/Java/frameset/Shiro/lib"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-all-1.2.2.jar" sourcepath="H:/Java/frameset/Shiro/docs/source"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-core-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-ehcache-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/shiro-spring-1.2.2.jar"/>

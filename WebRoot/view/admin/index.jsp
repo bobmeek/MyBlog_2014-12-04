@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%  
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
@@ -87,9 +88,9 @@
 	<div class="containerk">
 		<div class="row top_info">
 			<div class="col-xs-6 " style="float:right;">
-				<div class="btn-group users_info ">
+				<div class="btn-group users_info">
 					<button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-						<span class="glyphicon glyphicon-user"></span> Keven <span class="caret"></span>
+						<span class="glyphicon glyphicon-user"></span> <shiro:principal/> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">信息</a></li>
@@ -101,7 +102,6 @@
 				<div class="btn-group users_info" style="padding-top: 8px;padding-right:50px;">
 					<i class="icon-flag" style="margin-right:20px;"> 2015.01.09</i> 
 					<i class="icon-time"> 2015.01</i> 
-					
 				</div>					
 			</div>
 		</div>
@@ -134,8 +134,8 @@
 	<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/admin/usersInfo.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/admin/usersRole.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/admin/usersResource.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/user/usersInfo.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/user/usersRole.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
 </body>
 </html>

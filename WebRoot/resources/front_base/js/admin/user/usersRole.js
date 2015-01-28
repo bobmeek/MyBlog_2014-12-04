@@ -2,18 +2,18 @@ $(function(){
 	
 	
    /** 角色分配：
-	 * 1、得到所有角色。
-	 * 2、遍历拼接成checkbox。
+	 * 1、得到所有角色。↑
+	 * 2、遍历拼接成checkbox。↑
 	 * 3、当点击的时候判断当前button中的值，如果与checkbox中的值有相同的，则将对应的checkbox高亮。↑
 	 * 4、每添加一个用户默认分配一个注册用户角色。(触发器 	)。↑
-	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入;在jquery中加入shiro拦截。
-	 * 6、权限拦截filterChainDefinitions配置，现在加上后，登录不了。
-	 * 7、拦截Request method 'GET' not supported。
+	 * 5、设置完角色或者资源后，直接局部刷新，可将按钮放到一个固定的jsp页面中，引入;在jquery中加入shiro拦截。↑
+	 * 6、权限拦截filterChainDefinitions配置，现在加上后，登录不了。↑
+	 * 7、拦截Request method 'GET' not supported。↑
 	 * 8、项目后台管理文件夹整理。
-	 * 9、资源树取消问题。
+	 * 9、资源树取消问题。↑
 	 * 
 	 * bug：
-	 * 1、编辑用户信息事件不触发。
+	 * 1、编辑用户信息事件不触发。↑
 	 * 
 	 * 
 	 * **/
@@ -80,8 +80,11 @@ $(function(){
 		this.name = name;
 		this.checked = checked;
 	}
-	$(document).on("click","#allRoles .role_detail",function(event){
 	
+	$(document).on("click","#allRoles .role_detail",function(){
+		
+		//对于同一对象绑定多个同一事件进行不同处理，执行完毕则轮询。
+		$(this).toggle(function(){
 		
 		var roleId =  $($(this).closest("tr").children("td")[0]).text();
 		
@@ -111,41 +114,24 @@ $(function(){
         
 		debugger;
 		showResourceTree($(this),zNodes);
-		$(this).unbind("click");
-		$(this).bind("click",hideResourceTree($(this),zNodes));
+			
+		},function(){
+			
+			$("#resourceTree").fadeOut("fast");
+		});
 		
-		
+		//手动触发单击事件
+		$(this).trigger("click");
 	});
-	
-	//$(document).on("click","body",hideResourceTree);
-	
 	
 	
 	function showResourceTree(currentBtn,zNodes)
 	{
-		
 		var roleDetailObj = currentBtn;
         var roleDetailObjOffset = currentBtn.offset();
         $("#resourceTree").css({left:roleDetailObjOffset.left-120 + "px", top:roleDetailObjOffset.top + roleDetailObj.outerHeight() + "px"}).slideDown("fast");
 		initResourceTree(currentBtn,zNodes);
-		
-		
-		
 	}
-	
-	function hideResourceTree(currentBtn,zNodes)
-	{
-		$("#resourceTree").fadeOut("fast");
-		$("#allRoles .role_detail").unbind("click");
-		$("#allRoles .role_detail").bind("click",showResourceTree(currentBtn,zNodes));
-		//定位问题
-//		if(!(e.target.text=="详细" || e.target.id=="resourceTree" ||$(event.target).parents("#resourceTree").length>0))
-//		{
-//       		$("#resourceTree").fadeOut("fast");
-//       		loadPage();
-//		}
-		 
-	} 
 	
 	
 	/**加载资源树*/
