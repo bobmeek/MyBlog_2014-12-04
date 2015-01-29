@@ -67,9 +67,7 @@ $(function(){
 		this.user = user;
 	}
 	
-	//修改file样式为bootstrap样式
-	//$(":file").bootstrapFileInput();
-	//显示所有用户信息
+	
 	//总条数
 	var totalNum = 0;
 	//总页数
@@ -81,18 +79,19 @@ $(function(){
 	//从第几条开始
 	var pageNo = currentPage*pageSize;
 	//实际查出来的条数
-	var findNumReality = 0; 
+	var findNumReality = 0;
 	$("#user_pre").attr("class","previous disabled");
 //	showUsers(pageNo,pageSize);
 	$(document).on("click","#usersInfo",function(e){
 		loadPage();
 	});
+	/**显示所有用户信息*/
 	function showUsers(pageNo,pageSize)
 	{
+		debugger;
 		$("#allUsers_check").prop("checked",function(){
 			return false;
 		});
-		
 		$.post("user/show/allUsers",{"pageNo":pageNo,"pageSize":pageSize},function(result){
 			totalNum = result.pagers.totalNum;
 			var users = result.pagers.pageList;
@@ -236,9 +235,9 @@ $(function(){
 	
 	
 	//全选，取消全选
-	$("#allUsers_check").on("click",function(event){
+	$(document).on("click","#allUsers_check",function(event){
 		
-		$(":checkbox").attr("checked",this.checked);
+		$("input:checkbox").attr("checked",this.checked);
 		
 	});
 	
@@ -348,8 +347,17 @@ $(function(){
 	function showUserExtCss()
 	{
 		$.each($("#show_userext_table tr"),function(n,tr){
-		$(tr).children("td:eq(0)").css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
-		$(tr).children("td:eq(1)").css("padding-left","10px").css("text-align","left");
+			$(tr).children("td:eq(0)").css({
+				"width":"80px",
+				"background-color":"#EDF3F4",
+				"text-align":"right"
+			});
+			$(tr).children("td:eq(1)").css({
+				"padding-left":"10px",
+				"text-align":"left"
+			});
+		//$(tr).children("td:eq(0)").css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
+//		$(tr).children("td:eq(1)").css("padding-left","10px").css("text-align","left");
 		
 		});
 	}

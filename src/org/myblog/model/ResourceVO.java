@@ -29,6 +29,7 @@ public class ResourceVO implements Serializable
 	
 	private Integer parentId;
 	
+	//方便后面排序:数据库SQL语句concat(parent_id,id)
 	private String parentIds;
 	
 	private String name;

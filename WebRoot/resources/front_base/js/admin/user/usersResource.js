@@ -13,15 +13,20 @@ $(function(){
 		this.url = url;
 		this.permission = permission;
 		this.parentId = parentId;
-		this.parentIds = parentIds;
+		this.parentIds = parentIds+parentId+"/";
+		
 	}
 	
 	
 	function initTreeGrid()
 	{
+		//默认让xx节点折叠
+		//$("#xx").treegrid('collapse');
+		
 		$('.tree').treegrid({
         expanderExpandedClass: 'glyphicon glyphicon-minus',
-        expanderCollapsedClass: 'glyphicon glyphicon-plus'
+        expanderCollapsedClass: 'glyphicon glyphicon-plus',
+        initialState: 'collapsed'
      });
 	}
 	
@@ -61,6 +66,7 @@ $(function(){
 								"</tr>"
 					allResourcesTbody.append(content);
 					allResourcesTbody.children("tr:last").addClass(treeGridClass);
+
 				});	
 				initTreeGrid();
 			}
@@ -79,8 +85,14 @@ $(function(){
 	});
 	
 	//当拦截类型为菜单时可填写url地址，为按钮时，则不能填写
+	
+	//添加弹出框
 	$(document).on("change","#type_add_res~ul",function(e){
 		$("#type_add_res").text().trim()=="菜单"?$("#url_add_res").removeAttr("readonly"):$("#url_add_res").attr("readonly","true");
+	});
+	//更新弹出框
+	$(document).on("change","#type_res_text_update~ul",function(e){
+		$("#type_res_text_update").text().trim()=="菜单"?$("#url_res_text_update").removeAttr("readonly"):$("#url_res_text_update").attr("readonly","true");
 	});
 	
 	//添加用户 - 提交到数据库
@@ -89,18 +101,17 @@ $(function(){
 		$("#add_resource_modal").modal("hide");
 		
 		var name = $("#childrenname_add_res").val();
-		var type = ($("#type_add_res").text()=="菜单")?"menu":"button";
+		var type = ($("#type_add_res").text().trim()=="菜单")?"menu":"button";
 		var url = $("#url_add_res").val();
 		var permission = $("#permission_add_res").val();
 		var parentId = $("#parentid_add_res").val();
-		var parentIds = $("#parentids_add_res").val()+"/"+parentId;
+		var parentIds = $("#parentids_add_res").val();
 		
 		
 		var resource = new Resource(0,name,type,url,permission,parentId,parentIds);
 		
 		
 		$.post("resource/add",resource,function(result){
-			debugger;
 			
 			showResources();
 				
@@ -121,9 +132,19 @@ $(function(){
 	
 	
 	$.each($("#show_resource_table tr"),function(n,tr){
-		debugger;
-		$(tr).children("td").eq(0).css("width","90px").css("background-color","#EDF3F4").css("text-align","right");
-		$(tr).children("td").eq(1).css("padding-left","10px").css("padding-top","15px").css("text-align","left");
+		$(tr).children("td").eq(0).css({
+			"width":"90px",
+			"background-color":"#EDF3F4",
+			"text-align":"right"
+		});
+		
+		$(tr).children("td").eq(1).css({
+			"padding-left":"10px",
+			"padding-top":"15px",
+			"text-align":"left"
+		});
+		//$(tr).children("td").eq(0).css("width","90px").css("background-color","#EDF3F4").css("text-align","right");
+		//$(tr).children("td").eq(1).css("padding-left","10px").css("padding-top","15px").css("text-align","left");
 		
 	});
 	
@@ -132,7 +153,8 @@ $(function(){
 		$.post("resource/show/"+id,"",function(result){
 			debugger;
 			
-			var type = (result.type=="menu"?"菜单":"按钮");
+			var type = result.type=="menu"?"菜单":"按钮";
+			type=="菜单"?$("#url_res_text_update").removeAttr("readonly"):$("#url_res_text_update").attr("readonly","true");
 			var lis = $("#type_res_text_update ul").children("li");
 			for(var i = 0;i<lis.length;i++)if(type==$(lis[i]).text()) $(lis[i]).children("input").prop("checked","true");
 			
@@ -144,8 +166,7 @@ $(function(){
 			
 			$("#id_res_text_update").val(result.id);
 			$("#name_res_text_update").val(result.name);
-			$("#type_res_text_update .btn").text(type);
-			
+			$("#type_res_text_update").text(type);
 			$("#url_res_text_update").val(result.url);
 			$("#permission_res_text_update").val(result.permission);
 			
@@ -167,7 +188,7 @@ $(function(){
 		reset();
 		var id = parseInt($("#id_res_text_update").val());
 		var name = $("#name_res_text_update").val();
-		var type = ($("#type_res_text_update .btn").text()=="菜单")?"menu":"button";
+		var type = ($("#type_res_text_update").text()=="菜单")?"menu":"button";
 		var url = $("#url_res_text_update").val();
 		var permission = $("#permission_res_text_update").val();
 		var resource = new Resource(id,name,type,url,permission);

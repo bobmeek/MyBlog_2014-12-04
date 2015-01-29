@@ -50,6 +50,7 @@ public class ResourceController
 	}
 	
 	@RequestMapping(value = "add",produces="application/json;charset=utf-8")
+	@ResponseBody
 	public void addChildrenResource(ResourceVO resource)
 	{
 		resourceService.save(resource);

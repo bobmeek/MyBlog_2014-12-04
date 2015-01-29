@@ -53,23 +53,23 @@
 				 				<td>类型</td>
 				 				<td>
 				 					<span class="sp" id="type_res_span_update"></span>
-				 					<div class="btn-group in" style="display: none;" id="type_res_text_update">
-									  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">按钮<span class="caret"></span></button>
-									    <ul class="dropdown-menu">
+				 					<div class="btn-group in" style="display: none;">
+									  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="type_res_text_update">按钮<span class="caret"></span></button>
+									  <ul class="dropdown-menu">
   									      <li><input type="radio" id="menu_update" name="NAME" value="VALUE"><label for="menu_update">菜单</label></li>
 									      <li><input type="radio" id="button_update" name="NAME" value="VALUE" checked="checked"><label for="button_update">按钮</label></li>
-									    </ul>
+									  </ul>
 									</div>
 				 				
 				 				</td>
 				 			</tr>
 				 			<tr>
 				 				<td>URL路径</td>
-				 				<td><span class="sp" id="url_res_span_update"></span><input type="text" class="form-control in" style="display: none;" id="url_res_text_update"/></td>
+				 				<td><span class="sp" id="url_res_span_update"></span><input type="text" class="form-control in" style="display: none;" placeholder="例子：/user" id="url_res_text_update"/></td>
 				 			</tr>
 			 				<tr>
 				 				<td>权限字符串</td>
-				 				<td><span class="sp" id="permission_res_span_update"></span><input type="text" class="form-control in" style="display: none;" id="permission_res_text_update"/></td>
+				 				<td><span class="sp" id="permission_res_span_update"></span><input type="text" class="form-control in" style="display: none;" placeholder="user:add" id="permission_res_text_update"/></td>
 				 			</tr>
 			 			</table>
 			 		</div>
