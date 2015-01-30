@@ -62,7 +62,7 @@
 		<servlet-name>springmvc-servlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+	
 
     <error-page>  
        <error-code>404</error-code>  
