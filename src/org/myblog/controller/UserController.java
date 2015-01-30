@@ -385,7 +385,7 @@ public class UserController
      */  
     @RequestMapping(value="/login", method=RequestMethod.POST)  
     public String login(HttpServletRequest request){  
-        String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/";  
+        String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/view/admin/login.jsp";  
         String username = request.getParameter("username");  
         String password = request.getParameter("userpwd");  
         //获取HttpSession中的验证码  
@@ -442,7 +442,7 @@ public class UserController
 	        //使用权限管理工具进行用户的退出，跳出登录，给出提示信息  
 	        SecurityUtils.getSubject().logout();    
 	        request.setAttribute("message_login", "您已安全退出");
-	        return "../login";  
+	        return "admin/login";  
 	    }   
 	
 	
