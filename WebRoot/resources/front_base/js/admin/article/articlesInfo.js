@@ -201,6 +201,8 @@
 	/** 删除文章 **/
 	$("button").on("click", function(event)
 	{	
+		
+		//haha
 		//alert(event.target.id);
 		//alert($(this).name);
 		//var id = event.target.id;
