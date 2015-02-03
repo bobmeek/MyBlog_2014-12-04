@@ -183,7 +183,7 @@ $(function(){
 	});
 	
 	//编辑用户更新信息,存储到数据库
-	$("#resource_update_btn").on("click",function(event){
+	$(document).on("click","#resource_update_btn",function(event){
 		debugger;
 		reset();
 		var id = parseInt($("#id_res_text_update").val());

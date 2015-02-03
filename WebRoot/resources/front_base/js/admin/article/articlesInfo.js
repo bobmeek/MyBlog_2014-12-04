@@ -205,10 +205,10 @@
 		//alert($(this).name);
 		//var id = event.target.id;
 		
-		$.post("article/delte/"+ id, null, function(result)
-		{
-			showArticles();
-		});
+//		$.post("article/delte/"+ id, null, function(result)
+//		{
+//			showArticles();
+//		});
 	});
 	
 	
