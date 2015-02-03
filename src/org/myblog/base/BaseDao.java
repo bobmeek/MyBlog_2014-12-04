@@ -29,6 +29,9 @@ public interface BaseDao<T, PK extends Serializable>
 	// 根据主键进行查询操作
 	public T findById(PK pk); 
 	
+	// 根据主键进行查询操作返回一个集合对象
+	public List<T> findByIdList(PK pk);
+	
 	// 一个带条件的分页
 	public Pager<T> findByPage(int pageNo, int pageSize); 
 		

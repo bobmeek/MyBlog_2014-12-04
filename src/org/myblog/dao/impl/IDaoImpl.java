@@ -205,9 +205,30 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	}
 	
 	
+	@Override
+	public List<T> findById2(Class<T> entityClass, Serializable pk)
+	{
+		System.out.println("IDaoImpl findById method invoked - > Class: " + entityClass);
+		return getSqlSession().selectList(entityClass.getName() + ".findById", pk);
+	}
 	
-	
-	
+	@Override
+	public List<T> findByParam1(Class<T> entityClass, Map<String, Object> maps, String operate) 
+	{
+		return getSqlSession().selectList(entityClass.getName() + operate, maps);
+	}
+
+	@Override
+	public void bulk_delete(Class<T> entityClass, List<Integer> id) 
+	{
+		getSqlSession().delete(entityClass.getName() + ".bulk_delete", id);
+	}
+
+	@Override
+	public void bulk_delete2(Class<T> entityClass, List<Integer> id) 
+	{
+		getSqlSession().delete(entityClass.getName() + ".bulk_delete2", id);
+	}
 	
 	
 	

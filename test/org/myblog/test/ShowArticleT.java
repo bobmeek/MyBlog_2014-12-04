@@ -1,3 +1,4 @@
+package org.myblog.test;
 /**  
  * @Title: MyBlogSpringT.java
  * @Package org.myblog.test
@@ -5,19 +6,19 @@
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
  * @version V1.0  
- */
-package org.myblog.test;
+ *//*
+package com.myblog.test;
 
 import org.myblog.controller.ArticleController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-/**
+*//**
  * @ClassName: MyBlogSpringT
  * @Description: TODO
  * @author bobmeek
  * @date Dec 5, 2014 6:27:53 AM
- */
+ *//*
 public class ShowArticleT
 {
 	private static ApplicationContext ctx;
@@ -43,3 +44,4 @@ public class ShowArticleT
 		
 	}
 }
+*/

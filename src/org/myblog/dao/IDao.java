@@ -29,6 +29,9 @@ public interface IDao<T, PK extends Serializable>
 	// 根据主键进行查询操作
 	public T findById(Class<T> entityClass,Serializable pk); 
 	
+	// 根据主键进行查询操作
+	public List<T> findById2(Class<T> entityClass, PK pk); 
+	
 	// 分页（pageNo：发往服务器端的页码信息, pageSize：每页显示的条数）
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize);
 	
@@ -68,6 +71,13 @@ public interface IDao<T, PK extends Serializable>
 	
 	/**通过一个参数获取对应的集合**/
 	public List<T> findListByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	public List<T> findByParam1(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	public void bulk_delete(Class<T> entityClass, List<Integer> id);
+	
+	public void bulk_delete2(Class<T> entityClass, List<Integer> id);	
+	
 	
 	/**存储关联表关系**/
 	public void save(Class<T> entityClass, Map<String, Object> maps, String operate);

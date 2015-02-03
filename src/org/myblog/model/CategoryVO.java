@@ -1,84 +1,76 @@
-/**  
- * @Title: CategoryVO.java
- * @Package org.myblog.model
- * @Description: TODO
- * @author bobmeek
- * @date Dec 4, 2014 9:35:40 PM
- * @version V1.0  
- */
 package org.myblog.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
- * @ClassName: CategoryVO
- * @Description: 栏目
- * @author bobmeek
- * @date Dec 4, 2014 9:35:40 PM
+ * 栏目实体
+ * @author Keven小卫
  */
 public class CategoryVO implements Serializable
 {
-	
-	/**
-	  * @Fields serialVersionUID : TODO
-	*/
 	private static final long serialVersionUID = 1L;
-
-	private int id;
 	
-	private String name;
+	private Integer id; //栏目id
 	
-	private String desc;
+	private String name; //栏目名称
 	
-	public CategoryVO()
-	{
-		super();
-	}
-
+	private List<ArticleVO> articles; //栏目和文章是一对多的关联关系
 	
-	public CategoryVO(String name, String desc)
-	{
-		super();
-		this.name = name;
-		this.desc = desc;
-	}
-
-
-
-
-
-	public int getId()
-	{
+	private Integer parent_id; //栏目外键父id自关联主键id
+	
+	public Integer getId() {
 		return id;
 	}
-	
-	public void setId(int id)
-	{
+
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
-
-	public String getDesc()
-	{
-		return desc;
+	
+	public List<ArticleVO> getArticles() {
+		return articles;
 	}
 
-	public void setDesc(String desc)
-	{
-		this.desc = desc;
+	public void setArticles(List<ArticleVO> articles) {
+		this.articles = articles;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
-	
-	
-	
+	public Integer getParent_id() {
+		return parent_id;
+	}
+
+	public void setParent_id(Integer parent_id) {
+		this.parent_id = parent_id;
+	}
+
+	public CategoryVO() {
+		super();
+	}
+
+	public CategoryVO(Integer id, String name, List<ArticleVO> articles,
+			Integer parent_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.articles = articles;
+		this.parent_id = parent_id;
+	}
+
+	@Override
+	public String toString() {
+		return "CategoryVO [id=" + id + ", name=" + name + ", articles="
+				+ articles + ", parent_id=" + parent_id + "]";
+	}
 }

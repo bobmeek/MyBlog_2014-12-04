@@ -66,8 +66,8 @@
 				<a href="#topic_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
 					class="caret"></b></a>
 				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
-					<li><a href="#">发布文章</a></li>
-					<li><a href="#">文章信息</a></li>
+					<li><a href="#" id="addArticle2">发布文章</a></li>
+					<li><a href="#" id="articlesInfo">文章信息</a></li>
 					<li><a href="#">栏目信息</a></li>
 				</ul></li>
 			<li class="panel">
@@ -116,8 +116,17 @@
 			<div id="usersRolePage" class="page" style="display:none;">
 				<jsp:include page="user/usersRole.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="usersResourcePage" class="page" style="display: visibility;">
+			<div id="usersResourcePage" class="page" style="display: none;">
 				<jsp:include page="user/usersResource.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="articlesInfoPage" class="page" style="display:none;">
+				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
+			</div>
+			<%-- <div id="addArticlePage" class="page" style="display:none;">
+				<jsp:include page="article/addArticle.jsp" flush="true"></jsp:include>
+			</div> --%>
+			<div id="addArticle2Page" class="page" style="display:visibility;">
+				<jsp:include page="article/addArticle2.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -137,5 +146,6 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersInfo.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersRole.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 </body>
 </html>

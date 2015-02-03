@@ -3,4 +3,36 @@
 
 <mapper namespace="org.myblog.model.CategoryVO">
 
+	<resultMap type="category"  id="categoryResultMap">
+		<id property="id" column="cid" />
+		<result property="name" column="name" />
+		<result property="parent_id" column="parent_id" />
+		<collection property="articles"  javaType="java.util.ArrayList" resultMap="org.myblog.model.ArticleVO.articleResultMap"></collection>
+	</resultMap>
+	
+	<!-- 查询操作。查询栏目名称并且去除重复栏目名称信息 -->
+	<select id="findAll"  resultType="category">
+		select distinct(c.name),id,parent_id  from category as c  
+	</select>
+	
+	<!-- 插入操作。完成栏目名称的插入 -->
+	<insert id="add" parameterType="category" useGeneratedKeys="true" keyProperty="id"> 
+		insert into category(name,parent_id) values(#{name},#{parent_id})
+	</insert>
+	
+	<!-- 查询操作。根据文章id查询文章归属栏目 -->
+	<!-- <select id="findById" parameterType="int" resultMap="categoryResultMap">
+		select a.id,a.id_category,c.id,c.name from article as a,category as c
+		where a.id_category=c.id and a.id=#{id}
+	</select> -->
+	<!-- 根据栏目id查询文章信息 -->
+	<select id="findById" resultMap="categoryResultMap">
+		select c.id as cid, a.id_category, a.id as aid,a.title,a.content from article as a,category as c where a.id_category=c.id and c.id=#{id}	
+	</select>
+	
+	<!-- 修改操作 -->
+	<update id="update" parameterType="category">
+		update category set name=#{name} where id=#{id} 
+	</update>
+	
 </mapper>

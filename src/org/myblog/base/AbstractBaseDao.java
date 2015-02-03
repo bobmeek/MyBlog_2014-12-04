@@ -87,9 +87,23 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Override
+	public List<T> findByIdList(PK pk) 
+	{
+		System.out.println(entityClass.toString() + ", id = " + pk);
+		return idao.findById2(entityClass, pk);
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<T> findListByParam(Map<String, Object> maps, String operate)
 	{
 		return idao.findListByParam(entityClass, maps, operate);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<T> findByParam1(Map<String, Object> maps, String operate)
+	{
+		return idao.findByParam1(entityClass, maps, operate);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -114,6 +128,18 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	public void save(Map<String, Object> maps, String operate)
 	{
 		idao.save(entityClass, maps, operate);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void bulk_delte(List<Integer> id)
+	{
+		idao.bulk_delete(entityClass, id);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void bulk_delte2(List<Integer> id) 
+	{
+		idao.bulk_delete2(entityClass, id);
 	}
 	
 }

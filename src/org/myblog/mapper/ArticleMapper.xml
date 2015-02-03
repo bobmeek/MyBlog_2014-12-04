@@ -3,14 +3,83 @@
 
 <mapper namespace="org.myblog.model.ArticleVO">
 	
-	<!-- 查询全部操作 -->
-	<select id="findAll" resultType="article">
-		select * from article
+	<resultMap type="article" id="articleResultMap">
+		<id property="id" column="aid" />
+		<result property="title" column="title" />
+		<result property="author" column="author" />
+		<result property="content" column="content" />
+		<result property="releaseDate" column="release_date" />
+		<result property="readCount" column="read_count" />
+		<result property="commentCount" column="comment_count" />
+		<result property="topLevel" column="top_level" />
+		<result property="privacy" column="privacy" />
+		<result property="id_category" column="id_category" />
+		<result property="id_tag_article_tag" column="id_tag_article_tag" />
+		 <association property="category" javaType="category"><!-- Article和CategoryN-1表示关联 -->
+		 	<id property="id" column="id" />
+			<result property="name" column="name" />
+			<result property="parent_id" column="parent_id" />
+		 </association>
+		<collection property="tag" resultMap="org.myblog.model.TagVO.tagResultMap"></collection>
+	</resultMap>
+	
+	<!-- 查询操作。查询文章信息|栏目信息|标签信息 -->
+	<select id="findAll"  resultMap="articleResultMap" >
+		select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,tag as t 
+		where a.id_category=c.id and a.id_tag_article_tag=t.id ORDER BY a.release_date DESC
 	</select>
-
-	<!-- 查询操作，根据ID进行查询 -->
-	<select id="findById" parameterType="int" resultType="article">
-		select * from article where id=#{id}
+	
+	<!-- 删除操作。根据文章id删除文章信息 -->
+	<delete id="delete" parameterType="int">
+		delete from article where id=#{id}
+	</delete>
+	
+	<!-- 查询操作。根据文章id查询文章信息 -->
+	<select id="findById" resultMap="articleResultMap">
+		<!-- select a.id,a.title,a.author,a.content,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		where a.id_tag_article_tag=art.id_tag and art.id_tag=t.id and a.id=#{id} -->
+		select a.id,a.title,a.author,a.content from article as a,category as c where a.id_category=c.id and a.id=#{id}
 	</select>
+	
+	<!-- 查询操作。根据文章标题模糊查询文章信息，并且根据文章发布日期排序文章 -->
+	<select id="searchArticleByTitle" resultMap="articleResultMap" parameterType="map">
+		<!-- select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		where a.id_tag_article_tag=art.id_tag and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC -->
+		select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		where a.id_category=c.id and a.id=art.id_article and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC
+	</select>
+	
+	<!-- 批量删除文章操作 -->
+	<delete id="bulk_delete" parameterType="java.util.List">
+		<![CDATA[delete from article where id in]]><foreach collection="list" item="num"  open="(" separator="," close=")">#{num}</foreach>	
+	</delete>
+	
+	<!-- 批量删除文章标签操作 -->
+	<delete id="bulk_delete2" parameterType="java.util.List">
+		<![CDATA[delete from article_tag where article_tag.id_article in]]>
+		<foreach collection="list" item="num"  open="(" separator="," close=")">#{num}</foreach>	
+	</delete>
 
+	<!-- 文章分页查询 -->
+	<select id="findByPage" resultMap="articleResultMap" parameterType="map">
+		select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,tag as t 
+		where a.id_category=c.id and a.id_tag_article_tag=t.id ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
+	</select>
+	
+	<!-- 查询文章列表总数 -->
+	<select id="findTotal" resultType="int" parameterType="int">
+		select count(*) from article
+	</select>
+	
+	<!-- 插入操作。完成标题、内容、id_category、id_tag_article_tag、release_date的插入 -->
+	<insert id="add"  parameterType="article" useGeneratedKeys="true" keyProperty="id">
+		insert into article(title,content,id_category,id_tag_article_tag,release_date) 
+		values(#{title},#{content},#{id_category},#{id_tag_article_tag},#{releaseDate})
+	</insert>
+	
+	<!-- 修改操作 -->
+	<update id="update"  parameterType="article">
+		update article set title=#{title},content=#{content},release_date=#{releaseDate} where id=#{id} 
+	</update>
+	
 </mapper>
