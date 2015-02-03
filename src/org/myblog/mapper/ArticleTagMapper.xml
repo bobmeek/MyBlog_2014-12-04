@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.ArticleTagVO">
+	
+	<resultMap type="articletag" id="articletagResultMap">
+		<result property="id_article" column="id_article"/>
+		<result property="id_tag" column="id_tag"/>
+	</resultMap>
+	
+	<!-- 添加操作。完成中间表两条字段的添加 -->
+	<insert id="add" parameterType="articletag">
+		insert into article_tag(id_article,id_tag) values(#{id_article},#{id_tag})
+	</insert>
+	
+	<!-- 删除操作 -->
+	<delete id="delete" parameterType="int">
+		delete from article_tag where id_tag=#{id_tag}
+	</delete>
+
+</mapper>

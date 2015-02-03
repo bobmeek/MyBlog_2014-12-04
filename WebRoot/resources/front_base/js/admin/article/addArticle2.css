@@ -1,0 +1,70 @@
+
+	body
+	{
+		font-size: 14px;
+	}
+
+	#container_div
+	{
+		background-color: #efefef;
+	}
+
+	#dropdown_menu ul
+	{
+		list-style-type: none;
+		padding-left: 10px;
+	}
+	
+	#dropdown_menu ul li
+	{
+		padding-top: 20px;
+	}
+	
+	ul.menu_nav a
+	{
+		display: block;
+	} 
+	
+	#container_div a
+	{
+		text-decoration: none;
+		color: #555555;
+		}
+		
+	#leftbody
+	{
+		/* style="border: 1px solid orange; width: 260px; height: 650px; float: left; padding-left: 10px; padding-top: 10px; margin-right: 10px;" */
+		border: 5px solid white;
+		width: 230px;
+		height: 650px;
+		float: left;
+		padding-left: 10px; padding-top: 10px; margin-right: 10px;
+	}
+	
+	#mainbody
+	{
+		/* style="border: 1px solid purple;; width: 389px; height: 650px; float: left; padding-left: 10px; padding-top: 10px; margin-right: 10px;" */
+		border: 5px solid white;
+		width: 389px; height: 650px; float: left;
+		padding-left: 10px; padding-top: 10px; margin-right: 10px;
+	}
+	
+	#rightbody
+	{
+		/* style="border: 1px solid blue;  width: 690px; height: 650px; float: right;" */
+		border: 5px solid white;
+		width: 723px; height: 650px; float: right;
+	}
+	
+	.create_article_div
+	{
+		padding-top: 8px;
+		padding-left: 10px;
+	}
+	
+	.create_article_div a
+	{
+		padding-left: 8px;
+	}
+	
+	

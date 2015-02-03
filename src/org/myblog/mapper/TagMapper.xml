@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.TagVO">
+	
+	<resultMap type="tag" id="tagResultMap">
+		<id property="id" column="id" />
+		<result property="name" column="tag_name" />
+		<result property="tagCount" column="tag_count" />
+		<result property="id_article_article_tag" column="id_article_article_tag" />
+	</resultMap>
+	
+	<!-- 删除操作。根据标签id删除标签信息 -->
+	<delete id="delete" parameterType="int">
+		delete from tag where id=#{id}
+	</delete>
+	
+	<!-- 插入操作。完成标签名称的插入 -->
+	<insert id="add" parameterType="tag"  useGeneratedKeys="true" keyProperty="id">
+		insert into tag(tag_name) values(#{name})
+	</insert>
+	
+	<!-- 查询操作。按照标签序列、标签名称、标签数量查询全部标签，并且根据id升序排列 -->
+	<select id="findAll" resultMap="tagResultMap">
+		select count(tag_name) as tag_count,tag_name,id from tag group by tag_name order by id asc
+	</select>
+	
+	<!-- 查询操作。根据指定的id查询文章信息(主要是查询该文章有多少标签) -->
+	<select id="findById" parameterType="int" resultMap="tagResultMap">
+		select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		where a.id=art.id_article and art.id_tag=t.id and a.id_category=c.id and a.id=#{id}
+	</select>
+	
+	<!-- 修改操作。根据id修改标签名称 -->
+	<update id="update" parameterType="tag">
+		update tag set tag_name=#{name} where id=#{id}
+	</update>
+	
+	<!-- 标签分页查询 -->
+	<select id="findByPage" resultMap="tagResultMap" parameterType="map">
+		select count(tag_name) as tag_count,tag_name,id from tag group by tag_name order by id asc limit #{pageNo},#{pageSize}
+	</select>
+	
+	<!-- 查询标签列表总数。查询标签总数并且去除重复的标签数，重复的标签只按1计算在内 -->
+	<select id="findTotal" resultType="int" parameterType="int">
+		select (count(distinct(tag_name))) from tag
+	</select>
+	
+	<!-- 查询操作。根据标签名称模糊查询标签信息 -->
+	<select id="searchTagByTagName" resultMap="tagResultMap" parameterType="map">
+		select count(tag_name),tag_name,id from tag as t where t.tag_name like '%${tag_name}%' group by tag_name order by id asc
+	</select>
+	
+	<!-- 批量删除操作 -->
+	<delete id="bulk_delete" parameterType="java.util.List">
+		<![CDATA[delete from tag where id in]]><foreach collection="list" item="num" open="(" separator="," close=")">#{num}</foreach>	
+	</delete>
+	
+	<!-- 批量删除文章标签操作 -->
+	<delete id="bulk_delete2" parameterType="java.util.List">
+		<![CDATA[delete from article_tag where article_tag.id_tag in]]>
+		<foreach collection="list" item="num"  open="(" separator="," close=")">#{num}</foreach>	
+	</delete>
+
+</mapper>
