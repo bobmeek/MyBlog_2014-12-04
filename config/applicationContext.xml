@@ -10,7 +10,7 @@
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		 	<property name="url" value="jdbc:mysql://localhost/myblog_2014-12-04?characterEncoding=utf-8"></property>
 		 	<property name="username" value="root"></property>
-         	<property name="password" value="1028"></property>
+         	<property name="password" value="root"></property>
 	</bean>
 	
 	<!-- 管理sqlSessionFactoryBean及加载部分配置文件 -->
