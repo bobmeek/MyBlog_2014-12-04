@@ -232,10 +232,4 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	
 	
 	
-	
-	
-	
-	
-	
-	
 }

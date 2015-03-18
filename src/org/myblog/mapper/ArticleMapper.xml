@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.myblog.model.ArticleVO">
-	
+	  
 	<resultMap type="article" id="articleResultMap">
 		<id property="id" column="aid" />
 		<result property="title" column="title" />

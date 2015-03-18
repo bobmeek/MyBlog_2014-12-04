@@ -87,7 +87,7 @@ public class DateUtil
 	
 	
 	/**
-	 * @Description 将timestamp类型时间格式化  
+	 * @Description 将timestamp类型转换成String
 	 * @author bobmeek
 	 * @Title convertTimestamp
 	 * @param @param time
@@ -95,9 +95,24 @@ public class DateUtil
 	 * @param @throws Exception
 	 * @return String    返回类型
 	 */
-	public static String convertTimestamp(String pattern,Timestamp time)throws Exception
+	public static String convertString(String pattern,Timestamp time)throws Exception
 	{
 		return getSimpleDateFormat(pattern).format(time);
+	}
+	
+	/**
+	 * 
+	 * @desc   [ 将long类型转换成String ]
+	 * @param  [ @param pattern
+	 * @param  [ @param time
+	 * @param  [ @return
+	 * @param  [ @throws Exception ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月14日 下午10:53:07 ] 
+	 *
+	 */
+	public static String convertString(String pattern,long time) throws Exception{
+		return convertString(pattern,convertTimestamp(pattern,time));
 	}
 	
 	/**
