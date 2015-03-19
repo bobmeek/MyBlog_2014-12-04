@@ -32,11 +32,11 @@ public class CustomDateSerializer extends JsonSerializer<Timestamp>
 	{
 		try
 		{
-			String time = DateUtil.convertTimestamp("yyyy-MM-dd HH:mm",value);
+			String time = DateUtil.convertString("yyyy-MM-dd HH:mm",value);
 //			time = DateUtil.convertDateFormat(date);
 			jsonGenerator.writeString(time);
 		}
-		catch (Exception e)
+		catch (Exception e) 
 		{
 		}
 		

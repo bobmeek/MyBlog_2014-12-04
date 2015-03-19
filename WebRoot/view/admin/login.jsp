@@ -18,26 +18,33 @@
         .login-box .remember label{display:inline-block;height:42px;width:70px;line-height:34px;text-align:left}
         .login-box label{display:inline-block;width:100px;text-align:right;vertical-align:middle}
         .login-box #code{width:120px}
-        .login-box .codeImg{float:right;margin-top:26px;}
+        .login-box .codeImg{float:right;margin-top:26px;} 
         .login-box img{width:148px;height:42px;border:none}
-        input[type=text],input[type=password]{width:270px;height:42px;margin-top:25px;padding:0px 15px;border:1px solid rgba(255,255,255,.15);border-radius:6px;color:#fff;letter-spacing:2px;font-size:16px;background:transparent;}
+        
+        input[type=text],input[type=password]{
+        /* width:270px;height:42px;margin-top:25px;padding:0px 15px;border:1px solid rgba(255,255,255,.15); */
+        width:270px;height:42px;margin-top:25px;padding:0px 15px;border:1px solid rgba(255,255,255,.15); 
+        border-radius:6px;color:#fff;letter-spacing:2px;font-size:16px;background:transparent;
+        }
+        
         button{cursor:pointer;width:100%;height:44px;padding:0;background:#ef4300;border:1px solid #ff730e;border-radius:6px;font-weight:700;color:#fff;font-size:24px;letter-spacing:15px;text-shadow:0 1px 2px rgba(0,0,0,.1)}
         input:focus{outline:none;box-shadow:0 2px 3px 0 rgba(0,0,0,.1) inset,0 2px 7px 0 rgba(0,0,0,.2)}
         button:hover{box-shadow:0 15px 30px 0 rgba(255,255,255,.15) inset,0 2px 7px 0 rgba(0,0,0,.2)}
+        
+        
         .screenbg{position:fixed;bottom:0;left:0;z-index:-999;overflow:hidden;width:100%;height:100%;min-height:100%;}
         .screenbg ul li{display:block;list-style:none;position:fixed;overflow:hidden;top:0;left:0;width:100%;height:100%;z-index:-1000;float:right;}
         .screenbg ul a{left:0;top:0;width:100%;height:100%;display:inline-block;margin:0;padding:0;cursor:default;}
         .screenbg a img{vertical-align:middle;display:inline;border:none;display:block;list-style:none;position:fixed;overflow:hidden;top:0;left:0;width:100%;height:100%;z-index:-1000;float:right;}
         .bottom{margin:8px auto 0 auto;width:100%;position:fixed;text-align:center;bottom:0;left:0;overflow:hidden;padding-bottom:8px;color:#ccc;word-spacing:3px;zoom:1;}
-        .bottom a{color:#FFF;text-decoration:none;}
-        .bottom a:hover{text-decoration:underline;}
+        .bottom a{color:#FFF;text-decoration:none;}      
+        .bottom a:hover{text-decoration:underline;}   
     </style>
 	
-
+ 
   </head>
   
 <body>
-<div style="color:red; font-size:22px;">${message_login}</div>
     <div class="login-box">
     	<h1>Myblog系统后台登录</h1>
 	    <form action="<%=request.getContextPath()%>/user/login" method="post">
@@ -59,6 +66,7 @@
 	        <div class="remember">
 	       		<input type="checkbox" id="remember" tabindex="4">
 	        <label>记住密码</label>
+	        <div style="height:30px;color:red;margin-top:-35px;padding-left:200px;">${message_login}</div>
 	    	</div>
 <!-- 	    	<div style="color:red; font-size:22px;"> -->
 <!-- 	    		${message_login} -->
@@ -80,7 +88,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/resources/front_base/js/jquery-1.8.3.js"></script>
 <script>  
  	$(function(){
- 		
+ 		 
  	    $(".screenbg ul li").each(function(){
  	        $(this).css("opacity","0");
  	    });
@@ -111,7 +119,7 @@
 	    
  	    //单击刷新验证码,后缀加一个时间参数可防止因缓存请求不了。
 		$("#verifyCodeImage").on("click",function()
-		{
+		{ 
 			this.src = '${pageContext.request.contextPath}/user/getVerifyCodeImage?time='+new Date().getTime();
 		});
  	}); 

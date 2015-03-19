@@ -412,7 +412,7 @@ public class UserController
             resultPageURL = "admin/index";  
         }catch(UnknownAccountException uae){  
             System.out.println("对用户[" + username + "]进行登录验证..验证未通过,未知账户");  
-            request.setAttribute("message_login", "未知账户");  
+            request.setAttribute("message_login", "该账户没有进行注册");  
         }catch(IncorrectCredentialsException ice){  
             System.out.println("对用户[" + username + "]进行登录验证..验证未通过,错误的凭证");  
             request.setAttribute("message_login", "密码不正确");  

@@ -24,7 +24,7 @@
     	</property>
 	</bean>
 	
-	<!-- 继承SqlSessionDaoSupport的类显式的注入sessionFactory -->
+	<!-- 继承SqlSessionDaoSupport的类显式的注入sessionFactory --> 
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 			<constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
 	</bean>

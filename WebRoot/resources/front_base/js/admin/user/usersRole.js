@@ -55,7 +55,7 @@ $(function(){
 							"<a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a>" +
 							"<a href='javascript:void(0)' class='btn btn-sm btn-danger role_delete' >删除</a>" +
 							"</td>" +
-							"</tr>"
+							"</tr>";
 							
 					
 					$("#allRoles tbody").append(content);					
