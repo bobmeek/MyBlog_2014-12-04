@@ -36,7 +36,7 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
-import org.myblog.common.CommonUtils;
+import org.myblog.common.BaseUtils;
 import org.myblog.common.DateUtil;
 import org.myblog.common.EmailUtil;
 import org.myblog.common.MD5;
@@ -135,7 +135,7 @@ public class UserController
 	public UserVO add(HttpServletRequest request, UserVO user) throws Exception
 	{	
 		user.setRegisterTime(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm",new Date()));
-		user.setRegisterIP(CommonUtils.getPublidIp());
+		user.setRegisterIP(BaseUtils.getPublidIp());
 		user.setIsEmailActive(0);
 		user.setIsDisabled(1);
 		
@@ -194,7 +194,7 @@ public class UserController
 			{
 				
 				user.setLastLoginTime(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm",new Date()));
-				user.setLastLoginIP(CommonUtils.getPublidIp());
+				user.setLastLoginIP(BaseUtils.getPublidIp());
 				userService.update(user);
 				//正确
 				return 1;

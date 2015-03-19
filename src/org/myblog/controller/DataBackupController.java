@@ -37,7 +37,7 @@ public class DataBackupController {
 	@RequestMapping(value = "/backup")
 	@ResponseBody
 	public boolean backup(String fileName){
-		return dataBackupService.backup(fileName);
+		return dataBackupService.backup("resources\\data_backup\\",fileName);
 	}
 	
 	/**
@@ -51,7 +51,7 @@ public class DataBackupController {
 	@RequestMapping(value = "/recover")
 	@ResponseBody
 	public boolean recover(String fileName){
-		return dataBackupService.recover(fileName);
+		return dataBackupService.recover("resources\\data_backup\\",fileName);
 	}
 	
 	/**
@@ -65,7 +65,7 @@ public class DataBackupController {
 	@RequestMapping(value = "/delete")
 	@ResponseBody
 	public boolean delete(String fileName){
-		return dataBackupService.delete(fileName);
+		return dataBackupService.delete("resources\\data_backup\\",fileName);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class DataBackupController {
 	@RequestMapping(value = "/show")
 	@ResponseBody
 	public List<DataFile> show(ModelMap modelMap){
-		List<DataFile> list = dataBackupService.show();
+		List<DataFile> list = dataBackupService.show("resources\\data_backup\\");
 		return list;
 	}
 }
