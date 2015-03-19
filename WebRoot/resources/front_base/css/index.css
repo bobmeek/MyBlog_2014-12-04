@@ -1,0 +1,465 @@
+
+	*
+	{
+		margin: 0;
+		padding: 0;
+	}
+	
+	a
+	{
+		text-decoration: none;
+	}
+	
+	li
+	{
+		list-style-type: none;
+	}
+	
+	body
+	{
+		background-color: #F3F3F3;
+		/* padding-bottom: 800px; */
+	}
+	
+	
+	/* 顶部区域样式 */
+	#top
+	{
+		width: 100%;
+		height: 50px;
+		background-color: #363D4C;
+		overflow: hidden;
+	}
+	
+	/* 顶部导航区域样式 */
+	#top_menu
+	{
+		width: 1020px;
+		height: 50px;
+		margin: 0 auto;
+	}
+	
+	/* 导航ul样式 */
+	#top_menu ul
+	{
+		float: left;
+	}
+	
+	/* 导航列表样式 */
+	#top_menu li
+	{
+		float: left;
+		height: 50px;
+		line-height: 50px;
+	}
+	
+	/* 导航列表链接样式 */
+	#top_menu li a
+	{
+		display: block;
+		color: #CCC;
+		text-align: center;
+		padding-left: 20px;
+		padding-right: 20px;
+		font-size: 14px;
+	}
+	
+	/* 导航列表首页字体样式 */
+	#top_menu li .index
+	{
+		color: #FFF;
+		background-color: #000;
+	}
+	
+	/* 导航列表活动伪类样式 */
+	#top_menu a:hover
+	{
+		background-color: #000;
+	}
+	/* ******************************头部导航样式完************************************** */
+	
+	/* 焦点图区域样式 */
+	#myCarousel
+	{
+		/* width: 100%; */
+		width: 1020px;
+		height: 420px;
+		background-color: #FFF;
+		margin: 0 auto;  
+		/* margin-top: 35px; */
+	}
+	
+	/* 中间区域样式 */
+	#main
+	{
+		width: 1020px;
+		margin: 0 auto;
+		padding-top: 30px;
+	}
+	
+	/* 信息区域样式 */
+	#news_1
+	{
+		width: 668px;
+		height: 489px;
+		background-color: #FFF;
+		float: left;
+		border: 1px solid #dbdbdb;
+	}
+	
+	#news_2
+	{
+		width: 668px;
+		height: 489px;
+		background-color: #FFF;
+		float: left;
+		border: 1px solid #dbdbdb;
+		margin-top: 10px;
+	}
+	
+	/* 文章标题样式 */
+	#news_1 .news_title
+	{
+		display: block;
+		float: left;
+		font-size: 20px;
+		/* color: #D7594C; */
+		/* color: #737F99; */
+		color: #3f4452;
+		font-weight: bold;
+		font-family: Microsoft YaHei,Verdana,sans-serif;
+		padding-top: 11px;
+		padding-left: 9px;
+		height: 40px;
+		line-height: 40px;
+	}
+	
+	/* 文章发布时间样式 */
+	#news_1 .news_year
+	{
+		display: block;
+		float: right;
+		font-size: 13px;
+		color: #999;
+		padding-top: 11px;
+		padding-left: 9px;
+		padding-right: 12px;		
+		height: 40px;
+		line-height: 40px;
+	}
+	
+	#news_1 .news_img
+	{
+		padding: 0 10px;
+	}
+	
+	#news_1 .news_content
+	{
+		color: #777;
+		font-size: 14px;
+		padding: 19px 10px;
+		border-bottom: 1px solid #dcdcdc;
+	}
+	
+	.news_tag
+	{
+		height: 40px;
+		line-height: 40px;
+		color: #AAA;
+		font-size: 12px;
+		padding-left: 10px;
+	}
+	
+	.news_tag .news_cat, .news_tag .news_com, .news_tag .news_scan
+	{
+		color: #868487;
+		padding-right: 10px;
+	}
+	
+	.news_tag .news_reading
+	{
+		float: right;
+		padding-right: 20px;
+	}
+	
+	#right .remenwenzhang
+	{
+		width: 320px;
+		height: 300px;
+		background-color: #FFF;
+		float: right;
+	}
+	
+	#right .remenwenzhang span
+	{
+		border-bottom: 1px solid #dcdcdc;
+		width: 300px;
+		display: block;
+		font-size: 18px;
+		padding: 10px;
+		/* background-color: #EAEAEA; */
+	}
+	
+	#right .remenwenzhang li
+	{
+		padding: 5px;
+		list-style-type: square;
+	}
+	
+	#right .remenwenzhang .li_top
+	{
+		padding-top: 20px;
+	}
+	
+	#right .rementag
+	{
+		margin-top: 30px;
+		width: 320px;
+		height: 400px;
+		float: right;
+		background-color: #FFF;
+	}
+	
+	#right .rementag span
+	{
+		border-bottom: 1px solid #dcdcdc;
+		width: 300px;
+		display: block;
+		font-size: 18px;
+		padding: 10px;
+		/* background-color: #EAEAEA; */
+	}
+	
+	#right .rementag ul
+	{
+		float: left;
+		padding-top: 10px;
+	}
+	
+	#right .rementag ul li
+	{
+		float: left;
+		padding-right: 5px;
+		padding-top: 5px;
+	}
+	
+	#right .rementag a
+	{
+		display: block;
+		background-color:  #EAEAEA;
+		width: 80px;
+		height: 29px;
+		font-size: 12px;
+		padding-left: 8px;
+		line-height: 29px;
+		color: #999;
+	}
+	
+	#pagination
+	{
+		clear: both;
+		margin-top: 10px;
+	}
+	
+	#pagination ul
+	{
+		float: left;
+	}
+	
+	#pagination ul li 
+	{
+		float: left;	
+		margin-right: 0.6em;
+	}
+	
+	#pagination a
+	{
+		display: block;
+		background-color: #FFF;
+		text-decoration: none;
+		color: #666;
+		padding: 0.2em 0.5em;
+		border: 1px solid #ccc;
+	}
+	
+	#advertising
+	{
+		width: 320px;
+		height: 344px;
+		background-color: #FFF;
+		float: right;
+		background: url(../images/yecao.gif) no-repeat 10px 64px;
+		background-color: #FFF;
+	}
+	
+	#tag
+	{
+		height:320px;width:320px; position:relative; margin:10px auto; border: 1px solid #dcdcdc; background-color: #FFF;
+		float: right;
+		clear: both;
+		margin-top: 30px;
+	}
+	
+	#tag a{position:absolute;top:0px;left:0px;color:#737F99;font-weight:bold;padding:3px 6px;text-decoration: none;}
+	
+	#tag a:hover{border:1px solid #eee;background:#000;border-radius:5px;}
+	
+	#advertising span
+	{
+		display: block;
+		width: 320px;
+		height: 34px;
+		line-height: 34px;
+		color: #3f4452;
+		font-size: 16px;
+		border-bottom: 1px solid #dcdcdc;
+		padding-left: 9px;
+	}
+	
+	#right .subscription
+	{
+		margin-top: 30px;
+		width: 320px;
+		height: 194px;
+		background-color: #FFF;
+		float: right;
+	}	
+	
+	#right .subscription .sub_contribute
+	{
+		color: #3f4452;
+		font-size: 16px;
+		border-bottom: 1px solid #dcdcdc;
+		height: 35px;
+		line-height: 35px;
+		padding-left: 9px;
+	}
+	
+	
+	
+	/* 底部区域样式 */
+	#footer
+	{
+		display: inline-block;
+		clear: both;
+		width: 100%;
+		height: 210px;
+		background-color: #363d4d;
+		/* margin-top: 66px; */
+		margin-top: 180px;
+		position: relative;
+	}
+	
+	/* 底部图标样式 */
+	#footer ul li a
+	{
+		padding-top: 70px;
+		float: left;
+	}
+	
+	#footer ul li .weibo
+	{
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		left: 701px;
+	}
+	
+	#footer ul li .zhihu
+	{
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		left: 757px;
+	}
+	
+	#footer ul li .twitter
+	{
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		left: 811px;
+	}
+	
+	#footer ul li .rss
+	{
+		display: inline-block;
+		width: 16px;
+		height: 16px;
+		position: absolute;
+		left: 866px;
+	}
+	
+	#footer .copyright
+	{
+		color: #737F99;
+		position: absolute;
+		top: 128px;
+		left: 537px;
+	}
+	
+	
+	
+	@media only screen and (min-width: 1024px) {
+  main p {
+    font-size: 20px;
+    font-size: 1.25rem;
+  }
+}
+
+.cd-top {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  position: fixed;
+  bottom: 40px;
+  right: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  /* image replacement properties */
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+  background: rgba(232, 98, 86, 0.8) url(../img/index/cd-top-arrow.svg) no-repeat center 50%;
+  background-color: #000;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s 0s, visibility 0s .3s;
+  -moz-transition: opacity .3s 0s, visibility 0s .3s;
+  transition: opacity .3s 0s, visibility 0s .3s;
+}
+.cd-top.cd-is-visible, .cd-top.cd-fade-out, .no-touch .cd-top:hover {
+  -webkit-transition: opacity .3s 0s, visibility 0s 0s;
+  -moz-transition: opacity .3s 0s, visibility 0s 0s;
+  transition: opacity .3s 0s, visibility 0s 0s;
+}
+.cd-top.cd-is-visible {
+  /* the button becomes visible */
+  visibility: visible;
+  opacity: 1;
+}
+.cd-top.cd-fade-out {
+  /* if the user keeps scrolling down, the button is out of focus and becomes less visible */
+  opacity: .5;
+}
+.no-touch .cd-top:hover {
+  background-color: #e86256;
+  opacity: 1;
+}
+@media only screen and (min-width: 768px) {
+  .cd-top {
+    right: 20px;
+    bottom: 20px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .cd-top {
+    height: 39px;
+    width: 39px;
+    right: 30px;
+    bottom: 30px;
+  }
+}
+	
