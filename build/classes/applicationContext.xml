@@ -4,13 +4,22 @@
 	
 	<context:component-scan base-package="org.myblog"></context:component-scan>
 	
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<!--PropertyPlaceholderConfigurer类来读取xxx.properties配置文件信息,以key和value的形式-->
+		<property name="locations">
+		    <list>
+		        <value>
+		          /WEB-INF/classes/data.properties
+		        </value>
+		    </list>
+		</property>
+	</bean>
 	
-	<!-- 管理数据源的配置 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-			<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		 	<property name="url" value="jdbc:mysql://localhost/myblog_2014-12-04?characterEncoding=utf-8"></property>
-		 	<property name="username" value="root"></property>
-         	<property name="password" value="root"></property>
+			<property name="driverClassName" value="${db.driver}"></property>
+		 	<property name="url" value="${db.url}"></property>
+		 	<property name="username" value="${db.username}"></property>
+         	<property name="password" value="${db.password}"></property>
 	</bean>
 	
 	<!-- 管理sqlSessionFactoryBean及加载部分配置文件 -->
