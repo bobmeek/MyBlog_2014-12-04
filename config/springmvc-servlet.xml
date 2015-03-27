@@ -16,31 +16,71 @@
 	<mvc:annotation-driven />  
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler />
-
+	
 <!-- 	<mvc:view-controller path="/" view-name="forward:/login.jsp"/> -->
 	  
-	<!-- 对控制器返回的逻辑路径指定对应的视图 -->
+	<!-- 通用视图解析器:对控制器返回的逻辑路径指定对应的视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
     	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"></property>
     	<property name="prefix" value="/view/"></property>
     	<property name="suffix" value=".jsp"></property>
     </bean>
     
-	 <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 指定所上传文件的总大小不能超过800KB......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和 -->
-        <property name="maxUploadSize" value="2000000"/>
+    
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="cache" value="true" />
+        <property name="suffix" value=".ftl" />
+         <!-- 将请求和会话属性作为变量暴露给FreeMarker模板使用。要做到这一点，可以设置exposeRequestAttributes或者exposeSessionAttributes为true -->  
+        <property name="exposeRequestAttributes" value="true" />  
+        <property name="exposeSessionAttributes" value="true" />  
+        <!-- 使用这些宏，必须设置FreeMarkerViewResolver的exposeMacroHelpers属性为true -->  
+        <property name="exposeSpringMacroHelpers" value="true" />  
+        <!-- 配置多视图时提高Freemarker的优先级,将FreeMarkerViewResolver视图优先级别设置为0,InternalResourceViewResolver视图优先级别设置为1,-->
+        <!-- 解析器会优先使用FreeMarkerViewResolver进行解析.如果找不到相应的模板，就使用InternalResourceViewResolver进行解析，如果还找不到页面，就会产生一个404错误！ --> 
+        <property name="order" value="0"/>
+        <!-- 模板输出内容编码，此处应与defaultEncoding保持一致 -->
+        <property name="contentType" value="text/html; charset=utf-8"/>
     </bean>
-     
-    <!-- SpringMVC在超出上传文件限制时,会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
-    <!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的,而且此时还没有进入到Controller方法中 -->
-    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
-        <property name="exceptionMappings">
+
+    <!-- 配置freeMarker的模板路径 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+        <!-- 指定FreeMarker模板文件的编码格式 -->
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="freemarkerVariables">
+        <map>
+            <entry key="xml_escape" value-ref="fmXmlEscape" />
+        </map>
+        </property>
+        <!-- 指定FreeMarker模板文件的编码格式 -->
+        <property name="freemarkerSettings">
             <props>
-                <!-- 遇到MaxUploadSizeExceededException异常时,自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
-                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+            	 <!-- 每隔5小时检查模板是否更新，单位为秒 如果不经常更新模板可将更新的延迟时间设定长一点 -->
+                <prop key="template_update_delay">3600</prop>
             </props>
         </property>
     </bean>
+
+    <bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape"/>
+    
+    
+	 <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->
+    <!-- <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        指定所上传文件的总大小不能超过800KB......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和
+        <property name="maxUploadSize" value="2000000"/>
+    </bean> -->
+     
+    <!-- SpringMVC在超出上传文件限制时,会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->
+    <!-- 该异常是SpringMVC在检查上传的文件信息时抛出来的,而且此时还没有进入到Controller方法中 -->
+   <!--  <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                遇到MaxUploadSizeExceededException异常时,自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面
+                <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">error_fileupload</prop>
+            </props>
+        </property>
+    </bean> -->
     
 </beans>

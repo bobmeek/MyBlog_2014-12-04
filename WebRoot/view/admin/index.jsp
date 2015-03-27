@@ -76,7 +76,7 @@
 					class="caret"></b></a>
 				<ul id="system_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id='links'>超级链接管理</a></li>
-					<li><a href="#" id='webInfo'>网站信息管理</a></li>
+					<li><a href="#" id='siteInfo'>网站信息管理</a></li>
 					<li><a href="#" id='indexImages'>首页图片管理</a></li>
 					<li><a href="#" id='dataBackup'>网站数据备份</a></li>
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
@@ -136,8 +136,8 @@
 			<div id="linksPage" class="page" style="display:none;">
 				<jsp:include page="system/links.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="webInfoPage" class="page" style="display: none;">
-				<jsp:include page="system/webInfo.jsp" flush="true"></jsp:include>
+			<div id="siteInfoPage" class="page" style="display: none;">
+				<jsp:include page="system/siteInfo.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -159,5 +159,6 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
 </body>
 </html>
