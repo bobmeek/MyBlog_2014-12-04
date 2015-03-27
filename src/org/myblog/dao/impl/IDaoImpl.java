@@ -149,7 +149,7 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	}
 	
 	// 计算日志类型分页总数的 private method.（parameter key需要判别哪个日志类型所需的分页总数信息）
-	private int getTotalNum(Class<T> entityClass, Object key)
+	public int getTotalNum(Class<T> entityClass, Object key)
 	{
 		int totalNum = 0;
 		

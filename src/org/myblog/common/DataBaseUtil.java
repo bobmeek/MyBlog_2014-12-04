@@ -80,7 +80,7 @@ public class DataBaseUtil {
 	 */
 	public static boolean backup(String nextPath,String fileName) throws URISyntaxException {
 		String backSQL = "mysqldump -h"+getIP()+" -u"+getUserName()+" -p"+getPassWord()+" --opt "+getDataBase()+" > " + BaseUtils.getServerPath(nextPath).replace(" ", "\" \"");
-		System.out.println(backSQL+fileName);
+		//System.out.println(backSQL+fileName);
 		
 		try {
 			Runtime.getRuntime().exec("cmd /C"+backSQL+fileName).waitFor();

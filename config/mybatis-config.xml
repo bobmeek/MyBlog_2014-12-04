@@ -12,6 +12,7 @@
 		<typeAlias type="org.myblog.model.UserExtVO" alias="userExt" />
 		<typeAlias type="org.myblog.model.RoleVO" alias="role" />
 		<typeAlias type="org.myblog.model.ResourceVO" alias="resource" />
+		<typeAlias type="org.myblog.model.SiteInfoVO" alias="siteinfo"/>
 	</typeAliases>
 	
 </configuration>

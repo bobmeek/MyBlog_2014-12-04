@@ -117,6 +117,11 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	{
 		return idao.findByPage(entityClass, pageNo, pageSize, key);
 	}
+	@SuppressWarnings("unchecked")
+	public int getTotalNum()
+	{
+		return idao.getTotalNum(entityClass, null);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Pager<T> findByKey(Map<String, Object> maps,String operate)

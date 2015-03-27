@@ -41,6 +41,8 @@ public interface IDao<T, PK extends Serializable>
 	// 带多个条件的分页
 	public Pager<T> findByKey(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
+	public int getTotalNum(Class<T> entityClass, Object key);
+	
 	// 登录
 	public T login(T entity);
 	
