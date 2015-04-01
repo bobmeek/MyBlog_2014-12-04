@@ -128,7 +128,7 @@
 				<jsp:include page="article/addArticle.jsp" flush="true"></jsp:include>
 			</div> --%>
 			<div id="addArticle2Page" class="page" style="display:visibility;">
-				<jsp:include page="article/addArticle2.jsp" flush="true"></jsp:include>
+				<jsp:include page="article/addArticle3.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="dataBackupPage" class="page" style="display:none;">
 				<jsp:include page="system/dataBackup.jsp" flush="true"></jsp:include>

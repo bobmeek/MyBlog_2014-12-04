@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.myblog.model.ArticleVO;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.CategoryService;
 import org.springframework.stereotype.Controller;
@@ -123,6 +124,28 @@ public class CategoryController
 		categoryService.save(category); //保存栏目对象
 		
 		return "redirect:../category/showCategory.do";
+	}
+	
+	/**
+	 * 修改栏目
+	 * @param category
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/updateCategory", produces="application/json")
+	@ResponseBody
+	public int updateCategory(int category_id, String category_name) throws Exception
+	{
+		System.out.println("updateCategory invoked!!!");
+		System.out.println("id ===========" + category_id + "     name===" + category_name);
+		
+		CategoryVO category = new CategoryVO();
+		category.setId(category_id);
+		category.setName(category_name);
+		
+		categoryService.update(category);
+		
+		return 1;
 	}
 	
 

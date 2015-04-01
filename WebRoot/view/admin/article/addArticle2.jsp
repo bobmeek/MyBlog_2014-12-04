@@ -33,9 +33,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <script type="text/javascript" src="resources/front_frame/bacheditor/js/modal.js"></script>
     <script type="text/javascript" src="resources/front_frame/bacheditor/js/MIDI.js"></script>
     <script type="text/javascript" src="resources/front_frame/bacheditor/js/bacheditor.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
+<!-- 	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
 	<link rel="stylesheet" href="resources/front_base/js/admin/article/addArticle2.css">
-	
+	 -->
   </head>
   
   <body>
