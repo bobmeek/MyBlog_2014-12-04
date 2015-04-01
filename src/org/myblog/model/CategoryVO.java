@@ -17,7 +17,17 @@ public class CategoryVO implements Serializable
 	
 	private List<ArticleVO> articles; //栏目和文章是一对多的关联关系
 	
-	private Integer parent_id; //栏目外键父id自关联主键id
+	private Integer parentId; //栏目外键父id自关联主键id
+	
+	private Integer userId;
+
+	private Integer type;
+	
+	private Integer orders;
+
+	private Integer status;
+	
+	
 	
 	public Integer getId() {
 		return id;
@@ -34,7 +44,7 @@ public class CategoryVO implements Serializable
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public List<ArticleVO> getArticles() {
 		return articles;
 	}
@@ -43,34 +53,79 @@ public class CategoryVO implements Serializable
 		this.articles = articles;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	
-	public Integer getParent_id() {
-		return parent_id;
+	public Integer getParentId() {
+		return parentId;
 	}
 
-	public void setParent_id(Integer parent_id) {
-		this.parent_id = parent_id;
+	public void setParentId(Integer parentId) {
+		this.parentId = parentId;
+	}
+
+	public Integer getUserId() {
+		return userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	/**栏目类型:栏目类型:0-用户栏目;1-导航栏目;2-内容栏目;3-图片栏目**/
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	/**栏目顺序**/
+	public Integer getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Integer orders) {
+		this.orders = orders;
+	}
+
+	/**状态:0-未启用;1-启用**/
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public CategoryVO() {
 		super();
 	}
 
+
 	public CategoryVO(Integer id, String name, List<ArticleVO> articles,
-			Integer parent_id) {
+			Integer parentId, Integer userId, Integer type, Integer orders,
+			Integer status) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.articles = articles;
-		this.parent_id = parent_id;
+		this.parentId = parentId;
+		this.userId = userId;
+		this.type = type;
+		this.orders = orders;
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
 		return "CategoryVO [id=" + id + ", name=" + name + ", articles="
-				+ articles + ", parent_id=" + parent_id + "]";
+				+ articles + ", parentId=" + parentId + ", userId=" + userId
+				+ ", type=" + type + ", orders=" + orders + ", status="
+				+ status + "]";
 	}
+
+	
 }

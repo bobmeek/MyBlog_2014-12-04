@@ -99,7 +99,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	{
 		return idao.findListByParam(entityClass, maps, operate);
 	}
-	
+	@SuppressWarnings("unchecked")
+	public Integer findMaxId(Map<String, Object> maps, String operate){
+		return idao.findMaxId(entityClass, maps, operate);
+	}
 	@SuppressWarnings("unchecked")
 	public List<T> findByParam1(Map<String, Object> maps, String operate)
 	{
@@ -116,6 +119,11 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	public Pager<T> findByPage(int pageNo, int pageSize, Object key)
 	{
 		return idao.findByPage(entityClass, pageNo, pageSize, key);
+	}
+	@SuppressWarnings("unchecked")
+	public int getTotalNum()
+	{
+		return idao.getTotalNum(entityClass, null);
 	}
 	
 	@SuppressWarnings("unchecked")

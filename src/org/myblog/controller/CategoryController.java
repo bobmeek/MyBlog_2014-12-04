@@ -111,16 +111,16 @@ public class CategoryController
 	{
 		
 		System.out.println("category name: " + category.getName());
-		System.out.println("category parent_id: " + category.getParent_id());
+		System.out.println("category parent_id: " + category.getParentId());
 		
-		Integer pid = category.getParent_id();
+		Integer pid = category.getParentId();
 		
 		if(pid == 0)
 		{
 			pid = null;
 		}
 		
-		category.setParent_id(pid);
+		category.setParentId(pid);
 		categoryService.save(category); //保存栏目对象
 		
 		return "redirect:../category/showCategory.do";

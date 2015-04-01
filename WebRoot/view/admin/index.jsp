@@ -68,7 +68,7 @@
 				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id="addArticle2">发布文章</a></li>
 					<li><a href="#" id="articlesInfo">文章信息</a></li>
-					<li><a href="#">栏目信息</a></li>
+					<li><a href="#" id='categoryInfo'>栏目信息</a></li>
 				</ul>
 			</li>
 			<li class="panel">
@@ -76,7 +76,7 @@
 					class="caret"></b></a>
 				<ul id="system_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id='links'>超级链接管理</a></li>
-					<li><a href="#" id='webInfo'>网站信息管理</a></li>
+					<li><a href="#" id='siteInfo'>网站信息管理</a></li>
 					<li><a href="#" id='indexImages'>首页图片管理</a></li>
 					<li><a href="#" id='dataBackup'>网站数据备份</a></li>
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
@@ -130,14 +130,17 @@
 			<div id="addArticle2Page" class="page" style="display:visibility;">
 				<jsp:include page="article/addArticle3.jsp" flush="true"></jsp:include>
 			</div>
+			<div id="categoryInfoPage" class="page" style="display:none;">
+				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
+			</div>
 			<div id="dataBackupPage" class="page" style="display:none;">
 				<jsp:include page="system/dataBackup.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="linksPage" class="page" style="display:none;">
 				<jsp:include page="system/links.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="webInfoPage" class="page" style="display: none;">
-				<jsp:include page="system/webInfo.jsp" flush="true"></jsp:include>
+			<div id="siteInfoPage" class="page" style="display: none;">
+				<jsp:include page="system/siteInfo.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -146,6 +149,7 @@
 	
 	
 	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="resources/front_frame/jquery-ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.js"></script>
@@ -159,5 +163,7 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 </body>
 </html>

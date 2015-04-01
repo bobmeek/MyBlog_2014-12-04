@@ -97,6 +97,9 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		return getSqlSession().selectList(entityClass.getName() + operate, maps);
 	}
 	
+	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate){
+		return getSqlSession().selectOne(entityClass.getName() + operate, maps);
+	}
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize)
 	{
 		/*Pager<T> pager = new Pager<T>();
@@ -149,7 +152,7 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	}
 	
 	// 计算日志类型分页总数的 private method.（parameter key需要判别哪个日志类型所需的分页总数信息）
-	private int getTotalNum(Class<T> entityClass, Object key)
+	public int getTotalNum(Class<T> entityClass, Object key)
 	{
 		int totalNum = 0;
 		

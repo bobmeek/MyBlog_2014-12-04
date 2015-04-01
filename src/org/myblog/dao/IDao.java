@@ -41,6 +41,8 @@ public interface IDao<T, PK extends Serializable>
 	// 带多个条件的分页
 	public Pager<T> findByKey(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
+	public int getTotalNum(Class<T> entityClass, Object key);
+	
 	// 登录
 	public T login(T entity);
 	
@@ -73,6 +75,10 @@ public interface IDao<T, PK extends Serializable>
 	public List<T> findListByParam(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
 	public List<T> findByParam1(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	/**获取最大Id**/
+	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
 	
 	public void bulk_delete(Class<T> entityClass, List<Integer> id);
 	

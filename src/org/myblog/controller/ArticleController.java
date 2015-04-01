@@ -40,6 +40,9 @@ public class ArticleController
 	private ArticleTagService articleTagService;
 	
 	
+	
+	
+	
 	/**
 	 * 分页显示文章信息列表
 	 * @param model
@@ -145,7 +148,7 @@ public class ArticleController
 		
 		CategoryVO category = new CategoryVO();
 		category.setName(article_category);
-		category.setParent_id(0); //***
+		category.setParentId(0); //***
 		
 		TagVO tag = new TagVO();
 		tag.setName(article_tag);

@@ -95,16 +95,22 @@
 		width: 1020px;
 		margin: 0 auto;
 		padding-top: 30px;
+		height: auto !important;
+		min-height:500px ;
+		_height:500px ;
+		height:100%;
+		overflow:hidden; 
+		
+		
 	}
 	
 	/* 信息区域样式 */
-	#news_1
+	.news_1
 	{
 		width: 668px;
-		height: 489px;
 		background-color: #FFF;
-		float: left;
 		border: 1px solid #dbdbdb;
+		margin-bottom:50px;
 	}
 	
 	#news_2
@@ -118,24 +124,36 @@
 	}
 	
 	/* 文章标题样式 */
-	#news_1 .news_title
+	.news_1 .news_title
 	{
 		display: block;
 		float: left;
 		font-size: 20px;
 		/* color: #D7594C; */
 		/* color: #737F99; */
-		color: #3f4452;
 		font-weight: bold;
 		font-family: Microsoft YaHei,Verdana,sans-serif;
 		padding-top: 11px;
 		padding-left: 9px;
 		height: 40px;
 		line-height: 40px;
+		
+	}
+	
+	.news_title a{
+		color:#d7594c;
+	}
+	.news_title a:link{
+		text-decoration:none;
+		color:#d7594c;
+	}
+	.news_title a:hover{
+		text-decoration:none;
+		color:#d7594c;
 	}
 	
 	/* 文章发布时间样式 */
-	#news_1 .news_year
+	.news_1 .news_year
 	{
 		display: block;
 		float: right;
@@ -148,12 +166,12 @@
 		line-height: 40px;
 	}
 	
-	#news_1 .news_img
+	.news_1 .news_img
 	{
 		padding: 0 10px;
 	}
 	
-	#news_1 .news_content
+	.news_1 .news_content
 	{
 		color: #777;
 		font-size: 14px;
@@ -181,13 +199,32 @@
 		float: right;
 		padding-right: 20px;
 	}
+	.news_tag a{
+		color:#999;
+	}
+	.new_tag a:link{
+		color:#d7594c;
+	}
+	.news_tag a:hover
+	{
+		text-decoration: none;
+		color:#d7594c;
+	}
+	
+	#left
+	{
+		width:60%;
+		float:left;
+	}
+	
+	#right{
+		float:right;
+	}
 	
 	#right .remenwenzhang
 	{
 		width: 320px;
-		height: 300px;
 		background-color: #FFF;
-		float: right;
 	}
 	
 	#right .remenwenzhang span
@@ -203,7 +240,11 @@
 	#right .remenwenzhang li
 	{
 		padding: 5px;
+		white-space: nowrap;
+		text-overflow:ellipsis; 
+		overflow:hidden;
 		list-style-type: square;
+		list-style-position:inside; /* 避免使用了overflow:hidden后,list-style-type失去效果. */
 	}
 	
 	#right .remenwenzhang .li_top
@@ -211,12 +252,20 @@
 		padding-top: 20px;
 	}
 	
+	.remenwenzhang a{
+		color:#999;
+	}
+	.remenwenzhang a:link{
+		text-decoration:none;
+		color:#999;
+	}
+		
+	
 	#right .rementag
 	{
 		margin-top: 30px;
 		width: 320px;
 		height: 400px;
-		float: right;
 		background-color: #FFF;
 	}
 	
@@ -280,6 +329,7 @@
 		color: #666;
 		padding: 0.2em 0.5em;
 		border: 1px solid #ccc;
+		cursor: pointer;
 	}
 	
 	#advertising
@@ -462,4 +512,34 @@
     bottom: 30px;
   }
 }
-	
+
+
+/**详细文章页面样式**/
+.single-title {
+background-color: #FFF;
+text-align: center;
+padding: 0 10px;
+font-size: 18px;
+line-height: 30px;
+margin-top: 0px;
+}
+
+.single-info {
+background-color: #FFF;
+text-align: center;
+border-bottom: 1px solid #eee;
+line-height: 30px;
+margin-bottom: 20px;
+color: #999;
+}
+
+#single-con {
+width: 668px;
+background-color: #FFF;
+border-left:1 solid #dbdbdb;
+border-right:1 solid #dbdbdb;
+border-top:none;
+margin-top:-20px;
+}
+
+/**详细文章页面样式**/
