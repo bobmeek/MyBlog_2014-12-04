@@ -1,0 +1,494 @@
+
+	html
+	{
+		overflow-y: hidden; /* 隐藏页面纵向滚动条 */ 
+	}
+	
+	body
+	{
+		padding: 0; /* 去除页面的内外边距 */
+		margin: 0;
+	}
+
+	/* 左侧区域样式 */
+	#left
+	{
+		height: 100%;
+		width: 259.167px;
+		background-color: #ECF0F1;
+		display: block;
+		margin-left: 0px;
+		min-height: 30px;
+		line-height: 20px;
+		font-size: 14px;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		float: left;
+		position: relative;
+	}
+
+	/* 左侧区域新建栏目样式 */
+	#left  .create_newCategpry .create_actile
+	{
+		color: #555;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 11px;
+		font-style: italic; /* 文字倾斜 */
+		font-weight: 400;
+		line-height: 20px;
+		text-decoration: none;
+		outline-color: #000; /* 设置点状轮廓的颜色 */
+		outline-style: none;
+		position: absolute; /* 让文字相对于父div进行绝对定位 */
+		left: 22px;
+		top: 25px;
+	}
+	
+	/* 新建栏目表单样式 */
+	#left .new_category_form
+	{
+		position: absolute;
+		left: 22px;
+		top: 45px;
+	}
+	
+	/* 新建栏目文本框样式 */
+	.category_name
+	{
+		width: 217px;
+		height: 33px;
+		margin-top: 5px;
+		transition: all 0.30s ease-in-out;  /* transition属性来实现input的变化 */
+		-webkit-transition: all 0.30s ease-in-out;
+		-moz-transition: all 0.30s ease-in-out;
+		border: #35a5e5 1px solid;
+		border-radius: 4px;  /* 用border-radius属性来做圆角效果 */
+		outline: none;   /* safari和chrome的默认高亮无效 */
+	}
+	
+	/* 新建栏目文本框获取焦点样式 */
+	 input:focus 
+	{
+		box-shadow: 0 0 5px rgba(81, 203, 238, 1);  /* 为了使其不像是阴影效果而达到发光的效果，因而采用了明亮的蓝色,同时也可以用RGBA，这样就可以控制颜色的透明度了。 */
+		-webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+		-moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	}
+	
+	/* 新建栏目取消按钮、提交按钮样式 */
+	.btn-default, .btn-info
+	{
+		width: 105px;
+		margin-top: 10px;
+	}
+	
+	/* 左侧区域ul样式 */
+	#left .category_nav
+	{
+		list-style-type: none;
+		position: absolute; /* 对ul相对于左侧区域进行绝对定位 */
+		top: 63px;
+		padding: 0;
+		margin: 0;
+	}
+	
+	/* 左侧区域li下的a链接样式 */
+	#left .category_nav li a
+	{
+		display: block;
+		text-decoration: none;
+		color: #555;
+		font-size: 15px;
+		font-weight: 400;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-style: normal; /* 标准字体样式 */
+		line-height: 27px;
+		padding-left: 41px;
+		outline: none; /* 取消点击链接出现的虚线框 */
+		width: 259.167px;
+		height: 36px;
+		text-shadow: rgba(255, 255, 255, 0.5) 0px 1px 0px;
+	}
+	
+	/* 第一行a标签默认背景色样式 */
+	#left .firstli
+	{
+		background-color: #E78170;
+	}
+	
+	/* li列表活动伪类样式 */
+	#left ul li a:hover
+	{
+		background-color: #FFF;
+	}
+	
+	/* 栏目列表设置按钮样式 */
+	#left .icon-cog
+	{
+		color: #FFF;
+		font-size: 15px;
+		font-weight: 400;
+		text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
+		list-style-image: none;
+		line-height: 15px;
+		padding-left: 130px;
+		/* background-color: green; */
+		position: relative;
+	}
+	
+	/*============================栏目弹出框样式开始=================================*/
+	
+	/* 栏目弹出框样式 */
+	.arrow
+	{
+		width: 160px;
+		height: 82px;
+		color: white;
+		background-color: #FFF;
+		border-radius: 5px;
+		position: relative;
+		padding-left: 0;
+		float: right; /* 将弹出框浮动到边框右侧 */
+	}
+	
+	/* 栏目弹出框ul样式 */	
+	.arrow ul
+	{
+		list-style-type: none;
+		padding-left: 0;
+		width: 160px;
+		height: 82px;
+	}
+	
+	/* 栏目弹出框a标签样式 */	
+	.arrow ul li a
+	{
+		display: block;
+		text-decoration: none;
+		color: #3f3f3f;
+		width: 160px;
+		padding-left: 39px;
+		height: 41px;
+		line-height: 41px;
+		border-bottom: 1px solid #e3e3e3;
+		outline: none; /* 取消点击链接出现的虚线框 */
+	}
+	
+	/* 弹出框小箭头样式 */	
+	.bottomarrow
+	{
+		  width: 0;
+		  height: 0;
+		  position: absolute; /* 箭头div相对于父div进行绝对定位 */
+		  left: 127px; /* 控制小箭头向右移动的像素位置 */
+		  bottom: 82px;
+		  border: transparent 14px solid; /* 透明10像素实线的边框(中间的像素可以控制箭头的宽度) */
+		  border-bottom: #FFF 14px solid; /* 红色10像素实线的箭头(中间的像素可以控制箭头的高度)#4f4f4f*/
+		  /* box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px 0px; */
+	}
+	
+	/* 弹出框a标签活动伪类样式 */	
+	.arrow li a:hover, .arrow li a:focus
+	{
+		color: white;
+		background-color: #4f4f4f;
+		background-image: linear-gradient(to bottom, #555, #484848);
+		background-repeat: repeat-x;
+		text-decoration: none;
+	}
+	
+	/* 弹出框修改栏目图标按钮样式 */	
+	.icon-edit
+	{
+		padding-right: 5px;
+	}
+		
+	/* 弹出框删除栏目图标按钮样式 */
+	.icon-trash
+	{
+		padding-right: 5px;
+	}
+	
+	/*============================弹出框修改栏目样式开始=================================*/
+	
+	.update_category
+	{
+		clear: both;
+	}
+	
+	/* 修改栏目头部区域样式 */
+	.modal_header
+	{
+		border-bottom: 1px solid #EEE;
+		padding: 20px;
+		text-align: center;
+	}
+	
+	/* 修改栏目标题样式 */
+	.update_category .modal_header p
+	{
+		color: #555;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 20px;
+		font-weight: 700;
+		line-height: 20px;
+		text-align: center;
+	}
+	
+	/* 修改栏目主体区域样式 */
+	.modal_body
+	{
+		padding: 30px;
+		text-align: center;
+	}
+	
+	/* 修改栏目尾部区域样式 */
+	.modal_footer
+	{
+		padding: 0px 15px 40px 15px;
+		text-align: center;
+	}
+	
+	/* 修改栏目尾部区域取消按钮样式 */
+	.modal_footer #cancel
+	{
+		background-color: #EEE;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		border: 1px solid #EEE;
+		box-shadow: none;
+		color: #555;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 20px;
+		margin: 0px 0px 5px 5px;
+		padding-top: 5px;
+		padding-right: 20px;
+		vertical-align: middle;
+		width: auto;
+		text-shadow: none;
+		outline: none; /* 取消点击链接出现的虚线框 */
+	}
+	
+	/* 修改栏目尾部区域提交按钮样式 */
+	.modal_footer #commit
+	{
+		background-color: #15A7F0;
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		border: 1px solid #15A7F0;
+		box-shadow: none;
+		color: #FFF;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 20px;
+		margin: 0px 0px 5px 5px;
+		padding-top: 5px;
+		padding-right: 20px;
+		vertical-align: middle;
+		width: auto;
+		text-shadow: none;
+		outline: none; /* 取消点击链接出现的虚线框 */
+	}
+	
+	/* 修改栏目主体区域输入框样式 */
+	.modal_body input 
+	{
+		transition: all 0.30s ease-in-out;  /* transition属性来实现input的变化 */
+		-webkit-transition: all 0.30s ease-in-out;
+		-moz-transition: all 0.30s ease-in-out;
+		border: #35a5e5 1px solid;
+		border-radius: 4px;  /* 用border-radius属性来做圆角效果 */
+		outline: none;   /* safari和chrome的默认高亮无效 */
+		height: 30px;
+	}
+	
+	/* 修改栏目输入框获取焦点样式 */
+	.modal_body input:focus 
+	{
+		box-shadow: 0 0 5px rgba(81, 203, 238, 1);  /* 为了使其不像是阴影效果而达到发光的效果，因而采用了明亮的蓝色,同时也可以用RGBA，这样就可以控制颜色的透明度了。 */
+		-webkit-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+		-moz-box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	}
+	
+	
+	/*============================中间区域样式开始=================================*/
+	/* 中间区域样式 */
+	#middle
+	{
+		border: 1px solid #D9D9D9;
+		box-shadow: rgba(0, 0, 0, 0.13) 0px -3px 8px 0px inset;
+		box-sizing: border-box;
+		float: left;
+		height: 407px;
+		color: #555;
+		font-size: 14px;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		line-height: 20px;
+		margin-left: 0;
+		min-height: 30px;
+		overflow-x: hidden;
+		overflow-y: auto;
+		width: 388.75px;
+	}
+	
+	/* 中间区域顶部样式 */
+	#middle .newnote
+	{
+		padding-left: 20px;
+		padding-top: 14px;
+		border-bottom: 1px solid #d7d7d7;
+		padding-bottom: 9px;
+	}
+	
+	/* 中间区域铅笔样式 */
+	#middle .icon-pencil
+	{
+		color: #000;
+		display: inline-block;
+		line-height: 20px;
+		text-rendering: auto;
+		transform: matrix(1, 0, 0, 1, 0, 0);
+	}	
+	
+	/* 中间区域新建文章样式 */
+	#middle .addarticle
+	{
+		color: #000;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 12px;
+		font-style: italic;
+		font-weight: 400;
+		line-height: 20px;
+		margin-top: 8px;
+		text-decoration: none;
+		-moz-text-decoration-color: #000;
+		-moz-text-decoration-line: none;
+		-moz-text-decoration-style: solid;
+		padding-left: 5px;		
+	}
+	
+	/* 中间区域列表ul样式 */
+	#middle .note_list
+	{
+		list-style-type: none;
+	}
+	
+	/* 中间区域列表li样式 */
+	#middle .note_list li
+	{
+		background-color: #D1C091;
+		border-bottom: 1px solid #D9D9D9;
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px inset;
+		color: #EEE;
+		cursor: auto;
+		height: 90px;
+		/* line-height: 20px; */
+		list-style-image: none;
+		max-height: 90px;
+		text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
+		width: 388.75px;
+		position: relative;
+		padding-top: 20px;
+	}
+	
+	/* 中间区域文件样式小图标样式 */
+	.note_list .icon-file
+	{
+		color: #FFF;
+		position: absolute;
+		top: 25px;
+		left: 20px;
+	}
+	
+	/* 中间区域文章标题样式 */
+	.note_list .note_title
+	{
+		color: #000;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 18px;
+		font-weight: 400;
+		position: absolute;
+		left: 60px;
+		top: 23px;
+	}
+	
+	/* 中间区域文章字数样式 */
+	.note_list .note_wordage
+	{
+		color: #EEE;
+		cursor: auto;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 9px;
+		font-style: italic;
+		font-weight: 400;
+		line-height: 16px;
+		text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
+		position: absolute;
+		top: 73px;
+	}
+	
+	/* 中间区域文章设置按钮样式 */
+	.note_list .icon-cog
+	{
+		color: #FFF;
+		position: absolute;
+		left: 361px;
+		top: 36px; 
+	}
+	
+	#right
+	{
+		float: left;
+		width: 730px;
+		height: 407px;
+		border: 1px solid #D9D9D9;
+	}
+	
+	#right .text_title
+	{
+		height: 50px;
+		margin: 0px;
+		padding: 10px 20px 10px 30px;
+		vertical-align: middle;
+		width: 730px;
+		color: #555;
+		font-size: 30px;
+		font-weight: 400;
+		line-height: 30px;
+		margin-top: 15px;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
