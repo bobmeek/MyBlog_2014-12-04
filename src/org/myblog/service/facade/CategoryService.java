@@ -48,7 +48,7 @@ public interface CategoryService extends BaseDao<CategoryVO, Integer>
 	 * @time   [ 2015年3月31日 下午7:12:26 ] 
 	 *
 	 */
-	public Integer findMaxOrders();
+	public Integer findMaxOrders(Integer type);
 
 	
 	
