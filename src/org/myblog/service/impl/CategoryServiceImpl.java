@@ -1,9 +1,12 @@
 package org.myblog.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.myblog.base.AbstractBaseDao;
 import org.myblog.model.CategoryVO;
+import org.myblog.model.UserVO;
 import org.myblog.service.facade.CategoryService;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +24,7 @@ public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> im
 	{
 		if(pid != null)
 		{
-			category.setParent_id(pid);
+			category.setParentId(pid);
 		}
 		save(category);
 	}
@@ -31,4 +34,17 @@ public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> im
 	{
 		return findByIdList(id);
 	}
+	
+	public List<CategoryVO> findNavigate(Integer type){
+		String operate = ".findByType";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("type", type);
+		return findListByParam(maps, operate);
+	}
+	public Integer findMaxOrders(){
+		String operate = ".findMaxId";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		return findMaxId(maps, operate);
+	}
+
 }

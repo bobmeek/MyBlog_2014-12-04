@@ -32,6 +32,8 @@ public interface BaseDao<T, PK extends Serializable>
 	// 根据主键进行查询操作返回一个集合对象
 	public List<T> findByIdList(PK pk);
 	
+	public Integer findMaxId(Map<String, Object> maps, String operate);
+	
 	// 一个带条件的分页
 	public Pager<T> findByPage(int pageNo, int pageSize); 
 		

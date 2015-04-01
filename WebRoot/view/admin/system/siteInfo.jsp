@@ -50,6 +50,12 @@
 		    </div>
 		  </div>
 		  <div class='form-group'>
+		    <label for='navCount' class='col-sm-2 control-label'>首页显示的导航数</label>
+		    <div class='col-sm-2'>
+		      <input type='text' class='form-control' id='navCount'>
+		    </div>
+		  </div>
+		  <div class='form-group'>
 		    <label for='pageCount' class='col-sm-2 control-label'>首页显示的文章数</label>
 		    <div class='col-sm-2'>
 		      <input type='text' class='form-control' id='pageCount'>

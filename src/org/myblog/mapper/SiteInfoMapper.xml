@@ -15,6 +15,7 @@
 		<result property="pageCount" column="pagecount" />
 		<result property="hotPageCount" column="hot_pagecount" />
 		<result property="target" column="target" />
+		<result property="navCount" column="nav_count" />
 	</resultMap>
 	
 	
@@ -26,7 +27,7 @@
 	
 
 	<update id="update" parameterType="siteinfo">
-		update siteinfo set site_name=#{siteName},main_title=#{mainTitle},sub_title=#{subTitle},footer_title=#{footerTitle},copyright=#{copyright},pagecount=#{pageCount},hot_pagecount=#{hotPageCount},target=#{target} where id=#{id}
+		update siteinfo set site_name=#{siteName},main_title=#{mainTitle},sub_title=#{subTitle},footer_title=#{footerTitle},copyright=#{copyright},pagecount=#{pageCount},hot_pagecount=#{hotPageCount},target=#{target},nav_count=#{navCount} where id=#{id}
 	</update>
 	
 	<select id="findAll" resultMap="siteinfoResultMap">

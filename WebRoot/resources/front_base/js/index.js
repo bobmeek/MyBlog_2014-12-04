@@ -39,6 +39,9 @@ jQuery(document).ready(function($){
 		var currentPage = parseInt($(this).text());
 		showArticles(currentPage);
 	});
+	
+	
+	
 	/**
 	 * 分页显示文章
 	 */
@@ -50,13 +53,14 @@ jQuery(document).ready(function($){
 			var hasPrePage = result.hasPrePage;
 			var hasNextPage = result.hasNextPage;
 			var totalPage = result.totalPage;
-			var pageCount = result.pageCount;
 			var currentPage = result.currentPage;
+			var target = result.target;
 			$.each(articles,function(n,article){
+				debugger;
 				var content = article.content.length>50?article.content+'...':article.content;
 				var time = Time(article.releaseDate, "%y年%M月%d日");
 				var left = '<div class="news_1">'+
-				'<span><a href="#" class="news_title">'+article.title+'</a></span>'+
+				'<span class="news_title"><a href="'+article.id+'"  target="'+target+'">'+article.title+'</a></span>'+
 				'<span class="news_year">'+time+'</span>'+
 				'<div class="news_img"> <img src="resources/front_base/img/index/news_2.jpg" style="width: 648px; height: 300px; border-top: 1px solid #dcdcdc; padding-top: 10px;"> </div>'+
 				'<p class="news_content">'+content+'</p>'+
@@ -65,7 +69,7 @@ jQuery(document).ready(function($){
 				'<span>标签：</span>'+
 				'<span>评论：<span class="news_com">33条评论</span></span>'+
 				'<span>浏览：<span class="news_scan">'+article.readCount+'</span></span>'+
-				'<span class="news_reading">阅读全文</span>'+
+				'<span class="news_reading"><a href="'+article.id+'" target="'+target+'">阅读全文</a></span>'+
 				'</div>'+
 				'</div>';
 				$('#left').append(left);
@@ -78,6 +82,10 @@ jQuery(document).ready(function($){
 				page+='<li><a class="currentpage">'+i+'</a></li>';
 			var pagination = '<ul name="'+currentPage+'">'+prePage+page+nextPage+'</ul>';
 			$('#pagination').html(pagination);
+			if(currentPage<=1)
+				currentPage=-1;
+			$('#pagination').children('ul').children('li').eq(currentPage+1).children('a').css('background-color','#a1a3a6');
+			
 		},'json');
 	}
 
