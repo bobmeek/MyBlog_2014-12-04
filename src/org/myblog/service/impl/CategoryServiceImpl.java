@@ -41,9 +41,10 @@ public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> im
 		maps.put("type", type);
 		return findListByParam(maps, operate);
 	}
-	public Integer findMaxOrders(){
+	public Integer findMaxOrders(Integer type){
 		String operate = ".findMaxId";
 		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("type", type);
 		return findMaxId(maps, operate);
 	}
 

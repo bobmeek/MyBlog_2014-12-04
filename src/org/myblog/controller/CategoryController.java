@@ -35,67 +35,6 @@ public class CategoryController
 		return "index";
 	}
 	
-	/**
-	 *  获取栏目信息
-	 * @param request
-	 * @param model
-	 * @return
-	 */
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value="/show")
-	@ResponseBody
-	public List<CategoryVO> showCategory(HttpServletRequest request, ModelMap modelMap)
-	{
-		
-		List<CategoryVO> categorys =  categoryService.findNavigate(1);
-		//按照orders排序
-		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
-		modelMap.addAttribute("categorys", categorys);
-		
-		return categorys;
-	}
-	
-	
-	
-	
-	/**
-	 * 
-	 * @desc   [ 更新栏目信息 ]
-	 * @param  [ @param category ]
-	 * @author [ bobmeek ]   
-	 * @time   [ 2015年3月31日 下午6:15:32 ] 
-	 *
-	 */
-	@RequestMapping(value = "/update")
-	@ResponseBody
-	public void update(CategoryVO category){
-		categoryService.update(category);
-	}
-	
-	/**
-	 * 
-	 * @desc   [ 添加栏目 ]
-	 * @param  [ @param category ]
-	 * @author [ bobmeek ]   
-	 * @time   [ 2015年3月31日 下午11:11:31 ] 
-	 *
-	 */
-	@RequestMapping(value = "/add")
-	@ResponseBody
-	public void add(CategoryVO category){
-		int maxOrders = categoryService.findMaxOrders();
-		category.setOrders(maxOrders+1);
-		categoryService.addCategory(category);
-	}
-	
-	@RequestMapping(value = "/delete/{id}")
-	@ResponseBody
-	public void delete(@PathVariable Integer id){
-		categoryService.delete(id);
-	}
-	
-	
-	
 	
 	/**
 	 * 添加栏目名称
@@ -170,6 +109,74 @@ public class CategoryController
 		
 		return "redirect:../category/showCategory.do";
 	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @desc   [ 获取栏目信息 ]
+	 * @param  [ @param request
+	 * @param  [ @param modelMap
+	 * @param  [ @return ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年4月1日 下午5:07:37 ] 
+	 *
+	 */
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/show")
+	@ResponseBody
+	public List<CategoryVO> showNavCategory(HttpServletRequest request, ModelMap modelMap)
+	{
+		
+		List<CategoryVO> categorys =  categoryService.findNavigate(1);
+		//按照orders排序
+		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
+		modelMap.addAttribute("categorys", categorys);
+		
+		return categorys;
+	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @desc   [ 更新栏目信息 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午6:15:32 ] 
+	 *
+	 */
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public void updateNavCategory(CategoryVO category){
+		categoryService.update(category);
+	}
+	
+	/**
+	 * 
+	 * @desc   [ 添加栏目 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午11:11:31 ] 
+	 *
+	 */
+	@RequestMapping(value = "/add")
+	@ResponseBody
+	public void addNavCategory(CategoryVO category){
+		//获取type为1(导航栏目)的最大orders
+		int maxOrders = categoryService.findMaxOrders(1);
+		category.setOrders(maxOrders+1);
+		categoryService.addCategory(category);
+	}
+	
+	@RequestMapping(value = "/delete/{id}")
+	@ResponseBody
+	public void deleteNavCategory(@PathVariable Integer id){
+		categoryService.delete(id);
+	}
+	
 	
 
 }

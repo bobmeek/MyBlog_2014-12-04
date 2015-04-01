@@ -24,7 +24,7 @@
 	</select>
 	
 	<select id="findMaxId" resultType="int">
-		select max(orders) from category where type=1 
+		select max(orders) from category where type=#{type}
 	</select>
 	
 	<!-- 插入操作。完成栏目名称的插入 -->
