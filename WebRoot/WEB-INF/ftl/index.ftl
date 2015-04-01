@@ -62,7 +62,7 @@
 				<#if articles?exists>
 				<#list articles as article>
 					<div class="news_1">
-						<span><a href="#" class="news_title"> ${article.title}</a></span>
+						<span class='news_title'><a href="${article.id}"  target='${siteInfo.target}'>${article.title}</a></span>
 						<span class="news_year">${article.releaseDate?string("yyyy年MM月dd日")}</span>
 						<div class="news_img"><img src="resources/front_base/img/index/news_2.jpg" style="width: 648px; height: 300px; border-top: 1px solid #dcdcdc; padding-top: 10px;"></div>
 						<p class="news_content">
@@ -82,7 +82,7 @@
 							<span>标签：</span>
 							<span>评论：<span class="news_com">33条评论</span></span>
 							<span>浏览：<span class="news_scan">${article.readCount}</span></span>
-							<span class="news_reading">阅读全文</span>					
+							<span class="news_reading"><a href='${article.id}' target='${siteInfo.target}'>阅读全文</a></span>					
 						</div>
 					</div>
 				</#list>
@@ -104,9 +104,9 @@
 					<ul>
 						<#list hotArticles as article>
 							<#if article_index==0>
-								<li class="li_top">${article.title}</li>
-								<#else>
-								<li>${article.title}</li>
+								<li class="li_top"><a href='${article.id}' target='${siteInfo.target}'>${article.title}</a></li>
+								<#elseif article_index lt hotPageCount>
+								<li><a href='${article.id}' target='${siteInfo.target}'>${article.title}</a></li>
 							</#if>
 							
 						</#list>
@@ -155,7 +155,11 @@
 					</#if>
 					
 					<#list 1..totalPage as i>
-					<li><a class='currentpage'>${i}</a></li>
+						<#if i_index==0>
+							<li><a class='currentpage' style='background-color:#a1a3a6'>${i}</a></li>
+							<#else>
+							<li><a class='currentpage'>${i}</a></li>
+						</#if>
 					</#list>
 					
 					<#if hasNextPage>

@@ -76,6 +76,10 @@ public interface IDao<T, PK extends Serializable>
 	
 	public List<T> findByParam1(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
+	/**获取最大Id**/
+	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate);
+	
+	
 	public void bulk_delete(Class<T> entityClass, List<Integer> id);
 	
 	public void bulk_delete2(Class<T> entityClass, List<Integer> id);	

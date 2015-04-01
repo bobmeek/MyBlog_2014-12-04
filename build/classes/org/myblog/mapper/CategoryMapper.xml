@@ -7,19 +7,34 @@
 		<id property="id" column="cid" />
 		<result property="name" column="name" />
 		<result property="parent_id" column="parent_id" />
+		<result property="type" column="type" />
+		<result property="orders" column="orders" />
+		<result property="status" column="status" />
 		<collection property="articles"  javaType="java.util.ArrayList" resultMap="org.myblog.model.ArticleVO.articleResultMap"></collection>
 	</resultMap>
 	
 	<!-- 查询操作。查询栏目名称并且去除重复栏目名称信息 -->
 	<select id="findAll"  resultType="category">
-		select distinct(c.name),id,parent_id  from category as c  
+		<!-- select distinct(c.name),id,parent_id  from category c -->  
+		select *  from category
+	</select>
+	
+	<select id="findByType"  resultType="category">
+		select *  from category where type=#{type}
+	</select>
+	
+	<select id="findMaxId" resultType="int">
+		select max(orders) from category where type=1 
 	</select>
 	
 	<!-- 插入操作。完成栏目名称的插入 -->
 	<insert id="add" parameterType="category" useGeneratedKeys="true" keyProperty="id"> 
-		insert into category(name,parent_id) values(#{name},#{parent_id})
+		insert into category(name,parent_id,type,user_id,orders,status) values(#{name},#{parentId},#{type},#{userId},#{orders},#{status})
 	</insert>
 	
+	<delete id="delete" parameterType="int">
+		delete from category where id=#{id}
+	</delete>
 	<!-- 查询操作。根据文章id查询文章归属栏目 -->
 	<!-- <select id="findById" parameterType="int" resultMap="categoryResultMap">
 		select a.id,a.id_category,c.id,c.name from article as a,category as c
@@ -32,7 +47,7 @@
 	
 	<!-- 修改操作 -->
 	<update id="update" parameterType="category">
-		update category set name=#{name} where id=#{id} 
+		update category set name=#{name},type=#{type},orders=#{orders},status=#{status} where id=#{id} 
 	</update>
 	
 </mapper>

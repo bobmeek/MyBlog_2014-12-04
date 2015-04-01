@@ -6,10 +6,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.myblog.common.SortListUtil;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -39,17 +41,61 @@ public class CategoryController
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value="/showCategory")
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/show")
 	@ResponseBody
-	public ModelMap showCategory(HttpServletRequest request, ModelMap modelMap)
+	public List<CategoryVO> showCategory(HttpServletRequest request, ModelMap modelMap)
 	{
-		System.out.println("showCategory invoked!!!");
 		
-		List<CategoryVO> categorys =  categoryService.findAll();
+		List<CategoryVO> categorys =  categoryService.findNavigate(1);
+		//按照orders排序
+		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
 		modelMap.addAttribute("categorys", categorys);
 		
-		return modelMap;
+		return categorys;
 	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @desc   [ 更新栏目信息 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午6:15:32 ] 
+	 *
+	 */
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public void update(CategoryVO category){
+		categoryService.update(category);
+	}
+	
+	/**
+	 * 
+	 * @desc   [ 添加栏目 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午11:11:31 ] 
+	 *
+	 */
+	@RequestMapping(value = "/add")
+	@ResponseBody
+	public void add(CategoryVO category){
+		int maxOrders = categoryService.findMaxOrders();
+		category.setOrders(maxOrders+1);
+		categoryService.addCategory(category);
+	}
+	
+	@RequestMapping(value = "/delete/{id}")
+	@ResponseBody
+	public void delete(@PathVariable Integer id){
+		categoryService.delete(id);
+	}
+	
+	
+	
 	
 	/**
 	 * 添加栏目名称
@@ -57,7 +103,7 @@ public class CategoryController
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/addCategoryName", produces="application/json")
+	@RequestMapping(value="/add1", produces="application/json")
 	@ResponseBody
 	public ModelMap addCategoryName(ModelMap modelMap, String category_name) throws Exception
 	{
@@ -110,16 +156,16 @@ public class CategoryController
 	{
 		
 		System.out.println("category name: " + category.getName());
-		System.out.println("category parent_id: " + category.getParent_id());
+		System.out.println("category parent_id: " + category.getParentId());
 		
-		Integer pid = category.getParent_id();
+		Integer pid = category.getParentId();
 		
 		if(pid == 0)
 		{
 			pid = null;
 		}
 		
-		category.setParent_id(pid);
+		category.setParentId(pid);
 		categoryService.save(category); //保存栏目对象
 		
 		return "redirect:../category/showCategory.do";

@@ -97,6 +97,9 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		return getSqlSession().selectList(entityClass.getName() + operate, maps);
 	}
 	
+	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate){
+		return getSqlSession().selectOne(entityClass.getName() + operate, maps);
+	}
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize)
 	{
 		/*Pager<T> pager = new Pager<T>();

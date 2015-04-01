@@ -16,14 +16,14 @@ public class SiteInfoVO {
 	private Integer pageCount;
 	private Integer hotPageCount;
 	private String target; //打开网页的方式
-	
+	private Integer navCount; //导航最多显示数量
 	public SiteInfoVO() {
 		super();
 	}
 	
 	public SiteInfoVO(Integer id, String siteName, String mainTitle,
 			String subTitle, String footerTitle, String copyright,
-			Integer pageCount, Integer hotPageCount, String target) {
+			Integer pageCount, Integer hotPageCount, String target,Integer navCount) {
 		super();
 		this.id = id;
 		this.siteName = siteName;
@@ -34,6 +34,7 @@ public class SiteInfoVO {
 		this.pageCount = pageCount;
 		this.hotPageCount = hotPageCount;
 		this.target = target;
+		this.navCount = navCount;
 	}
 
 	public Integer getId() {
@@ -107,6 +108,13 @@ public class SiteInfoVO {
 	public void setTarget(String target) {
 		this.target = target;
 	}
+	
+	public Integer getNavCount() {
+		return navCount;
+	}
+	public void setNavCount(Integer navCount) {
+		this.navCount = navCount;
+	}
 
 	@Override
 	public String toString() {
@@ -114,7 +122,7 @@ public class SiteInfoVO {
 				+ ", mainTitle=" + mainTitle + ", subTitle=" + subTitle
 				+ ", footerTitle=" + footerTitle + ", copyright=" + copyright
 				+ ", pageCount=" + pageCount + ", hotPageCount=" + hotPageCount
-				+ ", target=" + target + "]";
+				+ ", target=" + target + ", navCount="+navCount+"]";
 	}
 
 	

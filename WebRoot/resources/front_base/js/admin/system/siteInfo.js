@@ -3,13 +3,14 @@
  */
 $(function(){
 	
-	function SiteInfo(id,siteName,mainTitle,subTitle,footerTitle,copyright,pageCount,hotPageCount,target){
+	function SiteInfo(id,siteName,mainTitle,subTitle,footerTitle,copyright,pageCount,hotPageCount,target,navCount){
 		this.id = id;
 		this.siteName = siteName;
 		this.mainTitle = mainTitle;
 		this.subTitle = subTitle;
 		this.footerTitle = footerTitle;
 		this.copyright = copyright;
+		this.navCount = navCount;
 		this.pageCount = pageCount;
 		this.hotPageCount = hotPageCount;
 		this.target = target;
@@ -31,6 +32,7 @@ $(function(){
 			$('#subTitle').val(result.subTitle);
 			$('#footerTitle').val(result.footerTitle);
 			$('#copyright').val(result.copyright);
+			$('#navCount').val(result.navCount);
 			$('#pageCount').val(result.pageCount);
 			$('#hotPageCount').val(result.hotPageCount);
 			debugger;
@@ -55,10 +57,11 @@ $(function(){
 		var $subTitle = $('#subTitle').val();
 		var $footerTitle = $('#footerTitle').val();
 		var $copyright = $('#copyright').val();
+		var $navCount = $('#navCount').val();
 		var $pageCount = $('#pageCount').val();
 		var $hotPageCount = $('#hotPageCount').val();
 		var $target = $('#showTarget').text().trim()=='本窗口'?'_self':'_blank';
-		var siteInfo = new SiteInfo($siteId,$siteName, $mainTitle, $subTitle, $footerTitle, $copyright,$pageCount,$hotPageCount,$target);
+		var siteInfo = new SiteInfo($siteId,$siteName, $mainTitle, $subTitle, $footerTitle, $copyright,$pageCount,$hotPageCount,$target,$navCount);
 		  
 		$.post('siteinfo/update',siteInfo,function(result){
 		},'json');

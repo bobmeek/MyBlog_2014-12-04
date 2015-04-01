@@ -32,15 +32,15 @@
 		
 		
 		/** 左侧栏请求显示栏目名称 **/
-		$.post("category/showCategory", null, function(result)
-		{
-			var categorys = result.categorys;
-			$.each(categorys, function(i, category)
-			{
-				var content = "<li><a href='javascript:void(0);' class='category_class'  id=" +category.id + "><i class='icon-book icon-large'></i>&nbsp; " + category.name +  "</a></li>";
-				$(".menu_nav").append(content);	
-			});
-		});
+//		$.post("category/showCategory", null, function(result)
+//		{
+//			var categorys = result.categorys;
+//			$.each(categorys, function(i, category)
+//			{
+//				var content = "<li><a href='javascript:void(0);' class='category_class'  id=" +category.id + "><i class='icon-book icon-large'></i>&nbsp; " + category.name +  "</a></li>";
+//				$(".menu_nav").append(content);	
+//			});
+//		});
 		
 		/** 刷新默认显示第一栏目的文章信息**/
 		$.post("category/showArticleByCid", {"categoryid": 1}, function(result)

@@ -68,7 +68,7 @@
 				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id="addArticle2">发布文章</a></li>
 					<li><a href="#" id="articlesInfo">文章信息</a></li>
-					<li><a href="#">栏目信息</a></li>
+					<li><a href="#" id='categoryInfo'>栏目信息</a></li>
 				</ul>
 			</li>
 			<li class="panel">
@@ -130,6 +130,9 @@
 			<div id="addArticle2Page" class="page" style="display:visibility;">
 				<jsp:include page="article/addArticle2.jsp" flush="true"></jsp:include>
 			</div>
+			<div id="categoryInfoPage" class="page" style="display:none;">
+				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
+			</div>
 			<div id="dataBackupPage" class="page" style="display:none;">
 				<jsp:include page="system/dataBackup.jsp" flush="true"></jsp:include>
 			</div>
@@ -146,6 +149,7 @@
 	
 	
 	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
+	<script type="text/javascript" src="resources/front_frame/jquery-ui/jquery-ui.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
 	<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.js"></script>
@@ -160,5 +164,6 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
 	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 </body>
 </html>
