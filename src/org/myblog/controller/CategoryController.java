@@ -23,18 +23,6 @@ public class CategoryController
 	@Resource(name =  "categoryServiceImpl")
 	private CategoryService categoryService;
 
-	//登录
-	//加个HttpSession就会把session注入进来,
-	//加HttpServletRequest,request也会被注入
-	@RequestMapping(value="/index",method=RequestMethod.POST)
-	public String login(String name,String pass,HttpSession session)
-	{
-		session.setAttribute("name", name);
-		session.setAttribute("pass", pass);
-		System.out.println("name:"+name+"---pass:"+pass);
-		return "index";
-	}
-	
 	
 	/**
 	 * 添加栏目名称
@@ -57,6 +45,25 @@ public class CategoryController
 		
 		return modelMap;
 	}
+	
+	/**
+	 *  获取栏目信息
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value="/showCategory")
+	@ResponseBody
+	public ModelMap showCategory(HttpServletRequest request, ModelMap modelMap)
+	{
+		System.out.println("showCategory invoked!!!");
+		
+		List<CategoryVO> categorys =  categoryService.findAll();
+		modelMap.addAttribute("categorys", categorys);
+		
+		return modelMap;
+	}
+
 	
 	/**
 	 * 通过栏目id查询相关文章信息
@@ -111,6 +118,7 @@ public class CategoryController
 	}
 	
 	
+	/************************************************************导航栏目*************************************************************************/
 	
 	
 	/**

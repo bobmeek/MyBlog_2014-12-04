@@ -4,7 +4,7 @@
 <mapper namespace="org.myblog.model.ArticleVO">
 	  
 	<resultMap type="article" id="articleResultMap">
-		<id property="id" column="id" />
+		<id property="id" column="aid" />
 		<result property="title" column="title" />
 		<result property="author" column="author" />
 		<result property="content" column="content" />
@@ -25,7 +25,7 @@
 	
 	<!-- 查询操作。查询文章信息|栏目信息|标签信息 -->
 	<select id="findAll"  resultMap="articleResultMap" >
-		select a.id,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC
 	</select>
 	
@@ -37,7 +37,7 @@
 	<!-- 查询操作。根据文章id查询文章信息 -->
 	<select id="findById" resultMap="articleResultMap">
 		<!-- select a.id,a.title,a.author,a.release_date,a.content,a.read_count,a.top_level from article as a,category as c where a.id_category=c.id and a.id=#{id} -->
-		select a.id,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id where a.id=#{id}
 	</select>
 	
@@ -62,7 +62,7 @@
 
 	<!-- 文章分页查询 -->
 	<select id="findByPage" resultMap="articleResultMap" parameterType="map">
-		select a.id,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
 	
