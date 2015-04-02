@@ -40,23 +40,13 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
-<!-- 			<li class="panel"> -->
-				
-<!-- 				<a href="#personal_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"> -->
-<!-- 					<i class="icon-wrench icon-large"></i> 个人信息<b class="caret"></b> -->
-<!-- 				</a> -->
-<!-- 				<ul id="personal_manage" class="collapse list-unstyled sednav"> -->
-<!-- 					<li><a href="#">详细信息</a></li> -->
-<!-- 					<li><a href="#">密码修改</a></li> -->
-<!-- 				</ul> -->
-<!-- 			</li> -->
 			<li class="panel">
 				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
 					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
 				</a>
 				<ul id="users_manage" class="collapse list-unstyled sednav">
-					<li><a href="#" id="personInfo">个人资料</a></li>
-					<li><a href="#">密码修改</a></li>
+					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
+					<!-- <li><a href="#">密码修改</a></li> -->
 					<li><a href="#" id="usersInfo">用户信息管理</a></li>
 					<li><a href="#" id="usersRole">用户角色管理</a></li>
 					<li><a href="#" id="usersResource">用户资源管理</a></li>
