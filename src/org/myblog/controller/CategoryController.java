@@ -6,11 +6,12 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.myblog.model.ArticleVO;
+import org.myblog.common.SortListUtil;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,16 +23,27 @@ public class CategoryController
 	@Resource(name =  "categoryServiceImpl")
 	private CategoryService categoryService;
 
-	//登录
-	//加个HttpSession就会把session注入进来,
-	//加HttpServletRequest,request也会被注入
-	@RequestMapping(value="/index",method=RequestMethod.POST)
-	public String login(String name,String pass,HttpSession session)
+	
+	/**
+	 * 添加栏目名称
+	 * @param category_name
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping(value="/add1", produces="application/json")
+	@ResponseBody
+	public ModelMap addCategoryName(ModelMap modelMap, String category_name) throws Exception
 	{
-		session.setAttribute("name", name);
-		session.setAttribute("pass", pass);
-		System.out.println("name:"+name+"---pass:"+pass);
-		return "index";
+		/*System.out.println("addCategoryName invoked!!!");
+		System.out.println("addCategoryName category_name = " + category_name);*/
+		
+		CategoryVO category = new CategoryVO();
+		category.setName(category_name); //添加栏目名称
+		
+		categoryService.addCategory(category);
+		modelMap.addAttribute("c_cid", category.getId());
+		
+		return modelMap;
 	}
 	
 	/**
@@ -51,28 +63,7 @@ public class CategoryController
 		
 		return modelMap;
 	}
-	
-	/**
-	 * 添加栏目名称
-	 * @param category_name
-	 * @return
-	 * @throws Exception
-	 */
-	@RequestMapping(value="/addCategoryName", produces="application/json")
-	@ResponseBody
-	public ModelMap addCategoryName(ModelMap modelMap, String category_name) throws Exception
-	{
-		/*System.out.println("addCategoryName invoked!!!");
-		System.out.println("addCategoryName category_name = " + category_name);*/
-		
-		CategoryVO category = new CategoryVO();
-		category.setName(category_name); //添加栏目名称
-		
-		categoryService.addCategory(category);
-		modelMap.addAttribute("c_cid", category.getId());
-		
-		return modelMap;
-	}
+
 	
 	/**
 	 * 通过栏目id查询相关文章信息
@@ -126,27 +117,74 @@ public class CategoryController
 		return "redirect:../category/showCategory.do";
 	}
 	
+	
+	/************************************************************导航栏目*************************************************************************/
+	
+	
 	/**
-	 * 修改栏目
-	 * @param category
-	 * @return
-	 * @throws Exception
+	 * 
+	 * @desc   [ 获取栏目信息 ]
+	 * @param  [ @param request
+	 * @param  [ @param modelMap
+	 * @param  [ @return ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年4月1日 下午5:07:37 ] 
+	 *
 	 */
-	@RequestMapping(value="/updateCategory", produces="application/json")
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/show")
 	@ResponseBody
-	public int updateCategory(int category_id, String category_name) throws Exception
+	public List<CategoryVO> showNavCategory(HttpServletRequest request, ModelMap modelMap)
 	{
-		System.out.println("updateCategory invoked!!!");
-		System.out.println("id ===========" + category_id + "     name===" + category_name);
 		
-		CategoryVO category = new CategoryVO();
-		category.setId(category_id);
-		category.setName(category_name);
+		List<CategoryVO> categorys =  categoryService.findNavigate(1);
+		//按照orders排序
+		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
+		modelMap.addAttribute("categorys", categorys);
 		
-		categoryService.update(category);
-		
-		return 1;
+		return categorys;
 	}
+	
+	
+	
+	
+	/**
+	 * 
+	 * @desc   [ 更新栏目信息 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午6:15:32 ] 
+	 *
+	 */
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	public void updateNavCategory(CategoryVO category){
+		categoryService.update(category);
+	}
+	
+	/**
+	 * 
+	 * @desc   [ 添加栏目 ]
+	 * @param  [ @param category ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015年3月31日 下午11:11:31 ] 
+	 *
+	 */
+	@RequestMapping(value = "/add")
+	@ResponseBody
+	public void addNavCategory(CategoryVO category){
+		//获取type为1(导航栏目)的最大orders
+		int maxOrders = categoryService.findMaxOrders(1);
+		category.setOrders(maxOrders+1);
+		categoryService.addCategory(category);
+	}
+	
+	@RequestMapping(value = "/delete/{id}")
+	@ResponseBody
+	public void deleteNavCategory(@PathVariable Integer id){
+		categoryService.delete(id);
+	}
+	
 	
 
 }

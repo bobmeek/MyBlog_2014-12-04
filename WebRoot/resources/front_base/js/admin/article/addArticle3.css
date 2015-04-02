@@ -9,7 +9,7 @@
 		padding: 0; /* 去除页面的内外边距 */
 		margin: 0;
 	}
-
+	
 	/* 左侧区域样式 */
 	#left
 	{
@@ -117,7 +117,7 @@
 	/* li列表活动伪类样式 */
 	#left ul li a:hover
 	{
-		background-color: #FFF;
+		/* background-color: #FFF; */
 	}
 	
 	/* 栏目列表设置按钮样式 */
@@ -322,7 +322,7 @@
 		box-shadow: rgba(0, 0, 0, 0.13) 0px -3px 8px 0px inset;
 		box-sizing: border-box;
 		float: left;
-		height: 407px;
+		height: 650px;
 		color: #555;
 		font-size: 14px;
 		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
@@ -351,6 +351,8 @@
 		line-height: 20px;
 		text-rendering: auto;
 		transform: matrix(1, 0, 0, 1, 0, 0);
+		text-decoration: none;
+		outline: none; /* 取消点击链接出现的虚线框 */
 	}	
 	
 	/* 中间区域新建文章样式 */
@@ -363,23 +365,27 @@
 		font-weight: 400;
 		line-height: 20px;
 		margin-top: 8px;
-		text-decoration: none;
 		-moz-text-decoration-color: #000;
 		-moz-text-decoration-line: none;
 		-moz-text-decoration-style: solid;
 		padding-left: 5px;		
+		text-decoration: none;
+		outline: none; /* 取消点击链接出现的虚线框 */
+		outline-color: #000; /* 设置点状轮廓的颜色 */
 	}
 	
 	/* 中间区域列表ul样式 */
 	#middle .note_list
 	{
 		list-style-type: none;
+		padding-left: 0;
+		display: block;
 	}
 	
 	/* 中间区域列表li样式 */
 	#middle .note_list li
 	{
-		background-color: #D1C091;
+		/* background-color: #D1C091; */
 		border-bottom: 1px solid #D9D9D9;
 		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px inset;
 		color: #EEE;
@@ -392,6 +398,8 @@
 		width: 388.75px;
 		position: relative;
 		padding-top: 20px;
+		display: block;
+		cursor: pointer;
 	}
 	
 	/* 中间区域文件样式小图标样式 */
@@ -413,6 +421,20 @@
 		position: absolute;
 		left: 60px;
 		top: 23px;
+		display: block;
+	}
+	
+	/* 中间区域文章内容样式 */
+	.note_list .abbreviate
+	{
+		color: #EEE;
+		cursor: pointer;
+		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+		font-size: 11px;
+		font-weight: 400;
+		position: absolute;
+		top: 50px; 
+		left: 60px;
 	}
 	
 	/* 中间区域文章字数样式 */

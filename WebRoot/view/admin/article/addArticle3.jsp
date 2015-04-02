@@ -119,28 +119,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="newnote">
 				<a href="javascript:void(0);"><i class="icon-pencil"></i><span class="addarticle">+新建文章</span></a>
 			</div>
-			<ul class="note_list" style="padding-left: 0;">
-				<li>
-					<i class="icon-file icon-3x"></i><!-- 文件小图标 -->
-					<p class="abbreviate"></p><!-- 文章内容 -->
-					<span class="note_title">无标题文章</span><!-- 文章标题 -->
-					<p class="note_wordage">字数: 0</p><!-- 文章字数 -->
-					<i class="icon-cog" ></i><!-- 文章设置小图标 -->
+			<ul class="note_list">
+				<!-- <li>
+					<i class="icon-file icon-3x"></i>文件小图标
+					<p class="abbreviate">我来教大家学习Android，然后试着做一个手机APP应用。</p>文章内容
+					<span class="note_title">无标题文章</span>文章标题
+					<p class="note_wordage">字数: 0</p>文章字数
+					<i class="icon-cog" ></i>文章设置小图标
 				</li>
 				<li>
-					<i class="icon-file icon-3x"></i><!-- 文件小图标 -->
-					<p class="abbreviate"></p><!-- 文章内容 -->
-					<span class="note_title">无标题文章</span><!-- 文章标题 -->
-					<p class="note_wordage">字数: 0</p><!-- 文章字数 -->
-					<i class="icon-cog" ></i><!-- 文章设置小图标 -->
+					<i class="icon-file icon-3x"></i>文件小图标
+					<p class="abbreviate">我来教大家学习Android，然后试着做一个手机APP应用。</p>文章内容
+					<span class="note_title">无标题文章</span>文章标题
+					<p class="note_wordage">字数: 0</p>文章字数
+					<i class="icon-cog" ></i>文章设置小图标
 				</li>
 				<li>
-					<i class="icon-file icon-3x"></i><!-- 文件小图标 -->
-					<p class="abbreviate"></p><!-- 文章内容 -->
-					<span class="note_title">无标题文章</span><!-- 文章标题 -->
-					<p class="note_wordage">字数: 0</p><!-- 文章字数 -->
-					<i class="icon-cog" ></i><!-- 文章设置小图标 -->
-				</li>
+					<i class="icon-file icon-3x"></i>文件小图标
+					<p class="abbreviate">我来教大家学习Android，然后试着做一个手机APP应用。</p>文章内容
+					<span class="note_title">无标题文章</span>文章标题
+					<p class="note_wordage">字数: 0</p>文章字数
+					<i class="icon-cog" ></i>文章设置小图标
+				</li> -->
 				
 			</ul>
 		</div>
