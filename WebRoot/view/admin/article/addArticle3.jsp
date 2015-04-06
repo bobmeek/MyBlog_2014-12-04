@@ -35,6 +35,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="resources/front_frame/simditor/js/hotkeys.js"></script>
 	<script src="resources/front_frame/simditor/js/uploader.js"></script>
 	<script src="resources/front_frame/simditor/js/simditor.js"></script>
+	<script src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
 	<script src="resources/front_frame/simditor/js/marked.js"></script>
 	<script src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
 	
@@ -143,11 +144,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li> -->
 				
 			</ul>
+			<div class="middle_arrow" style="display: none;"><!-- 弹出框区域 -->
+			<ul>
+				<li class="middle_first_li"><a href="javascript:void(0)"><i class=" icon-share-alt"></i>直接发布</a></li>
+				<li class="middle_mide_li"><a href="javascript:void(0)"><i class="icon-folder-open"></i>移动文章</a></li>
+				<li class="middle_last_li"><a href="javascript:void(0)"><i class="icon-trash"></i>删除文章</a></li>
+			</ul>
+			<div class="middle_bottomarrow"></div><!-- 弹出框小箭头 -->
+		</div><!-- 弹出框区域结束 -->
 		</div>
 		
 		<div id="right"><!-- 右侧区域 -->
 			<form action="">
-				<input type="text"  class="text_title"  value="无标题文章"  style="border-top: 0px; border-left: 0px; border-right: 1px; border-bottom: 1px solid #D9D9D9; background-color: #F6F6F6;" />
+				<input type="text"  class="text_title"  value="无标题文章"  />
 			</form>
 			<textarea id="editor" placeholder="这里输入内容" autofocus ></textarea>
 		</div>
@@ -159,13 +168,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}); */
 		
 		$(function(){  
-		    toolbar = [ 'title', 'bold', 'italic', 'underline', 'strikethrough',  
+		   /*  toolbar = [ 'title', 'bold', 'italic', 'underline', 'strikethrough',  
 		            'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',  
-		            'link', 'image', 'hr', '|', 'indent', 'outdent' ];  
+		            'link', 'image', 'hr', '|', 'indent', 'outdent' ];   */
+		            toolbar = [ 'title', 'bold', 'italic', 'underline', 
+		    		            'color', '|', 'ol', 'ul', 'blockquote', '|',  
+		    		            'link', 'image', '|', 'indent', 'outdent' ];  
 		    var editor = new Simditor( {  
 		        textarea : $('#editor'),  
 		        placeholder : '这里输入内容...',  
-		        toolbar : true,  //工具栏  
+		        toolbar : toolbar,  //工具栏  
 		        defaultImage : 'simditor-2.0.1/images/image.png', //编辑器插入图片时使用的默认图片  
 		        upload : {  
 		            url : 'ImgUpload.action', //文件上传的接口地址  
