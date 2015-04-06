@@ -59,7 +59,7 @@
 				+ "<td>" + article.title + "</td>" 
 				+ "<td>" + article.author + "</td>" 
 				+  "<td>" + article.category.name  + "</td>" 
-				+ "<td>" + article.tag.name +  "</td>"
+				/*+ "<td>" + article.tag.name +  "</td>"*/
 				+ "<td>" + article.releaseDate + "</td>"
 				+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
 				 

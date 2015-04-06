@@ -259,10 +259,25 @@
 		var textTitle = $(".text_title").val();
 		$(".note_list #" + artId + " .note_title").text(textTitle);
 	});
+	
 	$(document).on("input propertychange", ".simditor-body", function()
 	{
 		$(".note_list #" + artId + " .abbreviate").text($(".simditor-body p").text());
-		textOverflow(); //调用文字溢出处理方法
+		textOverflow(); 
+	});
+	
+	$(document).on("input propertychange", ".text_title, .simditor-body", function()
+	{	
+		setInterval("saveArticle()", 1000); 
+		$(function saveArticle()
+		{
+			article_title = $(".text_title").val();
+			article_content = $(".simditor-body p").text();
+			$.post("article/updateArticle", {"title": article_title, "content": article_content, "id": artId}, function(result)
+			{
+				
+			});
+		});
 	});
 
 	/*$(".last_li").on("click", function()

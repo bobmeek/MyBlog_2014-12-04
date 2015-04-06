@@ -17,12 +17,27 @@
 <meta http-equiv="expires" content="0">
 <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 <meta http-equiv="description" content="This is my page">
-<link rel="stylesheet" href="resources/front_base/css/tree-menu.css">
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
+<!-- 小图标素材 -->
 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
+<!-- 可多选的下拉框 -->
 <link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
+<!-- bootstrap风格的树结构 -->
 <link rel="stylesheet" href="resources/front_frame/bootstrao_treegrid/css/treegird.bootstrap3.css" />
+<!-- zTree插件样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
+<!-- 文章编辑器 -->
+<!-- <link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" /> -->
+<!-- 弹出框 -->
+<link rel="stylesheet" href="resources/front_frame/jquery_confirm/css/jquery-confirm.css" />	<!-- 引入jQuery模态对话框插件 -->
+
+<!-- 左侧导航菜单 -->
+<link rel="stylesheet" href="resources/front_base/css/tree-menu.css">
+<!-- 文章管理样式 -->
+<link rel="stylesheet" href="resources/front_base/css/publishArticle.css" />
+
+<!-- 会引起bootstrap某些样式发生变化 -->
+<!-- <link rel="stylesheet" href="resources/front_base/css/reset.css" /> -->
 
 </head>
 
@@ -40,23 +55,13 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
-<!-- 			<li class="panel"> -->
-				
-<!-- 				<a href="#personal_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"> -->
-<!-- 					<i class="icon-wrench icon-large"></i> 个人信息<b class="caret"></b> -->
-<!-- 				</a> -->
-<!-- 				<ul id="personal_manage" class="collapse list-unstyled sednav"> -->
-<!-- 					<li><a href="#">详细信息</a></li> -->
-<!-- 					<li><a href="#">密码修改</a></li> -->
-<!-- 				</ul> -->
-<!-- 			</li> -->
 			<li class="panel">
 				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
 					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
 				</a>
 				<ul id="users_manage" class="collapse list-unstyled sednav">
-					<li><a href="#" id="personInfo">个人资料</a></li>
-					<li><a href="#">密码修改</a></li>
+					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
+					<!-- <li><a href="#">密码修改</a></li> -->
 					<li><a href="#" id="usersInfo">用户信息管理</a></li>
 					<li><a href="#" id="usersRole">用户角色管理</a></li>
 					<li><a href="#" id="usersResource">用户资源管理</a></li>
@@ -124,11 +129,8 @@
 			<div id="articlesInfoPage" class="page" style="display:none;">
 				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
 			</div>
-			<%-- <div id="addArticlePage" class="page" style="display:none;">
-				<jsp:include page="article/addArticle.jsp" flush="true"></jsp:include>
-			</div> --%>
 			<div id="addArticle2Page" class="page" style="display:visibility;">
-				<jsp:include page="article/addArticle3.jsp" flush="true"></jsp:include>
+				<jsp:include page="article/publishArticle.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="categoryInfoPage" class="page" style="display:none;">
 				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
@@ -147,23 +149,58 @@
 	</div>
 	
 	
-	
-	<script type="text/javascript" src="resources/front_base/js/jquery-1.8.3.js"></script>
+	<!-- jquery主文件 -->
+	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script>
+	<!-- jqueryUI主文件 -->
 	<script type="text/javascript" src="resources/front_frame/jquery-ui/jquery-ui.js"></script>
+	<!-- bootstrap主文件 -->
 	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
+	<!-- 可多选的下拉框 -->
 	<script type="text/javascript" src="resources/front_frame/boostrap_dropdowns+/js/dropdowns-enhancement.js"></script>
-	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.js"></script>
-	<script type="text/javascript" src="resources/front_frame/bootstrao_treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+	<!-- 树状的表格 -->
+	<script type="text/javascript" src="resources/front_frame/bootstrap_treegrid/js/jquery.treegrid.js"></script>
+	<script type="text/javascript" src="resources/front_frame/bootstrap_treegrid/js/jquery.treegrid.bootstrap3.js"></script>
+	<!-- bootstrap样式的input-file -->
 	<script type="text/javascript" src="resources/front_frame/bootstrap/js/bootstrap.file-input.js"></script>
+	<!-- zTree -->
 	<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/ajaxfileupload.js"></script>
+	<!-- ajax上传 -->
+	<script type="text/javascript" src="resources/front_frame/jquery/ajaxfileupload.js"></script>
+	<!-- 第三方弹出框 -->
+	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
+	
+	<!-- 文章编辑器 -->
+	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
+	<script  type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
+	<script   type="text/javascript" src="resources/front_frame/bootstrap/js/modal.js"></script>  -->
+	<!-- 文章编辑器 -->
+	
+	
+	<!-- 后台管理主文件 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
+	<!-- 用户信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersInfo.js"></script>
+	<!-- 用户角色 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersRole.js"></script>
+	<!-- 用户资源 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
+	<!-- 所有文章信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
-	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	<!-- 个人用户文章信息 -->
+	<!-- <script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script> -->
+	<!-- 导航栏目 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
+	<!-- 网站所有信息备份 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
+	<!-- 网站信息配置 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	
+	
 </body>
 </html>

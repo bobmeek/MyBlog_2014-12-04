@@ -16,12 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" href="resources/front_base/js/admin/article/addArticle3.css" />
-	<link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
+	<link rel="stylesheet" href="resources/front_base/css/publishArticle.css" />
+	<!-- <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
 	<link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css" />
 	<script src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
 	<script src="resources/front_base/js/jquery-1.8.3.js"></script>
-	<script src="resources/front_frame/bootstrap/js/modal.js"></script>
+	<script src="resources/front_frame/bootstrap/js/modal.js"></script> -->
 	<!-- <link rel="stylesheet" href="resources/front_base/css/jquery-confirm.css" />	 --><!-- 引入jQuery模态对话框插件 -->
 	<!-- <script src="resources/front_base/js/jquery-confirm.js"></script> -->
 	<!-- <link rel="stylesheet" href="resources/front_base/css/reset.css" />
@@ -29,7 +29,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<!-- 引入Simditor编辑器相关文件 -->
 	<link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
-	
 	<script src="resources/front_frame/simditor/js/jquery.min.js"></script>
 	<script src="resources/front_frame/simditor/js/module.js"></script>
 	<script src="resources/front_frame/simditor/js/hotkeys.js"></script>
@@ -192,7 +191,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 	</script>
 	
-		<script type="text/javascript" src="resources/front_base/js/admin/article/addArticle3.js"></script><!-- 加載本页面的js文件 -->
+		<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script><!-- 加載本页面的js文件 -->
 		<!-- <script src="resources/front_base/js/main.js"></script> -->
 		
   </body>
