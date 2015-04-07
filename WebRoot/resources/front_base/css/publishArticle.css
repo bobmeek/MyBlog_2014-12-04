@@ -120,6 +120,11 @@
 		/* background-color: #FFF; */
 	}
 	
+	#left .category_nav li
+	{
+		position: relative;
+	}
+	
 	/* 栏目列表设置按钮样式 */
 	#left .icon-cog
 	{
@@ -129,9 +134,12 @@
 		text-shadow: rgba(0, 0, 0, 0.2) 0px -1px 0px;
 		list-style-image: none;
 		line-height: 15px;
-		padding-left: 130px;
+		/* padding-left: 130px; */
 		/* background-color: green; */
 		position: relative;
+		position: absolute;
+		right: 10px;
+		top: 10px;
 	}
 	
 	/*============================栏目弹出框样式开始=================================*/
@@ -147,6 +155,7 @@
 		position: relative;
 		padding-left: 0;
 		float: right; /* 将弹出框浮动到边框右侧 */
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px 0px;
 	}
 	
 	/* 栏目弹出框ul样式 */	
@@ -181,7 +190,7 @@
 		  left: 127px; /* 控制小箭头向右移动的像素位置 */
 		  bottom: 82px;
 		  border: transparent 14px solid; /* 透明10像素实线的边框(中间的像素可以控制箭头的宽度) */
-		  border-bottom: #FFF 14px solid; /* 红色10像素实线的箭头(中间的像素可以控制箭头的高度)#4f4f4f*/
+		  border-bottom: #FFF 14px solid; /* 白色10像素实线的箭头(中间的像素可以控制箭头的高度)#4f4f4f*/
 		  /* box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px 0px; */
 	}
 	
@@ -319,8 +328,8 @@
 	#middle
 	{
 		border: 1px solid #D9D9D9;
-		box-shadow: rgba(0, 0, 0, 0.13) 0px -3px 8px 0px inset;
-		box-sizing: border-box;
+		/* box-shadow: rgba(0, 0, 0, 0.13) 0px -3px 8px 0px inset;
+		box-sizing: border-box; */
 		float: left;
 		height: 650px;
 		color: #555;
@@ -387,7 +396,7 @@
 	{
 		/* background-color: #D1C091; */
 		border-bottom: 1px solid #D9D9D9;
-		box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px inset;
+		/* box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 10px 0px inset; */
 		color: #EEE;
 		cursor: auto;
 		height: 90px;
@@ -402,10 +411,17 @@
 		cursor: pointer;
 	}
 	
+	/* 中间区域列表li活动伪类样式 */
+	#middle .note_list li:hover
+	{
+		box-shadow: 10px 10px 5px #D9D9D9;
+		-moz-box-shadow: 10px 10px 5px #D9D9D9;
+	}
+	
 	/* 中间区域文件样式小图标样式 */
 	.note_list .icon-file
 	{
-		color: #FFF;
+		color: #D1C091;
 		position: absolute;
 		top: 25px;
 		left: 20px;
@@ -414,7 +430,7 @@
 	/* 中间区域文章标题样式 */
 	.note_list .note_title
 	{
-		color: #000;
+		color: #555;
 		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 		font-size: 18px;
 		font-weight: 400;
@@ -427,7 +443,7 @@
 	/* 中间区域文章内容样式 */
 	.note_list .abbreviate
 	{
-		color: #EEE;
+		color: #555;
 		cursor: pointer;
 		font-family: "lucida grande","lucida sans unicode",lucida,helvetica,"Hiragino Sans GB","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
 		font-size: 11px;
@@ -459,32 +475,125 @@
 		position: absolute;
 		left: 361px;
 		top: 36px; 
+		display: none;
 	}
 	
+	/*============================中间区域文章弹出框样式开始=================================*/
+	
+	/* #middle ul li
+	{
+		position: relative;
+	} */
+	
+	/* 栏目弹出框样式 */
+	.middle_arrow
+	{
+		width: 160px;
+		height: 122px;
+		color: white;
+		background-color: #FFF;
+		border-radius: 5px;
+		position: relative;
+		padding-left: 0;
+		float: right; /* 将弹出框浮动到边框右侧 */
+		box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px 0px;
+		/* position: absolute;
+		left: 100px; */
+	}
+	
+	/* 栏目弹出框ul样式 */	
+	.middle_arrow ul
+	{
+		list-style-type: none;
+		padding-left: 0;
+		width: 160px;
+		height: 82px;
+	}
+	
+	/* 栏目弹出框a标签样式 */	
+	.middle_arrow ul li a
+	{
+		display: block;
+		text-decoration: none;
+		color: #3f3f3f;
+		width: 160px;
+		padding-left: 39px;
+		height: 41px;
+		line-height: 41px;
+		border-bottom: 1px solid #e3e3e3;
+		outline: none; /* 取消点击链接出现的虚线框 */
+	}
+	
+	/* 弹出框小箭头样式 */	
+	.middle_bottomarrow
+	{
+		  width: 0;
+		  height: 0;
+		  position: absolute; /* 箭头div相对于父div进行绝对定位 */
+		  left: 127px; /* 控制小箭头向右移动的像素位置 */
+		  bottom: 122px;
+		  border: transparent 14px solid; /* 透明10像素实线的边框(中间的像素可以控制箭头的宽度) */
+		  border-bottom: #FFF 14px solid; /* 白色10像素实线的箭头(中间的像素可以控制箭头的高度)#4f4f4f*/
+		  /* box-shadow: rgba(0, 0, 0, 0.2) 0px 5px 10px 0px; */
+	}
+	
+	/* 弹出框a标签活动伪类样式 */	
+	.middle_arrow li a:hover, .middle_arrow li a:focus
+	{
+		color: white;
+		background-color: #4f4f4f;
+		background-image: linear-gradient(to bottom, #555, #484848);
+		background-repeat: repeat-x;
+		text-decoration: none;
+	}
+	
+	/* 弹出框修改栏目图标按钮样式 */	
+	.icon-share-alt
+	{
+		padding-right: 5px;
+	}
+	
+	.icon-folder-open
+	{
+		padding-right: 5px;
+	}
+		
+	/* 弹出框删除栏目图标按钮样式 */
+	.middle_arrow ul .icon-trash
+	{
+		padding-right: 5px;
+	}
+	
+	
+	/*============================右侧区域样式开始=================================*/
+	/* 右侧区域样式 */
 	#right
 	{
 		float: left;
 		width: 730px;
-		height: 407px;
+		height: 650px;
 		border: 1px solid #D9D9D9;
 	}
 	
+	/* 右侧区域文章标题样式 */
 	#right .text_title
 	{
 		height: 50px;
 		margin: 0px;
 		padding: 10px 20px 10px 30px;
 		vertical-align: middle;
-		width: 730px;
+		width: 100%;
 		color: #555;
 		font-size: 30px;
 		font-weight: 400;
 		line-height: 30px;
-		margin-top: 15px;
+		margin-top: 20px;
+		background-color: #F6F6F6;
+		border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+		border-bottom: 1px solid #D9D9D9;
 	}
-	
-	
-	
 	
 	
 	

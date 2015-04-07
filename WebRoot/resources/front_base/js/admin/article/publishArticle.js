@@ -7,7 +7,10 @@
 	{
 		$(".category_nav li").click(function(event) //li列表行事件
 		{
-			$(".icon-cog").hide();
+			$("#left .category_nav .icon-cog").hide();	
+			
+			//$("#left .arrow").attr("style", "display:none");
+		
 			$($(this).children()[0].children[0]).show(); //当前点击的li设置按钮显示
 			$(this).css("background-color", "#E78170").siblings().css("background-color", "#ECF0F1");
 			lival = $(this).text();
@@ -15,11 +18,26 @@
 			liIndex = $(this).index();
 		});
 		
-		$(".icon-cog").click(function() //设置按钮事件
+		$("#left .category_nav  .icon-cog").click(function() //栏目设置按钮事件
 		{
 			$(".arrow").toggle();
-			var x = $(this).position();
-			$(".arrow").css({position: "absolute", right: "0", top: x.top + 96}); //控制弹出框出现的位置
+			var offset = $(this).offset();
+			$(".arrow").css({position: "absolute", right: "0", top: offset.top- 56}); //控制弹出框出现的位置
+		});
+		
+		/*$("#middle .icon-cog").click(function() //文章设置按钮事件
+		{
+			alert("aaa");
+			$(".middle_arrow").toggle();
+			var offset = $(this).offset();
+			$(".middle_arrow").css({position: "absolute", right: "0", top: offset.top- 56}); //控制弹出框出现的位置
+		});*/
+		
+		$(document).on("click", "#middle .icon-cog", function(event)
+		{
+			$(".middle_arrow").toggle();
+			var offset = $(this).offset();
+			$(".middle_arrow").css({position: "absolute", right: "748", top: offset.top+30}); //控制弹出框出现的位置
 		});
 		
 		$(".first_li").click(function() //修改链接事件
@@ -82,6 +100,10 @@
 					var article_title =  article.title; //获取文章标题
 					var article_content = article.content; //获取文章内容
 					$(".note_list li:first").css("background-color", "#D1C091");
+					$(".note_list li").children().eq(0).css("color", "#FFF");
+					$(".note_list li").children().eq(1).css("color", "#FFF");
+					$(".note_list li").children().eq(2).css("color", "#FFF");
+					$(".note_list li:first").children().show();
 					var content = "<li><i class='icon-file icon-3x'></i><p class='abbreviate'>"+ article_content + 
 					"</p><span class='note_title'>"+ article_title  +"</span><p class='note_wordage'></p><i class='icon-cog'></i></li>";
 					$(".note_list").append(content);
@@ -154,6 +176,10 @@
 					$(".simditor-body p").text(text2); //将中间区域的第一个文章内容添加到右侧textarea中显示
 					
 					$(".note_list li:first").css("background-color", "#D1C091");
+					$(".note_list li:first").children().show();
+					$(".note_list li").children().eq(0).css("color", "#FFF");
+					$(".note_list li").children().eq(1).css("color", "#FFF");
+					$(".note_list li").children().eq(2).css("color", "#FFF");
 					
 					
 					textOverflow(); //文字溢出处理方法
@@ -184,21 +210,42 @@
 		{
 			var content = "<li><i class='icon-file icon-3x'></i><p class='abbreviate'></p><span class='note_title'>"+ '无标题文章'  +"</span><p class='note_wordage'></p><i class='icon-cog'></i></li>";
 			$(".note_list").prepend(content);
+			
 			$(".note_list li:lt(1)").css("background-color", "#D1C091");
 			$(".note_list li:gt(0)").css("background-color", "");
+			$(".note_list li i:first-child").css("color", "#D1C091");
+			$(".note_list li:lt(1)").children().eq(0).css("color", "#FFF"); 
+			$(".note_list li .note_title").css("color", "#555"); 
+			$(".note_list li .abbreviate").css("color", "#555"); 
+			$(".note_list li:lt(1)").children().eq(2).css("color", "#FFF"); 
+			$(".note_list li .icon-cog").hide(); 
+			$(".note_list li:lt(1)").children().eq(4).show();
+			
 			$(".text_title").val("无标题文章");
 			$(".simditor-body p").text(""); //将中间区域的第一个文章内容添加到右侧textarea中显示
 		});
 	});
 	
-	var artId;
+	var artId = 0;
 	
 	/** 点击中间文章信息部分切换文章 **/
 	$(document).on("click", "#middle ul li", function(event)
 	{
 	
-		artId = event.target.id;
-		var article_id = $(this).attr("id"); //获取点击文章的id
+		artId = event.target.id; //获取当前点击li的id
+		var article_id = $(this).attr("id");
+		
+		$(".note_list li").css("background-color", "");
+		$(this).css("background-color", "#D1C091");
+		$(".note_list li i:first-child").css("color", "#D1C091");
+		$(this).children().eq(0).css("color", "#FFF");
+		$(".note_list li .abbreviate").css("color", "#555");
+		$(this).children().eq(1).css("color", "#FFF");
+		$(".note_list li .note_title").css("color", "#555");
+		$(this).children().eq(2).css("color", "#FFF");
+		$(".note_list li .icon-cog").hide();
+		$(this).children().eq(4).show();
+		
 		$.post("article/showArticleByAid", {"article_id": article_id}, function(result)
 		{
 			$(".text_title").val(result.article.title);
@@ -206,18 +253,31 @@
 		});
 	});
 	
-	/** 监听input和textarea **/
-	$(document).on("input propertychange", ".text_title", function() //监听标题输入框改变事件
+	
+	$(document).on("input propertychange", ".text_title", function()
 	{
-		var text = $(".text_title").val();
-		//$(".note_list #" + artId).text(text);
-		
-		//$("#mainbody div #" + articleDivId).html(this.value); //将右侧标题输入框输入的值传送给中间文章标题部分
+		var textTitle = $(".text_title").val();
+		$(".note_list #" + artId + " .note_title").text(textTitle);
 	});
-	$(document).on("input propertychange", "textarea", function()
+	
+	$(document).on("input propertychange", ".simditor-body", function()
 	{
-		$("#mainbody div ." + articleDivId).html(this.value); //将右侧textarea输入的值传送给中间文章内容部分
-		textOverflow(); //调用文字溢出处理方法
+		$(".note_list #" + artId + " .abbreviate").text($(".simditor-body p").text());
+		textOverflow(); 
+	});
+	
+	$(document).on("input propertychange", ".text_title, .simditor-body", function()
+	{	
+		setInterval("saveArticle()", 1000); 
+		$(function saveArticle()
+		{
+			article_title = $(".text_title").val();
+			article_content = $(".simditor-body p").text();
+			$.post("article/updateArticle", {"title": article_title, "content": article_content, "id": artId}, function(result)
+			{
+				
+			});
+		});
 	});
 
 	/*$(".last_li").on("click", function()

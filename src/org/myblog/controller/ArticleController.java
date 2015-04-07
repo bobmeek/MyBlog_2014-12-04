@@ -219,16 +219,17 @@ public class ArticleController
 	@RequestMapping(value="/updateArticle", produces="application/json")
 	@ResponseBody
 	public int updateArticle(ArticleVO article) throws Exception
-	//public int updateArticle(String title, String content, int article_id) throws Exception
+	//public int updateArticle(String title, String content, int id) throws Exception
 	{
 		/*ArticleVO article = new ArticleVO();
 		article.setTitle(title);
 		article.setContent(content);
+		article.setId(id);
 		article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));*/
 		
 		System.out.println("updateArticle invoked!!!");
 		System.out.println("updateArticle article = " + article);
-		article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));
+		//article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));
 		articleService.update(article);	
 
 		return 1;

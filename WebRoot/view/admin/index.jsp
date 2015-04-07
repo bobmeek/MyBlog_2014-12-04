@@ -27,14 +27,14 @@
 <!-- zTree插件样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
 <!-- 文章编辑器 -->
-<link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
+<!-- <link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" /> -->
 <!-- 弹出框 -->
 <link rel="stylesheet" href="resources/front_frame/jquery_confirm/css/jquery-confirm.css" />	<!-- 引入jQuery模态对话框插件 -->
 
 <!-- 左侧导航菜单 -->
 <link rel="stylesheet" href="resources/front_base/css/tree-menu.css">
 <!-- 文章管理样式 -->
-<link rel="stylesheet" href="resources/front_base/css/addArticle3.css" />
+<link rel="stylesheet" href="resources/front_base/css/publishArticle.css" />
 
 <!-- 会引起bootstrap某些样式发生变化 -->
 <!-- <link rel="stylesheet" href="resources/front_base/css/reset.css" /> -->
@@ -142,7 +142,7 @@
 				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="addArticle2Page" class="page" style="display:visibility;">
-				<jsp:include page="article/addArticle3.jsp" flush="true"></jsp:include>
+				<jsp:include page="article/publishArticle.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="categoryInfoPage" class="page" style="display:none;">
 				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
@@ -182,12 +182,15 @@
 	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
 	
 	<!-- 文章编辑器 -->
+	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/jquery.min.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
+	<script  type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
+	<script   type="text/javascript" src="resources/front_frame/bootstrap/js/modal.js"></script>  -->
 	<!-- 文章编辑器 -->
 	
 	
@@ -202,7 +205,7 @@
 	<!-- 所有文章信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<!-- 个人用户文章信息 -->
-	<script type="text/javascript" src="resources/front_base/js/admin/article/addArticle3.js"></script>
+	<!-- <script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script> -->
 	<!-- 导航栏目 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 	<!-- 网站所有信息备份 -->
