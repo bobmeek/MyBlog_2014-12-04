@@ -78,12 +78,13 @@ public class MyRealm extends AuthorizingRealm{
         //实际上这个authcToken是从LoginController里面currentUser.login(token)传过来的  
         //两个token的引用都是一样的,本例中是org.apache.shiro.authc.UsernamePasswordToken@33799a1e  
         UsernamePasswordToken token = (UsernamePasswordToken)authcToken;  
+        
         System.out.println("验证当前Subject时获取到token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));  
         UserVO user = userService.findByUsername(token.getUsername());  
         if(null != user){  
         	//使用登录原始密码校验
         	
-        	
+        	    
         	
         	/* 如使用这种方式,则是与登录时候填写的密码进行校验。
         	 * <bean id="myRealm" class="org.myblog.shiro.realm.MyRealm" />

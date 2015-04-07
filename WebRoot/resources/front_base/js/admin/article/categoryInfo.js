@@ -35,17 +35,16 @@ $(function(){
 			$('#allCategory tbody tr').each(function(i){
 				debugger;
 				$(this).children().eq(4).text(i+1);
-				//当拖拽排序后,立即将所有的导航顺序更新,所以遍历更新.
-				$('#allCategory tbody tr').each(function(i){
-					var id = parseInt($($(this).children().get(0)).text());
-					var name = $($(this).children().get(1)).text();
-					var type = parseInt($($(this).children().get(2)).text());
-					var status = $($(this).children().get(3)).text()=='停用'?0:1;
-					var orders = parseInt($($(this).children().get(4)).text());
-					var category = new Category(id,name,type,status,orders);
-					update(category);
-				});
-				
+			});
+			//当拖拽排序后,立即将所有的导航顺序更新,所以遍历更新.
+			$('#allCategory tbody tr').each(function(i){
+				var id = parseInt($($(this).children().get(0)).text());
+				var name = $($(this).children().get(1)).text();
+				var type = parseInt($($(this).children().get(2)).text());
+				var status = $($(this).children().get(3)).text()=='停用'?0:1;
+				var orders = parseInt($($(this).children().get(4)).text());
+				var category = new Category(id,name,type,status,orders);
+				update(category);
 			});
 		}
 	});

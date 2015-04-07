@@ -16,12 +16,7 @@
 			</ol>
 		</div>
 		<div style="float:right;margin-bottom:10px;">
-			<shiro:hasPermission name="role:delete">
-				<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_role_link">删除角色</a>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="role:add">
-				<a href="#add_role_modal" data-target="#add_role_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_role_link">添加角色</a>			
-			</shiro:hasPermission>
+			<a href="#add_role_modal" data-target="#add_role_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_role_link">添加角色</a>			
 		</div>
 	</div>
 	

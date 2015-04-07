@@ -22,7 +22,7 @@ $(function(){
 	
 	function loadPage()
 	{
-		$("#usersRolePage").load("view/admin/user/usersRole.jsp");
+		//$("#usersRolePage").load("view/admin/user/usersRole.jsp");
 		showRoles();
 	}
 	

@@ -34,7 +34,7 @@ $(function(){
 	
 	function loadPage()
 	{
-		$("#usersInfoPage").load("view/admin/user/usersInfo.jsp");
+		//$("#usersInfoPage").load("view/admin/user/usersInfo.jsp");
 		showUsers(currentPage*pageSize,pageSize);
 	}
 	
@@ -205,13 +205,11 @@ $(function(){
 		if(flag)
 		{
 			$.post("user/add/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-				loadPage();
 			},"json")
 		}
 		else
 		{
 			$.post("user/delete/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-				loadPage();
 			},"json")
 		}
 		
@@ -396,10 +394,6 @@ $(function(){
 			$("#intro_text_update").val(result.intro);
 			
 			$("#head_img").attr("src",result.headImg);
-	//			$("#username").val(result.user.username);
-	//			$("#email").val(result.user.email);
-	//			$(".page").hide();
-	//			$("#personInfoPage").show();
 			
 		},"json")
 		
@@ -412,7 +406,6 @@ $(function(){
 		$("#show_userext_table .sp").hide();
 		$("#show_userext_table .in").show();
 		reset();
-//		alert("存储到数据库!");
 		var id = $("#id_text_update").val();
 		var username = $("#username_text_update").val();
 		var email = $("#email_text_update").val();
@@ -572,10 +565,6 @@ function showUserExt(id)
 		$("#intro_text_update").val(result.intro);
 		
 		$("#head_img").attr("src",result.headImg);
-//			$("#username").val(result.user.username);
-//			$("#email").val(result.user.email);
-//			$(".page").hide();
-//			$("#personInfoPage").show();
 		
 	},"json")
 
