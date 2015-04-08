@@ -27,9 +27,10 @@
 			<thead>
 				<tr>
 					<th style="display: none;">ID</th>
-					<th>职位名称</th>
-					<th>职位描述</th>
-					<th>管辖部门</th>
+					<th>角色标识</th>
+					<th>角色描述</th>
+					<th>负责模块</th>
+					<th>详情</th>
 					<th>操作</th>
 				</tr>
 			</thead>
@@ -44,7 +45,41 @@
 		<ul id="tree" class="ztree"></ul>
 	</div>	
 	
-	
+	<div class="modal fade" id="show_role_modal">
+		<div class="modal-dialog">
+			<div class="modal-content" style="width:500px;">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true" id="close_update">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h2 class="modal-title" style="text-align: center" id="myModalLabel">角色信息</h2>
+				</div>
+				<div class="modal-body" style="height:230px;">
+					<div>
+			 			<table class="show-resource" id="show_role_table">
+				 			<tr style="display: none;">
+				 				<td>ID</td>
+				 				<td><span class="sp" id="id_role_span_update"></span><input type="text" class="form-control in" style="display: none;" id="id_role_text_update"/></td>
+				 			</tr>
+				 			<tr>
+				 				<td>角色标识</td>
+				 				<td><span class="sp" id="role_role_span_update"></span><input type="text" class="form-control in" style="display: none;" id="role_role_text_update"/></td>
+				 			</tr>
+				 			<tr>
+				 				<td>角色描述</td>
+				 				<td><span class="sp" id="desc_role_span_update"></span><input type="text" class="form-control in" style="display: none;" id="desc_role_text_update"/></td>
+				 			</tr>
+			 			</table>
+			 		</div>
+			 		
+			 		
+				</div>
+				<div class="modal-footer">
+					<button type="button" id="update_role_btn" class="btn btn-primary btn-lg btn-block">保存</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	
 	<div class="modal fade" id="add_role_modal">
@@ -79,5 +114,10 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
 	
 </body>

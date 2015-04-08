@@ -32,12 +32,6 @@ $(function(){
 	 * 
 	 */
 	
-	function loadPage()
-	{
-		//$("#usersInfoPage").load("view/admin/user/usersInfo.jsp");
-		showUsers(currentPage*pageSize,pageSize);
-	}
-	
 	function  User(id,username,userpwd,email,registerTime,registerIP,lastLoginTime,lastLoginIP,isDisabled,isEmailActive,uid)
 	{
 		this.id = id;
@@ -68,47 +62,35 @@ $(function(){
 	}
 	
 	
-	//总条数
-	var totalNum = 0;
 	//总页数
 	var totalPage = 0;
 	//当前页数
-	var currentPage = 0;
-	//每页显示条数
-	var pageSize = 10;
-	//从第几条开始
-	var pageNo = currentPage*pageSize;
-	//实际查出来的条数
-	var findNumReality = 0;
+	var currentPage = 1;
+	//查出来的条数
+	var findPageCount = 0;
 	$("#user_pre").attr("class","previous disabled");
-//	showUsers(pageNo,pageSize);
 	$(document).on("click","#usersInfo",function(e){
-		loadPage();
+		showUsers(currentPage);
 	});
 	/**显示所有用户信息*/
-	function showUsers(pageNo,pageSize)
+	function showUsers(currentPage)
 	{
-		debugger;
 		$("#allUsers_check").prop("checked",function(){
 			return false;
 		});
-		$.post("user/show/allUsers",{"pageNo":pageNo,"pageSize":pageSize},function(result){
-			totalNum = result.pagers.totalNum;
-			var users = result.pagers.pageList;
-			var roles = result.roles
-			totalPage = Math.ceil(totalNum/pageSize)-1;
-			if(totalPage<1 || currentPage==totalPage)
-				$("#user_next").attr("class","next disabled");
-			else
-			 	$("#user_next").attr("class","next");
-			
-			findNumReality = users.length;
-			
-			
-			
+		$.post("user/show/allUsers",{"currentPage":currentPage},function(result){
+			var roles = result.roles;
+			var users = result.users;
+			findPageCount = users.length;
+			totalNum = result.totalCount;
+			totalPage = result.totalPage;
+			currentPage = result.currentPage;
+			var hasPrePage = result.hasPrePage;
+			var hasNextPage = result.hasNextPage;
+			hasPrePage?$("#user_pre").attr("class","previous enabled"):$("#user_pre").attr("class","previous disabled");
+			hasNextPage?$("#user_next").attr("class","next enabled"):$("#user_next").attr("class","next disabled");
 			$("#allUsers tbody").html("");
 			$.each(users,function(n,user){
-				debugger;
 				var disabled = (user.isDisabled==0)?"<span class='label label-danger'>停用</span>":"<span class='label label-success'>使用</span>";
 				var registerTime = (null==user.registerTime)?"":user.registerTime;
 				var lastLoginTime = (null==user.lastLoginTime)?"":user.lastLoginTime;
@@ -116,22 +98,19 @@ $(function(){
 				//拥有角色拼接
 				var roleArr = [];
 				var roleStr = "";
+				
 				if(user.listRole==null || user.listRole.length==0)
 				{
 					roleArr.push("注册用户");
 				}
 				else
 				{
-					$.each(user.listRole,function(n,role){
-						
-						roleArr.push(role.desc);
-						 
-					});
+					roleArr = user.listRole[0].desc.split(',');
 				}
 				roleStr = roleArr.join(",");
 					
 				//设置下拉菜单,将已有的角色高亮
-				var rolesCheckboxStr = ""
+				var rolesCheckboxStr = "";
 				$.each(roles,function(n,role){
 					
 					//将已有的角色设置checked='checked'
@@ -165,26 +144,29 @@ $(function(){
 						"<td width='14%'>" +
 						"<div class='btn-group'>" +
 						"<button data-toggle='dropdown' class='btn btn-sm btn-warning dropdown-toggle'>"+roleStr+"<i class='icon-caret-down'></i></button>" +
-						"<ul class='dropdown-menu' id='roles_checkbox'>" +rolesCheckboxStr
+						"<ul class='dropdown-menu' id='roles_checkbox'>" +rolesCheckboxStr+
 						"</ul>" +
-						"</div>"
+						"</div>"+
 						"</td>" +
-						"</tr>"
+						"</tr>";
 						
 				
 				$("#allUsers tbody").append(content);					
 					
 				
 			});
-			
-			
-		
-			
 		},"json");
-		
-	
 	}
 	
+	//下一页
+	$("#user_next").on("click",function(){
+		debugger;
+		currentPage==totalPage?showUsers(totalPage):showUsers(++currentPage);
+	});
+	//上一页
+	$("#user_pre").on("click",function(){
+		currentPage==1?showUsers(currentPage):showUsers(--currentPage);
+	});
 	
 	//给用户设置角色 
 	$(document).on("change","#roles_checkbox :checkbox",function(event){
@@ -205,31 +187,43 @@ $(function(){
 		if(flag)
 		{
 			$.post("user/add/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-			},"json")
+			},"json");
 		}
 		else
 		{
 			$.post("user/delete/roleRelation",{"userId":userId,"roleId":roleId},function(result){
-			},"json")
+			},"json");
 		}
 		
 	});
 	
+	//添加用户
+	$(document).on("click","#add_user_btn",function(event){
+		$("#add_user_modal").modal("hide");
+		
+		var username = $("#username_text_add").val();
+		var userpwd = $("#userpwd_text_add").val();
+		var user = new User(0,username,userpwd,null,"2015-01-10 01:24:34",null,"2015-01-10 01:24:34",null,0,0,null);
+		
+		
+		$.post("user/add",user,function(result){
+			
+			showUsers(currentPage);
+				
+		},"json");
+		
+	});
 	
-	
-	
-	$(document).on("click","#allUsers .delete",function(){
+	//单条删除暂时不需要
+	/*$(document).on("click","#allUsers .delete",function(){
 		debugger;
 		var id = parseInt($(this).closest("tr").children().eq(0).text());
 		
 		$.post("user/delete/"+id,"",function(result){
-			if(findNumReality==1)
-				showUsers((currentPage-1)*pageSize,pageSize);
-			else
-				showUsers(currentPage*pageSize,pageSize);
+			findPageCount==1?showUsers(--currentPage):showUsers(currentPage);
 		},"json");
 		
-	});
+	});*/
 	
 	
 	//全选，取消全选
@@ -263,10 +257,7 @@ $(function(){
 				contentType:"application/json", 
 				success:function(result){
 					//如果删除的条数  = 本页实际查出来的条数 则将页数-1
-					if(idArr.length==findNumReality)
-						showUsers((currentPage-1)*pageSize,pageSize);
-					else
-						showUsers(currentPage*pageSize,pageSize);
+					idArr.length==findPageCount?showUsers(--currentPage):showUsers(currentPage);
 					
 				}
 				
@@ -279,68 +270,12 @@ $(function(){
 	});
 	
 	
-	//下一页
-	$("#user_next").on("click",function(){
-		currentPage++;
-		if(currentPage<=totalPage)
-		{
-			$("#user_pre").attr("class","previous");
-			showUsers(currentPage*pageSize,pageSize);
-			if(currentPage == totalPage)
-				$(this).attr("class","next disabled");
-		}
-		else
-		{
-			currentPage = totalPage;
-		}
-		
-	});
-	//上一页
-	$("#user_pre").on("click",function(){
-		currentPage--;
-		if(currentPage>0)
-		{
-			$("#user_next").attr("class","next");
-			showUsers(currentPage*pageSize,pageSize);
-		}
-		else
-		{
-			currentPage=0;
-			$("#user_next").attr("class","next");
-			$(this).attr("class","previous disabled");
-			showUsers(currentPage*pageSize,pageSize);
-		}
-		
-	});
-	
-	
-	
-
-	
-	//添加用户
-	$(document).on("click","#add_user_btn",function(event){
-		$("#add_user_modal").modal("hide");
-		
-		var username = $("#username_text_add").val();
-		var userpwd = $("#userpwd_text_add").val();
-		var user = new User(0,username,userpwd,null,"2015-01-10 01:24:34",null,"2015-01-10 01:24:34",null,0,0,null);
-		
-		
-		$.post("user/add.do",user,function(result){
-			
-			showUsers(currentPage*pageSize,pageSize);
-				
-		},"json");
-		
-	});
-	
 	
 	
 	
 	/****
 	 * 用户详细信息样式
-	 * 1.将每个tr的第一个td变色，并且居右对齐。
-	 * 2.点击详细，默认数据显示在label里，点击编辑按钮，数据变为可编辑状态，底部编辑按钮变为更新按钮。
+	 * 将每个tr的第一个td变色，并且居右对齐。
 	 */
 	function showUserExtCss()
 	{
@@ -354,8 +289,6 @@ $(function(){
 				"padding-left":"10px",
 				"text-align":"left"
 			});
-		//$(tr).children("td:eq(0)").css("width","80px").css("background-color","#EDF3F4").css("text-align","right");
-//		$(tr).children("td:eq(1)").css("padding-left","10px").css("text-align","left");
 		
 		});
 	}
@@ -369,8 +302,7 @@ $(function(){
 	});
 	
 	
-	
-	$("#allUsers .detail").live("click",function(event){
+	$(document).on('click','#allUsers .detail',function(e){
 		showUserExtCss();
 		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
 		$.post("user/show/"+id+"/ext","",function(result){
@@ -441,7 +373,7 @@ $(function(){
             //将json对象user转换为json字符串
             data:JSON.stringify(userExt), 
             success:function(data){ 
-            	showUsers(currentPage*pageSize,pageSize);
+            	showUsers(currentPage);
 				//alert(data);                          
             } 
 		});
@@ -545,14 +477,14 @@ function showUserExt(id)
 {
 	debugger;
 	$.post("user/show/"+id+"/ext","",function(result){
-		$("#id_span_update").html(result.user.id);
-		$("#username_span_update").html(result.user.username);
-		$("#email_span_update").html(result.user.email);
-		$("#qq_span_update").html(result.qq);
-		$("#mobile_span_update").html(result.mobile);
-		$("#birthday_span_update").html(result.birthday);
-		$("#signature_span_update").html(result.signature);
-		$("#intro_span_update").html(result.intro);
+		$("#id_span_update").text(result.user.id);
+		$("#username_span_update").text(result.user.username);
+		$("#email_span_update").text(result.user.email);
+		$("#qq_span_update").text(result.qq);
+		$("#mobile_span_update").text(result.mobile);
+		$("#birthday_span_update").text(result.birthday);
+		$("#signature_span_update").text(result.signature);
+		$("#intro_span_update").text(result.intro);
 		
 		
 		$("#id_text_update").val(result.user.id);

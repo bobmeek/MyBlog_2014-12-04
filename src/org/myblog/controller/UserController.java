@@ -43,6 +43,8 @@ import org.myblog.common.EmailUtil;
 import org.myblog.common.MD5;
 import org.myblog.common.Pager;
 import org.myblog.common.VerifyCodeUtil;
+import org.myblog.common.page.Page;
+import org.myblog.common.page.PageUtil;
 import org.myblog.model.RoleVO;
 import org.myblog.model.UserExtVO;
 import org.myblog.model.UserVO;
@@ -131,7 +133,7 @@ public class UserController
 	 * @return String    返回类型
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/add.do",produces = "application/json")
+	@RequestMapping(value = "/add",produces = "application/json")
 	@ResponseBody
 	public UserVO add(HttpServletRequest request, UserVO user) throws Exception
 	{	
@@ -151,7 +153,7 @@ public class UserController
 		
 		//保存用户基本信息
 		userService.saveUser(user);
-		
+		userService.addRoleRelation(user.getId(), 5);
 		//保存用户扩展信息
 		UserExtVO userExt = new UserExtVO();
 		userExt.setUser(user);
@@ -247,12 +249,29 @@ public class UserController
 	
 	@RequestMapping(value="/show/allUsers",produces="application/json")
 	@ResponseBody
-	public ModelMap showAllUsersByPager(int pageNo,int pageSize,ModelMap modelMap)
+	public ModelMap showAllUsersByPager(int currentPage,ModelMap modelMap)
 	{
-		Pager<UserVO> pagers = userService.findByPage(pageNo, pageSize);
+		int pageCount = 5;
+		int totalCount = userService.getTotalNum();
+		Page page = PageUtil.createPage(pageCount, currentPage, totalCount);
+		int totalPage = page.getTotalPage();
+		currentPage = page.getCurrentPage();
+		int startIndex = page.getSrartIndex();
+		boolean hasPrePage = page.isHasPrePage();
+		boolean hasNextPage = page.isHasNextPage(); 
+		
+		Pager<UserVO> pagers = userService.findByPage(startIndex, pageCount);
+		List<UserVO> users = pagers.getPageList();
 		List<RoleVO> roles = roleService.findAll();
-		modelMap.addAttribute("pagers",pagers);
+		
 		modelMap.addAttribute("roles",roles);
+		modelMap.addAttribute("users",users);
+		modelMap.addAttribute("totalCount",totalCount);
+		modelMap.addAttribute("totalPage",totalPage);
+		modelMap.addAttribute("currentPage",currentPage);
+		modelMap.addAttribute("hasPrePage",hasPrePage);
+		modelMap.addAttribute("hasNextPage",hasNextPage);
+		
 		return modelMap;
 	}
 	
@@ -341,7 +360,7 @@ public class UserController
 		
 	}
 	
-	 /** 
+	/** 
      * 获取验证码图片和文本(验证码文本会保存在HttpSession中) 
      */  
     @RequestMapping("/getVerifyCodeImage")  

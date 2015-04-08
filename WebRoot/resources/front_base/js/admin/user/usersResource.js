@@ -61,7 +61,7 @@ $(function(){
 								"<td>"+type+"</td>" +
 								"<td>"+resource.url+"</td>" +
 								"<td>"+resource.permission+"</td>" +
-								"<td width='15%' style='text-align: left;'>" + detailLink + deleteLink + addChildrenLink +
+								"<td width='15%' style='text-align: left;'>" + detailLink + addChildrenLink + deleteLink +
 								"</td>" + 
 								"</tr>"
 					allResourcesTbody.append(content);

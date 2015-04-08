@@ -72,14 +72,10 @@
 	</select>
 
 	
-	<!-- 用户分页查询 -->
-<!-- 	<select id="findByPage" resultType="user" parameterType="map"> -->
-<!-- 		select * from user limit #{pageNo}, #{pageSize}    -->
-<!-- 	</select> -->
 	<select id="findByPage" resultMap="userResultMap" parameterType="map">
 		 <!-- SELECT u.id u_id,r.id r_id,u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u ,role r,user_role ur WHERE u.`id`=ur.`user_id` AND r.`id`=ur.`role_id` limit #{pageNo}, #{pageSize} -->
 		 
-		SELECT u.id u_id,r.id r_id, u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u LEFT JOIN `user_role` ur ON u.`id`=ur.`user_id` LEFT JOIN `role` r ON r.`id`=ur.`role_id`
+		SELECT u.id u_id,r.id r_id, u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,group_concat(r.`role`) as `role`,group_concat(r.`desc`) as `desc` FROM `user` u LEFT JOIN `user_role` ur ON u.`id`=ur.`user_id` LEFT JOIN `role` r ON r.`id`=ur.`role_id` group by ur.`user_id` limit #{pageNo}, #{pageSize}
 		   
 	</select>
 	

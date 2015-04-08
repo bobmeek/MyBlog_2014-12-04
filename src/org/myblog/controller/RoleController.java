@@ -57,6 +57,14 @@ public class RoleController
 		 roleService.save(role);
 	 }
 	 
+	 @RequestMapping(value = "/update",produces="application/json;charset=utf-8")
+	 @ResponseBody
+	 public void update(RoleVO role){
+		 
+		 roleService.update(role);
+	 }
+	 
+	 
 	 /**添加与资源的关系**/
 	 @RequestMapping(value = "/add/resourceRelation",produces="application/json;charset=utf-8")
 	 @ResponseBody
@@ -64,6 +72,8 @@ public class RoleController
 	 {
 		 roleService.addResourceRelation(roleId, resourceId);
 	 }
+	 
+	 
 	 
 	 /**删除与资源的关系**/
 	 @RequestMapping(value = "/delete/resourceRelation",produces="application/json;charset=utf-8")
@@ -73,6 +83,7 @@ public class RoleController
 		 roleService.deleteResourceRelation(roleId, resourceId);
 		 
 	 }
+	 
 	 
 	 @RequestMapping(value="/show/allRoles",produces="application/json")
 	 @ResponseBody
