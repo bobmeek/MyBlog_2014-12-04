@@ -215,7 +215,17 @@ public class UserController
 		}
 	}
 	
-	@RequestMapping(value="/update",produces="application/json")
+	
+	/**修改用户基本信息 - 是否启用**/
+	@RequestMapping(value="/update/base",produces="application/json")
+	@ResponseBody
+	public int updateUser(@RequestBody UserVO user){
+		userService.update(user);
+		return 1;
+	}
+	
+	/**修改用户详细信息**/
+	@RequestMapping(value="/update/detail",produces="application/json")
 	@ResponseBody
 	public int updateUser(@RequestBody UserExtVO userExt)
 	{

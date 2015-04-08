@@ -91,7 +91,8 @@ $(function(){
 			hasNextPage?$("#user_next").attr("class","next enabled"):$("#user_next").attr("class","next disabled");
 			$("#allUsers tbody").html("");
 			$.each(users,function(n,user){
-				var disabled = (user.isDisabled==0)?"<span class='label label-danger'>停用</span>":"<span class='label label-success'>使用</span>";
+				
+				var status = (user.isDisabled==0)?"停用":"启用";
 				var registerTime = (null==user.registerTime)?"":user.registerTime;
 				var lastLoginTime = (null==user.lastLoginTime)?"":user.lastLoginTime;
 				 	
@@ -132,14 +133,14 @@ $(function(){
 					
 				
 				
-				var content = "<tr>" +
+				var content = "<tr class='usersData'"+user.id+">" +
 						"<td style='display:none;'>"+user.id+"</td>" +
 						"<td><input type='checkbox' value="+user.id+"></td>" +
 						"<td>"+user.username+"</td>" +
 						"<td>"+user.email+"</td>" +
 						"<td>"+registerTime+"</td>" +
 						"<td>"+lastLoginTime+"</td>" +
-						"<td width='5%' style='vertical-align: middle;'>"+disabled+"</td>" +
+						"<td width='5%' style='vertical-align: middle;'><button type='button' class='btn btn-info status_user_btn'>"+status+"</button></td>" +
 						"<td width='5%' style='vertical-align: middle;'><a href='#show_userext_modal' data-target='#show_userext_modal' data-toggle='modal' class='btn btn-sm btn-success detail'>详细</a></td>" +
 						"<td width='14%'>" +
 						"<div class='btn-group'>" +
@@ -152,7 +153,7 @@ $(function(){
 						
 				
 				$("#allUsers tbody").append(content);					
-					
+				$('.usersData').data(user.id+'',user);	
 				
 			});
 		},"json");
@@ -166,6 +167,26 @@ $(function(){
 	//上一页
 	$("#user_pre").on("click",function(){
 		currentPage==1?showUsers(currentPage):showUsers(--currentPage);
+	});
+	
+	//停用/启用 用户
+	$(document).on('click','.status_user_btn',function(e){
+		var user = new User();
+		user.id = parseInt($($(this).closest('tr').children().get(0)).text());
+		user.isDisabled = $(this).text()=='停用'?1:0;
+		$.ajax({
+			type:"POST", 
+            url:"user/update/base",
+            //发送至服务器时，内容编码格式，默认为：application/x-www-form-urlencoded"，务必要指定！
+            contentType:"application/json",
+            //预期服务器返回的数据类型，默认为：String，也可为xml、text、html等，如有返回复杂类型的数据，务必要指定！
+            dataType:"json",      
+            //将json对象user转换为json字符串
+            data:JSON.stringify(user), 
+            success:function(data){ 
+            	showUsers(currentPage);
+            } 
+		});
 	});
 	
 	//给用户设置角色 
@@ -365,7 +386,7 @@ $(function(){
 		
 		$.ajax({
 			type:"POST", 
-            url:"user/update",
+            url:"user/update/detail",
             //发送至服务器时，内容编码格式，默认为：application/x-www-form-urlencoded"，务必要指定！
             contentType:"application/json",
             //预期服务器返回的数据类型，默认为：String，也可为xml、text、html等，如有返回复杂类型的数据，务必要指定！

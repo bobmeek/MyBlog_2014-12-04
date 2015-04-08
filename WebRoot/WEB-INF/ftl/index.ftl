@@ -62,7 +62,7 @@
 				<#if articles?exists>
 				<#list articles as article>
 					<div class="news_1">
-						<span class='news_title'><a href="${article.id}"  target='${siteInfo.target}'><span>${article.title}</span>${article.title}</a></span>
+						<span class='news_title'><a href="${article.id}"  target='${siteInfo.target}'>${article.title}<span>${article.title}</span></a></span>
 						<span class="news_year">${article.releaseDate?string("yyyy年MM月dd日")}</span>
 						<div class="news_img"><img src="resources/front_base/img/index/news_2.jpg" style="width: 648px; height: 300px; border-top: 1px solid #dcdcdc; padding-top: 10px;"></div>
 						<p class="news_content">

@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <html>
 	<head>
-		<title>显示文章</title>
+		<title>${article.title}</title>
 		<link href="resources/front_frame/bootstrap/css/bootstrap2.css" rel="stylesheet" />
 		<link href="resources/front_base/css/index.css" rel="stylesheet" /><!-- 首页CSS文件 -->
 	</head>  
