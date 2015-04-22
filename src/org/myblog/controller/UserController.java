@@ -22,6 +22,7 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -42,6 +43,8 @@ import org.myblog.common.EmailUtil;
 import org.myblog.common.MD5;
 import org.myblog.common.Pager;
 import org.myblog.common.VerifyCodeUtil;
+import org.myblog.common.page.Page;
+import org.myblog.common.page.PageUtil;
 import org.myblog.model.RoleVO;
 import org.myblog.model.UserExtVO;
 import org.myblog.model.UserVO;
@@ -68,7 +71,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @date Dec 14, 2014 10:52:40 AM
  */
 @Controller
-@RequestMapping("/user/")
+@RequestMapping(value={"/user/","/admin/"})
 public class UserController
 {
 
@@ -130,7 +133,7 @@ public class UserController
 	 * @return String    返回类型
 	 * @throws Exception 
 	 */
-	@RequestMapping(value = "/add.do",produces = "application/json")
+	@RequestMapping(value = "/add",produces = "application/json")
 	@ResponseBody
 	public UserVO add(HttpServletRequest request, UserVO user) throws Exception
 	{	
@@ -150,7 +153,7 @@ public class UserController
 		
 		//保存用户基本信息
 		userService.saveUser(user);
-		
+		userService.addRoleRelation(user.getId(), 5);
 		//保存用户扩展信息
 		UserExtVO userExt = new UserExtVO();
 		userExt.setUser(user);
@@ -212,7 +215,17 @@ public class UserController
 		}
 	}
 	
-	@RequestMapping(value="/update",produces="application/json")
+	
+	/**修改用户基本信息 - 是否启用**/
+	@RequestMapping(value="/update/base",produces="application/json")
+	@ResponseBody
+	public int updateUser(@RequestBody UserVO user){
+		userService.update(user);
+		return 1;
+	}
+	
+	/**修改用户详细信息**/
+	@RequestMapping(value="/update/detail",produces="application/json")
 	@ResponseBody
 	public int updateUser(@RequestBody UserExtVO userExt)
 	{
@@ -244,34 +257,31 @@ public class UserController
 	
 	
 	
-//	@RequestMapping(value="/show/allUsers",produces="application/json")
-//	@ResponseBody
-//	public List<UserVO> showAllUsers()
-//	{
-//		List<UserVO> allUsers = userService.findAll();
-//		
-//		return allUsers;
-//	}
-	 
-	/*@RequestMapping(value="/show/allUsers",produces="application/json")
-	@ResponseBody
-	public Pager<UserVO> showAllUsersByPager(int pageNo,int pageSize,ModelMap modelMap)
-	{
-		Pager<UserVO> pagers = userService.findByPage(pageNo, pageSize);
-		List<RoleVO> roles = roleService.findAll();
-		modelMap.addAttribute("pagers",pagers);
-		modelMap.addAttribute("roles",roles);
-		return pagers;
-	}*/
-	
 	@RequestMapping(value="/show/allUsers",produces="application/json")
 	@ResponseBody
-	public ModelMap showAllUsersByPager(int pageNo,int pageSize,ModelMap modelMap)
+	public ModelMap showAllUsersByPager(int currentPage,ModelMap modelMap)
 	{
-		Pager<UserVO> pagers = userService.findByPage(pageNo, pageSize);
+		int pageCount = 5;
+		int totalCount = userService.getTotalNum();
+		Page page = PageUtil.createPage(pageCount, currentPage, totalCount);
+		int totalPage = page.getTotalPage();
+		currentPage = page.getCurrentPage();
+		int startIndex = page.getSrartIndex();
+		boolean hasPrePage = page.isHasPrePage();
+		boolean hasNextPage = page.isHasNextPage(); 
+		
+		Pager<UserVO> pagers = userService.findByPage(startIndex, pageCount);
+		List<UserVO> users = pagers.getPageList();
 		List<RoleVO> roles = roleService.findAll();
-		modelMap.addAttribute("pagers",pagers);
+		
 		modelMap.addAttribute("roles",roles);
+		modelMap.addAttribute("users",users);
+		modelMap.addAttribute("totalCount",totalCount);
+		modelMap.addAttribute("totalPage",totalPage);
+		modelMap.addAttribute("currentPage",currentPage);
+		modelMap.addAttribute("hasPrePage",hasPrePage);
+		modelMap.addAttribute("hasNextPage",hasNextPage);
+		
 		return modelMap;
 	}
 	
@@ -360,7 +370,7 @@ public class UserController
 		
 	}
 	
-	 /** 
+	/** 
      * 获取验证码图片和文本(验证码文本会保存在HttpSession中) 
      */  
     @RequestMapping("/getVerifyCodeImage")  
@@ -383,11 +393,11 @@ public class UserController
 	/** 
      * 后台用户登录 
      */  
-    @RequestMapping(value="/login", method=RequestMethod.POST)  
-    public String login(HttpServletRequest request){  
+    @RequestMapping(value="/index", method={RequestMethod.POST})  
+    public String login(HttpServletRequest request,String username,String userpwd,boolean rememberMe){
+    	
+    	request.setAttribute("username", username);
         String resultPageURL = InternalResourceViewResolver.FORWARD_URL_PREFIX + "/view/admin/login.jsp";  
-        String username = request.getParameter("username");  
-        String password = request.getParameter("userpwd");  
         //获取HttpSession中的验证码  
         String verifyCode = (String)request.getSession().getAttribute("verifyCode");  
         //获取用户请求表单中输入的验证码  
@@ -397,8 +407,10 @@ public class UserController
             request.setAttribute("message_login", "验证码不正确");  
             return resultPageURL;  
         }  
-        UsernamePasswordToken token = new UsernamePasswordToken(username, password);  
-        token.setRememberMe(true);  
+        UsernamePasswordToken token = new UsernamePasswordToken(username, userpwd);
+        //记住密码即保存Cookie,关闭浏览器时按照设置Cookie留存的时间判断是否重新登录.
+        //当Session没有过期,关闭浏览器后,设置的Cookie还未过期,则不需要重新登录.
+        token.setRememberMe(rememberMe);  
         System.out.println("为了验证登录用户而封装的token为" + ReflectionToStringBuilder.toString(token, ToStringStyle.MULTI_LINE_STYLE));  
         //获取当前的Subject  
         Subject currentUser = SecurityUtils.getSubject();  
@@ -408,7 +420,9 @@ public class UserController
             //所以这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法  
             System.out.println("对用户[" + username + "]进行登录验证..验证开始");  
             currentUser.login(token);  
-            System.out.println("对用户[" + username + "]进行登录验证..验证通过");  
+            System.out.println("对用户[" + username + "]进行登录验证..验证通过");
+            //设置Session过期时间为30分钟,当Session过期后,则需要重新登录.
+            currentUser.getSession().setTimeout(1000*60*30);
             resultPageURL = "admin/index";  
         }catch(UnknownAccountException uae){  
             System.out.println("对用户[" + username + "]进行登录验证..验证未通过,未知账户");  
@@ -438,9 +452,12 @@ public class UserController
     }  
 	
 	 @RequestMapping(value="/logout",method=RequestMethod.GET)    
-	 public String logout(HttpServletRequest request,RedirectAttributes redirectAttributes ){   
+	 public String logout(HttpServletRequest request,RedirectAttributes redirectAttributes ){
+		 	Subject subject = SecurityUtils.getSubject();
+		 	String username = (String) subject.getPrincipal();
+		 	request.setAttribute("username", username);
 	        //使用权限管理工具进行用户的退出，跳出登录，给出提示信息  
-	        SecurityUtils.getSubject().logout();    
+		 	subject.logout();    
 	        request.setAttribute("message_login", "您已安全退出");
 	        return "admin/login";  
 	    }   

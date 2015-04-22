@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.myblog.common.SortListUtil;
 import org.myblog.dto.DataFile;
 import org.myblog.service.facade.DataBackupService;
 import org.springframework.stereotype.Controller;
@@ -76,10 +77,13 @@ public class DataBackupController {
 	 * @time   [ 2015年3月14日 下午10:23:25 ] 
 	 *
 	 */
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "/show")
 	@ResponseBody
 	public List<DataFile> show(ModelMap modelMap){
 		List<DataFile> list = dataBackupService.show("resources\\data_backup\\");
+		//按照时间降序排序
+		list = (List<DataFile>) SortListUtil.sort(list, "time", SortListUtil.DESC); 
 		return list;
 	}
 }

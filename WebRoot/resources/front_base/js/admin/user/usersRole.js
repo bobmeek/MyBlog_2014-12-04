@@ -17,16 +17,28 @@ $(function(){
 	 * 
 	 * 
 	 * **/
+	
+	function Role(id,role,desc)
+	{
+		this.id = id;
+		this.role = role;
+		this.desc = desc;
+	}
+	function Resource(id,parentId,name,checked)
+	{
+		this.id = id;
+		this.parentId = parentId;
+		this.name = name;
+		this.checked = checked;
+	}
+	
 	//初始化角色管理所有的资源
 	var allResources;
 	
-	function loadPage()
-	{
-		$("#usersRolePage").load("view/admin/user/usersRole.jsp");
+	$(document).on('click','#usersRole',function(){
 		showRoles();
-	}
+	});
 	
-	showRoles();
 	function showRoles()
 	{
 		
@@ -51,9 +63,10 @@ $(function(){
 							"<td>"+role.role+"</td>" +
 							"<td>"+role.desc+"</td>" +
 							"<td>"+resourceStr+"</td>" +
+							"<td width='5%'><a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a></td>" +
 							"<td width='10%' style='vertical-align: middle;'>" +
-							"<a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a>" +
-							"<a href='javascript:void(0)' class='btn btn-sm btn-danger role_delete' >删除</a>" +
+							"<a href='#setting_role_modal' data-target='#setting_role_modal' data-toggle='modal' class='btn btn-sm btn-warning role_setting_resource' >分配权限</a>" +
+							"<a href='javascript:;' class='btn btn-sm btn-danger role_delete' >删除</a>" +
 							"</td>" +
 							"</tr>";
 							
@@ -67,22 +80,85 @@ $(function(){
 	
 	}
 	
-	function Role(id,role,desc)
-	{
-		this.id = id;
-		this.role = role;
-		this.desc = desc;
-	}
-	function Resource(id,parentId,name,checked)
-	{
-		this.id = id;
-		this.parentId = parentId;
-		this.name = name;
-		this.checked = checked;
-	}
 	
-	$(document).on("click","#allRoles .role_detail",function(){
+	//删除角色
+	$(document).on("click","#allRoles .role_delete",function(e){
 		
+		var roleId =  $($(this).closest("tr").children("td")[0]).text();
+		$.post("role/delete/"+roleId,"",function(result){
+		
+			showRoles();
+			
+		},"json");
+		
+	});
+	
+	//添加角色
+	$(document).on("click","#add_role_btn",function(e){
+		debugger;
+		$("#add_role_modal").modal("hide");
+		
+		var $role = $("#role_add_role").val();
+		var $desc = $("#desc_add_role").val();
+		var role = new Role(0,$role,$desc);
+		
+		$.post("role/add",role,function(result){
+			showRoles();
+		},"json");
+		
+	});
+	
+	//修改角色信息
+	$(document).on("click","#allRoles .role_detail",function(event){
+		showRoleDetailCss();
+		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
+		var role = $(this).closest("tr").children("td").eq(1).text();
+		var desc = $(this).closest("tr").children("td").eq(2).text();
+		$("#id_role_span_update").text(id);
+		$("#role_role_span_update").text(role);
+		$("#desc_role_span_update").text(desc);
+		
+		$("#id_role_text_update").val(id);
+		$("#role_role_text_update").val(role);
+		$("#desc_role_text_update").val(desc);
+		
+	});
+	
+	$(document).on('click','#show_role_table .sp',function(){
+		showRoleText();
+	});
+	
+	$(document).on('click','#update_role_btn',function(event){
+		showRoleSpan();
+		var $id = $('#id_role_text_update').val();
+		var $role = $('#role_role_text_update').val();
+		var $desc = $('#desc_role_text_update').val();
+		var role = new Role($id,$role,$desc);
+		$.post('role/update',role,function(result){
+			showRoles();
+		},'json');
+	});
+	
+	/****
+	 * 角色详细信息样式
+	 * 将每个tr的第一个td变色，并且居右对齐。
+	 */
+	function showRoleDetailCss(){
+		$.each($("#show_role_table tr"),function(n,tr){
+			$(tr).children("td").eq(0).css({
+				"width":"90px",
+				"background-color":"#EDF3F4",
+				"text-align":"right"
+			});
+			
+			$(tr).children("td").eq(1).css({
+				"padding-left":"10px",
+				"padding-top":"15px",
+				"text-align":"left"
+			});
+		});
+	}
+	$(document).on("click","#allRoles .role_setting_resource",function(){
 		//对于同一对象绑定多个同一事件进行不同处理，执行完毕则轮询。
 		$(this).toggle(function(){
 		
@@ -199,33 +275,24 @@ $(function(){
 
 	}
 	
-	//删除角色
-	$(document).on("click","#allRoles .role_delete",function(e){
-		
-		var roleId =  $($(this).closest("tr").children("td")[0]).text();
-		$.post("role/delete/"+roleId,"",function(result){
-		
-			showRoles();
-			
-		},"json")
-		
-	});
 	
-	//添加角色
-	$(document).on("click","#add_role_btn",function(e){
-		debugger;
-		$("#add_role_modal").modal("hide");
-		
-		var role = $("#role_add_role").val();
-		var desc = $("#desc_add_role").val();
-		var role = new Role(0,role,desc);
-		
-		$.post("role/add",role,function(result){
-			showRoles();
-		},"json");
-		
-	});
+	/**
+	 * 编辑还原 - text隐藏,span显示
+	 */
+	function showRoleSpan(){
+		$("#show_role_modal").modal("hide");
+		$("#show_role_table .sp").show();
+		$("#show_role_table .in").hide();
+	}
 	
+	/**
+	 * span隐藏，text显示
+	 */
+	function showRoleText(){
+		$("#show_role_table .sp").hide();
+		$("#show_role_table .in").show();
+	}
 	
-	
+		
+		
 });

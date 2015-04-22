@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html>
 <html>
   <head lang="en">
@@ -47,10 +48,10 @@
 <body>
     <div class="login-box">
     	<h1>Myblog系统后台登录</h1>
-	    <form action="<%=request.getContextPath()%>/user/login" method="post">
+	    <form action="<%=request.getContextPath()%>/admin/index" method="post">
 	        <div class="username">
 	            <label>管理员账号：</label>
-	            <input type="text" name="username" tabindex="1" autocomplete="off" />
+	            <input type="text" name="username" value="${username}" tabindex="1" autocomplete="off" />
 	        </div>
 	        <div class="userpwd">
 	            <label>密  码：</label>
@@ -60,11 +61,11 @@
          		<label>验证码：</label>
             	<input type="text" name="verifyCode" maxlength="4" id="code" tabindex="3"/>
 	            <div class="codeImg">
-	                <img id="verifyCodeImage"  src="<%=request.getContextPath()%>/user/getVerifyCodeImage" />
+	                <img id="verifyCodeImage"  src="<%=request.getContextPath()%>/admin/getVerifyCodeImage" />
 	            </div>
 	        </div>
 	        <div class="remember">
-	       		<input type="checkbox" id="remember" tabindex="4">
+	       		<input type="checkbox" id="rememberMe" name="rememberMe"  value="true"  tabindex="4">
 	        <label>记住密码</label>
 	        <div style="height:30px;color:red;margin-top:-35px;padding-left:200px;">${message_login}</div>
 	    	</div>
@@ -120,7 +121,7 @@
  	    //单击刷新验证码,后缀加一个时间参数可防止因缓存请求不了。
 		$("#verifyCodeImage").on("click",function()
 		{ 
-			this.src = '${pageContext.request.contextPath}/user/getVerifyCodeImage?time='+new Date().getTime();
+			this.src = '${pageContext.request.contextPath}/admin/getVerifyCodeImage?time='+new Date().getTime();
 		});
  	}); 
 	

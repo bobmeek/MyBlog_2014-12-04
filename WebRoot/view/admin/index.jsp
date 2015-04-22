@@ -55,6 +55,7 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
+			<shiro:hasPermission name="user:*">
 			<li class="panel">
 				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
 					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
@@ -67,15 +68,25 @@
 					<li><a href="#" id="usersResource">用户资源管理</a></li>
 				</ul>
 			</li>
+			</shiro:hasPermission>
+			<shiro:hasAnyRoles name="ROLE_Author,ROLE_System,ROLE_CEO">
 			<li class="panel">
 				<a href="#topic_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
 					class="caret"></b></a>
 				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
+					<shiro:hasPermission name="article:add">
 					<li><a href="#" id="addArticle2">发布文章</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="article:*">
 					<li><a href="#" id="articlesInfo">文章信息</a></li>
+					</shiro:hasPermission>
+					<shiro:hasPermission name="system:*">
 					<li><a href="#" id='categoryInfo'>栏目信息</a></li>
+					</shiro:hasPermission>
 				</ul>
 			</li>
+			</shiro:hasAnyRoles>
+			<shiro:hasPermission name="system:*">
 			<li class="panel">
 				<a href="#system_manage"  class="dropdown-toggle collapsed"  data-toggle="collapse" data-parent="#accordion"><i class="icon-cogs icon-large"></i> 系统配置<b
 					class="caret"></b></a>
@@ -87,6 +98,7 @@
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
 				</ul>
 			</li>
+			</shiro:hasPermission>
 		</ul>
 	</div>
 	</nav>
@@ -103,7 +115,7 @@
 						<li><a href="#">信息</a></li>
 						<li><a href="#">设置</a></li>
 						<li class="divider"></li>
-						<li><a href="<%=request.getContextPath()%>/user/logout">退出登录</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/logout">退出登录</a></li>
 					</ul>
 				</div>
 				<div class="btn-group users_info" style="padding-top: 8px;padding-right:50px;">

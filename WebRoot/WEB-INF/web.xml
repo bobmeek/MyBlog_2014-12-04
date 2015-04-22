@@ -70,7 +70,7 @@
     </error-page>  
 	<error-page>  
         <error-code>405</error-code>  
-        <location>/view/exception/405.html</location>  
+        <location>/view/exception/405.jsp</location>  
     </error-page>  
 
 

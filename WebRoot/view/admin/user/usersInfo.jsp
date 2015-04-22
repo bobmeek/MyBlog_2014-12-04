@@ -25,12 +25,8 @@
 			</ol>
 		</div>
 		<div style="float:right;margin-bottom:10px;">
-			<shiro:hasPermission name="user:delete">
-				<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除用户</a>
-			</shiro:hasPermission>
-			<shiro:hasPermission name="user:add">
-				<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加用户</a>
-			</shiro:hasPermission>
+			<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除用户</a>
+			<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加用户</a>
 		</div>
 	</div>
 
@@ -45,7 +41,7 @@
 					<th>邮箱</th>
 					<th>注册</th>
 					<th>最后登录</th>
-					<th>状态</th>
+					<th>用户状态</th>
 					<th>详情</th>
 					<th>现居职位</th>
 					<!-- <th>操作</th> -->

@@ -9,9 +9,9 @@
 		<result property="salt" column="salt" />
 		<result property="email" column="email" />
 		<result property="registerTime" column="register_time"/>
-		<result property="registerIP" column="register_IP"/>
+		<result property="registerIP" column="register_ip"/>
 		<result property="lastLoginTime" column="last_login_time"/>
-		<result property="lastLoginIP" column="last_login_IP"/>
+		<result property="lastLoginIP" column="last_login_ip"/>
 		<result property="isDisabled" column="is_disabled"/>
 		<result property="isEmailActive" column="is_email_active"/>
 		<result property="uid" column="uid"/>
@@ -26,8 +26,10 @@
 
 	<!-- 用户的修改操作 -->
 	<update id="update" parameterType="user">
-		update user set username=#{username},salt=#{salt},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
-		email=#{email}
+		update user set is_disabled=#{isDisabled} where id=#{id}
+		
+		<!-- update user set username=#{username},salt=#{salt},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
+		email=#{email} -->
 	</update>
 	
 	<delete id="delete" parameterType="int">
@@ -42,13 +44,13 @@
 	
 	
 	<!-- 根据邮箱获得对象 -->
-	<select id="findByMail" resultType="user" parameterType="map">
+	<select id="findByMail" resultMap="userResultMap" parameterType="map">
 		select * from user where email = #{email}
 	</select>
 	
-	<!-- 根据邮箱获得对象 -->
-	<select id="findByUsername" resultType="user" parameterType="map">
-		select * from user where username = #{username}
+	<!-- 根据用户名获得对象 -->
+	<select id="findByUsername" resultMap="userResultMap" parameterType="map">
+		select * from `user` where username = #{username}
 	</select>
 	
 	<!-- 用户名是否存在 -->
@@ -72,14 +74,10 @@
 	</select>
 
 	
-	<!-- 用户分页查询 -->
-<!-- 	<select id="findByPage" resultType="user" parameterType="map"> -->
-<!-- 		select * from user limit #{pageNo}, #{pageSize}    -->
-<!-- 	</select> -->
 	<select id="findByPage" resultMap="userResultMap" parameterType="map">
 		 <!-- SELECT u.id u_id,r.id r_id,u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u ,role r,user_role ur WHERE u.`id`=ur.`user_id` AND r.`id`=ur.`role_id` limit #{pageNo}, #{pageSize} -->
 		 
-		SELECT u.id u_id,r.id r_id, u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,r.role,r.desc FROM `user` u LEFT JOIN `user_role` ur ON u.`id`=ur.`user_id` LEFT JOIN `role` r ON r.`id`=ur.`role_id`
+		SELECT u.id u_id,r.id r_id, u.username,u.email,u.register_time,u.register_IP,u.last_login_time,u.last_login_IP,u.is_disabled,u.is_email_active,u.uid,group_concat(r.`role`) as `role`,group_concat(r.`desc`) as `desc` FROM `user` u LEFT JOIN `user_role` ur ON u.`id`=ur.`user_id` LEFT JOIN `role` r ON r.`id`=ur.`role_id` group by ur.`user_id` limit #{pageNo}, #{pageSize}
 		   
 	</select>
 	
