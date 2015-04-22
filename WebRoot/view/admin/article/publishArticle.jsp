@@ -16,28 +16,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<link rel="stylesheet" href="resources/front_base/css/publishArticle.css" />
-	<!-- <link rel="stylesheet" href="resources/front_frame/bootstrap/css/bootstrap.css" />
-	<link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css" />
-	<script src="resources/front_frame/bootstrap/js/bootstrap.js"></script>
-	<script src="resources/front_base/js/jquery-1.8.3.js"></script>
-	<script src="resources/front_frame/bootstrap/js/modal.js"></script> -->
-	<!-- <link rel="stylesheet" href="resources/front_base/css/jquery-confirm.css" />	 --><!-- 引入jQuery模态对话框插件 -->
-	<!-- <script src="resources/front_base/js/jquery-confirm.js"></script> -->
-	<!-- <link rel="stylesheet" href="resources/front_base/css/reset.css" />
-	<link rel="stylesheet" href="resources/front_base/css/style.css" /> -->
-	
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<!-- 引入Simditor编辑器相关文件 -->
-	<link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
 	<script src="resources/front_frame/simditor/js/jquery.min.js"></script>
-	<script src="resources/front_frame/simditor/js/module.js"></script>
-	<script src="resources/front_frame/simditor/js/hotkeys.js"></script>
-	<script src="resources/front_frame/simditor/js/uploader.js"></script>
-	<script src="resources/front_frame/simditor/js/simditor.js"></script>
-	<script src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
-	<script src="resources/front_frame/simditor/js/marked.js"></script>
-	<script src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
-	
+	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
+	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/simditor-autosave.js"></script> -->
 
   </head>
   
@@ -157,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<form action="">
 				<input type="text"  class="text_title"  value="无标题文章"  />
 			</form>
-			<textarea id="editor" placeholder="这里输入内容" autofocus ></textarea>
+			<textarea id="editor" placeholder="这里输入内容"  data-autosave="editor-content"  autofocus ></textarea>
 		</div>
 		
 		<script type="text/javascript">
@@ -171,28 +160,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		            'color', '|', 'ol', 'ul', 'blockquote', 'code', 'table', '|',  
 		            'link', 'image', 'hr', '|', 'indent', 'outdent' ];   */
 		            toolbar = [ 'title', 'bold', 'italic', 'underline', 
-		    		            'color', '|', 'ol', 'ul', 'blockquote', '|',  
+		    		            'color', '|', 'ol', 'ul', 'blockquote', 'code', '|',  
 		    		            'link', 'image', '|', 'indent', 'outdent' ];  
 		    var editor = new Simditor( {  
 		        textarea : $('#editor'),  
 		        placeholder : '这里输入内容...',  
+		        pasteImage: true,
 		        toolbar : toolbar,  //工具栏  
-		        defaultImage : 'simditor-2.0.1/images/image.png', //编辑器插入图片时使用的默认图片  
-		        upload : {  
-		            url : 'ImgUpload.action', //文件上传的接口地址  
+		        defaultImage : 'resources/upload/img/article/6.jpg', //编辑器插入图片时使用的默认图片
+		        upload:{  
+		            url: 'article/upload', //文件上传的接口地址  
 		            params: null, //键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交  
 		            fileKey: 'fileDataFileName', //服务器端获取文件数据的参数名  
 		            connectionCount: 3,  
-		            leaveConfirm: '正在上传文件' 
+		            leaveConfirm: '正在上传文件'
 		        },
-                markdown: true
+                markdown: true,
 		    });  
+		    
 		   });
 		
 	</script>
 	
-		<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script><!-- 加載本页面的js文件 -->
-		<!-- <script src="resources/front_base/js/main.js"></script> -->
 		
   </body>
   

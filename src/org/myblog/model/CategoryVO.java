@@ -1,6 +1,7 @@
 package org.myblog.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,7 +28,7 @@ public class CategoryVO implements Serializable
 
 	private Integer status;
 	
-	
+	private Date adjunctionDate;  //添加栏目时间
 	
 	public Integer getId() {
 		return id;
@@ -99,15 +100,22 @@ public class CategoryVO implements Serializable
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	public Date getAdjunctionDate() {
+		return adjunctionDate;
+	}
+
+	public void setAdjunctionDate(Date adjunctionDate) {
+		this.adjunctionDate = adjunctionDate;
+	}
 
 	public CategoryVO() {
 		super();
 	}
 
-
 	public CategoryVO(Integer id, String name, List<ArticleVO> articles,
 			Integer parentId, Integer userId, Integer type, Integer orders,
-			Integer status) {
+			Integer status, Date adjunctionDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -117,6 +125,7 @@ public class CategoryVO implements Serializable
 		this.type = type;
 		this.orders = orders;
 		this.status = status;
+		this.adjunctionDate = adjunctionDate;
 	}
 
 	@Override
@@ -124,8 +133,7 @@ public class CategoryVO implements Serializable
 		return "CategoryVO [id=" + id + ", name=" + name + ", articles="
 				+ articles + ", parentId=" + parentId + ", userId=" + userId
 				+ ", type=" + type + ", orders=" + orders + ", status="
-				+ status + "]";
+				+ status + ", adjunctionDate=" + adjunctionDate + "]";
 	}
 
-	
 }

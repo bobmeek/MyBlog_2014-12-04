@@ -109,10 +109,10 @@
 	}
 	
 	/* 第一行a标签默认背景色样式 */
-	#left .firstli
+	/* #left .firstli
 	{
 		background-color: #E78170;
-	}
+	} */
 	
 	/* li列表活动伪类样式 */
 	#left ul li a:hover

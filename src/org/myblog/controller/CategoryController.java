@@ -1,11 +1,12 @@
 package org.myblog.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+import org.myblog.common.DateUtil;
 import org.myblog.common.SortListUtil;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.CategoryService;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -30,7 +30,7 @@ public class CategoryController
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping(value="/add1", produces="application/json")
+	@RequestMapping(value="/add1")
 	@ResponseBody
 	public ModelMap addCategoryName(ModelMap modelMap, String category_name) throws Exception
 	{
@@ -38,10 +38,27 @@ public class CategoryController
 		System.out.println("addCategoryName category_name = " + category_name);*/
 		
 		CategoryVO category = new CategoryVO();
+		//category.setId(category.getId());
 		category.setName(category_name); //添加栏目名称
+		category.setAdjunctionDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));
 		
 		categoryService.addCategory(category);
 		modelMap.addAttribute("c_cid", category.getId());
+		modelMap.addAttribute("category_name", category_name);
+		
+		return modelMap;
+	}
+	
+	@RequestMapping(value="/updateCategory")
+	@ResponseBody
+	public ModelMap updateCategory(ModelMap modelMap, int category_id,  String category_name) throws Exception
+	{
+		CategoryVO category = new CategoryVO();
+		
+		category.setId(category_id);
+		category.setName(category_name);
+		
+		categoryService.update(category);
 		
 		return modelMap;
 	}
@@ -74,18 +91,24 @@ public class CategoryController
 	@ResponseBody
 	public ModelMap showArticleByCategory(ModelMap modelMap, int categoryid)
 	{
-		/*System.out.println("showArticleByCategory invoked!!!");
-		System.out.println("showArticleByCategory categoryid = " + categoryid);*/
+		System.out.println("showArticleByCategory invoked!!!");
+		System.out.println("showArticleByCategory categoryid = " + categoryid);
 		
 		List<CategoryVO>  categorys =  categoryService.findArticleByCategoryId(categoryid);
 		
 		//System.out.println("article size = " + articles.size());
-		
+		int artidFirstId = 0;
+		String articleFirstContent = "";
 		for(int i = 0; i < categorys.size(); i++)
 		{
 			System.out.println("article i = "  + categorys.get(i));
+			//System.out.println("article id[0] = " + categorys.get(0).getArticles().get(0).getId());
+			artidFirstId = categorys.get(0).getArticles().get(0).getId();
+			articleFirstContent =  categorys.get(0).getArticles().get(0).getContent(); 
 		}
 		modelMap.addAttribute("categorys", categorys);
+		modelMap.addAttribute("artidFirstId", artidFirstId);
+		modelMap.addAttribute("articleFirstContent", articleFirstContent);
 		
 		return modelMap;
 	}
