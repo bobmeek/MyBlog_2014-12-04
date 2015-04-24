@@ -145,15 +145,15 @@
 				<div class="six columns footerlinks phablet-hide" style="width: 30%;float: right">
 					<div class="linkitem">
 						<img src="resources/front_base/img/index/weixin.png"><span class="tablet-hide"><a href="javascript:void(0)">官方微信</a></span>
-						<div id="whuwechat" class="qr">
+						<!--<div id="whuwechat" class="qr">
 							<a href="#"><img src="resources/front_base/img/index/whuwechat.jpg"></a>
-						</div>
+						</div>-->
 					</div>
 					<div class="linkitem">
 						<img src="resources/front_base/img/index/weibo.png"></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
-						<div id="whuweibo" class="qr">
+						<!--<div id="whuweibo" class="qr">
 							<a href="#"><img src="resources/front_base/img/index/whuweibo.png"></a>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>
@@ -165,9 +165,9 @@
 			</div>
 		</div>
 	</div><!-- 底部区域结束 -->
-
-	<script type="text/javascript" src="resources/front_base/js/index/jquery-1.9.0.min.js"></script>
-    <script type="text/javascript" src="resources/front_base/js/index/jquery.nivo.slider.js"></script>
+	
+	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="resources/front_frame/nivo-slider/js/jquery.nivo.slider.js"></script>
     <script type="text/javascript">
 	    $(window).load(function() {
 	        $('#slider').nivoSlider({

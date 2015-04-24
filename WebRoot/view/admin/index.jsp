@@ -213,8 +213,6 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<!-- 个人用户文章信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script>
-	<!-- 导航栏目 -->
-	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 	<!-- 网站所有信息备份 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
 	<!-- 网站信息配置 -->
