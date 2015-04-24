@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.MenuVO">
+	<resultMap type="menu" id="menuResultMap">
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="parentId" column="parent_id" />
+		<result property="status" column="status" />
+		<result property="orders" column="orders" />
+	</resultMap>
+	
+	<select id="findAll" resultMap="menuResultMap">
+		select * from menu 
+	</select>
+	<select id="findListById" resultMap="menuResultMap">
+		select * from menu where parent_id=#{id}
+	</select>
+	<select id="findMaxOrders" resultType="int">
+		select max(orders) from menu where parent_id=#{parentId}
+	</select>
+	
+	
+	<insert id="add"  parameterType="menu" useGeneratedKeys="true" keyProperty="id">
+		insert into menu (parent_id,name,status,orders) values (#{parentId},#{name},#{status},#{orders})
+	</insert>
+	
+	<update id="update"  parameterType="map" >
+		update menu set name=#{name},parent_id=#{parentId},status=#{status},orders=#{orders} where id=#{id}
+	</update>
+	
+	<delete id="delete">
+		delete from menu where id=#{id}
+	</delete>
+</mapper>

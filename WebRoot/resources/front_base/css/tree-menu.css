@@ -279,7 +279,6 @@ ul.navbar-nav{
 }
 
 
-
 .user-page{
 	
 	width:350px;
@@ -313,4 +312,24 @@ ul.navbar-nav{
 	margin: 0px auto;
 }
 
+/*************************IndexMenu***************************/
+.index_menu{
+	width:100%;
+		
+}
+
+.index_menu_tree{
+	width:20%;
+	height:800px;
+	float:left;
+	boder-right:1px solid black;
+	margin-top: -5px;
+	/* border:1px solid red; */
+}
+index_menu_menu{
+	width:80%;
+	height:500px;
+	float:right;
+}
+/****************************************************/
 

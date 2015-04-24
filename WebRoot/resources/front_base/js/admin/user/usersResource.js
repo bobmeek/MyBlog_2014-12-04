@@ -18,12 +18,10 @@ $(function(){
 	}
 	
 	
-	function initTreeGrid()
-	{
+	function initTreeGrid(){
 		//默认让xx节点折叠
 		//$("#xx").treegrid('collapse');
-		
-		$('.tree').treegrid({
+		$('#allResources').treegrid({
         expanderExpandedClass: 'glyphicon glyphicon-minus',
         expanderCollapsedClass: 'glyphicon glyphicon-plus',
         initialState: 'collapsed'
@@ -63,7 +61,7 @@ $(function(){
 								"<td>"+resource.permission+"</td>" +
 								"<td width='15%' style='text-align: left;'>" + detailLink + addChildrenLink + deleteLink +
 								"</td>" + 
-								"</tr>"
+								"</tr>";
 					allResourcesTbody.append(content);
 					allResourcesTbody.children("tr:last").addClass(treeGridClass);
 

@@ -17,6 +17,8 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:default-servlet-handler />
 	
+	 
+
 <!-- 	<mvc:view-controller path="/" view-name="forward:/login.jsp"/> -->
 	  
 	<!-- 通用视图解析器:对控制器返回的逻辑路径指定对应的视图 -->

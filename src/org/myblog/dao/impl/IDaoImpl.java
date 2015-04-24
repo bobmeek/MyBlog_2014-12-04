@@ -97,9 +97,15 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		return getSqlSession().selectList(entityClass.getName() + operate, maps);
 	}
 	
-	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate){
+	public Integer findMaxId(Class<T> entityClass){
+		return getSqlSession().selectOne(entityClass.getName() + ".findMaxId");
+	}
+	
+	public Integer findMaxParam(Class<T> entityClass, Map<String, Object> maps, String operate){
+		if(null==getSqlSession().selectOne(entityClass.getName() + operate, maps)) return 0;
 		return getSqlSession().selectOne(entityClass.getName() + operate, maps);
 	}
+	
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize)
 	{
 		/*Pager<T> pager = new Pager<T>();
@@ -209,10 +215,10 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 	
 	
 	@Override
-	public List<T> findById2(Class<T> entityClass, Serializable pk)
+	public List<T> findListById(Class<T> entityClass, Serializable pk)
 	{
 		System.out.println("IDaoImpl findById method invoked - > Class: " + entityClass);
-		return getSqlSession().selectList(entityClass.getName() + ".findById", pk);
+		return getSqlSession().selectList(entityClass.getName() + ".findListById", pk);
 	}
 	
 	@Override

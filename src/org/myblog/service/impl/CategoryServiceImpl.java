@@ -32,7 +32,7 @@ public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> im
 	@Override
 	public List<CategoryVO> findArticleByCategoryId(int id) 
 	{
-		return findByIdList(id);
+		return findListById(id);
 	}
 	
 	public List<CategoryVO> findNavigate(Integer type){
@@ -42,10 +42,10 @@ public class CategoryServiceImpl extends AbstractBaseDao<CategoryVO, Integer> im
 		return findListByParam(maps, operate);
 	}
 	public Integer findMaxOrders(Integer type){
-		String operate = ".findMaxId";
+		String operate = ".findMaxOrders";
 		Map<String,Object> maps = new HashMap<String,Object>();
 		maps.put("type", type);
-		return findMaxId(maps, operate);
+		return findMaxParam(maps, operate);
 	}
 
 }
