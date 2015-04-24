@@ -80,9 +80,9 @@
 	<div id="wrapper"><!-- 焦点轮播图开始 -->
         <div class="slider-wrapper theme-default">
             <div id="slider" class="nivoSlider">
-                <img src="resources/front_base/img/index/14.jpg" data-thumb="resources/front_base/img/index/14.jpg" alt="" />
+                <img src="resources/front_base/img/index/max-school2.jpg" data-thumb="resources/front_base/img/index/max-school2.jpg" alt="" />
                 <a href="http://dev7studios.com"><img src="resources/front_base/img/index/bgxg05.jpg" data-thumb="resources/front_base/img/index/bgxg05.jpg" alt="" /></a>
-                <img src="resources/front_base/img/index/11.jpg" data-thumb="resources/front_base/img/index/11.jpg" alt="" data-transition="slideInLeft" />
+                <img src="resources/front_base/img/index/school1.jpg" data-thumb="resources/front_base/img/index/school1.jpg" alt="" data-transition="slideInLeft" />
                 <img src="resources/front_base/img/index/bgxg05.jpg" data-thumb="resources/front_base/img/index/bgxg05.jpg" alt="" title="#htmlcaption" />
             </div>
         </div>

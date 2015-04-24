@@ -124,7 +124,7 @@
 		}
 		
 		/** 刷新页面时默认显示第一个栏目的文章内容 */
-		function showArticle()
+		function showArticle(event)
 		{
 			$.post("category/showArticleByCid", {"categoryid": categoryFirstId}, function(result)
 			{
@@ -156,8 +156,7 @@
 						$(".text_title").val(text); //将中间区域的第一个文章标题添加到右侧文本框标题中显示
 						var articleFirstContent =  result.articleFirstContent;
 						$(".simditor-body").html(articleFirstContent); //将中间区域的第一个文章内容添加到右侧textarea中显示
-						
-						textOverflow(); 
+						textOverflow();
 					});
 				});
 			});
