@@ -26,11 +26,11 @@ public interface IDao<T, PK extends Serializable>
 	// 查询全部（之所以要加上泛型Class,是因为要通过class取得类路径调用相应的处理方法）
 	public List<T> findAll(Class<T> entityClass);
 	
-	// 根据主键进行查询操作
+	// 根据主键进行查询操作 - 返回对象
 	public T findById(Class<T> entityClass,Serializable pk); 
 	
-	// 根据主键进行查询操作
-	public List<T> findById2(Class<T> entityClass, PK pk); 
+	// 根据主键进行查询操作 - 返回对象集合
+	public List<T> findListById(Class<T> entityClass, PK pk);
 	
 	// 分页（pageNo：发往服务器端的页码信息, pageSize：每页显示的条数）
 	public Pager<T> findByPage(Class<T> entityClass, int pageNo, int pageSize);
@@ -76,9 +76,11 @@ public interface IDao<T, PK extends Serializable>
 	
 	public List<T> findByParam1(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
-	/**获取最大Id**/
-	public Integer findMaxId(Class<T> entityClass, Map<String, Object> maps, String operate);
+	/**获取ID的最大值 **/
+	public Integer findMaxId(Class<T> entityClass);
 	
+	/**获取某字段的最大值 **/
+	public Integer findMaxParam(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
 	public void bulk_delete(Class<T> entityClass, List<Integer> id);
 	

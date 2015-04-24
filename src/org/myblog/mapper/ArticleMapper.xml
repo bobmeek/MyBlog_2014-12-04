@@ -18,7 +18,7 @@
 		 <association property="category" javaType="category"><!-- Article和CategoryN-1表示关联 -->
 		 	<id property="id" column="id" />
 			<result property="name" column="name" />
-			<result property="parent_id" column="parent_id" />
+			<result property="parentId" column="parent_id" />
 		 </association>
 		<collection property="tag" resultMap="org.myblog.model.TagVO.tagResultMap"></collection>
 	</resultMap>

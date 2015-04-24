@@ -18,12 +18,12 @@ $(function(){
 	}
 	
 	$(document).on("click","#siteInfo",function(e){
-		showSiteInfo();
+		show();
 	});
 	
 	
 	/**显示网站信息**/
-	function showSiteInfo(){
+	function show(){
 		
 		$.post('siteinfo/show','',function(result){
 			$('#siteId').val(result.id);

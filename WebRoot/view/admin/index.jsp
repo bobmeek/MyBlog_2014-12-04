@@ -23,9 +23,12 @@
 <!-- 可多选的下拉框 -->
 <link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
 <!-- bootstrap风格的树结构 -->
-<link rel="stylesheet" href="resources/front_frame/bootstrao_treegrid/css/treegird.bootstrap3.css" />
+<link rel="stylesheet" href="resources/front_frame/bootstrap_treegrid/css/treegird.bootstrap3.css" />
 <!-- zTree插件样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
+<!-- zTree插件Metro风格样式 -->
+<link rel="stylesheet" href="resources/front_frame/ztree/css/metroStyle/metroStyle.css" />
+
 <!-- 文章编辑器 -->
 <link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
 <!-- 弹出框 -->
@@ -55,20 +58,6 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
-			<shiro:hasPermission name="user:*">
-			<li class="panel">
-				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
-					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
-				</a>
-				<ul id="users_manage" class="collapse list-unstyled sednav">
-					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
-					<!-- <li><a href="#">密码修改</a></li> -->
-					<li><a href="#" id="usersInfo">用户信息管理</a></li>
-					<li><a href="#" id="usersRole">用户角色管理</a></li>
-					<li><a href="#" id="usersResource">用户资源管理</a></li>
-				</ul>
-			</li>
-			</shiro:hasPermission>
 			<shiro:hasAnyRoles name="ROLE_Author,ROLE_System,ROLE_CEO">
 			<li class="panel">
 				<a href="#topic_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
@@ -86,6 +75,20 @@
 				</ul>
 			</li>
 			</shiro:hasAnyRoles>
+				<shiro:hasPermission name="user:*">
+			<li class="panel">
+				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
+				</a>
+				<ul id="users_manage" class="collapse list-unstyled sednav">
+					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
+					<!-- <li><a href="#">密码修改</a></li> -->
+					<li><a href="#" id="usersInfo">用户信息管理</a></li>
+					<li><a href="#" id="usersRole">用户角色管理</a></li>
+					<li><a href="#" id="usersResource">用户资源管理</a></li>
+				</ul>
+			</li>
+			</shiro:hasPermission>
 			<shiro:hasPermission name="system:*">
 			<li class="panel">
 				<a href="#system_manage"  class="dropdown-toggle collapsed"  data-toggle="collapse" data-parent="#accordion"><i class="icon-cogs icon-large"></i> 系统配置<b
@@ -93,7 +96,7 @@
 				<ul id="system_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id='links'>超级链接管理</a></li>
 					<li><a href="#" id='siteInfo'>网站信息管理</a></li>
-					<li><a href="#" id='indexImages'>首页图片管理</a></li>
+					<li><a href="#" id='indexMenu'>首页菜单管理</a></li>
 					<li><a href="#" id='dataBackup'>网站数据备份</a></li>
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
 				</ul>
@@ -156,6 +159,9 @@
 			<div id="siteInfoPage" class="page" style="display: none;">
 				<jsp:include page="system/siteInfo.jsp" flush="true"></jsp:include>
 			</div>
+			<div id="indexMenuPage" class="page" style="display: none;">
+				<jsp:include page="system/indexMenu.jsp" flush="true"></jsp:include>
+			</div>
 		</div>
 		
 	</div>
@@ -207,12 +213,12 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<!-- 个人用户文章信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script>
-	<!-- 导航栏目 -->
-	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 	<!-- 网站所有信息备份 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
 	<!-- 网站信息配置 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	<!-- 首页菜单配置 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/system/indexMenu.js"></script>
 	
 	
 </body>
