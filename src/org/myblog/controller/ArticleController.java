@@ -1,11 +1,17 @@
  package org.myblog.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FileUtils;
 import org.myblog.common.DateUtil;
 import org.myblog.common.Pager;
 import org.myblog.model.ArticleTagVO;
@@ -21,7 +27,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Controller
 @RequestMapping("/article/")
@@ -218,18 +227,18 @@ public class ArticleController
 	 */
 	@RequestMapping(value="/updateArticle", produces="application/json")
 	@ResponseBody
-	public int updateArticle(ArticleVO article) throws Exception
-	//public int updateArticle(String title, String content, int id) throws Exception
+	//public int updateArticle(ArticleVO article) throws Exception
+	public int updateArticle(String title, String content, int id) throws Exception
 	{
-		/*ArticleVO article = new ArticleVO();
+		ArticleVO article = new ArticleVO();
 		article.setTitle(title);
 		article.setContent(content);
 		article.setId(id);
-		article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));*/
+		article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));
 		
 		System.out.println("updateArticle invoked!!!");
 		System.out.println("updateArticle article = " + article);
-		//article.setReleaseDate(DateUtil.convertTimestamp("yyyy-MM-dd HH:mm", new Date()));
+
 		articleService.update(article);	
 
 		return 1;
@@ -248,5 +257,46 @@ public class ArticleController
 		System.out.println("publishedArticle invoked!!!");
 		
 		return "redirect:../show/allArticles.do";
+	}
+	
+	/**
+	 * 上传图片
+	 * @param mRequest
+	 * @param request
+	 * @param response
+	 * @param model
+	 * @return
+	 * @throws Exception
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/upload")
+	public String addd(MultipartHttpServletRequest mRequest, HttpServletRequest request, HttpServletResponse response,  ModelMap model) throws Exception, IOException
+	{
+		 response.setContentType("text/html; charset=UTF-8");
+		 
+		 PrintWriter out = response.getWriter();
+		
+		MultipartFile patch = mRequest.getFile("fileData");
+		
+		String fileName = patch.getOriginalFilename(); // 得到文件名称
+		
+		if(!patch.isEmpty())
+		{
+			String path = request.getSession().getServletContext().getRealPath("/resources/upload/img/article");
+			//System.out.println("path ==== " + path);
+			File destFile = new File(path); // 设置目标文件路径
+			//System.out.println("destFile === "  + destFile.getAbsolutePath()+ "\\" + fileName);
+			if(!destFile.exists())
+			{
+				// 如果文件不存在则新建一个文件夹
+				destFile.mkdirs();
+			}
+			
+			patch.transferTo(new File(destFile.getAbsolutePath() + "\\" + fileName));
+			out.flush();
+		}
+		
+		return null;
+		
 	}
 }

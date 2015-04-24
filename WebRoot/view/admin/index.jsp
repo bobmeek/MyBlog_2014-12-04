@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="resources/front_frame/ztree/css/metroStyle/metroStyle.css" />
 
 <!-- 文章编辑器 -->
-<!-- <link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" /> -->
+<link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
 <!-- 弹出框 -->
 <link rel="stylesheet" href="resources/front_frame/jquery_confirm/css/jquery-confirm.css" />	<!-- 引入jQuery模态对话框插件 -->
 
@@ -188,15 +188,16 @@
 	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
 	
 	<!-- 文章编辑器 -->
-	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/jquery.min.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
+	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
-	<script  type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
-	<script   type="text/javascript" src="resources/front_frame/bootstrap/js/modal.js"></script>  -->
+	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-autosave.js"></script> -->
+	<!-- 引起bootstrap弹框失效 -->
+	<!-- <script type="text/javascript" src="resources/front_frame/bootstrap/js/modal.js"></script>  -->
 	<!-- 文章编辑器 -->
 	
 	
@@ -211,7 +212,7 @@
 	<!-- 所有文章信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
 	<!-- 个人用户文章信息 -->
-	<!-- <script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script> -->
+	<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script>
 	<!-- 导航栏目 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/article/categoryInfo.js"></script>
 	<!-- 网站所有信息备份 -->
