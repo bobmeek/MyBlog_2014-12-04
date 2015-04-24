@@ -163,6 +163,7 @@
 						$(".simditor-body").html(articleFirstContent); //将中间区域的第一个文章内容添加到右侧textarea中显示
 						
 						textOverflow(); //文字溢出处理方法
+						articleTitleOverflow();
 					});
 				});
 			});
@@ -193,6 +194,7 @@
 					var textTitle = $(".text_title").val();
 					$(".note_list #" + navFirstId + " .note_title").text(textTitle);
 					//alert("navfirsrid = " + navFirstId);
+					articleTitleOverflow();
 				}
 			});
 			$(document).on("input propertychange", ".simditor-body", function()
@@ -208,7 +210,7 @@
 			{
 				if(actid == 30)
 				{
-					setInterval("saveArticle3()", 1000); 
+					setInterval("saveArticle3", 1000); 
 					function saveArticle3()
 					{
 						article_title = $(".text_title").val();
@@ -348,6 +350,7 @@
 				{
 					var textTitle = $(".text_title").val();
 					$(".note_list #" + save_articleId + " .note_title").text(textTitle);
+					articleTitleOverflow();
 				}
 			});
 			
@@ -417,6 +420,7 @@
 		{
 			var textTitle = $(".text_title").val();
 			$(".note_list #" + artId + " .note_title").text(textTitle);
+			articleTitleOverflow();
 		}
 	});
 	
@@ -429,6 +433,7 @@
 			textOverflow();
 		}
 	});
+	
 	
 	$(document).on("input propertychange", ".text_title, .simditor-body", function()
 	{	

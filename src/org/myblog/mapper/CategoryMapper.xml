@@ -43,7 +43,7 @@
 		where a.id_category=c.id and a.id=#{id}
 	</select> -->
 	<!-- 根据栏目id查询文章信息 -->
-	<select id="findById" resultMap="categoryResultMap">
+	<select id="findListById" resultMap="categoryResultMap">
 		select c.id as cid, a.id_category, a.id as aid,a.title,a.content from article as a,category as c where a.id_category=c.id and c.id=#{id}	order by a.release_date DESC
 	</select>
 	

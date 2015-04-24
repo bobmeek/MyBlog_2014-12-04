@@ -58,20 +58,6 @@
 	<!-- Collect the nav links, forms, and other content for toggling -->
 	<div class="collapse navbar-collapse" id="nav-top">
 		<ul class="nav navbar-nav" id="accordion" data-toggle="buttons">
-			<shiro:hasPermission name="user:*">
-			<li class="panel">
-				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
-					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
-				</a>
-				<ul id="users_manage" class="collapse list-unstyled sednav">
-					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
-					<!-- <li><a href="#">密码修改</a></li> -->
-					<li><a href="#" id="usersInfo">用户信息管理</a></li>
-					<li><a href="#" id="usersRole">用户角色管理</a></li>
-					<li><a href="#" id="usersResource">用户资源管理</a></li>
-				</ul>
-			</li>
-			</shiro:hasPermission>
 			<shiro:hasAnyRoles name="ROLE_Author,ROLE_System,ROLE_CEO">
 			<li class="panel">
 				<a href="#topic_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion"><i class="icon-book icon-large"></i> 文章管理<b
@@ -89,6 +75,20 @@
 				</ul>
 			</li>
 			</shiro:hasAnyRoles>
+				<shiro:hasPermission name="user:*">
+			<li class="panel">
+				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
+				</a>
+				<ul id="users_manage" class="collapse list-unstyled sednav">
+					<!-- <li><a href="#" id="personInfo">个人资料</a></li> -->
+					<!-- <li><a href="#">密码修改</a></li> -->
+					<li><a href="#" id="usersInfo">用户信息管理</a></li>
+					<li><a href="#" id="usersRole">用户角色管理</a></li>
+					<li><a href="#" id="usersResource">用户资源管理</a></li>
+				</ul>
+			</li>
+			</shiro:hasPermission>
 			<shiro:hasPermission name="system:*">
 			<li class="panel">
 				<a href="#system_manage"  class="dropdown-toggle collapsed"  data-toggle="collapse" data-parent="#accordion"><i class="icon-cogs icon-large"></i> 系统配置<b
