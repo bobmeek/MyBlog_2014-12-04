@@ -1,7 +1,9 @@
 package org.myblog.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +14,11 @@ import org.myblog.common.page.Page;
 import org.myblog.common.page.PageUtil;
 import org.myblog.model.ArticleVO;
 import org.myblog.model.CategoryVO;
+import org.myblog.model.MenuVO;
 import org.myblog.model.SiteInfoVO;
 import org.myblog.service.facade.ArticleService;
 import org.myblog.service.facade.CategoryService;
+import org.myblog.service.facade.MenuService;
 import org.myblog.service.facade.SiteInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -40,6 +44,8 @@ public class IndexController {
 	private SiteInfoService siteInfoService;
 	@Resource(name = "categoryServiceImpl")
 	private CategoryService categoryService;
+	@Resource(name = "menuServiceImpl")
+	private MenuService menuService;
 	private static SiteInfoVO siteInfo = null;
 	//每页显示文章数量
 	private static int pageCount = 0;
@@ -47,22 +53,53 @@ public class IndexController {
 	private static int hotPageCount = 0;
 	//打开文章的方式:本窗口?新窗口
 	private static String target = "";
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index.html")
 	public String showIndex(HttpServletRequest request,ModelMap modelMap){
 		//获取网站信息
 		siteInfo = siteInfoService.findAll().get(0);
 		//获取导航栏目
-		List<CategoryVO> categorys =  categoryService.findNavigate(1);
-		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
+		List<MenuVO> menus = menuService.findAll();
+		menus = (List<MenuVO>) SortListUtil.sort(menus, "orders", SortListUtil.ASC);
+		
+		Map<String,List<String>> menuMap = new HashMap<String,List<String>>();
+		
+		
+		for (MenuVO m : menus) {
+			if(m.getParentId()==1){
+				List<String> manyMenus = new ArrayList<String>();
+				for (MenuVO mv : menus) {
+					if(m.getId()==mv.getParentId()){
+						manyMenus.add(mv.getName());
+					}
+				}
+				menuMap.put(m.getName(), manyMenus);
+			}
+		}
+		
+		
+		
 		pageCount = siteInfo.getPageCount();
 		hotPageCount = siteInfo.getHotPageCount();
 		target = siteInfo.getTarget();
 		//获取文章信息
-		modelMap = showArticles(1, modelMap);
+		//modelMap = showArticles(1, modelMap);
 		modelMap.addAttribute("siteInfo",siteInfo);
-		modelMap.addAttribute("categorys",categorys);
+		modelMap.addAttribute("menus",menus);
+		modelMap.addAttribute("menuMap",menuMap);
 		return "index";
 	}
+	
+	//使用ArrayList实现一个Key对应一个ArrayList实现一对多
+//    public static void putAdd(Map<String,List<MenuVO>> menuMap,String sr,String[] s){
+//        if(!menuMap.containsKey(sr)){
+//        	menuMap.put(sr, new ArrayList<String>());
+//        }
+//        for(int i=0;i<s.length;i++){
+//        	menuMap.get(sr).add(s[i]);
+//        }
+//    }
+	
 	
 	/**
 	 * 
