@@ -1,7 +1,7 @@
 /*!
-* Simditor v2.1.5
+* Simditor v2.1.7
 * http://simditor.tower.im/
-* 2015-07-03
+* 2015-11-04
 */
 @font-face {
   font-family: 'Simditor';
@@ -17,6 +17,27 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transform: translate(0, 0);
+}
+
+/* 控制编辑器按钮样式 */
+.simditor-toolbar  li .toolbar-item
+{
+	position: relative;
+	top: 9px;	
+}
+
+/* 控制编辑器标题样式 */
+.simditor-toolbar li .toolbar-item-title
+{
+	position: relative;
+	top: 0px;	
+}
+
+/* 控制编辑器定位问题 */
+.simditor
+{
+	position: relative;
+	top: -15px;
 }
 
 .simditor-icon-code:before {
@@ -115,21 +136,12 @@
   content: '\f017';
 }
 
-.containerk
-{
-}
-
-.simditor-body
-{
-}
-
+/* 控制编辑器的宽度和高度问题 */
 .simditor-wrapper
 {
 	width: 728px;
 	height: 650px;
 }
-
-
 .simditor {
   position: relative;
   border: 1px solid #c9d8db;
@@ -256,9 +268,8 @@
 }
 .simditor .simditor-toolbar > ul {
   margin: 0;
-  padding: 10px 10px 0 6px;
+  padding: 0 0 0 6px;
   list-style: none;
-  height: 40px;
 }
 .simditor .simditor-toolbar > ul:after {
   content: "";
@@ -300,7 +311,8 @@
   opacity: 1;
 }
 .simditor .simditor-toolbar > ul > li > .toolbar-item.active {
-  background: #eeeeee;
+  /* background: #eeeeee; */ /* 取消文字按钮样式背景色 */
+  background-color: none;
 }
 .simditor .simditor-toolbar > ul > li > .toolbar-item.active span {
   opacity: 1;
@@ -749,9 +761,3 @@
 .simditor .simditor-body *[data-indent="10"], .editor-style *[data-indent="10"] {
   margin-left: 400px;
 }
-
-	
-	
-	
-	
-	
