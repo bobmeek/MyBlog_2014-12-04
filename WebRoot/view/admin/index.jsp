@@ -23,9 +23,12 @@
 <!-- 可多选的下拉框 -->
 <link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
 <!-- bootstrap风格的树结构 -->
-<link rel="stylesheet" href="resources/front_frame/bootstrao_treegrid/css/treegird.bootstrap3.css" />
+<link rel="stylesheet" href="resources/front_frame/bootstrap_treegrid/css/treegird.bootstrap3.css" />
 <!-- zTree插件样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
+<!-- zTree插件Metro风格样式 -->
+<link rel="stylesheet" href="resources/front_frame/ztree/css/metroStyle/metroStyle.css" />
+
 <!-- 文章编辑器 -->
 <!-- <link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" /> -->
 <!-- 弹出框 -->
@@ -93,7 +96,7 @@
 				<ul id="system_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<li><a href="#" id='links'>超级链接管理</a></li>
 					<li><a href="#" id='siteInfo'>网站信息管理</a></li>
-					<li><a href="#" id='indexImages'>首页图片管理</a></li>
+					<li><a href="#" id='indexMenu'>首页菜单管理</a></li>
 					<li><a href="#" id='dataBackup'>网站数据备份</a></li>
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
 				</ul>
@@ -156,6 +159,9 @@
 			<div id="siteInfoPage" class="page" style="display: none;">
 				<jsp:include page="system/siteInfo.jsp" flush="true"></jsp:include>
 			</div>
+			<div id="indexMenuPage" class="page" style="display: none;">
+				<jsp:include page="system/indexMenu.jsp" flush="true"></jsp:include>
+			</div>
 		</div>
 		
 	</div>
@@ -212,6 +218,8 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
 	<!-- 网站信息配置 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
+	<!-- 首页菜单配置 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/system/indexMenu.js"></script>
 	
 	
 </body>

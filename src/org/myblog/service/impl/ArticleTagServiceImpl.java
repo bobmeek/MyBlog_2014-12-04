@@ -15,10 +15,4 @@ public class ArticleTagServiceImpl extends AbstractBaseDao<ArticleTagVO, Integer
 	{
 		save(articleTag);
 	}
-
-	@Override
-	public List<ArticleTagVO> findByIdList(Integer pk) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

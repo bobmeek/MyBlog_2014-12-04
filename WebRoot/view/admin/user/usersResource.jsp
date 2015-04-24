@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	
-	<!-- 显示用户 -->
+	<!-- 显示资源 -->
 	<div style="height:500px;">
 		<table class="tree table table-responsive table-striped table-bordered table-hover" id="allResources">
 			<thead>

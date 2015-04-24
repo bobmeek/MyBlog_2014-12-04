@@ -20,7 +20,7 @@ public class TagServiceImpl extends AbstractBaseDao<TagVO, Integer> implements T
 	@Override
 	public List<TagVO> findById2(Integer id) 
 	{
-		return findByIdList(id);
+		return findListById(id);
 	}
 
 	@Override

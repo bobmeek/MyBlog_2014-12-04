@@ -6,30 +6,31 @@
 	<resultMap type="category"  id="categoryResultMap">
 		<id property="id" column="cid" />
 		<result property="name" column="name" />
-		<result property="parent_id" column="parent_id" />
 		<result property="type" column="type" />
 		<result property="orders" column="orders" />
 		<result property="status" column="status" />
+		<result property="parentId" column="par_id" />
+		<result property="parentIds" column="par_ids" />
+		<result property="userId" column="user_id" />
 		<collection property="articles"  javaType="java.util.ArrayList" resultMap="org.myblog.model.ArticleVO.articleResultMap"></collection>
 	</resultMap>
 	
 	<!-- 查询操作。查询栏目名称并且去除重复栏目名称信息 -->
-	<select id="findAll"  resultType="category">
-		<!-- select distinct(c.name),id,parent_id  from category c -->  
-		select *  from category
+	<select id="findAll"  resultMap="categoryResultMap">
+		select c.id ,c.name,c.parent_id as parentId,c.parent_ids as parentIds,c.type,orders,status  from category c 
 	</select>
 	
-	<select id="findByType"  resultType="category">
-		select *  from category where type=#{type}
+	<select id="findByType"  resultMap="categoryResultMap">
+		select id as cid ,name,parent_id as par_id,parent_ids as par_ids,type,orders,status,user_id  from category where type=#{type} ORDER BY CONCAT(parent_ids, id) ASC
 	</select>
 	
-	<select id="findMaxId" resultType="int">
+	<select id="findMaxOrders" resultType="int">
 		select max(orders) from category where type=#{type}
 	</select>
 	
 	<!-- 插入操作。完成栏目名称的插入 -->
 	<insert id="add" parameterType="category" useGeneratedKeys="true" keyProperty="id"> 
-		insert into category(name,parent_id,type,user_id,orders,status) values(#{name},#{parentId},#{type},#{userId},#{orders},#{status})
+		insert into category(name,parent_id,parent_ids,type,user_id,orders,status) values(#{name},#{parentId},#{parentIds},#{type},#{userId},#{orders},#{status})
 	</insert>
 	
 	<delete id="delete" parameterType="int">
@@ -41,13 +42,13 @@
 		where a.id_category=c.id and a.id=#{id}
 	</select> -->
 	<!-- 根据栏目id查询文章信息 -->
-	<select id="findById" resultMap="categoryResultMap">
+	<select id="findListById" resultMap="categoryResultMap">
 		select c.id as cid, a.id_category, a.id as aid,a.title,a.content from article as a,category as c where a.id_category=c.id and c.id=#{id}	
 	</select>
 	
 	<!-- 修改操作 -->
 	<update id="update" parameterType="category">
-		update category set name=#{name},type=#{type},orders=#{orders},status=#{status} where id=#{id} 
+		update category set name=#{name},type=#{type},parent_id=#{parentId},parent_ids=#{parentIds},orders=#{orders},status=#{status} where id=#{id} 
 	</update>
 	
 </mapper>

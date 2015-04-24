@@ -88,10 +88,10 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> findByIdList(PK pk) 
+	public List<T> findListById(PK pk) 
 	{
 		System.out.println(entityClass.toString() + ", id = " + pk);
-		return idao.findById2(entityClass, pk);
+		return idao.findListById(entityClass, pk);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -100,8 +100,12 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 		return idao.findListByParam(entityClass, maps, operate);
 	}
 	@SuppressWarnings("unchecked")
-	public Integer findMaxId(Map<String, Object> maps, String operate){
-		return idao.findMaxId(entityClass, maps, operate);
+	public Integer findMaxId(){
+		return idao.findMaxId(entityClass);
+	}
+	@SuppressWarnings("unchecked")
+	public Integer findMaxParam(Map<String, Object> maps, String operate){
+		return idao.findMaxParam(entityClass, maps, operate);
 	}
 	@SuppressWarnings("unchecked")
 	public List<T> findByParam1(Map<String, Object> maps, String operate)

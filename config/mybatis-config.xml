@@ -13,6 +13,7 @@
 		<typeAlias type="org.myblog.model.RoleVO" alias="role" />
 		<typeAlias type="org.myblog.model.ResourceVO" alias="resource" />
 		<typeAlias type="org.myblog.model.SiteInfoVO" alias="siteinfo"/>
+		<typeAlias type="org.myblog.model.MenuVO" alias="menu"/>
 	</typeAliases>
 	
 </configuration>

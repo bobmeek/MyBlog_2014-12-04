@@ -1,11 +1,13 @@
 package org.myblog.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.codehaus.jackson.map.util.JSONPObject;
 import org.myblog.common.SortListUtil;
 import org.myblog.model.CategoryVO;
 import org.myblog.service.facade.CategoryService;
@@ -15,6 +17,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.druid.support.json.JSONParser;
+import com.alibaba.druid.support.json.JSONUtils;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 @Controller
 @RequestMapping("/category/")
@@ -34,8 +41,6 @@ public class CategoryController
 	@ResponseBody
 	public ModelMap addCategoryName(ModelMap modelMap, String category_name) throws Exception
 	{
-		/*System.out.println("addCategoryName invoked!!!");
-		System.out.println("addCategoryName category_name = " + category_name);*/
 		
 		CategoryVO category = new CategoryVO();
 		category.setName(category_name); //添加栏目名称
@@ -131,7 +136,7 @@ public class CategoryController
 	 * @time   [ 2015年4月1日 下午5:07:37 ] 
 	 *
 	 */
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value="/show")
 	@ResponseBody
 	public List<CategoryVO> showNavCategory(HttpServletRequest request, ModelMap modelMap)
@@ -140,9 +145,26 @@ public class CategoryController
 		List<CategoryVO> categorys =  categoryService.findNavigate(1);
 		//按照orders排序
 		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
-		modelMap.addAttribute("categorys", categorys);
+		String categoryStr = new Gson().toJson(categorys);
+		System.out.println(categoryStr);
+		//modelMap.addAttribute("categorys", categorys);
 		
 		return categorys;
+	}*/
+	@SuppressWarnings("unchecked")
+	@RequestMapping(value="/show",produces="text/plain;charset=utf-8")
+	@ResponseBody
+	public String showNavCategory(HttpServletRequest request, ModelMap modelMap)
+	{
+		
+		List<CategoryVO> categorys =  categoryService.findNavigate(1);
+		//按照orders排序
+		categorys = (List<CategoryVO>) SortListUtil.sort(categorys, "orders", SortListUtil.ASC);
+		String categoryStr = "";
+		//将categorys对象转换为json字符串
+		categoryStr = new Gson().toJson(categorys);
+		//modelMap.addAttribute("categorys", categorys);
+		return categoryStr;
 	}
 	
 	
