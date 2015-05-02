@@ -14,28 +14,12 @@
 					<h3 class='single-title'>${article.title}</h3>
 					<div class='single-info'>
 						<span style='margin-left:5px;'>作者:${article.author}</span>
-						<span style='margin-left:5px;'>时间:${article.releaseDate?string("yyyy-MM-dd")}</span>
-						<span style='margin-left:5px;'>分类:${article.category.name}</span>
+						<span style='margin-left:5px;'>时间:${article.releaseDate}</span>
 						<span style='margin-left:5px;'>浏览:${article.readCount}</span>
 					</div>
 				</div>
 				<div id='single-con'>${article.content}</div>
 				<div></div>
-			</div>
-			<div id='right'>
-			  <div class="remenwenzhang"><!-- 热门文章区域 -->
-					<span>热门文章</span>
-					<ul>
-						<#list hotArticles as article>
-							<#if article_index==0>
-								<li class="li_top"><a href='${article.id}' target='${siteInfo.target}'>${article.title}</a></li>
-								<#elseif article_index lt hotPageCount>
-								<li><a href='${article.id}' target='${siteInfo.target}'>${article.title}</a></li>
-							</#if>
-							
-						</#list>
-					</ul>
-				</div><!-- 热门文章区域结束 -->
 			</div>
 		</div>
 		<#include 'footer.ftl'/><!-- 引入尾部版权区jsp文件 -->

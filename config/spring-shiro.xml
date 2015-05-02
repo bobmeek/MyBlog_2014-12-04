@@ -83,6 +83,7 @@
                 /authenticated = authc
                 /resources/**=anon
                 /index.html/**=anon
+                /menu/**=anon
                 /*=anon
                 /** = user
             </value>  

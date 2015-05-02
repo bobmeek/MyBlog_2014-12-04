@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>汉口学院国际学院 | 首页</title>
+    <title>汉口学院国际交流学院 | 首页</title>
 	
     <meta name="keywords" content="keyword1,keyword2,keyword3">
     <meta name="description" content="汉口学院国际学院是在贯彻落实《国家中长期教育改革和发展规划纲要》中应运而起，以“发展与世界各国的教育文化交流与合作 ”为宗旨，致力于培养国际化、复合型人才的二级学院；是汉口学院执行涉外政策、协调国际交流与合作事务的重要职能部门。">
-	<meta name="author" content="汉口学院国际学院">
+	<meta name="author" content="汉口学院国际交流学院">
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,7 +26,7 @@
 						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">教工</a></li>
 						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">校友</a></li>
 						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">考生</a></li>
-						<li class="desktop-hide"><a href="javascript:void(0);"  title="">访客</a></li>
+						<!--<li class="desktop-hide"><a href="javascript:void(0);"  title="">访客</a></li>-->
 					</ul>
 				</div><!-- 顶部左侧区域结束 -->
 				
@@ -51,26 +51,20 @@
 		<div class="container phablet-hide">
         	<div class="nine columns">
 				<ul class="head-nav" style="z-index: 10000000;"><!-- 导航区域开始 -->
-					<li><a href="#" title="联系我们">联系我们</a></li>
-					<li><a href="#" title="学术科研">学术科研</a></li>
-					<li><a href="#" title="留学风采">留学风采</a></li>
-					<li><a href="#" title="国际教育动态">国际教育动态</a></li>
-					<li><a href="#" title="合作项目">合作项目</a>
-						<table>
-		                     <tr><td><a href="#">本硕连读硕士项目</a></td></tr>
-		                     <tr><td><a href="#">中外合作办学项目</a></td></tr>
-		                     <tr><td><a href="#">韩国项目</a></td></tr>
-		                     <tr><td style="border-bottom-width:0px"><a href="#">澳新项目</a></td></tr>
-		                 </table>
-					</li>
-					<li><a href="#" title="学校概况">学校概况</a>
-						 <table>
-		                     <tr><td><a href="#">学院简介</a></td></tr>
-		                     <tr><td><a href="#">领导寄语</a></td></tr>
-		                     <tr><td><a href="#">学院制度</a></td></tr>
-		                     <tr><td style="border-bottom-width:0px"><a href="#">学院文化</a></td></tr>
-		                 </table>
-					</li>
+					<#list navMenuMap?keys as menu>
+                        <li>
+                            <a href="menu/${menu}/" title="${menu}">${menu}</a>
+                            <#assign navMenuList=navMenuMap[menu] />
+                            <#if navMenuList?exists>
+                            <table>
+                                <#list navMenuList as childMenu>
+                                     <tr><td><a href="menu/${menu}/${childMenu}">${childMenu}</a></td></tr>
+                                </#list>
+                            </table>
+                            </#if>
+                        </li>
+                        
+                    </#list>
 				</ul><!-- 导航区域结束 -->
 			</div>
 		</div>
@@ -90,16 +84,6 @@
 	
 	<div class="news"><!-- 校园新闻动态区域开始 -->
 		<div class="three columns infobox">
-			<div class="infoboxtitle"> <img src="resources/front_base/img/index/cooperation2.png"><a href="javascript:void(0);">更多</a></div>
-			<ul>
-					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=235" target="_blank" title="罗爱平董事长会见檀国大学金周昌教授">罗爱平董事长会见檀国大学金周昌教授</a></li>
-					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=231" target="_blank" title="韩国檀国大学名誉教授金裕赫会长一行访问我校">韩国檀国大学名誉教授金裕赫会长一行访问我校</a></li>
-					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=230" target="_blank" title="美国乔治福克斯大学副校长彭长徽博士一行访问我校">美国乔治福克斯大学副校长彭长徽博士一行访问我校</a></li>
-					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=223" target="_blank" title="汉口学院招收赴韩国青云大学留学生招生简章">汉口学院招收赴韩国青云大学留学生招生简章</a></li>
-					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=222" target="_blank" title="汉口学院招收赴英国提赛德大学留学生招生简章">汉口学院招收赴英国提赛德大学留学生招生简章</a></li>
-			</ul>
-		</div>
-		<div class="three columns infobox">
 	  		<div class="infoboxtitle"><img src="resources/front_base/img/index/news.png"><a href="javascript:void(0);" >更多</a></div>
 	 			 <ul>
 	 			    <li><a href="javascript:void(0);"  title="文科首个“千人计划”特聘教授主编出版环境法著作">文科首个“千人计划”特聘教授主编出版环境法著作</a></li>
@@ -108,6 +92,16 @@
 				    <li><a href="javascript:void(0);"  title="我校为亚洲高等教育规划献策">我校为亚洲高等教育规划献策</a></li>
 				    <li><a href="javascript:void(0);"  title="谭崇台：中国发展经济学引路人">谭崇台：中国发展经济学引路人</a></li>
 	  			</ul>
+		</div>
+		<div class="three columns infobox">
+			<div class="infoboxtitle"> <img src="resources/front_base/img/index/cooperation2.png"><a href="javascript:void(0);">更多</a></div>
+			<ul>
+					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=235" target="_blank" title="罗爱平董事长会见檀国大学金周昌教授">罗爱平董事长会见檀国大学金周昌教授</a></li>
+					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=231" target="_blank" title="韩国檀国大学名誉教授金裕赫会长一行访问我校">韩国檀国大学名誉教授金裕赫会长一行访问我校</a></li>
+					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=230" target="_blank" title="美国乔治福克斯大学副校长彭长徽博士一行访问我校">美国乔治福克斯大学副校长彭长徽博士一行访问我校</a></li>
+					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=223" target="_blank" title="汉口学院招收赴韩国青云大学留学生招生简章">汉口学院招收赴韩国青云大学留学生招生简章</a></li>
+					<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=222" target="_blank" title="汉口学院招收赴英国提赛德大学留学生招生简章">汉口学院招收赴英国提赛德大学留学生招生简章</a></li>
+			</ul>
 		</div>
 		<div class="three columns infobox">
 	  		<div class="infoboxtitle"><img src="resources/front_base/img/index/notice.png"><a href="javascript:void(0);" >更多</a></div>
@@ -120,22 +114,18 @@
 	  		</ul>
 		</div>
 		<div class="three columns infobox ljg">
-	  		<div class="infoboxtitle"><img src="resources/front_base/img/index/topics.png"><a href="javascript:void(0);" >更多</a></div>
-	  		<a class="infobox-speciallink" href="javascript:void(0);"><img src="resources/front_base/img/index/1.jpg" class="desktop-hide">汉口学院形象片</a>
-	  			<ul>
-				    <li><a href="javascript:void(0);">文明创建专题网</a></li>
-				    <li><a href="javascript:void(0);" >群众路线教育实践活动</a></li>
-	  			</ul>
+	  		<a class="infobox-speciallink" href="javascript:void(0);"><img src="resources/front_base/img/index/1.jpg" class="desktop-hide">留学报名</a>
+	  		<a class="infobox-speciallink" href="javascript:void(0);"><img src="resources/front_base/img/index/1.jpg" class="desktop-hide">下载中心</a>
+	  		<a class="infobox-speciallink" href="javascript:void(0);"><img src="resources/front_base/img/index/1.jpg" class="desktop-hide">办理指南</a>
+	  			
 		</div>
 	</div><!-- 校园新闻动态区域结束 -->
 	
 	<div class="row exlinks"><!-- 快速入口链接区域开始 -->
-	  		  <a href="javascript:void(0);"  title="新闻快递" >新闻快递</a>
-			  <a href="javascript:void(0);"  title="公告通知" >公告通知</a>
-			  <a href="javascript:void(0);"  title="文件选编">文件选编</a>
-			  <a href="javascript:void(0);"   title="留学报名" >留学报名</a>
-			  <a href="javascript:void(0);"  title="出国出境办理指南" >出国出境办理指南</a>
-			  <a href=javascript:void(0);  title="下载中心">下载中心</a>
+	  		  <a href="javascript:void(0);"  title="教育部留学服务中心" >教育部留学服务中心</a>
+			  <a href="javascript:void(0);"  title="湖北省外国专家局" >湖北省外国专家局</a>
+			  <a href="javascript:void(0);"  title="中华人民共和国外交部">中华人民共和国外交部</a>
+			  <a href="javascript:void(0);"   title="武汉市人民政府外事办公室" >武汉市人民政府外事办公室</a>
 	</div><!-- 快速入口链接区域结束 -->
 
 	<div id="footer"><!-- 底部区域开始 -->

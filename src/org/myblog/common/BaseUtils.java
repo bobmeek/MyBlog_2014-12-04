@@ -11,6 +11,7 @@ package org.myblog.common;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
 
@@ -23,6 +24,25 @@ import java.net.URL;
  */
 public class BaseUtils
 {
+	
+	/**
+	 * 
+	 * @desc   [ 解决URL传输中文乱码 ]
+	 * @param  [ @param str 要转码的字符串
+	 * @param  [ @return ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015-4-28 下午8:10:33 ] 
+	 *
+	 */
+	public static String encodeStr(String str) {
+		try {
+			return new String(str.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	
 	/**
 	 * 

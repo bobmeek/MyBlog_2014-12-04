@@ -1,18 +1,22 @@
+<!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css"  href="resources/front_base/css/index.css" />
 </head>
 <body>
-	<div id="top"><!-- 顶部区域 -->
-		<div id="top_menu"><!-- 顶部导航区域 -->
-			<ul class="nav">
-				<li><a href="index.html" class="index">首页</a></li>
-				<#list categorys as category>
-					<#if category.status==1 && category_index lt siteInfo.navCount-1>
-						<li><a href="category/${category.name}" target='${siteInfo.target}'>${category.name}</a></li>
-					</#if>
-				</#list>
-			</ul>				
-		</div><!-- 顶部导航区域结束 -->
-	</div><!-- 顶部区域结束 -->
+	<div id="head"><!-- 头部区域开始 -->
+		<div class="container phablet-hide">
+        	<div class="nine columns">
+				<ul class="head-nav" style="z-index: 10000000;"><!-- 导航区域开始 -->
+					<li>
+						<a href="#" title="我爱你">我爱你</a>
+						<table>
+	                    	<tr><td><a href="#">我爱你</a></td></tr>
+						</table>
+					</li>
+				</ul><!-- 导航区域结束 -->
+			</div>
+		</div>
+	</div>
 </body>
 </html>

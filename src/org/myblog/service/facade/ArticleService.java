@@ -11,6 +11,8 @@ public interface ArticleService extends BaseDao<ArticleVO, Integer>
 	 */
 	public List<ArticleVO> searchArticles(String keyword);
 	
+	public List<ArticleVO> findListByMenuId(Integer menuId);
+	
 	/**
 	 * 批量删除文章
 	 */

@@ -9,6 +9,7 @@
 package org.myblog.common;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.sql.Timestamp;
 /**
@@ -23,12 +24,79 @@ public class DateUtil
 	
 	public static void main(String[] args) throws Exception
 	{
+		System.out.println(getMonth());
 		//将字符串转换成date类型
 		String time = "2014-01-08 22:22";
 		System.out.println(convertDate("yyyy/MM/dd HH:mm", 1389193877464L));
 		
 	}
 	
+	private final static String DATE_FORMAT = "yyyy-MM-dd";  
+    private final static String DATE_FORMAT_CN = "yyyy年MM月dd日";  
+    private final static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";  
+    private final static String TIME_FORMAT_CN = "yyyy年MM月dd日 HH:mm:ss";  
+    private final static String MONTH_FORMAT = "yyyy-MM";  
+    private final static String DAY_FORMAT = "yyyyMMdd";  
+    
+    
+    private static Calendar cal = Calendar.getInstance();
+    
+    
+    	
+
+    
+    
+    /**
+     * 
+     * @desc   [ 取得当前系统时间戳 ]
+     * @param  [ @return ]
+     * @author [ bobmeek ]   
+     * @time   [ 2015-4-30 上午11:20:50 ] 
+     *
+     */
+    public static java.sql.Timestamp getCurrTimestamp() {
+        return new java.sql.Timestamp(System.currentTimeMillis());
+    }
+    
+    /**
+     * 
+     * @desc   [ 取得当前系统时间戳 ]
+     * @param  [ @return ]
+     * @author [ bobmeek ]   
+     * @time   [ 2015-4-30 上午11:20:50 ] 
+     *
+     */
+    public static String getYear(){
+    	return String.valueOf(cal.get(Calendar.YEAR));
+    }
+    /**
+     * 
+     * @desc   [ 取得当前月份]
+     * @param  [ @return ]
+     * @author [ bobmeek ]   
+     * @time   [ 2015-4-30 上午11:20:50 ] 
+     *
+     */
+    public static String getMonth(){
+    	return String.valueOf(cal.get(Calendar.MONTH)+1);
+    }
+    /**
+     * 
+     * @desc   [ 取得当前月份中的日期 ]
+     * @param  [ @return ]
+     * @author [ bobmeek ]   
+     * @time   [ 2015-4-30 上午11:20:50 ] 
+     *
+     */
+    public static String getDay(){
+    	return String.valueOf(cal.get(Calendar.DAY_OF_MONTH));
+    }
+    
+    
+    
+    
+    
+    
 	
 	/**
 	 * @Description获得SimpleDateFormat  

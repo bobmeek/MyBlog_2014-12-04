@@ -23,6 +23,14 @@ public class ArticleServiceImpl extends AbstractBaseDao<ArticleVO, Integer>  imp
 		return findByParam1(map, operate);
 	}
 	
+	
+	public List<ArticleVO> findListByMenuId(Integer menuId){
+		String operate = ".findListByMenuId";
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("menuId", menuId);
+		return findListByParam(map, operate);
+	}
+	
 	@Override
 	public void bulk_delete(List<Integer> id) 
 	{

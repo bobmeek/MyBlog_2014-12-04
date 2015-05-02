@@ -31,6 +31,7 @@
 					<tr>
 						<th style="display:none ;">ID</th>
 						<th>菜单名称</th>
+						<th>菜单类型</th>
 						<th>菜单状态</th>
 						<th style="display: ;">父ID</th>
 						<th style="display: ;">菜单顺序</th>
@@ -46,7 +47,7 @@
 	
 	
 	<!--添加子菜单-->
-	<div class="modal fade" id="add_children_menu_modal">
+	<div class="modal" id="add_children_menu_modal">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -55,15 +56,15 @@
 					</button>
 					<h2 class="modal-title" style="text-align: center">添加子菜单</h2>
 				</div>
-				<div class="modal-body" style="height:200px;margin-top:20px;">
+				<div class="modal-body" style="height:300px;margin-top:20px;">
 					<form class="form-horizontal" action="">
 						 <div class="form-group" style="display: none;">
 						    <label for="parentid_add_menu" class="col-sm-3 control-label">父菜单ID</label>
 						    <div class="col-sm-8">
 						      <input type="text" class="form-control" id="parentid_add_menu"  placeholder="父节点ID">
 						    </div>
-						  </div>
-						  <div class="form-group">
+						 </div>
+						 <div class="form-group">
 						    <label for="parentname_add_menu" class="col-sm-2 control-label">父菜单名称</label>
 						    <div class="col-sm-9">
 						    	<div class="input-group">
@@ -73,7 +74,8 @@
 									<input type="text" id="parentname_add_menu" class="form-control input-lg" disabled="disabled">
 								</div>
 						    </div>
-						  </div>
+						 </div>
+						  
 						<div class="form-group">
 							<label for="childrenname_add_menu" class="col-sm-2 control-label">子菜单名称</label>
 							<div class="col-sm-9">
@@ -84,6 +86,18 @@
 									<input id="childrenname_add_menu" type="text" class="form-control input-lg" placeholder="请输入子菜单名称">
 								</div>
 							</div>
+						</div>
+						<div class="form-group">
+						    <label class="col-sm-2 control-label">菜单类型</label>
+						    <div class="col-sm-9" style='margin-top:-8px;'>
+								<div class="btn-group">
+								  <button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id="indexmenu_add_span">导航菜单<span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								      <li><input type="radio" name="NAME" value="VALUE" checked="checked" id="indexmenu_add_btn" ><label for="indexmenu_add_btn">导航菜单</label></li>
+								      <li><input type="radio" name="NAME" value="VALUE" id="indexmenu_add_txt" ><label for="indexmenu_add_txt" >栏目菜单</label></li>
+								    </ul>
+								</div>								            
+						    </div>
 						</div>
 					</form>
 				</div>
@@ -110,10 +124,6 @@
 				</div>
 				<div class="modal-body" style="height:100px;margin-top:20px;">
 					<form class="form-horizontal" action="">
-						  <input type="text" style='display: none;' class="form-control" id="id_detail_menu"  placeholder="ID">
-						  <input type="text" style='display: none;' class="form-control" id="parentid_detail_menu"  placeholder="父节点ID">
-						  <input type="text" style='display: none;' class="form-control" id="status_detail_menu"  placeholder="启用启用状态">
-						  <input type="text" style='display: none;' class="form-control" id="orders_detail_menu"  placeholder="序号">
 						  <div class="form-group">
 						    <label for="name_detail_menu" class="col-sm-2 control-label">菜单名称</label>
 						    <div class="col-sm-9">

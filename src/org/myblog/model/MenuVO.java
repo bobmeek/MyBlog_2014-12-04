@@ -13,15 +13,17 @@ public class MenuVO implements Serializable {
 	private Integer id;
 	private String name;
 	private Integer parentId;
+	private int type;
 	private int status;
 	private int orders;
 	public MenuVO() {
 		super();
 	}
-	public MenuVO(Integer id, String name, Integer parentId, int status,int orders) {
+	public MenuVO(Integer id, String name, Integer parentId,int type, int status,int orders) {
 		this.id = id;
 		this.name = name;
 		this.parentId = parentId;
+		this.type = type;
 		this.status = status;
 		this.orders = orders;
 	}
@@ -43,6 +45,12 @@ public class MenuVO implements Serializable {
 	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
 	public int getStatus() {
 		return status;
 	}
@@ -58,7 +66,7 @@ public class MenuVO implements Serializable {
 	@Override
 	public String toString() {
 		return "Menu [id=" + id + ", name=" + name + ", parentId=" + parentId
-				+ ", status=" + status + ", orders=" + orders + "]";
+				+ ", status=" + status+ ", type=" + type + ", orders=" + orders + "]";
 	}
 	
 	

@@ -13,14 +13,12 @@
 		<result property="commentCount" column="comment_count" />
 		<result property="topLevel" column="top_level" />
 		<result property="privacy" column="privacy" />
-		<result property="id_category" column="id_category" />
-		<result property="id_tag_article_tag" column="id_tag_article_tag" />
+		<result property="categoryId" column="id_category" />
 		 <association property="category" javaType="category"><!-- Article和CategoryN-1表示关联 -->
 		 	<id property="id" column="id" />
 			<result property="name" column="name" />
 			<result property="parentId" column="parent_id" />
 		 </association>
-		<collection property="tag" resultMap="org.myblog.model.TagVO.tagResultMap"></collection>
 	</resultMap>
 	
 	<!-- 查询操作。查询文章信息|栏目信息|标签信息 -->
@@ -28,6 +26,12 @@
 		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC
 	</select>
+	
+	<select id="findListByMenuId" resultMap = "articleResultMap">
+		SELECT a.id AS aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name,a.`id_menu` FROM article a LEFT JOIN category c ON a.id_category=c.id LEFT JOIN tag t
+		ON a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` WHERE a.`id_menu`=#{menuId} ORDER BY a.release_date DESC 
+	</select>
+	
 	
 	<!-- 删除操作。根据文章id删除文章信息 -->
 	<delete id="delete" parameterType="int">
@@ -37,8 +41,8 @@
 	<!-- 查询操作。根据文章id查询文章信息 -->
 	<select id="findById" resultMap="articleResultMap">
 		<!-- select a.id,a.title,a.author,a.release_date,a.content,a.read_count,a.top_level from article as a,category as c where a.id_category=c.id and a.id=#{id} -->
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
-		on a.id_tag_article_tag=t.id where a.id=#{id}
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		on a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` where a.id=#{id}
 	</select>
 	
 	<!-- 查询操作。根据文章标题模糊查询文章信息，并且根据文章发布日期排序文章 -->
@@ -73,8 +77,8 @@
 	
 	<!-- 插入操作。完成标题、内容、id_category、id_tag_article_tag、release_date的插入 -->
 	<insert id="add"  parameterType="article" useGeneratedKeys="true" keyProperty="id">
-		insert into article(title,content,id_category,id_tag_article_tag,release_date) 
-		values(#{title},#{content},#{id_category},#{id_tag_article_tag},#{releaseDate})
+		insert into article(title,content,id_menu,author,release_date) 
+		values(#{title},#{content},#{menuId},#{author},#{releaseDate})
 	</insert>
 	
 	<!-- 修改操作 -->

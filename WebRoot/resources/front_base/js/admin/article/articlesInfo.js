@@ -58,7 +58,7 @@
 				+ "<td><input type='checkbox' value="+ article.id + "></td>" 
 				+ "<td>" + article.title + "</td>" 
 				+ "<td>" + article.author + "</td>" 
-				+  "<td>" + article.category.name  + "</td>" 
+				+  "<td>" + ""  + "</td>" 
 				/*+ "<td>" + article.tag.name +  "</td>"*/
 				+ "<td>" + article.releaseDate + "</td>"
 				+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
@@ -186,7 +186,7 @@
 					+ "<td><input type='checkbox' value="+ article.id + "></td>" 
 					+ "<td>" + article.title + "</td>" 
 					+ "<td>" + article.author + "</td>" 
-					+  "<td>" + article.category.name  + "</td>" 
+					+  "<td>" + ""  + "</td>" 
 					+ "<td>" + article.tag.name +  "</td>"
 					+ "<td>" + article.releaseDate + "</td>"
 					+ "<td>" +  "<button type='button' id=" + article.id  + " name=" + article.id + " class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";

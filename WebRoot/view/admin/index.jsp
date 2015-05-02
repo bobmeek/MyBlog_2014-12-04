@@ -5,7 +5,7 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
 <head>
 <base href="<%=basePath%>">
@@ -64,7 +64,7 @@
 					class="caret"></b></a>
 				<ul id="topic_manage" class="list-unstyled sednav collapse" style="height: 0px;">
 					<shiro:hasPermission name="article:add">
-					<li><a href="#" id="addArticle2">发布文章</a></li>
+					<li><a href="#" id="publishArticle">发布文章</a></li>
 					</shiro:hasPermission>
 					<shiro:hasPermission name="article:*">
 					<li><a href="#" id="articlesInfo">文章信息</a></li>
@@ -112,7 +112,7 @@
 			<div class="col-xs-6 " style="float:right;">
 				<div class="btn-group users_info">
 					<button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
-						<span class="glyphicon glyphicon-user"></span> <shiro:principal/> <span class="caret"></span>
+						<span class="glyphicon glyphicon-user"></span> <span id='currentUser'><shiro:principal/></span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">信息</a></li>
@@ -144,7 +144,7 @@
 			<div id="articlesInfoPage" class="page" style="display:none;">
 				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="addArticle2Page" class="page" style="display:visibility;">
+			<div id="publishArticlePage" class="page" style="display:visibility;">
 				<jsp:include page="article/publishArticle.jsp" flush="true"></jsp:include>
 			</div>
 			<div id="categoryInfoPage" class="page" style="display:none;">
@@ -168,7 +168,8 @@
 	
 	
 	<!-- jquery主文件 -->
-	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script>
+<!-- 	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script> -->
+	<script src="resources/front_frame/simditor/js/jquery.min.js"></script>
 	<!-- jqueryUI主文件 -->
 	<script type="text/javascript" src="resources/front_frame/jquery-ui/jquery-ui.js"></script>
 	<!-- bootstrap主文件 -->
@@ -184,16 +185,19 @@
 	<script type="text/javascript" src="resources/front_frame/ztree/js/jquery.ztree.all-3.5.js"></script>
 	<!-- ajax上传 -->
 	<script type="text/javascript" src="resources/front_frame/jquery/ajaxfileupload.js"></script>
+	<!-- 格式化时间 -->
+	<script type="text/javascript" src="resources/front_frame/time.js"></script>
+	
 	<!-- 第三方弹出框 -->
 	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
 	
 	<!-- 文章编辑器 -->
-	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
+	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
+	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-autosave.js"></script> -->
 	<!-- 引起bootstrap弹框失效 -->
