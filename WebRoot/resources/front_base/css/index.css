@@ -1,18 +1,16 @@
 	/**
 		normalize.css、skeletion.css 2个css文件同为首页页面初始化所需css文件
-		default.css、light.css、dark.css、bar.css、nivo-slider.css 5个css文件同为焦点轮播图所需css文件
+		bgstretcher.css 为首页焦点轮播图所需css文件
+		layout.css 为首页页面所需css文件
 	*/
 
 	@import url(normalize.css);
 	@import url(skeleton.css);
-	
-	@import url(../../front_frame/nivo-slider/css/default.css);
-	@import url(../../front_frame/nivo-slider/css/light.css);
-	@import url(../../front_frame/nivo-slider/css/dark.css);
-	@import url(../../front_frame/nivo-slider/css/bar.css);
-	@import url(../../front_frame/nivo-slider/css/nivo-slider.css);
+	@import url(bgstretcher.css);
+	@import url(layout.css);
 	
 
+	
 	/* 页面默认清理样式 */
 	body
 	{
@@ -173,6 +171,11 @@
 		padding-right:5px;
 	}
 	
+	.head-nav li:hover
+	{
+		background: url(../img/index/right-arrow.png) top right no-repeat;
+	}
+	
 	/* 导航二级菜单<table>样式 */
     .head-nav table
     {
@@ -191,8 +194,7 @@
         padding:5px 12px;
         white-space: nowrap;
         border-bottom: 1px dashed #979494;
-        /* background: url(../img/index/top-subnav-bg.png); */
-        background: url(../img/index/right-arrow.png);
+        background: url(../img/index/top-subnav-bg.png);
         border:0px;
 	}
 	
@@ -208,6 +210,11 @@
      {
          display:block; /* 鼠标移动到一级菜单上时将二级菜单转换为块级元素 */
      }
+     
+     .head-nav>li:hover 
+     { 
+     	background: url(../img/index/topnav-cur.png) top right no-repeat;
+     }
 
 	/* 导航二级菜单活动伪类样式 */
      .head-nav table td:hover
@@ -221,20 +228,26 @@
 	} 
 	/** ==============================头部区域导航菜单样式结束================================== */
 	
+	
 	/* 焦点轮播图区域样式 */
-	.slider-wrapper 
+	/* .slider-wrapper 
 	{ 
-		width: 100%; 
+		height: auto;
+		width: 100%;
 		margin: 43px auto;
-	}
+	} */
 	
 	/* 校园新闻动态区域样式 */
-	.news
+/* 	.news
 	{
 		margin-top: -50px;	
-		width: 1010px;
+		width: 80%;
+		padding-top: 0px;
+		max-width: 1021px;
+		box-sizing: border-box;
+		position: relative;
 		margin: 0 auto;
-	}
+	} */
 	
 	/* 信息区域样式 */
 	#infobox 
@@ -252,6 +265,7 @@
  		margin-top: -25px;
 	}
 	
+	/* 信息标题区域样式 */
 	.infoboxtitle 
 	{
  		width: 100%;
@@ -259,11 +273,13 @@
 		background: url(../img/index/infoboxtitle-bg.png) 0 0 repeat-x;
 	}
 	
+	/* 信息标题区域图片样式 */
 	.infoboxtitle img 
 	{
  		float: left;
 	}
 	
+	/* 信息标题区域<a>标签样式 */
 	.infoboxtitle a 
 	{
  		float: right;
@@ -273,11 +289,13 @@
 		padding: 0 5px;
 	}
 	
+	/* 信息标题区域<ul>列表样式 */
 	.infobox ul 
 	{
  		list-style: none;
 	}
 	
+	/* 信息标题区域<ul>列表下<a>标签样式 */
 	.infobox ul li a 
 	{
  		width: 100%;
@@ -308,6 +326,7 @@
 		margin-right: 10px;
 	}
 	
+	/* 快速入口区域样式 */
 	.exlinks 
 	{
 		clear: both;
@@ -317,18 +336,23 @@
 	 	padding-top: 5px;
 	}
 
+	/* 快速入口区域<a>标签样式 */
 	.exlinks a 
 	{
  		padding: 4px 8px;
  		font-size: 12px;
 	}
 	
+	/* 快速入口区域<a>标签活动伪类样式 */
 	.exlinks a:hover 
 	{
  		background: #CCC;
  		border-radius: 4px;
 	}
+	/** ==============================信息区域、快速入口区域样式结束================================== */
 	
+	
+	/* 底部区域样式 */
 	#footer 
 	{
 		 position: fixed;
@@ -341,6 +365,7 @@
 		 z-index: 1000;
 	}
 	
+	/* 底部区域文字样式 */
 	.text 
 	{
 		 font-size: 12px;
@@ -361,6 +386,7 @@
 		 margin-left: 5px;
 	}
 	
+	/* 微博微信区域样式 */
 	.linkitem 
 	{
 		 height: 20px;
@@ -374,11 +400,13 @@
 		 cursor: pointer;
 	}
 	
+	/* 微博微信图片样式 */
 	.linkitem img 
 	{
 		 float: left;
 	}
 
+	/* 微博微信样式 */
 	.qr 
 	{
 		 display: none;
@@ -387,6 +415,7 @@
 		 top: -150px;
 	}
 	
+	/* 微博微信图片样式 */
 	.qr img 
 	{
 		 width: 100px;
@@ -395,23 +424,11 @@
 		 background: #CCC;
 		 border-radius: 3px;
 	}
+	/** ==============================底部区域样式结束================================== */
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* #navlist
+	/* 焦点轮播图左右按钮区域样式<ul> */
+	#navlist
 	 {
 		 position: absolute;
 		 top: 200px;
@@ -421,13 +438,14 @@
 		 z-index: 999;
 	}
 	
+	/* 焦点轮播图左右按钮区域样式<li> */
 	#navlist li 
 	{
 	 float: left;
 	 width: 50%;
-	 background: orange;
 	}
 	
+	/* 焦点轮播图上一张按钮样式 */
 	#navlist .prev 
 	{
 		 text-indent: -9999px;
@@ -438,6 +456,7 @@
 		 margin-left: 20px;
 	}
 	
+	/* 焦点轮播图下一张按钮样式 */
 	#navlist .next 
 	{
 		 text-indent: -9999px;
@@ -446,24 +465,9 @@
 		 float: right;
 		 background: url(../img/index/slider-next.png) 0 0 no-repeat;
 		 margin-right: 20px;
-	} */
+	}
+
 	
 	
 	
 	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
