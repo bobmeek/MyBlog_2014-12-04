@@ -55,12 +55,13 @@ public class IndexController {
 		SiteInfoVO siteInfo = siteInfoService.findAll().get(0);
 		//获取所有菜单 - 导航菜单/栏目菜单
 		List<MenuVO> menus = menuService.findAll();
+		
 		menus = (List<MenuVO>) SortListUtil.sort(menus, "orders", SortListUtil.DESC);
 		
 		//LinkedHashMap - 先进先出  
 		//一级菜单-二级菜单/二级菜单/二级子菜单 , 一对多的关系
 		Map<String,List<String>> navMenuMap = new LinkedHashMap<String,List<String>>();
-		
+		Map<String,List<ArticleVO>> categoryMenuMap = new LinkedHashMap<String,List<ArticleVO>>();
 		
 		for (MenuVO m : menus) {
 			//如果父ID为1,那么该菜单属于一级菜单
@@ -77,6 +78,13 @@ public class IndexController {
 				//key为一级菜单,value为二级菜单集合
 				if(navMenuMap.size()<=siteInfo.getNavCount())
 					navMenuMap.put(m.getName(), manyMenus);
+			}else if(m.getType()==1 && m.getStatus()==1){
+				List<ArticleVO> articles = articleService.findListByMenuId(m.getId());
+				if(null!=articles && articles.size()>0){
+					articles = (List<ArticleVO>) SortListUtil.sort(articles, "id",SortListUtil.DESC);
+				}
+				categoryMenuMap.put(m.getName(), articles);
+				
 			}
 		}
 		
@@ -92,6 +100,7 @@ public class IndexController {
 		session.setAttribute("target", target);
 		session.setAttribute("siteInfo", siteInfo);
 		session.setAttribute("navMenuMap", navMenuMap);
+		session.setAttribute("categoryMenuMap", categoryMenuMap);
 		
 		//获取文章信息
 		//modelMap = showArticles(1, modelMap);

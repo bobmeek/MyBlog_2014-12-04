@@ -30,7 +30,7 @@
 		 top: 0;
 		 left: 0;
 		 background-color: #FFF;
- 		 border-bottom: 3px solid #3E5259;
+ 		 border-bottom: 3px solid #679ad3;
  		 font-size: 15px;
  		 font-weight: 400;
  		 color: #222;
@@ -80,6 +80,25 @@
 	}
 	
 	/* 顶部右侧区域<a>标签样式 */
+	.top-left a 
+	{
+		 height: 20px;
+		 margin: 10px 5px;
+		 float: left;
+		 line-height: 20px;
+		 font-size: 14px;
+		 color: #333;
+		 text-decoration: none;
+	}
+	
+	/* 顶部右侧区域<img>标签样式 */
+	.top-left a img 
+	{
+		 margin-right: 5px;
+		 float: left;
+	}
+	
+	/* 顶部右侧区域<a>标签样式 */
 	.top-right a 
 	{
 		 height: 20px;
@@ -108,17 +127,26 @@
 	/* 顶部右侧区域搜索框样式 */
 	.searchbox input.inputtext 
 	{
-		 background: url("../img/index/search-bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+		 background: url(../img/index/search-bg.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     	border: medium none;
-    	color: #FFF;
+    	color: #333;
     	float: left;
-    	height: 20px;
-    	line-height: 20px;
+    	height: 25px;
+    	line-height: 25px;
     	padding: 0 30px 0 5px;
     	width: 161px;
     	margin: 10px 0;
     	font-size: 12px;
     	border-radius: 0;
+    	position: relative;
+	}
+	
+	.searchbox .fa-search
+	{
+		position: absolute;
+		right: 3px;
+		top: 13px;
+		cursor: pointer;
 	}
 	
 	/* 顶部右侧区域搜索按钮样式 */
@@ -139,6 +167,16 @@
 		 top: 60px;
 		 left: 0;
 		 width: 100%;
+		 position: relative;
+	}
+	
+	#head .logos img
+	{
+		max-width: 100%;
+		display: block;
+		position: absolute;
+		top: -100px;
+		left: -40px;
 	}
 	
 	/* 头部区域导航样式 */
@@ -151,7 +189,8 @@
 	.head-nav li 
 	{
 		float: right;
-		background: url(../img/index/right-arrow.png) top right no-repeat;
+		/* background: url(../images/right-arrow.png) top right no-repeat; */
+		background: #16447C;
 		padding: 0px 10px;
 		height: 40px;
 		cursor:pointer;
@@ -159,6 +198,7 @@
 		left: 276px;
 		/* top: 10px; */
 		z-index: 3000;
+		opacity: 0.7;
 	}
 	
 	/* 头部区域导航列表<a>标签样式 */
@@ -173,7 +213,8 @@
 	
 	.head-nav li:hover
 	{
-		background: url(../img/index/right-arrow.png) top right no-repeat;
+		/* background: url(../images/right-arrow.png) top right no-repeat; */
+		background: #3277ae;
 	}
 	
 	/* 导航二级菜单<table>样式 */
@@ -194,7 +235,8 @@
         padding:5px 12px;
         white-space: nowrap;
         border-bottom: 1px dashed #979494;
-        background: url(../img/index/top-subnav-bg.png);
+        /* background: url(../images/top-subnav-bg.png); */
+        background: #16447C;
         border:0px;
 	}
 	
@@ -203,7 +245,9 @@
     {
         height:20px;
         line-height:20px;
-        color: #c19a7b;
+        /* color: #c19a7b; */
+        /* color: #679ad3; */
+        color: #FFF;
 	}
      
      .head-nav li:hover table
@@ -213,29 +257,32 @@
      
      .head-nav>li:hover 
      { 
-     	background: url(../img/index/topnav-cur.png) top right no-repeat;
+     	/* background: url(../images/topnav-cur.png) top right no-repeat; */
+     	background: #16447C;
      }
 
 	/* 导航二级菜单活动伪类样式 */
      .head-nav table td:hover
      {
-         background: url(../img/index/top-subnav-bg-hover.png) repeat-x;
+         /* background: url(../images/top-subnav-bg-hover.png) repeat-x; */
+         /* background: #3277ae; */
+         text-decoration: underline;
      }
         
      .head-nav table td:hover a
      {
-          color:black; /* 鼠标移动到二级菜单上改变<a>标签字体颜色 */
+          /* color:black; */ /* 鼠标移动到二级菜单上改变<a>标签字体颜色 */
+          text-decoration: underline;
 	} 
 	/** ==============================头部区域导航菜单样式结束================================== */
 	
-	
 	/* 焦点轮播图区域样式 */
-	/* .slider-wrapper 
+	.slider-wrapper 
 	{ 
 		height: auto;
 		width: 100%;
 		margin: 43px auto;
-	} */
+	}
 	
 	/* 校园新闻动态区域样式 */
 /* 	.news
@@ -265,21 +312,40 @@
  		margin-top: -25px;
 	}
 	
-	/* 信息标题区域样式 */
 	.infoboxtitle 
 	{
  		width: 100%;
 		height: 30px;
-		background: url(../img/index/infoboxtitle-bg.png) 0 0 repeat-x;
+		/* background: url(../images/infoboxtitle-bg.png) 0 0 repeat-x; */
 	}
 	
-	/* 信息标题区域图片样式 */
+	.infoboxtitle>span
+	{
+		color: #0E419C;
+		font-size: 14px;
+		font-weight: bold;
+		font-family: "微软雅黑","Microsoft yahei",Tahoma,Verdana,Arial,sans-serif;
+		line-height: 30px;
+	}
+	
+	.infoboxtitle .en
+	{
+		color: #aaa;
+		font-size: 12px;
+		margin-left: 5px;
+		line-height: 30px;
+	}
+	
+	.infoboxtitle .more
+	{
+		color: #0E419C;
+	}
+	
 	.infoboxtitle img 
 	{
  		float: left;
 	}
 	
-	/* 信息标题区域<a>标签样式 */
 	.infoboxtitle a 
 	{
  		float: right;
@@ -289,33 +355,44 @@
 		padding: 0 5px;
 	}
 	
-	/* 信息标题区域<ul>列表样式 */
 	.infobox ul 
 	{
  		list-style: none;
 	}
 	
-	/* 信息标题区域<ul>列表下<a>标签样式 */
 	.infobox ul li a 
 	{
  		width: 100%;
 		overflow: hidden;
-		height: 20px;
-		line-height: 20px;
+		height: 25px;
+		line-height: 25px;
 		font-size: 12px;
 		float: left;
 		color: #233b2a;
+	}
+	
+	.infobox ul li a:hover
+	{
+		text-decoration: underline;
+		color: #679ad3;
 	}
 	
 	.infobox-speciallink 
 	{
  		float: left;
 	 	padding: 8px;
-	 	line-height: 20px;
-	 	margin: 10px 0;
+	 	line-height: 30px;
+	 	margin: 5px 0;
 	 	font-size: 12px;
 	 	width: 90%;
-	 	border-bottom: 1px solid #CCC;
+	 	opacity: 0.7;
+	 	color: #333;
+	}
+	
+	.infobox-speciallink:hover
+	{
+		text-decoration: underline;
+		color: #679AD3;
 	}
 	
 	.infobox-speciallink img 
@@ -326,7 +403,6 @@
 		margin-right: 10px;
 	}
 	
-	/* 快速入口区域样式 */
 	.exlinks 
 	{
 		clear: both;
@@ -336,36 +412,43 @@
 	 	padding-top: 5px;
 	}
 
-	/* 快速入口区域<a>标签样式 */
 	.exlinks a 
 	{
  		padding: 4px 8px;
  		font-size: 12px;
 	}
 	
-	/* 快速入口区域<a>标签活动伪类样式 */
 	.exlinks a:hover 
 	{
- 		background: #CCC;
+ 		/* background: #CCC; */
+ 		background: #679ad3;
  		border-radius: 4px;
 	}
-	/** ==============================信息区域、快速入口区域样式结束================================== */
 	
-	
-	/* 底部区域样式 */
 	#footer 
 	{
 		 position: fixed;
 		 bottom: 0;
 		 left: 0;
 		 height: 52px;
-		 background: #233B2A;
+		 /* background: #233B2A; */  /* 初始颜色 */
+		 /* background:  #363636; */ /* 保留颜色1 */
+		/* background: #385870; */
+		/* background: #0e4c92; */
+		/* background: #002147; */
+		/* background: #005faf; */
+		background: #16447c;
 		 width: 100%;
 		 padding: 4px 0;
 		 z-index: 1000;
 	}
 	
-	/* 底部区域文字样式 */
+	
+	#footer a, #footer .six, #footer .seven
+	{
+		color: #679ad3;
+	}
+	
 	.text 
 	{
 		 font-size: 12px;
@@ -386,7 +469,6 @@
 		 margin-left: 5px;
 	}
 	
-	/* 微博微信区域样式 */
 	.linkitem 
 	{
 		 height: 20px;
@@ -400,13 +482,11 @@
 		 cursor: pointer;
 	}
 	
-	/* 微博微信图片样式 */
 	.linkitem img 
 	{
 		 float: left;
 	}
 
-	/* 微博微信样式 */
 	.qr 
 	{
 		 display: none;
@@ -415,7 +495,6 @@
 		 top: -150px;
 	}
 	
-	/* 微博微信图片样式 */
 	.qr img 
 	{
 		 width: 100px;
@@ -424,10 +503,26 @@
 		 background: #CCC;
 		 border-radius: 3px;
 	}
-	/** ==============================底部区域样式结束================================== */
 	
 	
-	/* 焦点轮播图左右按钮区域样式<ul> */
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	#navlist
 	 {
 		 position: absolute;
@@ -438,14 +533,13 @@
 		 z-index: 999;
 	}
 	
-	/* 焦点轮播图左右按钮区域样式<li> */
 	#navlist li 
 	{
 	 float: left;
 	 width: 50%;
+	 /* background: orange; */
 	}
 	
-	/* 焦点轮播图上一张按钮样式 */
 	#navlist .prev 
 	{
 		 text-indent: -9999px;
@@ -456,7 +550,6 @@
 		 margin-left: 20px;
 	}
 	
-	/* 焦点轮播图下一张按钮样式 */
 	#navlist .next 
 	{
 		 text-indent: -9999px;

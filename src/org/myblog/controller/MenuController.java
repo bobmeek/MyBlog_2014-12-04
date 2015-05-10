@@ -42,31 +42,35 @@ public class MenuController {
 	
 	@RequestMapping(value = "/add/childs")
 	@ResponseBody
-	public void addChilds(MenuVO menu){
+	public int addChilds(MenuVO menu){
 		//查出该父ID下所有的子菜单中orders字段的最大值 
 		int maxOrders = menuService.findMaxOrders(menu.getParentId())+1;
 		menu.setOrders(maxOrders);
 		menu.setStatus(1);
 		menuService.save(menu);
+		return 1;
 	}
 	
 	@RequestMapping(value="/update/childs",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public void updateChilds(@RequestBody MenuVO[] menus){
+	public int updateChilds(@RequestBody MenuVO[] menus){
 		for (int i=0;i<menus.length; i++) {
 			menuService.update(menus[i]);	
 		}
+		return 1;
 	}
 	@RequestMapping(value="/update/child",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public void updateChilds(MenuVO menu){
+	public int updateChilds(MenuVO menu){
 		menuService.update(menu);	
+		return 1;
 
 	}
 	
 	@RequestMapping(value = "/delete/{id}")
 	@ResponseBody
-	public void deleteChilds(@PathVariable Integer id){
+	public int deleteChilds(@PathVariable Integer id){
 		menuService.delete(id);
+		return 1;
 	}
 }

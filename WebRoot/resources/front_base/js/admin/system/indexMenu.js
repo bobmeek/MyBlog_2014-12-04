@@ -17,6 +17,7 @@ $(function(){
 	 * 显示首页菜单导航
 	 */
 	function showMenuTree(currentNode){
+		debugger;
 		$.post('menu/show','',function(result){
 			var zNodes = [];
 			if(null!=result){

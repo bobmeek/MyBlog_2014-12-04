@@ -238,7 +238,7 @@ body {
 .infoboxtitle {
  width: 100%;
  height: 30px;
- background: url(../images/infoboxtitle-bg.png) 0 0 repeat-x;
+ /* background: url(../images/infoboxtitle-bg.png) 0 0 repeat-x; */
 }
 .infoboxtitle img {
  float: left;
@@ -269,7 +269,7 @@ body {
  margin: 10px 0;
  font-size: 12px;
  width: 90%;
- border-bottom: 1px solid #CCC;
+ /* border-bottom: 1px solid #CCC; */
 }
 .infobox-speciallink img {
  width: 40px;

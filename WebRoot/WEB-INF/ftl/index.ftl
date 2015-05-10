@@ -10,6 +10,7 @@
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css"  href="resources/front_base/css/index.css" /><!-- 首页页面css文件 -->
+	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bgstretcher/js/jquery-bgstretcher-3.3.0.min.js"></script><!-- 轮播图js文件 -->
 			
@@ -20,21 +21,20 @@
 		<div id="top"><!-- 顶部区域开始 -->
 			<div class="container" style="width: 1010px; max-width:1010px; height:40px; margin: 0 auto;">
 				<div class="top-left"><!-- 顶部左侧区域开始 -->
-					<ul>
-						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">下载中心</a></li>
-						<li class="desktop-hide"><a href="javascript:void(0);"  title="">办理指南</a></li>
-					</ul>
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/111.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">出国出境办理指南</span></a>
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/222.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">下载中心</span></a>
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/333.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">成绩查询</span></a>
 				</div><!-- 顶部左侧区域结束 -->
 				
 				<div class="top-right" style="height: 40px;"><!-- 顶部右侧区域开始 -->
-				    <a href="javascript:void(0);"><img src="resources/front_base/img/index/infoportal.png"><span class="desktophd-hide">在线报名</span></a>
-				    <a href="javascript:void(0);"><img src="resources/front_base/img/index/icon-briefcase.png"><span class="desktophd-hide">录取查询</span></a>
+				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/444.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">录取查询</span></a>
+				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
 	
 				    <div class="searchbox"><!-- 搜索区域 -->
 					    <form method="get" action="">
-					      <input type="text" value="请输入关键字..." name="s" style="background: #6e5736;" class="inputtext" id="s" 
+					      <input type="text" value="请输入关键字..." name="s" style="background: none;  border: 2px solid #3277ae; border-radius: 10px; border-color: #3277ae;" class="inputtext" id="s" 
 					      onfocus="if (value =='请输入关键字...'){value =''}" onblur="if (value ==''){value='请输入关键字...'}">
-					      <input type="image" src="resources/front_base/img/index/search-btn.png" value="" class="submit" name="INTEXT" id="search_btn">
+					      <i class="fa fa-search fa-lg" style="color: #679ad3;"></i>
 					    </form>
 					 </div><!-- 搜索区域结束 -->
 			</div><!-- 顶部右侧区域结束 -->
@@ -64,7 +64,6 @@
 		</div>
 	</div>
 	
-	
 	<ul id="navlist" class="tablet-hide">
 	      <li><a class="prev" href="javascript:void(0);">上一张</a></li>
 	      <li><a class="next" href="javascript:void(0);">下一张</a></li>
@@ -73,43 +72,26 @@
 	 <div id="infobox">
 		<div class="container">
 		<div class="row" style="margin-top: 30px;"><!-- 校园新闻动态区域开始 -->
-			<div class="three columns infobox">
-				<div class="infoboxtitle"> <img src="resources/front_base/img/index/cooperation2.png"><a href="javascript:void(0);">更多</a></div>
-				<ul>
-						<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=235" target="_blank" title="罗爱平董事长会见檀国大学金周昌教授">罗爱平董事长会见檀国大学金周昌教授</a></li>
-						<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=231" target="_blank" title="韩国檀国大学名誉教授金裕赫会长一行访问我校">韩国檀国大学名誉教授金裕赫会长一行访问我校</a></li>
-						<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=230" target="_blank" title="美国乔治福克斯大学副校长彭长徽博士一行访问我校">美国乔治福克斯大学副校长彭长徽博士一行访问我校</a></li>
-						<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=223" target="_blank" title="汉口学院招收赴韩国青云大学留学生招生简章">汉口学院招收赴韩国青云大学留学生招生简章</a></li>
-						<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=222" target="_blank" title="汉口学院招收赴英国提赛德大学留学生招生简章">汉口学院招收赴英国提赛德大学留学生招生简章</a></li>
-				</ul>
-			</div>
-			<div class="three columns infobox">
-		  		<div class="infoboxtitle"><img src="resources/front_base/img/index/news.png"><a href="javascript:void(0);" >更多</a></div>
-		 			 <ul>
-		 			    <li><a href="javascript:void(0);"  title="文科首个“千人计划”特聘教授主编出版环境法著作">文科首个“千人计划”特聘教授主编出版环境法著作</a></li>
-					    <li><a href="javascript:void(0);"  title="“五大方向”助力湖北省长江经济带发展">“五大方向”助力湖北省长江经济带发展</a></li>
-					    <li><a href="javascript:void(0);"  title="国内外学者研讨系统工程和管理科学">国内外学者研讨系统工程和管理科学</a></li>
-					    <li><a href="javascript:void(0);"  title="我校为亚洲高等教育规划献策">我校为亚洲高等教育规划献策</a></li>
-					    <li><a href="javascript:void(0);"  title="谭崇台：中国发展经济学引路人">谭崇台：中国发展经济学引路人</a></li>
-		  			</ul>
-			</div>
-			<div class="three columns infobox">
-		  		<div class="infoboxtitle"><img src="resources/front_base/img/index/notice.png"><a href="javascript:void(0);" >更多</a></div>
-		  			<ul>
-					    <li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=234" target="_blank" title="2015年大学英语教师教学能力培养预通知">2015年大学英语教师教学能力培养预通知</a></li>
-					    <li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=233" target="_blank" title="孔子学院总部公开招聘2015年度外派汉语教师">孔子学院总部公开招聘2015年度外派汉语教师</a></li>
-					    <li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=232" target="_blank" title="关于湖北省2014年度外国文教专家聘请资格单位年检情况的通报">关于湖北省2014年度外国文教专家聘请资格单位年检情况的通报</a></li>
-					    <li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=229" target="_blank" title="教育部关于认真学习贯彻全国留学工作会议精神的通知">教育部关于认真学习贯彻全国留学工作会议精神的通知</a></li>
-					    <li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=224" target="_blank" title="关于总结出国留学情况的通知">关于总结出国留学情况的通知</a></li>
-		  		</ul>
-			</div>
+			
+            <#list categoryMenuMap?keys as menu>
+            <#assign articles=categoryMenuMap[menu] />
+	            <#if articles?exists>
+				<div class="three columns infobox">
+					<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="javascript:void(0);">更多 ></a></div>
+					<ul>
+					<#list articles as article>
+							<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=235" target="_blank" title="${article.title}">${article.title}</a></li>
+					</#list>
+					</ul>
+				</div>
+				</#if>
+			</#list>
+			
+			
 			<div class="three columns infobox ljg">
-		  		<div class="infoboxtitle"><img src="resources/front_base/img/index/topics.png"><a href="javascript:void(0);" >更多</a></div>
-		  		<a class="infobox-speciallink" href="javascript:void(0);"><img src="resources/front_base/img/index/1.jpg" class="desktop-hide">汉口学院形象片</a>
-		  			<ul>
-					    <li><a href="javascript:void(0);">文明创建专题网</a></li>
-					    <li><a href="javascript:void(0);" >群众路线教育实践活动</a></li>
-		  			</ul>
+		  		<div class="infoboxtitle"><!-- <img src="images/topics.png"> --><span>服务中心</span><span class="en"> ENTRANCE</span><a class="more" href="javascript:void(0);" >更多 ></a></div>
+		  		<a class="infobox-speciallink" href="javascript:void(0);" title="语言培训中心"><img  src="resources/front_base/img/index/019-48.png" style="display: inline;" width="24px;" height="24px;">语言培训中心</a>
+		  		<a class="infobox-speciallink" href="javascript:void(0);" title="驻巴黎欧盟办事处"><img  src="resources/front_base/img/index/trio_man_lead-48.png" style="display: inline;" width="24px;" height="24px;">驻巴黎欧盟办事处</a>
 			</div>
 		</div><!-- 校园新闻动态区域结束 -->
 		
@@ -119,6 +101,7 @@
 			  <a href="javascript:void(0);"  title="中华人民共和国外交部">中华人民共和国外交部</a>
 			  <a href="javascript:void(0);"   title="武汉市人民政府外事办公室" >武汉市人民政府外事办公室</a>
 		</div><!-- 快速入口链接区域结束 -->
+
 	</div>
 </div>
 
@@ -129,21 +112,21 @@
 				<div class="six columns text">地址：湖北省武汉市江夏区文化大道299号 邮编：430212&nbsp;&nbsp; 鄂ICP备05016648</div>
 				<div class="six columns footerlinks phablet-hide" style="width: 30%;float: right">
 					<div class="linkitem">
-						<img src="resources/front_base/img/index/weixin.png"><span class="tablet-hide"><a href="javascript:void(0)">官方微信</a></span>
+						<i class="fa fa-weixin fa-lg" style="color: #679ad3;"></i><span class="tablet-hide"><a href="javascript:void(0)" class="weixin">官方微信</a></span>
 						<div id="whuwechat" class="qr">
-							<a href="#"><img src="resources/front_base/img/index/whuwechat.jpg"></a>
+							<a href="#"><img class="wechat" src="images/wechat.jpg" style="display: none;"></a>
 						</div>
 					</div>
 					<div class="linkitem">
-						<img src="resources/front_base/img/index/weibo.png"></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
+						<i class="fa fa-weibo fa-lg" style="color: #679ad3;"></i></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
 						<div id="whuweibo" class="qr">
-							<a href="#"><img src="resources/front_base/img/index/whuweibo.png"></a>
+							<a href="#"><img src="images/whuweibo.png"></a>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="row">
-				<div class="seven columns text">Copyright 汉口学院2015&nbsp;&nbsp;&nbsp; Designed by MONOKEROS&nbsp;&nbsp;&nbsp;技术支持 <a href="javascript:void(0);" style="color: #886e4a">信息中心</a></div>
+				<div class="seven columns text">Copyright 汉口学院2015&nbsp;&nbsp;&nbsp; Designed by MONOKEROS&nbsp;&nbsp;&nbsp;技术支持 <a href="javascript:void(0);" >信息中心</a></div>
 				<div class="five columns footerlinks phablet-hide">
 					<a href="javascript:void(0);">&nbsp;旧版主页<a href="mailto:wlxxs@whu.edu.cn">&nbsp;联系我们 | <a href="javascript:void(0);">网络导航 | </a></a></a>
 				</div>
@@ -153,19 +136,18 @@
 	
 	
     <script type="text/javascript">
-    
 	    $(document).ready(function() {
-		    $("body").bgStretcher({
-		          images: ["resources/front_base/img/index/max-school2.jpg","resources/front_base/img/index/bgxg05.jpg","resources/front_base/img/index/mac.jpg","resources/front_base/img/index/bgxg05.jpg"],
-		          imageWidth: 1280,
-		          imageHeight: 800,
-		          transitionEffect: 'fade',
-		          sequenceMode: 'normal',
-		          nextSlideDelay: '8000',
-		          preloadImg: true,
-		          buttonNext: ".next",
-		          buttonPrev: ".prev"
-		      });
+	    $("body").bgStretcher({
+	          images: ["resources/front_base/img/index/sliderbg1.jpg","resources/front_base/img/index/sliderbg2.jpg","resources/front_base/img/index/sliderbg3.jpg","resources/front_base/img/index/sliderbg1.jpg"],
+	          imageWidth: 1280,
+	          imageHeight: 800,
+	          transitionEffect: 'fade',
+	          sequenceMode: 'normal',
+	          nextSlideDelay: '8000',
+	          preloadImg: true,
+	          buttonNext: ".next",
+	          buttonPrev: ".prev"
+	      });
 	    });
 	    
     </script>
