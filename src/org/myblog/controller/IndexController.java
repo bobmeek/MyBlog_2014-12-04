@@ -102,30 +102,47 @@ public class IndexController {
 	}
 	
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = "menu/{menuName}/")
-	public String showMenuInfo(@PathVariable String menuName,HttpSession session,ModelMap modelMap){
+	public String showArticles(@PathVariable String menuName,HttpSession session,ModelMap modelMap){
+		modelMap.put("parentMenuName", menuName);
+		modelMap.put("childMenuName", menuName);
 		MenuVO menu = menuService.findByName(menuName);
 		if(null!=menu){
 			List<MenuVO> menus = menuService.findListByParentId(menu.getId());
 			List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
+			ArticleVO article = null;
+			if(null!=articles && articles.size()>0){
+				articles = (List<ArticleVO>) SortListUtil.sort(articles, "id",SortListUtil.DESC);
+				article = articles.get(0);
+			}
+					
 			modelMap.put("menus", menus);
-			modelMap.put("articles", articles);
+			modelMap.put("article", article);
 		}
-		return "menuInfo";
+		return "articleInfo";
 	}
 	
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value = {"menu/{menuName}/{childMenuName}"})
-	public String showMenuInfo(@PathVariable String menuName,@PathVariable String childMenuName,HttpSession session,ModelMap modelMap){
+	public String showArticles(@PathVariable String menuName,@PathVariable String childMenuName,HttpSession session,ModelMap modelMap){
+		modelMap.put("parentMenuName", menuName);
+		modelMap.put("childMenuName", childMenuName);
 		if(!"".equals(childMenuName) && null!=childMenuName)
 			menuName = childMenuName;
 		MenuVO menu = menuService.findByName(menuName);
+		ArticleVO article = null;
 		if(null!=menu){
 			List<MenuVO> menus = menuService.findListByParentId(menu.getParentId());
 			List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
+			if(null!=articles && articles.size()>0){
+				articles = (List<ArticleVO>) SortListUtil.sort(articles, "releaseDate",SortListUtil.ASC);
+				article = articles.get(0);
+			}
 			modelMap.put("menus", menus);
-			modelMap.put("articles", articles);
+			modelMap.put("article", article);
 		}
-		return "menuInfo";
+		return "articleInfo";
 	}
 	
 	
@@ -139,7 +156,7 @@ public class IndexController {
 	 * @time   [ 2015年3月27日 下午5:49:43 ] 
 	 *
 	 */
-	@RequestMapping(value="currentPage/{currentPage}")
+	/*@RequestMapping(value="currentPage/{currentPage}")
 	@ResponseBody
 	public ModelMap showArticles(int currentPage,HttpSession session,ModelMap modelMap){
 		int totalCount = articleService.getTotalNum();
@@ -170,7 +187,7 @@ public class IndexController {
 		modelMap.addAttribute("hotArticles",hotArticles);
 		
 		return modelMap;
-	}
+	}*/
 	
 	/*@SuppressWarnings("unchecked")
 	@RequestMapping(value="{id}")

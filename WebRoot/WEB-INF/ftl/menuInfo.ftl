@@ -4,7 +4,7 @@
 		<title></title>
 	</head>  
 	<body>
-		<ul
+		<ul>
 		<#if menus?exists>
 			<#list menus as menu>
 				<li>
