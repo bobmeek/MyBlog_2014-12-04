@@ -25,7 +25,7 @@
 		 top: 0;
 		 left: 0;
 		 background-color: #FFF;
- 		 border-bottom: 3px solid #3E5259;
+ 		 border-bottom: 3px solid #679ad3;
  		 font-size: 15px;
  		 font-weight: 400;
  		 color: #222;
@@ -75,6 +75,25 @@
 	}
 	
 	/* 顶部右侧区域<a>标签样式 */
+	.top-left a 
+	{
+		 height: 20px;
+		 margin: 10px 5px;
+		 float: left;
+		 line-height: 20px;
+		 font-size: 14px;
+		 color: #333;
+		 text-decoration: none;
+	}
+	
+	/* 顶部右侧区域<img>标签样式 */
+	.top-left a img 
+	{
+		 margin-right: 5px;
+		 float: left;
+	}
+	
+	/* 顶部右侧区域<a>标签样式 */
 	.top-right a 
 	{
 		 height: 20px;
@@ -103,17 +122,26 @@
 	/* 顶部右侧区域搜索框样式 */
 	.searchbox input.inputtext 
 	{
-		 background: url("../images/search-bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+		 background: url("../img/index/search-bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     	border: medium none;
-    	color: #FFF;
+    	color: #333;
     	float: left;
-    	height: 20px;
-    	line-height: 20px;
+    	height: 25px;
+    	line-height: 25px;
     	padding: 0 30px 0 5px;
     	width: 161px;
     	margin: 10px 0;
     	font-size: 12px;
     	border-radius: 0;
+    	position: relative;
+	}
+	
+	.searchbox .fa-search
+	{
+		position: absolute;
+		right: 3px;
+		top: 13px;
+		cursor: pointer;
 	}
 	
 	/* 顶部右侧区域搜索按钮样式 */
@@ -143,7 +171,7 @@
 	#subhead .subhead-bg
 	{
 		height:134px;
-		background: url(../images/xygk_bg.png);
+		background: url(../img/index/xygk_bg.png);
 		background-size: 100% 100%;
 		box-shadow: -2px 0px 2px #EAEAEA,2px 0px 2px #EAEAEA,0 2px 0 #EAEAEA;
 	}
@@ -153,7 +181,9 @@
 	{
 		 height:34px;
 		 line-height:34px;
-		 background:url(../images/nav_bg.png) center repeat-x;
+		 /* background:url(../images/nav_bg.png) center repeat-x; */
+		 background: #16447C;
+		 opacity: 0.9;
 		 position:absolute;
 		 width:100%;
 		 bottom:0px;
@@ -173,7 +203,9 @@
 	{
 		float:left;
 		 height:34px;
-		 background:url(../images/nav_jb_right.png) right center no-repeat;
+		 /* background:url(../images/nav_jb_right.png) right center no-repeat; */
+		 background: #16447C;
+		 opacity: 0.9;
 		 list-style: none;
 		 text-align:center;
 		 width:12%;
@@ -182,7 +214,7 @@
 	/* 导航菜单<a>标签样式 */
 	.menus ul li a
 	{
- 		color:white;
+ 		color:#FFF;
 	}
 	
 	/* 导航菜单<li>标签下的<table>样式 */
@@ -202,7 +234,7 @@
 		 white-space: nowrap;
 		 border:0px;
 		 font-size:12px;
-		 background:url(../images/top-subnav-bg.png);
+		 background:url(../img/index/top-subnav-bg.png);
 	}
 
 	/* 导航菜单<li>标签下的<table>标签下的<td>标签下的<a>标签样式 */
@@ -216,7 +248,7 @@
 	/* 导航菜单<li>标签活动伪类样式 */
 	.menus ul li:hover
 	{
-		background:url(../images/nav_jb_down.png) right center no-repeat; /* 移动到导航菜单时右箭头背景图改变成下箭头背景图 */
+		background:url(../img/index/nav_jb_down.png) right center no-repeat; /* 移动到导航菜单时右箭头背景图改变成下箭头背景图 */
 	}
 	
 	/* 导航菜单下的<li>标签活动伪类样式，移动到<li>标签上时(也就是导航) 将改变<li>标签下的<table>样式 */
@@ -228,7 +260,7 @@
 	/* 导航菜单下的<table>标签下的<td>标签的活动伪类样式 */
 	.menus ul li table td:hover
 	{
-		 background: url(../images/top-subnav-bg-hover.png) repeat-x;
+		 background: url(../img/index/top-subnav-bg-hover.png) repeat-x;
 	}
 	
 	/* 导航菜单下的<table>标签下的<td>标签的活动伪类样式，移动到二级导航上时将改变<a>标签的字体颜色 */
@@ -283,7 +315,8 @@
 		 font-weight: 700;
 		 color: #FFF;
 		 line-height: 30px;
-		 background: #33513A;
+		 /* background: #33513A; */
+		 background: #16447C;
 		 padding: 5px 20px;
 		 margin-bottom: 0;
 	}
@@ -346,7 +379,8 @@
 		 font-size:26px;
  		 line-height:35px;
  		 color: #1C2D1F;
- 		 border-bottom: 4px solid #33513A;
+ 		 /* border-bottom: 4px solid #33513A; */
+ 		 border-bottom: 4px solid #16447C;
  		 float: left;
 	}
 	
@@ -411,10 +445,22 @@
 		 bottom: 0;
 		 left: 0;
 		 height: 52px;
-		 background: #233B2A;
+		 /* background: #233B2A; */  /* 初始颜色 */
+		 /* background:  #363636; */ /* 保留颜色1 */
+		/* background: #385870; */
+		/* background: #0e4c92; */
+		/* background: #002147; */
+		/* background: #005faf; */
+		background: #16447c;
 		 width: 100%;
 		 padding: 4px 0;
 		 z-index: 1000;
+	}
+	
+	
+	#footer a, #footer .six, #footer .seven
+	{
+		color: #679ad3;
 	}
 	
 	.text 

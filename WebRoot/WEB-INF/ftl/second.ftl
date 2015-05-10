@@ -9,31 +9,29 @@
 <body>
 	
 		<div id="top"><!-- 顶部区域开始 -->
-				<div class="container" style="width: 1010px; max-width:1010px; height:40px; margin: 0 auto;">
-					<div class="top-left"><!-- 顶部左侧区域开始 -->
-						<ul>
-						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">下载中心</a></li>
-						<li class="desktop-hide"><a href="javascript:void(0);"  title="" class="sprit">办理指南</a></li>
-					</ul>
-					</div><!-- 顶部左侧区域结束 -->
-					
-					<div class="top-right" style="height: 40px;"><!-- 顶部右侧区域开始 -->
-						<a href="javascript:void(0);"><img src="resources/front_base/img/index/infoportal.png"><span class="desktophd-hide">在线报名</span></a>
-				        <a href="javascript:void(0);"><img src="resources/front_base/img/index/icon-briefcase.png"><span class="desktophd-hide">录取查询</span></a>
-		
-					    <div class="searchbox"><!-- 搜索区域 -->
-						    <form method="get" action="">
-						      <input type="text" value="请输入关键字..." name="s" style="background: #6e5736;" class="inputtext" id="s" 
-						      onfocus="if (value =='请输入关键字...'){value =''}" onblur="if (value ==''){value='请输入关键字...'}">
-						      <input type="image" src="resources/front_base/img/index/search-btn.png" value="" class="submit" name="INTEXT" id="search_btn">
-						    </form>
-						 </div><!-- 搜索区域结束 -->
-				</div><!-- 顶部右侧区域结束 -->
-			</div>
-		</div><!-- 顶部区域结束 -->
-		
-		
-		<div id="subhead"><!-- 副标题区域开始 -->
+			<div class="container" style="width: 1010px; max-width:1010px; height:40px; margin: 0 auto;">
+				<div class="top-left"><!-- 顶部左侧区域开始 -->
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/111.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">出国出境办理指南</span></a>
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/222.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">下载中心</span></a>
+					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/333.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">成绩查询</span></a>
+				</div><!-- 顶部左侧区域结束 -->
+				
+				<div class="top-right" style="height: 40px;"><!-- 顶部右侧区域开始 -->
+				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/444.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">录取查询</span></a>
+				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
+	
+				    <div class="searchbox"><!-- 搜索区域 -->
+					    <form method="get" action="">
+					      <input type="text" value="请输入关键字..." name="s" style="background: none;  border: 2px solid #3277ae; border-radius: 10px; border-color: #3277ae;" class="inputtext" id="s" 
+					      onfocus="if (value =='请输入关键字...'){value =''}" onblur="if (value ==''){value='请输入关键字...'}">
+					      <i class="fa fa-search fa-lg" style="color: #679ad3;"></i>
+					    </form>
+					 </div><!-- 搜索区域结束 -->
+			</div><!-- 顶部右侧区域结束 -->
+		</div>
+	</div><!-- 顶部区域结束 -->
+	
+	<div id="subhead"><!-- 副标题区域开始 -->
 			<div class="subhead-bg">
 					<div class="menus"><!-- 导航菜单开始 -->
 						<ul>
@@ -156,13 +154,13 @@
 				<div class="six columns text">地址：湖北省武汉市江夏区文化大道299号 邮编：430212&nbsp;&nbsp; 鄂ICP备05016648</div>
 				<div class="six columns footerlinks phablet-hide" style="width: 30%;float: right">
 					<div class="linkitem">
-						<img src="resources/front_base/img/index/weixin.png"><span class="tablet-hide"><a href="javascript:void(0)">官方微信</a></span>
+						<i class="fa fa-weixin fa-lg" style="color: #679ad3;"></i><span class="tablet-hide"><a href="javascript:void(0)" class="weixin">官方微信</a></span>
 						<div id="whuwechat" class="qr">
-							<a href="#"><img src="resources/front_base/img/index/whuwechat.jpg"></a>
+							<a href="#"><img class="wechat" src="resources/front_base/img/index/wechat.jpg" style="display: none;"></a>
 						</div>
 					</div>
 					<div class="linkitem">
-						<img src="resources/front_base/img/index/weibo.png"></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
+						<i class="fa fa-weibo fa-lg" style="color: #679ad3;"></i></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
 						<div id="whuweibo" class="qr">
 							<a href="#"><img src="resources/front_base/img/index/whuweibo.png"></a>
 						</div>
@@ -170,13 +168,14 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="seven columns text">Copyright 汉口学院2015&nbsp;&nbsp;&nbsp; Designed by MONOKEROS&nbsp;&nbsp;&nbsp;技术支持 <a href="javascript:void(0);" style="color: #886e4a">信息中心</a></div>
+				<div class="seven columns text">Copyright 汉口学院2015&nbsp;&nbsp;&nbsp; Designed by MONOKEROS&nbsp;&nbsp;&nbsp;技术支持 <a href="javascript:void(0);" >信息中心</a></div>
 				<div class="five columns footerlinks phablet-hide">
 					<a href="javascript:void(0);">&nbsp;旧版主页<a href="mailto:wlxxs@whu.edu.cn">&nbsp;联系我们 | <a href="javascript:void(0);">网络导航 | </a></a></a>
 				</div>
 			</div>
 		</div>
-	</div><!-- 底部区域结束 -->
+	</div><!-- 底部区域结束 -->	
+		
 	
 </body>
 </html>
