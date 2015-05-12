@@ -377,6 +377,7 @@
  		 float: left;
  		 border-bottom: 1px solid #CCC;
  		 width: 100%;
+ 		 margin-bottom: 20px; /* 标题区域和内容列表区域相距20像素高度 */
 	}
 	
 	/* 内容标题样式 */
@@ -385,7 +386,6 @@
 		 font-size:26px;
  		 line-height:35px;
  		 color: #1C2D1F;
- 		 /* border-bottom: 4px solid #33513A; */
  		 border-bottom: 4px solid #16447C;
  		 float: left;
 	}
@@ -417,6 +417,93 @@
 		padding: 0px 2px;
 		line-height: 30px;
 	}
+	
+	
+	ul, ol, li 
+	{
+   		 list-style: outside none none;
+	}
+	
+	.list-art 
+	{
+	 	padding:15px 0;
+	 	margin-bottom:20px;
+	}
+	
+	.list-art a 
+	{
+		 font-size:14px;
+	}
+	
+	.list-art li 
+	{
+	 	border-bottom:1px dashed #ccc;
+	 	padding:12px 10px 12px 20px;
+	 	overflow:hidden;
+	 	zoom:1;
+	 	background:url(../img/index/cc03.jpg) no-repeat 8px center;
+	}
+
+	.list-art li:hover 
+	{
+		 background-color: #EAEAEA;
+	}
+
+	.list-art li span 
+	{
+		 color:#999;
+	 	 font-size:14px;
+	 	 float:right;
+	}
+
+	.content-art h1 
+	{
+		 margin-top:0;
+	 	 font-size:22px;
+	 	 text-align:center;
+	   	 padding:20px 0 10px;
+	 	 font-weight:600;
+	}
+	
+	.pagination 
+	{
+		 text-align:center;
+		 padding:10px 0;
+	}
+
+	.pagination a, .pagination span 
+	{
+		padding:4px 10px;
+		background:#ccc;
+		font-size:16px;
+		margin:0 3px;
+	}
+
+	.pagination a 
+	{
+	 	-webkit-box-shadow: 1px 1px 2px rgba(0,0,0,.08);
+	 	-moz-box-shadow: 1px 1px 2px rgba(0,0,0,.08);
+	 	box-shadow: 1px 1px 2px rgba(0,0,0,.08);
+	}
+
+	.pagination a:hover 
+	{
+	 	background:#16447C;
+	 	color:#fff
+	}
+
+	.pagination .active 
+	{
+	 	background: #16447C;
+	 	color:#fff;
+	 	border-color:#888;
+	}
+
+	.pagination a.active:hover 
+	{
+	 	border-color:#888;
+	}
+	
 	
 	/* 内容样式 */
 	.sub-content-p

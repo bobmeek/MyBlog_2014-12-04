@@ -10,7 +10,8 @@
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css"  href="resources/front_base/css/index.css" /><!-- 首页页面css文件 -->
-	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	 <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->s
+	 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
 	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="resources/front_frame/bgstretcher/js/jquery-bgstretcher-3.3.0.min.js"></script><!-- 轮播图js文件 -->
 			
@@ -32,7 +33,7 @@
 	
 				    <div class="searchbox"><!-- 搜索区域 -->
 					    <form method="get" action="">
-					      <input type="text" value="请输入关键字..." name="s" style="background: none;  border: 2px solid #3277ae; border-radius: 10px; border-color: #3277ae;" class="inputtext" id="s" 
+					      <input type="text" value="请输入关键字..." name="s" style="background: none;  border: 1px solid #3277ae; border-radius: 10px; border-color: #3277ae;" class="inputtext" id="s" 
 					      onfocus="if (value =='请输入关键字...'){value =''}" onblur="if (value ==''){value='请输入关键字...'}">
 					      <i class="fa fa-search fa-lg" style="color: #679ad3;"></i>
 					    </form>
