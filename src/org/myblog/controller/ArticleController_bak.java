@@ -78,7 +78,7 @@ public class ArticleController_bak
 	 * @param id：文章id
 	 * @return
 	 */
-	@RequestMapping(value="delete/{id}", produces="application/json")
+	/*@RequestMapping(value="delete/{id}", produces="application/json")
 	@ResponseBody
 	public int deleteArticle(@PathVariable int id) //注解@PathVariable标记为请求路径变量--Restful风格
 	//因为隐藏了参数与路径的关系，可以提升网站的安全性，静态化页面，降低恶意攻击风险
@@ -89,7 +89,7 @@ public class ArticleController_bak
 		articleService.delete(id);
 		
 		return 1;
-	}
+	}*/
 	
 	/**
 	 * 批量删除文章

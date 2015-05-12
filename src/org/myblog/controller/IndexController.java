@@ -127,6 +127,7 @@ public class IndexController {
 			}
 					
 			modelMap.put("menus", menus);
+			modelMap.put("articles", articles);
 			modelMap.put("article", article);
 		}
 		return "articleInfo";
@@ -149,6 +150,7 @@ public class IndexController {
 				article = articles.get(0);
 			}
 			modelMap.put("menus", menus);
+			modelMap.put("articles", articles);
 			modelMap.put("article", article);
 		}
 		return "articleInfo";

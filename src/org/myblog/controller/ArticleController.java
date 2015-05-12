@@ -123,6 +123,19 @@ public class ArticleController
 		return "articleInfo";
 	}
 	
+	@RequestMapping(value="delete/{id}", produces="application/json")
+	@ResponseBody
+	public int deleteArticle(@PathVariable int id) //注解@PathVariable标记为请求路径变量--Restful风格
+	//因为隐藏了参数与路径的关系，可以提升网站的安全性，静态化页面，降低恶意攻击风险
+	{
+		System.out.println("deleteArticle invoked!!!");
+		System.out.println("deleteArticle id: " + id);
+		
+		articleService.delete(id);
+		
+		return 1;
+	}
+	
 	
 	@RequestMapping(value="upload/img",produces="application/json;charset=utf-8")
 	public String uploadImage(String articleName,MultipartHttpServletRequest mRequest, HttpServletRequest request, HttpServletResponse response) throws IOException{

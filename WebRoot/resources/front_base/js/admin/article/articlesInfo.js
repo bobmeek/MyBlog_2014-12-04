@@ -13,15 +13,6 @@
 		this.id_tag_article_tag = id_tag_article_tag;
 	}
 	
-	var totalNum = 0; //总条数
-	var totalPage = 0; //总页数(总条数/每页显示多少条)
-	var currentPage = 0; //当前页数
-	var pageSize = 5; //每页显示条数(当前显示5条)
-	var pageNo = currentPage * pageSize; //从第几条开始=当前页数*每页显示条数
-	var findNumReality = 0; //实际查询出来的条数
-	
-	
-	
 	//单击左边树显示栏目管理
 	$(document).on("click","#articlesInfo",function(e){
 		showCategory();
@@ -73,7 +64,7 @@
 						+ "<td>" + article.author + "</td>" 
 						+  "<td>" + ""  + "</td>" 
 						+ "<td>" + article.releaseDate + "</td>"
-						+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
+						+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info delete'>删除</button>" + "</td>"+ "</tr>";
 						$("#allArticles tbody").append(content);
 					});	
 		},'json');
@@ -88,93 +79,6 @@
 	$("#article_pre").on("click",function(){
 		currentPage==1?showArticles(currentPage,menuId):showArticles(--currentPage,menuId);
 	});
-	
-	/** 
-	 * 显示文章信息 
-	 * pageNo：定义的页码，从第几条开始显示
-	 * pageSize：定义每页显示的条数
-	 */
-	/*function showArticles(pageNo, pageSize,keyWord)
-	{
-		$("#allArticles_check").prop("checked", function()
-		{
-			return false; //将复选框checked属性设置为false默认不选中
-		});
-		
-		$.post("article/show/allArticles.do", {"pageNo": pageNo, "pageSize": pageSize}, function(result)
-		{
-			var articles = result.articlePager.pageList; //获取文章集合
-			totalNum = result.articlePager.totalNum; //获取文章总条数
-			totalPage =  Math.ceil(totalNum/pageSize) - 1; //获取文章总页数
-			
-			if(totalPage < 1 || currentPage == totalPage)
-			{
-				$("#article_next").attr("class", "next disabled");  //总页数小于1或者当前页等于总页数就将下一页按钮置灰(详情请查阅Bootstrap分页组件)
-			}
-			else
-			{
-				$("#article_next").attr("class", "next"); //否则就可以点击下一页按钮显示下一页内容
-			}
-			findNumReality = articles.length; //实际查询条数
-			
-			$("#allArticles tbody").html(""); //必须填写这行代码，要不然查询出来的数据会叠加显示 ***
-			
-			$.each(articles, function(i, article) //jQuery循环动态填充数据
-			{
-				var content = "<tr>" + "<td style='display: none'>" + article.id + "</td>" 
-				+ "<td><input type='checkbox' value="+ article.id + "></td>" 
-				+ "<td>" + article.title + "</td>" 
-				+ "<td>" + article.author + "</td>" 
-				+  "<td>" + ""  + "</td>" 
-				+ "<td>" + article.releaseDate + "</td>"
-				+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
-				 
-				$("#allArticles tbody").append(content); //向tbody的尾部动态添加html内容
-			});	
-		}, "json");
-	};*/
-		
-	
-	/** 上一页按钮实现 **/
-	/*$("#article_pre").on("click", function()
-	{
-		currentPage --; //单击上一页按钮当前页-1
-		
-		if(currentPage > 0)
-		{
-			$("#article_next").attr("class", "next"); //当前页大于0下一页按钮可点击状态
-			showArticles(currentPage * pageSize, pageSize); //点击上一页按钮将显示最新pageNo和每页要显示的条数信息
-		}
-		else
-		{
-			currentPage = 0; //否则表示当前页为第一页
-			$("#article_next").attr("class", "next"); //下一页按钮可点击
-			$(this).attr("class", "previous disabled");
-			showArticles(currentPage * pageSize, pageSize);
-		}
-	});
-	
-	
-	*//** 下一页按钮实现 **//*	
-	$("#article_next").on("click", function()
-	{
-		currentPage ++; //单击下一页按钮当前页+1
-		
-		if(currentPage <= totalPage)
-		{
-			$("#article_pre").attr("class", "previous"); //当前页小于等于总页数上一页按钮可点击状态(没到最后一页或者到了最后一页上一页按钮都可以点击)
-			showArticles(currentPage * pageSize, pageSize); //点击下一页按钮将显示最新pageNo和每页要显示的条数信息
-			
-			if(currentPage == totalPage)
-			{
-				$(this).attr("class", "next disabled"); //当前页等于总页数下一页按钮置灰，(表示已到了最后一页)
-			}
-		}
-		else
-		{
-			currentPage = totalPage;
-		}
-	});*/
 	
 	
 	/** 复选框全选，反全选 **/
@@ -255,7 +159,7 @@
 					+  "<td>" + ""  + "</td>" 
 					+ "<td>" + article.tag.name +  "</td>"
 					+ "<td>" + article.releaseDate + "</td>"
-					+ "<td>" +  "<button type='button' id=" + article.id  + " name=" + article.id + " class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
+					+ "<td>" +  "<button type='button' id=" + article.id  + " name=" + article.id + " class='btn btn-info delete'>删除</button>" + "</td>"+ "</tr>";
 					
 					$("#allArticles tbody").append(content); //向tbody的尾部动态添加html内容
 				});
@@ -265,18 +169,14 @@
 	
 	
 	/** 删除文章 **/
-	$("button").on("click", function(event)
-	{	
+	$(document).on("click","#allArticles .delete",function(){
+		debugger;
+		var id = parseInt($(this).closest("tr").children().eq(0).text());
 		
-		//haha
-		//alert(event.target.id);
-		//alert($(this).name);
-		//var id = event.target.id;
+		$.post("article/delete/"+id,"",function(result){
+			findPageCount==1?showArticles(--currentPage,menuId):showArticles(currentPage,menuId);
+		},"json");
 		
-//		$.post("article/delte/"+ id, null, function(result)
-//		{
-//			showArticles();
-//		});
 	});
 	
 	

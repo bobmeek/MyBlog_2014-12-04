@@ -81,7 +81,7 @@
 					<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="javascript:void(0);">更多 ></a></div>
 					<ul>
 					<#list articles as article>
-							<li><a href="http://gj.hkxy.edu.cn/xinwenzhongxin/Showarticle.asp?articleID=235" target="_blank" title="${article.title}">${article.title}</a></li>
+							<li><a  href="article/${article.id}/${article.title}" target="_blank" title="${article.title}">${article.title}</a></li>
 					</#list>
 					</ul>
 				</div>
