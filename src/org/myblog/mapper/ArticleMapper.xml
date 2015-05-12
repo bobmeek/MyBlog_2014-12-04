@@ -69,11 +69,23 @@
 		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
+	<select id="findPageByMenuId" resultMap="articleResultMap" parameterType="map">
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
+		on a.id_tag_article_tag=t.id where id_menu=#{menuId} ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
+	</select>
+	
+	
 	
 	<!-- 查询文章列表总数 -->
 	<select id="findTotal" resultType="int" parameterType="int">
 		select count(*) from article
 	</select>
+	
+	<select id="findTotalByMenuId" resultType="int" parameterType="int">
+		select count(*) from article where id_menu = #{menuId}
+	</select>
+	
+	
 	
 	<!-- 插入操作。完成标题、内容、id_category、id_tag_article_tag、release_date的插入 -->
 	<insert id="add"  parameterType="article" useGeneratedKeys="true" keyProperty="id">

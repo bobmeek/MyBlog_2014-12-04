@@ -42,7 +42,7 @@ public interface IDao<T, PK extends Serializable>
 	public Pager<T> findByKey(Class<T> entityClass, Map<String, Object> maps, String operate);
 	
 	public int getTotalNum(Class<T> entityClass, Object key);
-	
+	public int getTotalNum(Class<T> entityClass, Map<String, Object> maps, String operate);
 	// 登录
 	public T login(T entity);
 	

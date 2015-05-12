@@ -129,7 +129,12 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 	{
 		return idao.getTotalNum(entityClass, null);
 	}
-	
+	public int getTotalNum(String keyWord){
+		return idao.getTotalNum(entityClass, keyWord);
+	}
+	public int getTotalNum(Map<String, Object> maps, String operate){
+		return idao.getTotalNum(entityClass, maps, operate);
+	}
 	@SuppressWarnings("unchecked")
 	public Pager<T> findByKey(Map<String, Object> maps,String operate)
 	{

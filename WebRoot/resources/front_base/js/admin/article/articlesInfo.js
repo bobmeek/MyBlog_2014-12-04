@@ -20,14 +20,81 @@
 	var pageNo = currentPage * pageSize; //从第几条开始=当前页数*每页显示条数
 	var findNumReality = 0; //实际查询出来的条数
 	
-	showArticles(pageNo, pageSize);
+	
+	
+	//单击左边树显示栏目管理
+	$(document).on("click","#articlesInfo",function(e){
+		showCategory();
+		showArticles(currentPage,1000000);
+	});
+	
+	/**显示所有分类**/
+	function showCategory(){
+		$.post('article/show/category','',function(result){
+			debugger;
+			$('#articleCategorySelect').html('<option value="默认" selected="selected">默认</option>');
+			$.each(result,function(n,menu){
+				var content=menu.id==1?'':'<option id="'+menu.id+'" value="'+menu.name+'">'+menu.name+'</option>';
+				$('#articleCategorySelect').append(content);
+			});
+			
+		},'json');
+	}
+	
+	var menuId = 1000000;
+	$(document).on("change","#articleCategorySelect",function(e){
+		debugger;
+		menuId = $(this).val()=='默认'?1000000:$(this).find("option:selected").get(0).id;
+		showArticles(currentPage,menuId);
+	});
+	
+	//总页数
+	var totalPage = 0;
+	//当前页数
+	var currentPage = 1;
+	//查出来的条数
+	var findPageCount = 0;
+	function showArticles(currentPage,menuId){
+		$.post("article/show/allArticles", {"currentPage": currentPage, "menuId": menuId}, function(result){
+			debugger;
+			findPageCount = result.articles.length;
+			totalNum = result.totalCount;
+			totalPage = result.totalPage;
+			currentPage = result.currentPage;
+			var hasPrePage = result.hasPrePage;
+			var hasNextPage = result.hasNextPage;
+			hasPrePage?$("#article_pre").attr("class","previous enabled"):$("#article_pre").attr("class","previous disabled");
+			hasNextPage?$("#article_next").attr("class","next enabled"):$("#article_next").attr("class","next disabled");
+			$("#allArticles tbody").html('');
+			$.each(result.articles, function(i, article){
+						var content = "<tr>" + "<td style='display: none'>" + article.id + "</td>" 
+						+ "<td><input type='checkbox' value="+ article.id + "></td>" 
+						+ "<td>" + article.title + "</td>" 
+						+ "<td>" + article.author + "</td>" 
+						+  "<td>" + ""  + "</td>" 
+						+ "<td>" + article.releaseDate + "</td>"
+						+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
+						$("#allArticles tbody").append(content);
+					});	
+		},'json');
+	}
+	
+	//下一页
+	$("#article_next").on("click",function(){
+		debugger;
+		currentPage==totalPage?showArticles(totalPage,menuId):showArticles(++currentPage,menuId);
+	});
+	//上一页
+	$("#article_pre").on("click",function(){
+		currentPage==1?showArticles(currentPage,menuId):showArticles(--currentPage,menuId);
+	});
 	
 	/** 
 	 * 显示文章信息 
 	 * pageNo：定义的页码，从第几条开始显示
 	 * pageSize：定义每页显示的条数
 	 */
-	function showArticles(pageNo, pageSize)
+	/*function showArticles(pageNo, pageSize,keyWord)
 	{
 		$("#allArticles_check").prop("checked", function()
 		{
@@ -59,18 +126,17 @@
 				+ "<td>" + article.title + "</td>" 
 				+ "<td>" + article.author + "</td>" 
 				+  "<td>" + ""  + "</td>" 
-				/*+ "<td>" + article.tag.name +  "</td>"*/
 				+ "<td>" + article.releaseDate + "</td>"
 				+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info'>删除</button>" + "</td>"+ "</tr>";
 				 
 				$("#allArticles tbody").append(content); //向tbody的尾部动态添加html内容
 			});	
 		}, "json");
-	};
+	};*/
 		
 	
 	/** 上一页按钮实现 **/
-	$("#article_pre").on("click", function()
+	/*$("#article_pre").on("click", function()
 	{
 		currentPage --; //单击上一页按钮当前页-1
 		
@@ -89,7 +155,7 @@
 	});
 	
 	
-	/** 下一页按钮实现 **/	
+	*//** 下一页按钮实现 **//*	
 	$("#article_next").on("click", function()
 	{
 		currentPage ++; //单击下一页按钮当前页+1
@@ -108,7 +174,7 @@
 		{
 			currentPage = totalPage;
 		}
-	});
+	});*/
 	
 	
 	/** 复选框全选，反全选 **/

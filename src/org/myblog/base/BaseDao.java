@@ -47,6 +47,9 @@ public interface BaseDao<T, PK extends Serializable>
 	/**获取数据库中总数据数**/
 	public int getTotalNum();
 	
+	public int getTotalNum(String keyWord);
+	public int getTotalNum(Map<String, Object> maps, String operate);
+	
 	public T findByParam(Map<String, Object> maps, String operate);
 	
 	public List<T> findListByParam(Map<String, Object> maps, String operate);

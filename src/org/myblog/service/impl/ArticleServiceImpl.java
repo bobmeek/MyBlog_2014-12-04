@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.myblog.base.AbstractBaseDao;
+import org.myblog.common.Pager;
 import org.myblog.model.ArticleVO;
 import org.myblog.service.facade.ArticleService;
 import org.springframework.stereotype.Service;
@@ -24,13 +25,28 @@ public class ArticleServiceImpl extends AbstractBaseDao<ArticleVO, Integer>  imp
 	}
 	
 	
-	public List<ArticleVO> findListByMenuId(Integer menuId){
+	
+	public int getTotalNumByMenuId(int menuId){
+		String operate = ".findTotalByMenuId";
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("menuId", menuId);
+		return getTotalNum(map,operate);
+	}
+	
+	public List<ArticleVO> findListByMenuId(int menuId){
 		String operate = ".findListByMenuId";
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("menuId", menuId);
 		return findListByParam(map, operate);
 	}
-	
+	public Pager<ArticleVO> findPageByMenuId(int menuId,int startIndex,int pageCount){
+		String operate = ".findPageByMenuId";
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("menuId", menuId);
+		map.put("pageNo", startIndex);
+		map.put("pageSize", pageCount);
+		return findByKey(map, operate);
+	}
 	@Override
 	public void bulk_delete(List<Integer> id) 
 	{
@@ -48,4 +64,7 @@ public class ArticleServiceImpl extends AbstractBaseDao<ArticleVO, Integer>  imp
 	{
 		save(article);
 	}
+
+
+
 }

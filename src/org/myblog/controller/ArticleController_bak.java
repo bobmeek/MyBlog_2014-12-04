@@ -59,19 +59,19 @@ public class ArticleController_bak
 	 * @param pageSize：定义文章显示数目
 	 * @return
 	 */
-	@RequestMapping(value="show/allArticles.do", produces="application/json")
+	/*@RequestMapping(value="show/allArticles.do", produces="application/json")
 	@ResponseBody
 	public ModelMap showAllArticlesByPager(ModelMap modelMap, int pageNo, int pageSize)
 	{
-		/*System.out.println("showAllArticlesByPager invoked!!!");
+		System.out.println("showAllArticlesByPager invoked!!!");
 		System.out.println("showAllArticlesByPager pageNo: " + pageNo);
-		System.out.println("showAllArticlesByPager pageSize: " + pageSize);*/
+		System.out.println("showAllArticlesByPager pageSize: " + pageSize);
 		
 		Pager<ArticleVO> articlePager =  articleService.findByPage(pageNo, pageSize);
 		modelMap.addAttribute("articlePager", articlePager);
 
 		return modelMap;
-	}
+	}*/
 	
 	/**
 	 * 删除文章

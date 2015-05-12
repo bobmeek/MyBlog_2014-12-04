@@ -53,6 +53,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<option value="1" selected="selected">批量操作</option>
 			<option value="2" id="delete_article_link">批量删除</option>
 	</select>
+	
+	<select name="栏目筛选" id='articleCategorySelect'>
+			
+	</select>
+		
+			
 	<button type="button" id="delete_article_button" class="btn btn-info" onclick="searchTags();">删除</button>
 	<div style="float: right; margin-top: -9px;">
 			<input type="text"  id="article_text" name="searchTag" style="width: 300px; height: 28px;"/>
@@ -69,7 +75,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th>文章标题</th>
 					<th>文章作者</th>
 					<th>分类目录</th>
-					<th>文章标签</th>
 					<th>发布时间</th>
 					<th colspan="2">操作</th>
 				</tr>
@@ -79,7 +84,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 	
 	<!-- 分页部分 -->
-	<div class="article-page" id="article_page">
+	<div class="page-pos" id="article_page">
 		<nav>	
 		  <ul class="pager">
 	   		<li class="previous" id="article_pre"><a href="javascript:void(0)">&larr; 前一页</a></li>

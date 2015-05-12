@@ -174,7 +174,16 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		return totalNum;
 	}
 
-
+	// 多条件的查询（计算）
+	public int getTotalNum(Class<T> entityClass, Map<String, Object> maps, String operate)
+	{
+		int totalNum = 0;
+		
+		totalNum = getSqlSession().selectOne(entityClass.getName() + operate, maps);
+		
+		return totalNum;
+	}	
+	
 	// finByKey method. 其中参数Map对分页的信息进行了封装， operate指定了需要调用哪个sql语句（从业务层传值过来）
 	public Pager<T> findByKey(Class<T> entityClass, Map<String, Object> maps, String operate) 
 	{
@@ -185,25 +194,17 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		
 		List<T> pageList = getSqlSession().selectList(entityClass.getName() + operate, maps);
 		
-		int totalNum = getTotalNum(entityClass, maps, operate);
+		//int totalNum = getTotalNum(entityClass, maps, operate);
 		
-		System.out.println("totalNum size: " + totalNum);
+		//System.out.println("totalNum size: " + totalNum);
 		
 		pager.setPageList(pageList);
-		pager.setTotalNum(totalNum);
+		//pager.setTotalNum(totalNum);
 		
 		return pager;
 	}
 	
-	// 多条件的查询（计算）
-	private int getTotalNum(Class<T> entityClass, Map<String, Object> maps, String operate)
-	{
-		int totalNum = 0;
-		
-		totalNum = getSqlSession().selectOne(entityClass.getName() + operate + "Total", maps);
-		
-		return totalNum;
-	}	
+	
 	
 	
 	

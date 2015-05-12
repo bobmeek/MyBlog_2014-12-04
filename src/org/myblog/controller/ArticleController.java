@@ -16,12 +16,16 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.myblog.common.DateUtil;
 import org.myblog.common.Pager;
+import org.myblog.common.page.Page;
+import org.myblog.common.page.PageUtil;
 import org.myblog.dto.ImgDTO;
 import org.myblog.model.ArticleTagVO;
 import org.myblog.model.ArticleVO;
 import org.myblog.model.CategoryVO;
 import org.myblog.model.MenuVO;
+import org.myblog.model.RoleVO;
 import org.myblog.model.TagVO;
+import org.myblog.model.UserVO;
 import org.myblog.service.facade.ArticleService;
 import org.myblog.service.facade.ArticleTagService;
 import org.myblog.service.facade.CategoryService;
@@ -73,6 +77,44 @@ public class ArticleController
 		
 		return menus;
 	}
+	
+
+	@RequestMapping(value="show/allArticles", produces="application/json")
+	@ResponseBody
+	public ModelMap showAllArticlesByPager(int currentPage,int menuId,ModelMap modelMap)
+	{
+		
+		int pageCount = 5;
+		int totalCount = 0;
+		if(menuId==1000000)
+			totalCount = articleService.getTotalNum();
+		else
+			totalCount = articleService.getTotalNumByMenuId(menuId);
+		Page page = PageUtil.createPage(pageCount, currentPage, totalCount);
+		int totalPage = page.getTotalPage();
+		currentPage = page.getCurrentPage();
+		int startIndex = page.getSrartIndex();
+		boolean hasPrePage = page.isHasPrePage();
+		boolean hasNextPage = page.isHasNextPage(); 
+		
+		Pager<ArticleVO> pagers = null; 
+		if(menuId==1000000)		
+			pagers = articleService.findByPage(startIndex, pageCount);
+		else
+			pagers = articleService.findPageByMenuId(menuId, startIndex, pageCount);
+		
+		List<ArticleVO> articles = pagers.getPageList();
+		
+		modelMap.addAttribute("articles",articles);
+		modelMap.addAttribute("totalCount",totalCount);
+		modelMap.addAttribute("totalPage",totalPage);
+		modelMap.addAttribute("currentPage",currentPage);
+		modelMap.addAttribute("hasPrePage",hasPrePage);
+		modelMap.addAttribute("hasNextPage",hasNextPage);
+		
+		return modelMap;
+	}
+	
 	
 	@RequestMapping(value="{articleId}/{articleName}")
 	public String showArticle(@PathVariable int articleId,ModelMap modelMap){

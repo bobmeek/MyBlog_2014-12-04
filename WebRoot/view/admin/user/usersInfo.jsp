@@ -53,7 +53,7 @@
 			</tbody>
 		</table>
 	</div>
-	<div class="user-page" id="user_page">
+	<div class="page-pos" id="user_page">
 		<nav>	
 		  <ul class="pager">
 	   		<li class="previous" id="user_pre"><a href="javascript:void(0)">&larr; 前一页</a></li>
