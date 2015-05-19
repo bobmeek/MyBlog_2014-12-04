@@ -52,8 +52,7 @@
 							默认<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" id='showArticleCategoryUL'>
-							<li><input type="radio" name="NAME" value="VALUE" checked="checked" id='new1'><label for='new1'>最新动态</label></li>
-							<li><input type="radio" name="NAME" value="VALUE" id='new2'><label for='new2'>校园总览</label></li>
+
 						</ul>
 					</div>
 				</div>
@@ -61,8 +60,9 @@
 		</form>
 		<textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
 		
-		<div style='text-align: center;margin-top:10px;'>
-			<button id='saveArticle' type="button" class="btn btn-primary btn-lg"><i class='icon-save icon-large'></i>保存</button>
+		<div style='text-align: center;margin-top:10px;padding-bottom:20px;'>
+			<button id='saveArticle' type="button" class="btn btn-primary btn-lg"><i class='icon-save icon-large'></i><span>保存</span></button>
+			<button id='updateArticle' type="button" class="btn btn-primary btn-lg" style='display: none;'><i class='icon-save icon-large'></i><span>更新</span></button>
 		</div>
 	</div>
 	

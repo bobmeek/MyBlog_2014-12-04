@@ -21,6 +21,7 @@ $(function() {
 		},
 		markdown : true,
 	});
+	
 	showCategory();
 	//单击左边树显示栏目管理
 	$(document).on("click","#publishArticle",function(e){
@@ -30,12 +31,28 @@ $(function() {
 	/**显示所有分类**/
 	function showCategory(){
 		$.post('article/show/category','',function(result){
-			debugger;
-			$('#saveArticleTitle').val('');
-			$('#showArticleCategoryUL').html('');
-			$('#showArticleCategoryBtn').html('默认'+'<span class="caret">');
+			
+			if(sessionStorage.getItem('articleOperate')=='update'){
+				sessionStorage.removeItem('articleOperate');
+				var article = JSON.parse(sessionStorage.getItem('updateArticle'));
+				debugger;
+				$('#saveArticle').hide();
+				$('#updateArticle').show();
+				$('#saveArticleTitle').val(article.title);
+				menuId = article.menuId;
+				$("#"+menuId).prop('checked','checked');
+				$('#showArticleCategoryBtn').html($('#menuLabel'+menuId).text()+'<span class="caret"></span>');
+				editor.setValue(article.content);
+			}else{
+				$('#saveArticle').show();
+				$('#updateArticle').hide();
+				$('#saveArticleTitle').val('');
+				$('#showArticleCategoryUL').html('');
+				$('#showArticleCategoryBtn').html('默认'+'<span class="caret"></span>');
+				editor.setValue('');
+			}
 			$.each(result,function(n,menu){
-				var content=menu.id==1?'':'<li><input type="radio" name="NAME" value="VALUE" checked="checked" id="'+menu.id+'"><label for="'+menu.id+'">'+menu.name+'</label></li>';
+				var content=menu.id==1?'':'<li><input type="radio"  id="'+menu.id+'" name="NAME" value="VALUE" selected="selected"><label for="'+menu.id+'" id="menuLabel'+menu.id+'">'+menu.name+'</label></li>';
 				$('#showArticleCategoryUL').append(content);
 			});
 			
@@ -44,16 +61,19 @@ $(function() {
 	
 	
 	$(document).on('click','#saveArticle',save);
+	$(document).on('click','#updateArticle',update);
 
 	//获取选中栏目id
 	var menuId = 1;
 	$(document).on('click','#showArticleCategoryUL li',function(e){
+		debugger;
 		menuId = parseInt($(this).children().get(0).id);
 	});
 	
 	/**保存文章**/
 	function save(e){
 		debugger;
+		articleOperate = 'save';
 		var article = new Article();
 		article.author = $('#currentUser').text();
 		article.title = $('#saveArticleTitle').val();
@@ -71,8 +91,24 @@ $(function() {
 		
 	}
 	
-	
-	
+	/**更新文章**/
+	function update(e){
+		debugger;
+		var article = new Article();
+		article.id = JSON.parse(sessionStorage.getItem('updateArticle')).id;
+		article.author = $('#currentUser').text();
+		article.title = $('#saveArticleTitle').val();
+		article.content = editor.getValue();
+		article.menuId = menuId;
+		var time = + new Date;
+		article.releaseDate = Time(time, "%y-%M-%d %h:%m:%s"); // xxxx-xx-xx xx:xx:xx
+		$.post('article/update',article,function(result){
+			showCategory();
+			editor.setValue('');
+			alert('更新文章成功!');
+		},'json');
+		
+	}
 	
 	
 	

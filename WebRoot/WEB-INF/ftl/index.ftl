@@ -9,11 +9,11 @@
 	<meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css"  href="resources/front_base/css/index.css" /><!-- 首页页面css文件 -->
+	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/index.css" /><!-- 首页页面css文件 -->
 	 <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->s
-	 <link rel="stylesheet" href="resources/front_frame/bootstrap/css/font-awesome.css">
-	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="resources/front_frame/bgstretcher/js/jquery-bgstretcher-3.3.0.min.js"></script><!-- 轮播图js文件 -->
+	 <link rel="stylesheet" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.css">
+	<script type="text/javascript" src="${basePath}/resources/front_frame/jquery/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript" src="${basePath}/resources/front_frame/bgstretcher/js/jquery-bgstretcher-3.3.0.min.js"></script><!-- 轮播图js文件 -->
 			
   </head>
   
@@ -22,14 +22,14 @@
 		<div id="top"><!-- 顶部区域开始 -->
 			<div class="container" style="width: 1010px; max-width:1010px; height:40px; margin: 0 auto;">
 				<div class="top-left"><!-- 顶部左侧区域开始 -->
-					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/111.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">出国出境办理指南</span></a>
-					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/222.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">下载中心</span></a>
-					<a href="javascript:void(0);" ><img  src="resources/front_base/img/index/333.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">成绩查询</span></a>
+					<a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/111.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">出国出境办理指南</span></a>
+					<a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/222.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">下载中心</span></a>
+					<a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/333.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">成绩查询</span></a>
 				</div><!-- 顶部左侧区域结束 -->
 				
 				<div class="top-right" style="height: 40px;"><!-- 顶部右侧区域开始 -->
-				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/444.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">录取查询</span></a>
-				    <a href="javascript:void(0);" ><img  src="resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
+				    <a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/444.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">录取查询</span></a>
+				    <a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
 	
 				    <div class="searchbox"><!-- 搜索区域 -->
 					    <form method="get" action="">
@@ -47,14 +47,15 @@
 		<div class="container phablet-hide">
         	<div class="nine columns">
 				<ul class="head-nav" style="z-index: 10000000;"><!-- 导航区域开始 -->
+					
 					<#list navMenuMap?keys as menu>
                         <li>
-                            <a href="menu/${menu}/" title="${menu}">${menu}</a>
+                            <a href="nav/${menu}/1" title="${menu}">${menu}</a>
                             <#assign navMenuList=navMenuMap[menu] />
                             <#if navMenuList?exists>
                             <table>
                                 <#list navMenuList as childMenu>
-                                     <tr><td><a href="menu/${menu}/${childMenu}">${childMenu}</a></td></tr>
+                                     <tr><td><a href="nav/${menu}/${childMenu}/1">${childMenu}</a></td></tr>
                                 </#list>
                             </table>
                             </#if>
@@ -74,20 +75,21 @@
 		<div class="container">
 		<div class="row" style="margin-top: 30px;"><!-- 校园新闻动态区域开始 -->
 			
+		
+			
             <#list categoryMenuMap?keys as menu>
             <#assign articles=categoryMenuMap[menu] />
 	            <#if articles?exists>
 				<div class="three columns infobox">
-					<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="javascript:void(0);">更多 ></a></div>
+					<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="category/${menu}/1">更多 ></a></div>
 					<ul>
 					<#list articles as article>
-							<li><a  href="article/${article.id}/${article.title}" target="_blank" title="${article.title}">${article.title}</a></li>
+						<li><a  href="category/${menu}/${article.id}/${article.title}" target="_blank" title="${article.title}">${article.title}</a></li>
 					</#list>
 					</ul>
 				</div>
 				</#if>
-			</#list>
-			
+			</#list> 
 			
 			<div class="three columns infobox ljg">
 		  		<div class="infoboxtitle"><!-- <img src="images/topics.png"> --><span>服务中心</span><span class="en"> ENTRANCE</span><a class="more" href="javascript:void(0);" >更多 ></a></div>
@@ -106,35 +108,7 @@
 	</div>
 </div>
 
-
-	<div id="footer"><!-- 底部区域开始 -->
-		<div class="container">
-			<div class="row">
-				<div class="six columns text">地址：湖北省武汉市江夏区文化大道299号 邮编：430212&nbsp;&nbsp; 鄂ICP备05016648</div>
-				<div class="six columns footerlinks phablet-hide" style="width: 30%;float: right">
-					<div class="linkitem">
-						<i class="fa fa-weixin fa-lg" style="color: #679ad3;"></i><span class="tablet-hide"><a href="javascript:void(0)" class="weixin">官方微信</a></span>
-						<div id="whuwechat" class="qr">
-							<a href="#"><img class="wechat" src="images/wechat.jpg" style="display: none;"></a>
-						</div>
-					</div>
-					<div class="linkitem">
-						<i class="fa fa-weibo fa-lg" style="color: #679ad3;"></i></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
-						<div id="whuweibo" class="qr">
-							<a href="#"><img src="images/whuweibo.png"></a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="seven columns text">Copyright 汉口学院2015&nbsp;&nbsp;&nbsp; Designed by MONOKEROS&nbsp;&nbsp;&nbsp;技术支持 <a href="javascript:void(0);" >信息中心</a></div>
-				<div class="five columns footerlinks phablet-hide">
-					<a href="javascript:void(0);">&nbsp;旧版主页<a href="mailto:wlxxs@whu.edu.cn">&nbsp;联系我们 | <a href="javascript:void(0);">网络导航 | </a></a></a>
-				</div>
-			</div>
-		</div>
-	</div><!-- 底部区域结束 -->
-	
+	<#include "footer.ftl">
 	
     <script type="text/javascript">
 	    $(document).ready(function() {

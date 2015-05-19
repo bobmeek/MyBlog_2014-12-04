@@ -58,13 +58,20 @@
 			hasNextPage?$("#article_next").attr("class","next enabled"):$("#article_next").attr("class","next disabled");
 			$("#allArticles tbody").html('');
 			$.each(result.articles, function(i, article){
+						debugger;
+						var jArticle = JSON.stringify(article);
 						var content = "<tr>" + "<td style='display: none'>" + article.id + "</td>" 
 						+ "<td><input type='checkbox' value="+ article.id + "></td>" 
 						+ "<td>" + article.title + "</td>" 
 						+ "<td>" + article.author + "</td>" 
 						+  "<td>" + ""  + "</td>" 
 						+ "<td>" + article.releaseDate + "</td>"
-						+ "<td>" +  "<button type='button' id='delete_article_button' class='btn btn-info delete'>删除</button>" + "</td>"+ "</tr>";
+						+ "<td>" 
+						+ "<a href='#' data-target='#' data-toggle='modal'  class='btn btn-success article_update'>详细</a>" 
+						+ "<button type='button' id='delete_article_button' class='btn btn-danger delete'>删除</button>"
+						+ "</td>"
+						+ "</tr>";
+						sessionStorage.setItem(article.id,jArticle);
 						$("#allArticles tbody").append(content);
 					});	
 		},'json');
@@ -79,6 +86,21 @@
 	$("#article_pre").on("click",function(){
 		currentPage==1?showArticles(currentPage,menuId):showArticles(--currentPage,menuId);
 	});
+	
+	
+	
+	$(document).on('click','.article_update',function(e){
+		debugger;
+		var $id = $($(this).closest('tr').children().get(0)).text();
+		updateArticle = sessionStorage.getItem($id);
+		sessionStorage.setItem('updateArticle',updateArticle);
+		sessionStorage.setItem('articleOperate','update');
+		//模拟单击事件
+		$('#publishArticle').trigger('click');
+		
+		
+	});
+	
 	
 	
 	/** 复选框全选，反全选 **/

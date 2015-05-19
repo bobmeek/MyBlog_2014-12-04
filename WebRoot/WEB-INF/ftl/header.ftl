@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css"  href="resources/front_base/css/index.css" />
+	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/index.css" />
 </head>
 <body>
 		

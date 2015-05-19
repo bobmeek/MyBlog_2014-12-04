@@ -111,7 +111,7 @@
 		<div class="row top_info">
 			<div class="col-xs-6 " style="float:right;">
 				<div class="btn-group users_info">
-					<button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown">
+					<button type="button" style='margin-top:-3px;' class="btn btn-default dropdown-toggle " data-toggle="dropdown">
 						<span class="glyphicon glyphicon-user"></span> <span id='currentUser'><shiro:principal/></span> <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
@@ -190,6 +190,11 @@
 	
 	<!-- 第三方弹出框 -->
 	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
+	
+	<!-- 百度UEditor -->
+	<script type="text/javascript" src="resources/front_frame/ueditor_1.4.3/ueditor.config.js"></script>
+	<script type="text/javascript" src="resources/front_frame/ueditor_1.4.3/ueditor.all.js"></script>
+	
 	
 	<!-- 文章编辑器 -->
 	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>

@@ -3,29 +3,21 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.myblog.common.DateUtil;
 import org.myblog.common.Pager;
 import org.myblog.common.page.Page;
 import org.myblog.common.page.PageUtil;
 import org.myblog.dto.ImgDTO;
-import org.myblog.model.ArticleTagVO;
 import org.myblog.model.ArticleVO;
-import org.myblog.model.CategoryVO;
 import org.myblog.model.MenuVO;
-import org.myblog.model.RoleVO;
-import org.myblog.model.TagVO;
-import org.myblog.model.UserVO;
 import org.myblog.service.facade.ArticleService;
 import org.myblog.service.facade.ArticleTagService;
 import org.myblog.service.facade.CategoryService;
@@ -34,9 +26,7 @@ import org.myblog.service.facade.TagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -66,6 +56,13 @@ public class ArticleController
 	@ResponseBody
 	public int saveArticle(ArticleVO article){
 		articleService.save(article);
+		return 1;
+	}
+	
+	@RequestMapping(value = "update")
+	@ResponseBody
+	public int updateArticle(ArticleVO article){
+		articleService.update(article);
 		return 1;
 	}
 	
@@ -116,12 +113,6 @@ public class ArticleController
 	}
 	
 	
-	@RequestMapping(value="{articleId}/{articleName}")
-	public String showArticle(@PathVariable int articleId,ModelMap modelMap){
-		ArticleVO article = articleService.findById(articleId);
-		modelMap.put("article", article);
-		return "articleInfo";
-	}
 	
 	@RequestMapping(value="delete/{id}", produces="application/json")
 	@ResponseBody

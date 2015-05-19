@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html>
   <head>
     <base href="<%=basePath%>">
@@ -91,6 +91,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  	  	<li class="next" id="article_next"><a href="javascript:void(0)">下一页 &rarr;</a></li>
 		  </ul>
 		</nav>
+	</div>
+
+
+	<div class="modal fade" id="show_article_modal">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true" id="close_show_article">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h2 class="modal-title" style="text-align: center">文章详细信息</h2>
+				</div>
+				<div class="modal-body">
+					<textarea id="detailEditor" placeholder="这里输入内容" autofocus></textarea>
+					<!--<script id="detailEditor" name="content" type="text/plain">
+     				  	 这里写你的初始化内容
+   					</script>-->
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary btn-lg btn-block" id="add_role_btn">确定</button>
+				</div>
+			</div>
+		</div>
 	</div>
 
   </body>

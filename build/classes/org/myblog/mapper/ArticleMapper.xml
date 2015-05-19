@@ -14,6 +14,7 @@
 		<result property="topLevel" column="top_level" />
 		<result property="privacy" column="privacy" />
 		<result property="categoryId" column="id_category" />
+		<result property="menuId" column="id_menu" />
 		 <association property="category" javaType="category"><!-- Article和CategoryN-1表示关联 -->
 		 	<id property="id" column="id" />
 			<result property="name" column="name" />
@@ -23,12 +24,12 @@
 	
 	<!-- 查询操作。查询文章信息|栏目信息|标签信息 -->
 	<select id="findAll"  resultMap="articleResultMap" >
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC
 	</select>
 	
 	<select id="findListByMenuId" resultMap = "articleResultMap">
-		SELECT a.id AS aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name,a.`id_menu` FROM article a LEFT JOIN category c ON a.id_category=c.id LEFT JOIN tag t
+		SELECT a.id AS aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name,a.`id_menu` FROM article a LEFT JOIN category c ON a.id_category=c.id LEFT JOIN tag t
 		ON a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` WHERE a.`id_menu`=#{menuId} ORDER BY a.release_date DESC 
 	</select>
 	
@@ -49,7 +50,7 @@
 	<select id="searchArticleByTitle" resultMap="articleResultMap" parameterType="map">
 		<!-- select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
 		where a.id_tag_article_tag=art.id_tag and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC -->
-		select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		select a.id,a.title,a.author,a.release_date,a.`id_menu`,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
 		where a.id_category=c.id and a.id=art.id_article and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC
 	</select>
 	
@@ -66,11 +67,11 @@
 
 	<!-- 文章分页查询 -->
 	<select id="findByPage" resultMap="articleResultMap" parameterType="map">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
 		on a.id_tag_article_tag=t.id ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
 	<select id="findPageByMenuId" resultMap="articleResultMap" parameterType="map">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t 
 		on a.id_tag_article_tag=t.id where id_menu=#{menuId} ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
 	
@@ -95,7 +96,7 @@
 	
 	<!-- 修改操作 -->
 	<update id="update"  parameterType="article">
-		update article set title=#{title},content=#{content},release_date=#{releaseDate} where id=#{id} 
+		update article set title=#{title},content=#{content},author=#{author},id_menu=#{menuId},release_date=#{releaseDate} where id=#{id} 
 	</update>
 	
 </mapper>

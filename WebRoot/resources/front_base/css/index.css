@@ -18,7 +18,7 @@
 		padding: 0;
 		min-height: 670px;
 		font-family: "Microsoft Yahei";
-		overflow: hidden;
+		
 	}	
 	
 	/* 顶部区域样式 */
@@ -363,7 +363,7 @@
 	.infobox ul li a 
 	{
  		width: 100%;
-		overflow: hidden;
+		
 		height: 25px;
 		line-height: 25px;
 		font-size: 12px;

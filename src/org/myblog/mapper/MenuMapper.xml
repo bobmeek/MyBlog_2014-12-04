@@ -17,6 +17,9 @@
 	<select id="findListById" resultMap="menuResultMap">
 		select * from menu where parent_id=#{id}
 	</select>
+	<select id="findById" resultMap="menuResultMap">
+		select * from menu where id=#{id}
+	</select>
 	<select id="findMaxOrders" resultType="int">
 		select max(orders) from menu where parent_id=#{parentId}
 	</select>

@@ -1,7 +1,7 @@
 body {
  min-height: 670px;
  font-family: "Microsoft Yahei";
- overflow: hidden;
+ 
 }
 #navlist {
  position: absolute;
@@ -737,13 +737,13 @@ body {
  margin-top: -78px;
 }
 .footerbg-left {
- background: url(../images/bottom_left.png) top left no-repeat;
+ background: url(../img/index/bottom_left.png) top left no-repeat;
  float: left;
  width: 50%;
  height: 138px;
 }
 .footerbg-right {
- background: url(../images/bottom_right.png) top right no-repeat;
+ background: url(../img/index/bottom_right.png) top right no-repeat;
  float: left;
  width: 50%;
  height: 138px;

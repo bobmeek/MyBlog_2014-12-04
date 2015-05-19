@@ -1,5 +1,5 @@
 body{
-	min-height:100%;
+	
 	background-color: #f0f0f0;
 	padding-top: 55px;
 	font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
@@ -9,8 +9,8 @@ font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
 }
 .containerk{
 	padding: 0 15px;
-	min-height: 850px;
 	/* min-height: 2000px; */
+	/* border:1px red solid; */ 
 	background-color: #f6f6f6;
 	-webkit-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
 	-moz-box-shadow: 0 0px 2px rgba(0, 0, 0, 0.1);
@@ -34,7 +34,7 @@ font-family: arial,"Hiragino Sans GB","Microsoft Yahei",sans-serif;
 }
 .navbar{
 	background-color: #222222;
-/* 	margin-top: 50px; */
+	/* margin-top: 50px; */
 }
 .navbar2 {
   position: relative;
@@ -107,7 +107,7 @@ ul.navbar-nav{
 	box-shadow:none;
 }
 .navbar .navbar-collapse.in {
-	overflow-y: visible;
+	/* overflow-y: visible; */
 }
 .containerk .row.top_info{
 	margin-bottom: 30px;
@@ -191,6 +191,7 @@ ul.navbar-nav{
 }
 .users_info{
 	float: right;
+	
 }
 
 .navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus {

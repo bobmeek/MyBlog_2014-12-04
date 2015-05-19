@@ -11,13 +11,13 @@
 					<div class="linkitem">
 						<i class="fa fa-weixin fa-lg" style="color: #679ad3;"></i><span class="tablet-hide"><a href="javascript:void(0)" class="weixin">官方微信</a></span>
 						<div id="whuwechat" class="qr">
-							<a href="#"><img class="wechat" src="images/wechat.jpg" style="display: none;"></a>
+							<a href="#"><img class="wechat" src="${basePath}/resources/front_base/img/index/wechat.jpg" style="display: none;"></a>
 						</div>
 					</div>
 					<div class="linkitem">
 						<i class="fa fa-weibo fa-lg" style="color: #679ad3;"></i></a><span class="tablet-hide"><a href="http://weibo.com/hankouuniversity" target="_blank">官方微博</a></span>
 						<div id="whuweibo" class="qr">
-							<a href="#"><img src="images/whuweibo.png"></a>
+							<a href="#"><img src="${basePath}/resources/front_base/img/index/weibo.png"></a>
 						</div>
 					</div>
 				</div>

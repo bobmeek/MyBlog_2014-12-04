@@ -1,21 +1,19 @@
 package org.myblog.controller;
 
-import java.io.UnsupportedEncodingException;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
-import org.myblog.common.BaseUtils;
-import org.myblog.common.Pager;
 import org.myblog.common.SortListUtil;
-import org.myblog.common.page.Page;
-import org.myblog.common.page.PageUtil;
 import org.myblog.model.ArticleVO;
 import org.myblog.model.MenuVO;
 import org.myblog.model.SiteInfoVO;
@@ -23,12 +21,10 @@ import org.myblog.service.facade.ArticleService;
 import org.myblog.service.facade.CategoryService;
 import org.myblog.service.facade.MenuService;
 import org.myblog.service.facade.SiteInfoService;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**   
  * @desc   [ 首页的业务逻辑控制 ]
@@ -61,8 +57,16 @@ public class IndexController {
 		//LinkedHashMap - 先进先出  
 		//一级菜单-二级菜单/二级菜单/二级子菜单 , 一对多的关系
 		Map<String,List<String>> navMenuMap = new LinkedHashMap<String,List<String>>();
-		Map<String,List<ArticleVO>> categoryMenuMap = new LinkedHashMap<String,List<ArticleVO>>();
 		
+		//首页栏目组合Map 一对多关系(一个栏目,多篇文章)
+		Map<String,List<ArticleVO>> categoryMenuMap = new LinkedHashMap<String,List<ArticleVO>>();
+		Map<MenuVO,List<ArticleVO>> categoryMenuMapTemp = new TreeMap<MenuVO,List<ArticleVO>>(new Comparator<MenuVO>() {
+			@Override
+			public int compare(MenuVO m1, MenuVO m2) {
+				return new Integer(m1.getOrders()).compareTo(new Integer(m2.getOrders())); 
+				
+			}
+		});
 		for (MenuVO m : menus) {
 			//如果父ID为1,那么该菜单属于一级菜单
 			if(m.getType()==0 && m.getParentId()==1 && m.getStatus()==1){
@@ -83,9 +87,15 @@ public class IndexController {
 				if(null!=articles && articles.size()>0){
 					articles = (List<ArticleVO>) SortListUtil.sort(articles, "id",SortListUtil.DESC);
 				}
-				categoryMenuMap.put(m.getName(), articles);
+				categoryMenuMapTemp.put(m, articles);
+				
 				
 			}
+		}
+		
+		Set<Entry<MenuVO, List<ArticleVO>>> entryCategory = categoryMenuMapTemp.entrySet();
+		for (Entry<MenuVO, List<ArticleVO>> entry : entryCategory) {
+			categoryMenuMap.put(entry.getKey().getName(), entry.getValue());
 		}
 		
 		
@@ -95,66 +105,30 @@ public class IndexController {
 		int hotPageCount = siteInfo.getHotPageCount();
 		//打开文章的方式:本窗口?新窗口
 		String target = siteInfo.getTarget();
-		session.setAttribute("pageCount", pageCount);
-		session.setAttribute("hotPageCount", hotPageCount);
-		session.setAttribute("target", target);
-		session.setAttribute("siteInfo", siteInfo);
+//		session.setAttribute("pageCount", pageCount);
+//		session.setAttribute("hotPageCount", hotPageCount);
+//		session.setAttribute("target", target);
+//		session.setAttribute("siteInfo", siteInfo);
 		session.setAttribute("navMenuMap", navMenuMap);
-		session.setAttribute("categoryMenuMap", categoryMenuMap);
+//		session.setAttribute("categoryMenuMap", categoryMenuMap);
 		
 		//获取文章信息
 		//modelMap = showArticles(1, modelMap);
+		modelMap.addAttribute("currentPage",0);
 		modelMap.addAttribute("siteInfo",siteInfo);
 		//modelMap.addAttribute("menus",menus);
 		modelMap.addAttribute("navMenuMap",navMenuMap);
+		modelMap.addAttribute("categoryMenuMap",categoryMenuMap);
 		return "index";
 	}
 	
 	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = "menu/{menuName}/")
-	public String showArticles(@PathVariable String menuName,HttpSession session,ModelMap modelMap){
-		modelMap.put("parentMenuName", menuName);
-		modelMap.put("childMenuName", menuName);
-		MenuVO menu = menuService.findByName(menuName);
-		if(null!=menu){
-			List<MenuVO> menus = menuService.findListByParentId(menu.getId());
-			List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
-			ArticleVO article = null;
-			if(null!=articles && articles.size()>0){
-				articles = (List<ArticleVO>) SortListUtil.sort(articles, "id",SortListUtil.DESC);
-				article = articles.get(0);
-			}
-					
-			modelMap.put("menus", menus);
-			modelMap.put("articles", articles);
-			modelMap.put("article", article);
-		}
-		return "articleInfo";
+	public List<MenuVO> findChildMenus(int parentMenuId){
+		
+		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@RequestMapping(value = {"menu/{menuName}/{childMenuName}"})
-	public String showArticles(@PathVariable String menuName,@PathVariable String childMenuName,HttpSession session,ModelMap modelMap){
-		modelMap.put("parentMenuName", menuName);
-		modelMap.put("childMenuName", childMenuName);
-		if(!"".equals(childMenuName) && null!=childMenuName)
-			menuName = childMenuName;
-		MenuVO menu = menuService.findByName(menuName);
-		ArticleVO article = null;
-		if(null!=menu){
-			List<MenuVO> menus = menuService.findListByParentId(menu.getParentId());
-			List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
-			if(null!=articles && articles.size()>0){
-				articles = (List<ArticleVO>) SortListUtil.sort(articles, "releaseDate",SortListUtil.ASC);
-				article = articles.get(0);
-			}
-			modelMap.put("menus", menus);
-			modelMap.put("articles", articles);
-			modelMap.put("article", article);
-		}
-		return "articleInfo";
-	}
+	
 	
 	
 	/**
