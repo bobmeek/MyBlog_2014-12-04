@@ -43,10 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			  <li class="active">文章信息</li>
 			</ol>
 		</div>
-		<!-- <div style="float:right;margin-bottom:10px;">
-			<a href="javascript:void(0)" class="btn btn-danger btn-lg" id="delete_user_link">删除文章</a>
-			<a href="#add_user_modal" data-target="#add_user_modal" data-toggle="modal" class="btn btn-primary btn-lg" id="add_user_link">添加文章</a>
-		</div> -->
+		
 	</div>	
 	
 	
@@ -58,10 +55,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 	</div>	
 			
-	<div style="float: right; margin-top: -9px;">
-			<input type="text"  id="article_text" name="searchTag" style="width: 300px; height: 28px;"/>
-			<button type="button" id="search_article_button" class="btn btn-info" onclick="searchTags();">搜索文章</button>
-		</div>
+	<div style="float: right; float: right;margin-top:-20px; ">
+			<input type="text"  id="searchArticleText" name="searchTag" style="width: 300px; height: 28px;margin-bottom:10px;"/>
+			<button type="button" id="search_article_button" style='margin-bottom:10px;' class="btn btn-info" onclick="searchTags();">搜索文章</button>
+	</div>
 	
 	<!-- 显示文章信息 -->
 	<div style="height:500px;">

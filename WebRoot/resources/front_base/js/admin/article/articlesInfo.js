@@ -23,7 +23,7 @@
 	function showCategory(){
 		$.post('article/show/category','',function(result){
 			debugger;
-			$('#articleCategorySelect').html('<option value="默认" selected="selected">默认</option>');
+			$('#articleCategorySelect').html('<option value="全部" selected="selected">全部</option>');
 			$.each(result,function(n,menu){
 				var content=menu.id==1?'':'<option id="'+menu.id+'" value="'+menu.name+'">'+menu.name+'</option>';
 				$('#articleCategorySelect').append(content);
@@ -35,7 +35,7 @@
 	var menuId = 1000000;
 	$(document).on("change","#articleCategorySelect",function(e){
 		debugger;
-		menuId = $(this).val()=='默认'?1000000:$(this).find("option:selected").get(0).id;
+		menuId = $(this).val()=='全部'?1000000:$(this).find("option:selected").get(0).id;
 		showArticles(currentPage,menuId);
 	});
 	

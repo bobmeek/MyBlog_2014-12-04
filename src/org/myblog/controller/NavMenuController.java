@@ -3,6 +3,7 @@ package org.myblog.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.myblog.common.SortListUtil;
@@ -32,24 +33,28 @@ public class NavMenuController {
 	private CategoryService categoryService;
 	@Resource(name = "menuServiceImpl")
 	private MenuService menuService;
+	@Resource(name = "indexController")
+	private IndexController indexController;
+	
 	
 	/**点击一级菜单**/
 	@RequestMapping(value = "{menuName}/{currentPage}")
-	public String showMenus(@PathVariable String menuName,@PathVariable int currentPage,HttpSession session,ModelMap modelMap){
-		return redirectURL(menuName, menuName,currentPage, session, modelMap);
+	public String showMenus(@PathVariable String menuName,@PathVariable int currentPage,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		return redirectURL(menuName, menuName,currentPage, request,session, modelMap);
 	}
-	
+	 
 	/**点击二级菜单**/
 	@RequestMapping(value = "{menuName}/{childMenuName}/{currentPage}")
-	public String showMenus(@PathVariable String menuName,@PathVariable String childMenuName,@PathVariable int currentPage,HttpSession session,ModelMap modelMap){
-		return redirectURL(menuName, childMenuName,currentPage, session, modelMap);
+	public String showMenus(@PathVariable String menuName,@PathVariable String childMenuName,@PathVariable int currentPage,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		return redirectURL(menuName, childMenuName,currentPage, request,session, modelMap);
 	}
 	
 	
 	
 	/**根据所点击的导航菜单获取该菜单以及其子菜单的所有信息,并返回到导航菜单简介/导航菜单列表**/
 	@SuppressWarnings("unchecked")
-	public String redirectURL(String menuName,String childMenuName,int currentPage,HttpSession session,ModelMap modelMap){
+	public String redirectURL(String menuName,String childMenuName,int currentPage,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		modelMap = indexController.findInfo(request, session, modelMap);
 		String redirectURL = "";
 		MenuVO menu = null;
 		ArticleVO article = null;
@@ -96,7 +101,8 @@ public class NavMenuController {
 	/**获取导航菜单的文章内容**/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="{childMenuName}/{currentPage}/{articleId}/{articleTitle}")
-	public String showArticle(@PathVariable int articleId,HttpSession session,ModelMap modelMap){
+	public String showArticle(@PathVariable int articleId,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		modelMap = indexController.findInfo(request, session, modelMap);
 		ArticleVO article = articleService.findById(articleId);
 		modelMap.put("article", article);
 		modelMap.put("parentMenuName", (String) session.getAttribute("parentMenuName"));

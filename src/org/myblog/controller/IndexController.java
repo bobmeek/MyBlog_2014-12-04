@@ -24,6 +24,7 @@ import org.myblog.service.facade.IndexImageService;
 import org.myblog.service.facade.MenuService;
 import org.myblog.service.facade.SiteInfoService;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,6 +38,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
  *
  */
 @Controller
+@Service
 public class IndexController {
 		
 	@Resource(name = "articleServiceImpl")
@@ -52,9 +54,17 @@ public class IndexController {
 	private IndexImageService indexImageService;
 	
 	
-	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index.html")
-	public String showIndex(HttpServletRequest request,HttpSession session,ModelMap modelMap,RedirectAttributesModelMap redirectModelMap){
+	public String showIndex(HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		
+		findInfo(request,session,modelMap);
+		return "index";
+		
+	}
+	
+	
+	@SuppressWarnings("unchecked")
+	public ModelMap findInfo(HttpServletRequest request,HttpSession session,ModelMap modelMap){
 		//获取网站信息
 		SiteInfoVO siteInfo = siteInfoService.findAll().get(0);
 		//获取所有菜单 - 导航菜单/栏目菜单
@@ -105,42 +115,20 @@ public class IndexController {
 		for (Entry<MenuVO, List<ArticleVO>> entry : entryCategory) {
 			categoryMenuMap.put(entry.getKey().getName(), entry.getValue());
 		}
-		
-		
-		//每页显示文章数量
-		int pageCount = siteInfo.getPageCount();
-		//显示热门文章数量
-		int hotPageCount = siteInfo.getHotPageCount();
+		//获取首页宣传图片
+		List<IndexImageVO> indexImgs = indexImageService.findAll();
 		//打开文章的方式:本窗口?新窗口
 		String target = siteInfo.getTarget();
-//		session.setAttribute("pageCount", pageCount);
-//		session.setAttribute("hotPageCount", hotPageCount);
-//		session.setAttribute("target", target);
-//		session.setAttribute("siteInfo", siteInfo);
-		session.setAttribute("navMenuMap", navMenuMap);
-		session.setMaxInactiveInterval(1000*60*60*24*180);
-//		session.setAttribute("categoryMenuMap", categoryMenuMap);
-		
-		//获取文章信息
-		//modelMap = showArticles(1, modelMap);
-		modelMap.addAttribute("currentPage",0);
 		modelMap.addAttribute("siteInfo",siteInfo);
-		//modelMap.addAttribute("menus",menus);
 		modelMap.addAttribute("navMenuMap",navMenuMap);
 		modelMap.addAttribute("categoryMenuMap",categoryMenuMap);
-		
-		redirectModelMap.addFlashAttribute("navMenuMap", navMenuMap);
-		redirectModelMap.addFlashAttribute("categoryMenuMap", categoryMenuMap);
-		
-		List<IndexImageVO> indexImgs = indexImageService.findAll();
 		modelMap.addAttribute("indexImgs",indexImgs);
 		
-		return "index";
+		
+		return modelMap;
+		
 		
 	}
-	
-	
-	
 	
 	
 	
