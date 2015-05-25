@@ -14,6 +14,7 @@
 		<typeAlias type="org.myblog.model.ResourceVO" alias="resource" />
 		<typeAlias type="org.myblog.model.SiteInfoVO" alias="siteinfo"/>
 		<typeAlias type="org.myblog.model.MenuVO" alias="menu"/>
+		<typeAlias type="org.myblog.model.IndexImageVO" alias="indeximg"/>
 	</typeAliases>
 	
 </configuration>

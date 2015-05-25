@@ -15,16 +15,20 @@ import javax.servlet.http.HttpSession;
 
 import org.myblog.common.SortListUtil;
 import org.myblog.model.ArticleVO;
+import org.myblog.model.IndexImageVO;
 import org.myblog.model.MenuVO;
 import org.myblog.model.SiteInfoVO;
 import org.myblog.service.facade.ArticleService;
 import org.myblog.service.facade.CategoryService;
+import org.myblog.service.facade.IndexImageService;
 import org.myblog.service.facade.MenuService;
 import org.myblog.service.facade.SiteInfoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 /**   
  * @desc   [ 首页的业务逻辑控制 ]
@@ -44,9 +48,13 @@ public class IndexController {
 	private CategoryService categoryService;
 	@Resource(name = "menuServiceImpl")
 	private MenuService menuService;
+	@Resource(name="indexImageServiceImpl")
+	private IndexImageService indexImageService;
+	
+	
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="index.html")
-	public String showIndex(HttpServletRequest request,HttpSession session,ModelMap modelMap){
+	public String showIndex(HttpServletRequest request,HttpSession session,ModelMap modelMap,RedirectAttributesModelMap redirectModelMap){
 		//获取网站信息
 		SiteInfoVO siteInfo = siteInfoService.findAll().get(0);
 		//获取所有菜单 - 导航菜单/栏目菜单
@@ -110,6 +118,7 @@ public class IndexController {
 //		session.setAttribute("target", target);
 //		session.setAttribute("siteInfo", siteInfo);
 		session.setAttribute("navMenuMap", navMenuMap);
+		session.setMaxInactiveInterval(1000*60*60*24*180);
 //		session.setAttribute("categoryMenuMap", categoryMenuMap);
 		
 		//获取文章信息
@@ -119,14 +128,18 @@ public class IndexController {
 		//modelMap.addAttribute("menus",menus);
 		modelMap.addAttribute("navMenuMap",navMenuMap);
 		modelMap.addAttribute("categoryMenuMap",categoryMenuMap);
-		return "index";
-	}
-	
-	
-	public List<MenuVO> findChildMenus(int parentMenuId){
 		
-		return null;
+		redirectModelMap.addFlashAttribute("navMenuMap", navMenuMap);
+		redirectModelMap.addFlashAttribute("categoryMenuMap", categoryMenuMap);
+		
+		List<IndexImageVO> indexImgs = indexImageService.findAll();
+		modelMap.addAttribute("indexImgs",indexImgs);
+		
+		return "index";
+		
 	}
+	
+	
 	
 	
 	

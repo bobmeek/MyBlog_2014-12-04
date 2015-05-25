@@ -86,7 +86,7 @@
         <li><a href="javascript:;"><img src="<%=request.getContextPath()%>/resources/front_base/img/login/0_2.jpg"></a></li>
     </ul>
 </div>
-<script type="text/javascript" src="<%=request.getContextPath()%>/resources/front_base/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/resources/front_frame/jquery/jquery-1.8.3.js"></script>
 <script>  
  	$(function(){
  		 

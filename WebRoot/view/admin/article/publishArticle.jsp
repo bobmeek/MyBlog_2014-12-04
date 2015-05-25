@@ -31,7 +31,7 @@
 			style="float:left;with:300px;height:50px;margin-left:-14px;">
 			<ol class="breadcrumb">
 				<li><a href="javascript:void(0)">文章管理</a></li>
-				<li class="active">发布文章</li>
+				<li class="active" id='publishArticleBreadcrumb'>发布文章</li>
 			</ol>
 		</div>
 	</div>
@@ -46,19 +46,21 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label">文章分类</label>
-				<div class="col-sm-9" style='margin-top:-8px;'>
-					<div class="btn-group">
-						<button data-toggle="dropdown" class="btn btn-default dropdown-toggle" id='showArticleCategoryBtn'>
-							默认<span class="caret"></span>
-						</button>
-						<ul class="dropdown-menu" id='showArticleCategoryUL'>
-
-						</ul>
+				<div class="col-sm-3" >
+					<input type="text" class="form-control" id="saveArticleMenu">
+					<div id='articleMenuTreeDIV' style='position:absolute;z-index: 2;'>
+						<ul id='articleMenuTree' class='ztree' style='display: none;'></ul>
 					</div>
 				</div>
+				
 			</div>
+			
+			
 		</form>
-		<textarea id="editor" placeholder="这里输入内容" autofocus></textarea>
+		<div >
+			<textarea id="editor"  placeholder="这里输入内容" autofocus></textarea>	
+		</div>
+		
 		
 		<div style='text-align: center;margin-top:10px;padding-bottom:20px;'>
 			<button id='saveArticle' type="button" class="btn btn-primary btn-lg"><i class='icon-save icon-large'></i><span>保存</span></button>

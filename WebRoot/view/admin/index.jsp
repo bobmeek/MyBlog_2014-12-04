@@ -97,6 +97,7 @@
 					<li><a href="#" id='links'>超级链接管理</a></li>
 					<li><a href="#" id='siteInfo'>网站信息管理</a></li>
 					<li><a href="#" id='indexMenu'>首页菜单管理</a></li>
+					<li><a href="#" id='indexImage'>首页图片管理</a></li>
 					<li><a href="#" id='dataBackup'>网站数据备份</a></li>
 					<li><a href="#" id='systemClear'>系统清理管理</a></li>
 				</ul>
@@ -161,6 +162,9 @@
 			</div>
 			<div id="indexMenuPage" class="page" style="display: none;">
 				<jsp:include page="system/indexMenu.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="indexImagePage" class="page" style="display: none;">
+				<jsp:include page="system/indexImage.jsp" flush="true"></jsp:include>
 			</div>
 		</div>
 		
@@ -228,7 +232,8 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/system/siteInfo.js"></script>
 	<!-- 首页菜单配置 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/indexMenu.js"></script>
-	
+	<!-- 首页图片配置 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/system/indexImage.js"></script>
 	
 </body>
 </html>

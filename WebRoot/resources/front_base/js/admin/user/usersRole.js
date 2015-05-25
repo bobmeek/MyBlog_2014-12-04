@@ -65,7 +65,7 @@ $(function(){
 							"<td>"+resourceStr+"</td>" +
 							"<td width='5%'><a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a></td>" +
 							"<td width='10%' style='vertical-align: middle;'>" +
-							"<a href='#setting_role_modal' data-target='#setting_role_modal' data-toggle='modal' class='btn btn-sm btn-warning role_setting_resource' >分配权限</a>" +
+							"<a href='#' data-target='#' data-toggle='modal' class='btn btn-sm btn-warning role_setting_resource' >分配权限</a>" +
 							"<a href='javascript:;' class='btn btn-sm btn-danger role_delete' >删除</a>" +
 							"</td>" +
 							"</tr>";
@@ -160,7 +160,7 @@ $(function(){
 	}
 	$(document).on("click","#allRoles .role_setting_resource",function(){
 		//对于同一对象绑定多个同一事件进行不同处理，执行完毕则轮询。
-		$(this).toggle(function(){
+		$(".role_setting_resource").toggle(function(){
 		
 		var roleId =  $($(this).closest("tr").children("td")[0]).text();
 		
@@ -197,7 +197,7 @@ $(function(){
 		});
 		
 		//手动触发单击事件
-		$(this).trigger("click");
+		//$(".resourceTree").trigger("click");
 	});
 	
 	

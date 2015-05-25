@@ -460,9 +460,9 @@ $(function(){
 		        error:function(data, status, e){ //服务器响应失败时的处理函数
 		            alert("上传失败！");
 		        }  
-            })  
+            });  
         }  
-    })  
+    });  
 	
 	
 	

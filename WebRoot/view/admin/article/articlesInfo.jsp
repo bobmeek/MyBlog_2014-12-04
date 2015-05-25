@@ -49,17 +49,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div> -->
 	</div>	
 	
-	<select name="批量操作">
-			<option value="1" selected="selected">批量操作</option>
-			<option value="2" id="delete_article_link">批量删除</option>
-	</select>
 	
-	<select name="栏目筛选" id='articleCategorySelect'>
+	<div class="form-group">
+		<div class="col-sm-1">
+			<select id='articleCategorySelect' name="栏目筛选" class="form-control">
+					
+			</select>
+		</div>
+	</div>	
 			
-	</select>
-		
-			
-	<button type="button" id="delete_article_button" class="btn btn-info" onclick="searchTags();">删除</button>
 	<div style="float: right; margin-top: -9px;">
 			<input type="text"  id="article_text" name="searchTag" style="width: 300px; height: 28px;"/>
 			<button type="button" id="search_article_button" class="btn btn-info" onclick="searchTags();">搜索文章</button>
@@ -74,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th><input type="checkbox" id="allArticles_check"></th>
 					<th>文章标题</th>
 					<th>文章作者</th>
-					<th>分类目录</th>
+					<th>所属栏目</th>
 					<th>发布时间</th>
 					<th colspan="2">操作</th>
 				</tr>

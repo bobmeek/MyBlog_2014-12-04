@@ -64,7 +64,7 @@
 						+ "<td><input type='checkbox' value="+ article.id + "></td>" 
 						+ "<td>" + article.title + "</td>" 
 						+ "<td>" + article.author + "</td>" 
-						+  "<td>" + ""  + "</td>" 
+						+  "<td>" + article.menu.name  + "</td>" 
 						+ "<td>" + article.releaseDate + "</td>"
 						+ "<td>" 
 						+ "<a href='#' data-target='#' data-toggle='modal'  class='btn btn-success article_update'>详细</a>" 

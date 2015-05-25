@@ -18,8 +18,8 @@
 	<mvc:default-servlet-handler />
 	
 	 
-
-<!-- 	<mvc:view-controller path="/" view-name="forward:/login.jsp"/> -->
+	<!-- 默认访问路径 -->
+	<mvc:view-controller path="/" view-name="forward:index.html"/>
 	  
 	<!-- 通用视图解析器:对控制器返回的逻辑路径指定对应的视图 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -74,7 +74,7 @@
 	 <!-- SpringMVC上传文件时,需配置MultipartResolver处理器 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 指定所上传文件的总大小不能超过800KB......注意maxUploadSize属性的限制不是针对单个文件,而是所有文件的容量之和 -->
-        <property name="maxUploadSize" value="2000000"/>
+        <property name="maxUploadSize" value="20000000"/>
     </bean>
      
     <!-- SpringMVC在超出上传文件限制时,会抛出org.springframework.web.multipart.MaxUploadSizeExceededException -->

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.IndexImageVO">
+
+
+	<resultMap type="indeximg" id="indeximgResultMap">
+	
+		<id property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="type" column="type" />
+		<result property="status" column="status" />
+		<result property="articleLink" column="article_link" />
+		<result property="orders" column="orders" />
+		<result property="imgPath" column="img_path" />
+		
+	</resultMap>
+	
+	
+	<delete id="delete">
+		delete from index_image where id=#{id}
+	</delete>
+	
+	<insert id="add"  parameterType="indeximg" useGeneratedKeys="true" keyProperty="id">
+		insert into index_image (`title`,article_link,img_path,status,type,orders) values (#{title},#{articleLink},#{imgPath},#{status},#{type},#{orders})
+	</insert>
+	
+
+	<update id="update" parameterType="map">
+		update index_image set `title`=#{title},article_link=#{articleLink},img_path=#{imgPath},status=#{status},type=#{type},orders=#{orders} where id=#{id}
+	</update>
+	
+	<select id="findAll" resultMap="indeximgResultMap">
+		select * from index_image 
+	</select>
+	
+	
+</mapper>

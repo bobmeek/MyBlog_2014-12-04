@@ -84,6 +84,8 @@
                 /resources/**=anon
                 /index.html/**=anon
                 /menu/**=anon
+                /nav/**=anon
+                /category/**=anon
                 /*=anon
                 /** = user
             </value>  

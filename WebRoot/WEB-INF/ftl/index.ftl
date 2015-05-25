@@ -111,18 +111,40 @@
 	<#include "footer.ftl">
 	
     <script type="text/javascript">
-	    $(document).ready(function() {
-	    $("body").bgStretcher({
-	          images: ["resources/front_base/img/index/sliderbg1.jpg","resources/front_base/img/index/sliderbg2.jpg","resources/front_base/img/index/sliderbg3.jpg","resources/front_base/img/index/sliderbg1.jpg"],
-	          imageWidth: 1280,
-	          imageHeight: 800,
-	          transitionEffect: 'fade',
-	          sequenceMode: 'normal',
-	          nextSlideDelay: '8000',
-	          preloadImg: true,
-	          buttonNext: ".next",
-	          buttonPrev: ".prev"
-	      });
+	    $(function() {
+	    	//宣传图片
+	    	var propagandasPath = [];
+	    	
+	    	//下面这两个属性务必要配置
+	    	//宣传图片所对应的文章链接
+	    	var url = [];
+	    	//链接类型(当前窗口打开-self/新窗口打开-_bank)
+	    	var urlType = [];
+	    	<#list indexImgs as indexImg>
+	    		<#if indexImg.status==1>
+	    			propagandasPath.push("${indexImg.imgPath}"); //需加引号
+	    		</#if>
+	    		url.push("${indexImg.articleLink}");
+	    		<#if indexImg.type==0>
+	    			urlType.push("_bank");
+	    		<#elseif indexImg.type==1>
+	    			urlType.push("_self");
+	    		</#if>
+	    	</#list>
+		    $("body").bgStretcher({
+		    	  images: propagandasPath,
+		    	  url:url,
+		    	  urlType:urlType,
+		          //images: ["resources/front_base/img/index/sliderbg1.jpg","resources/front_base/img/index/sliderbg2.jpg","resources/front_base/img/index/sliderbg3.jpg","resources/front_base/img/index/sliderbg1.jpg"],
+		          imageWidth: 1280,
+		          imageHeight: 800,
+		          transitionEffect: 'fade',
+		          sequenceMode: 'normal',
+		          nextSlideDelay: '8000',
+		          preloadImg: true,
+		          buttonNext: ".next",
+		          buttonPrev: ".prev"
+		      });
 	    });
 	    
     </script>

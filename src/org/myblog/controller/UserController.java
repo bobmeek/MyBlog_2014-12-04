@@ -71,7 +71,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @date Dec 14, 2014 10:52:40 AM
  */
 @Controller
-@RequestMapping(value={"/user/","/admin/"})
+@RequestMapping(value={"/user/","/admin"})
 public class UserController
 {
 
@@ -421,8 +421,8 @@ public class UserController
             System.out.println("对用户[" + username + "]进行登录验证..验证开始");  
             currentUser.login(token);  
             System.out.println("对用户[" + username + "]进行登录验证..验证通过");
-            //设置Session过期时间为30分钟,当Session过期后,则需要重新登录.
-            currentUser.getSession().setTimeout(1000*60*30);
+            //设置Session过期时间为180天,当Session过期后,则需要重新登录.
+            currentUser.getSession().setTimeout(1000*60*60*24*180);
             resultPageURL = "admin/index";  
         }catch(UnknownAccountException uae){  
             System.out.println("对用户[" + username + "]进行登录验证..验证未通过,未知账户");  

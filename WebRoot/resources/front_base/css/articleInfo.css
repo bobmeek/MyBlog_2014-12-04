@@ -527,12 +527,12 @@
 	}
 	
 	/* 内容样式 */
-	.sub-contents
+	/* .sub-contents
 	{
 		line-height: 150%;
 		font-size: 14px;
 		text-indent: 0em !important;
-	}
+	} */
 	
 	/* 防止文章中的图片溢出 */
 	.sub-contents img

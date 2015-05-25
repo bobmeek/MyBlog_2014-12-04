@@ -39,19 +39,15 @@
 						<div class="sub-content-p">
 							<div class="sub-content">
 								<div class="sub-contents">
-									 <font style="line-height: 200%">
-								 		<p>
-								 			<font style="font-size: 10.5pt">
-								 				<#if article?exists>
-								 					${article.content}
-								 				</#if>
-								 			</font>
-								 		</p>
-								 		<#if article?exists>
-									 		<#if article.releaseDate?exists>
-									 			<p align="right"><font style="font-size: 10.5pt">（${(article.releaseDate?date("yyyy-MM-dd"))?string("yyyy年MM月dd日")}更新）</font></p>
-									 		</#if>
+					 				<#if article?exists>
+					 					${article.content}
+					 				</#if>
+								 		
+							 		<#if article?exists>
+								 		<#if article.releaseDate?exists>
+								 			<p align="right"><font style="font-size: 10.5pt">（${(article.releaseDate?date("yyyy-MM-dd"))?string("yyyy年MM月dd日")}更新）</font></p>
 								 		</#if>
+							 		</#if>
 								</div>
 							</div>
 						</div>
