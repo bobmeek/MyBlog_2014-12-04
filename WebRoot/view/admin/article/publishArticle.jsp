@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<div style='width:80%;margin:0px auto;background-color: white;'>
+	<div style='width:80%;margin:0px auto;background-color: white;-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);'>
 		<form class="form-horizontal">
 			<div class="form-group">
 				<label for="articleTitle" class="col-sm-2 control-label">文章标题</label>
