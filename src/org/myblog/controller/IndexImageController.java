@@ -73,7 +73,7 @@ public class IndexImageController {
         //System.out.println("收到用户[" + uname + "]的文件上传请求");
         //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\resources\\upload\\文件夹中
         //这里实现文件上传操作用的是commons.io.FileUtils类,它会自动判断/upload是否存在,不存在会自动创建
-        String realPath = request.getSession().getServletContext().getRealPath("resources/upload/img/index");
+        String realPath = request.getSession().getServletContext().getRealPath("/resources/upload/img/index");
         response.setContentType("text/html; charset=UTF-8");   //设置响应给前台内容的数据格式
         PrintWriter out = response.getWriter();  //设置响应给前台内容的PrintWriter对象
         String originalFilename = null; //上传文件的原名(即上传前的文件名字)

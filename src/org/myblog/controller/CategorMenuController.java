@@ -3,6 +3,7 @@ package org.myblog.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.myblog.common.page.Page;
@@ -33,11 +34,13 @@ public class CategorMenuController {
 	private CategoryService categoryService;
 	@Resource(name = "menuServiceImpl")
 	private MenuService menuService;
-	
+	@Resource(name = "indexController")
+	private IndexController indexController;
 	
 	/**获取栏目菜单的文章内容**/
 	@RequestMapping(value="{categoryMenuName}/{articleId}/{articleTitle}")
-	public String showArticle(@PathVariable String categoryMenuName,@PathVariable int articleId,HttpSession session,ModelMap modelMap){
+	public String showArticle(@PathVariable String categoryMenuName,@PathVariable int articleId,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		modelMap = indexController.findInfo(request, session, modelMap);
 		ArticleVO article = articleService.findById(articleId);
 		modelMap.put("categoryMenuName", categoryMenuName);
 		modelMap.put("article", article);
@@ -47,7 +50,8 @@ public class CategorMenuController {
 	
 	/**获取栏目菜单的文章列表**/
 	@RequestMapping(value="{categoryMenuName}/{currentPage}")
-	public String showArticle(@PathVariable String categoryMenuName,@PathVariable int currentPage,ModelMap modelMap){
+	public String showArticleList(@PathVariable String categoryMenuName,@PathVariable int currentPage,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+		modelMap = indexController.findInfo(request, session, modelMap);
 		MenuVO menu = menuService.findByName(categoryMenuName);
 //		List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
 		int pageCount = 5;
