@@ -21,9 +21,15 @@
 						<h3><span>${parentMenuName}</span></h3>
 						<#if menus?exists>
 							<#list menus as menu>
-								<li>
-									<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
-								</li>
+								<#if menu.name==childMenuName>
+									<li class='active'>
+										<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
+									</li>
+								<#else>
+									<li>
+										<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
+									</li>
+								</#if>
 							</#list>
 						</#if>
 					</ul><!-- 内容左侧区域导航结束 -->

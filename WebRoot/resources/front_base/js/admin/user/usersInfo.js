@@ -140,9 +140,9 @@ $(function(){
 						"<td>"+user.email+"</td>" +
 						"<td>"+registerTime+"</td>" +
 						"<td>"+lastLoginTime+"</td>" +
-						"<td width='5%' style='vertical-align: middle;'><button type='button' class='btn btn-info status_user_btn'>"+status+"</button></td>" +
-						"<td width='5%' style='vertical-align: middle;'><a href='#show_userext_modal' data-target='#show_userext_modal' data-toggle='modal' class='btn btn-sm btn-success detail'>详细</a></td>" +
-						"<td width='14%'>" +
+						"<td style='vertical-align: middle;'><button type='button' class='btn btn-info status_user_btn'>"+status+"</button></td>" +
+						"<td style='vertical-align: middle;'><a href='#show_userext_modal' data-target='#show_userext_modal' data-toggle='modal' class='btn btn-sm btn-success detail'>详细</a></td>" +
+						"<td>" +
 						"<div class='btn-group'>" +
 						"<button data-toggle='dropdown' class='btn btn-sm btn-warning dropdown-toggle'>"+roleStr+"<i class='icon-caret-down'></i></button>" +
 						"<ul class='dropdown-menu' id='roles_checkbox'>" +rolesCheckboxStr+

@@ -44,6 +44,7 @@ public class CategorMenuController {
 		ArticleVO article = articleService.findById(articleId);
 		modelMap.put("categoryMenuName", categoryMenuName);
 		modelMap.put("article", article);
+		modelMap.put("programName", "");
 		return "categoryArticleInfo";
 	}
 	
@@ -62,6 +63,7 @@ public class CategorMenuController {
 		modelMap.put("totalPage", page.getTotalPage());
 		modelMap.put("articles", articles);
 		modelMap.put("categoryMenuName", categoryMenuName);
+		modelMap.put("programName", "");
 		return "categoryArticleList";
 	}
 	

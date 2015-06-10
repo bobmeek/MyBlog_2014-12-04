@@ -63,8 +63,8 @@ $(function(){
 							"<td>"+role.role+"</td>" +
 							"<td>"+role.desc+"</td>" +
 							"<td>"+resourceStr+"</td>" +
-							"<td width='5%'><a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a></td>" +
-							"<td width='10%' style='vertical-align: middle;'>" +
+							"<td><a href='#show_role_modal' data-target='#show_role_modal' data-toggle='modal' class='btn btn-sm btn-success role_detail' >详细</a></td>" +
+							"<td style='vertical-align: middle;'>" +
 							"<a href='#' data-target='#' data-toggle='modal' class='btn btn-sm btn-warning role_setting_resource' >分配权限</a>" +
 							"<a href='javascript:;' class='btn btn-sm btn-danger role_delete' >删除</a>" +
 							"</td>" +

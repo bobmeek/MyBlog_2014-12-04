@@ -28,7 +28,9 @@ public class ArticleVO implements Serializable
 	
 	private int topLevel; //文章是否置顶，0表示置顶，1表示不置顶
 	
-	private int privacy; //文章是否私密，0表示公开，1表示私密
+	private int privacy = 1; //文章是否私密，0表示公开，1表示私密
+	
+	
 	
 	private CategoryVO category; //文章和栏目是多对一的关联关系
 	private MenuVO menu;

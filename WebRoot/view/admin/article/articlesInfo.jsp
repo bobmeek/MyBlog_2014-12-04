@@ -71,6 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th>文章作者</th>
 					<th>所属栏目</th>
 					<th>发布时间</th>
+					<th>文章状态</th>
 					<th colspan="2">操作</th>
 				</tr>
 			</thead>

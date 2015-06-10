@@ -29,22 +29,22 @@
 	
 	<!-- 查询操作。查询文章信息|栏目信息|标签信息 -->
 	<select id="findAll"  resultMap="articleResultMap" >
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,m.name,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.privacy,a.`id_menu`,m.name,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` ORDER BY a.release_date DESC
 	</select>
 		
 	<select id="findListByMenuId" resultMap = "articleResultMap">
-		SELECT a.id AS aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name,a.`id_menu`,m.name FROM article a LEFT JOIN category c ON a.id_category=c.id LEFT JOIN tag t
+		SELECT a.id AS aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.privacy,a.`id_menu`,c.name,t.tag_name,a.`id_menu`,m.name FROM article a LEFT JOIN category c ON a.id_category=c.id LEFT JOIN tag t
 		ON a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` WHERE a.`id_menu`=#{menuId} ORDER BY a.release_date DESC 
 	</select>
 	
 	<!-- 文章分页查询 -->
 	<select id="findByPage" resultMap="articleResultMap" parameterType="map">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,m.* from article a 
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.privacy,a.`id_menu`,m.* from article a 
 		LEFT JOIN menu m ON a.`id_menu`=m.`id` ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
 	<select id="findPageByMenuId" resultMap="articleResultMap" parameterType="map">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,m.* from article a 
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.privacy,a.`id_menu`,m.* from article a 
 		LEFT JOIN menu m ON a.`id_menu`=m.`id` where id_menu=#{menuId} ORDER BY a.release_date DESC limit #{pageNo},#{pageSize}
 	</select>
 	
@@ -66,7 +66,7 @@
 	
 	<!-- 查询操作。根据文章id查询文章信息 -->
 	<select id="findById" resultMap="articleResultMap">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.privacy,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` where a.id=#{id}
 	</select>
 	
@@ -74,7 +74,7 @@
 	<select id="searchArticleByTitle" resultMap="articleResultMap" parameterType="map">
 		<!-- select a.id,a.title,a.author,a.release_date,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
 		where a.id_tag_article_tag=art.id_tag and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC -->
-		select a.id,a.title,a.author,a.release_date,a.`id_menu`,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
+		select a.id,a.title,a.author,a.release_date,a.`id_menu`,a.privacy,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
 		where a.id_category=c.id and a.id=art.id_article and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC
 	</select>
 	
@@ -94,13 +94,13 @@
 	
 	<!-- 插入操作。完成标题、内容、id_category、id_tag_article_tag、release_date的插入 -->
 	<insert id="add"  parameterType="article" useGeneratedKeys="true" keyProperty="id">
-		insert into article(title,content,id_menu,author,release_date) 
-		values(#{title},#{content},#{menuId},#{author},#{releaseDate})
+		insert into article(title,content,id_menu,author,release_date,privacy) 
+		values(#{title},#{content},#{menuId},#{author},#{releaseDate},#{privacy})
 	</insert>
 	
 	<!-- 修改操作 -->
 	<update id="update"  parameterType="article">
-		update article set title=#{title},content=#{content},author=#{author},id_menu=#{menuId},release_date=#{releaseDate} where id=#{id} 
+		update article set title=#{title},content=#{content},author=#{author},privacy=#{privacy},id_menu=#{menuId},release_date=#{releaseDate} where id=#{id} 
 	</update>
 	
 </mapper>

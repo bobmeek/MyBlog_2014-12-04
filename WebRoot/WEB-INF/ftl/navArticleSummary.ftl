@@ -1,11 +1,7 @@
 <html>
 <head>
 	<title>学院概况-汉口学院国际交流学院</title>
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/normalize.css" /><!-- 主页面初始化CSS样式表1 -->
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/skeleton.css" /><!-- 主页面初始化CSS样式表2 -->
-    <link rel="stylesheet" type="text/css" href="${basePath}/resources/front_base/css/articleInfo.css" /><!-- 二级页面CSS样式表 -->
-	<!--<link rel="stylesheet" type="text/css" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.min.css" />-->
-	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	
 	
 </head>
 <body>
@@ -20,9 +16,15 @@
 						<h3><span>${parentMenuName}</span></h3>
 						<#if menus?exists>
 							<#list menus as menu>
-								<li>
-									<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
-								</li>
+								<#if menu.name==childMenuName>
+									<li class='active'>
+										<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
+									</li>
+								<#else>
+									<li>
+										<a href="${basePath}/nav/${parentMenuName}/${menu.name}/1" title="${menu.name}">${menu.name}</a>
+									</li>
+								</#if>
 							</#list>
 						</#if>
 					</ul><!-- 内容左侧区域导航结束 -->
@@ -42,12 +44,6 @@
 					 				<#if article?exists>
 					 					${article.content}
 					 				</#if>
-								 		
-							 		<#if article?exists>
-								 		<#if article.releaseDate?exists>
-								 			<p align="right"><font style="font-size: 10.5pt">（${(article.releaseDate?date("yyyy-MM-dd"))?string("yyyy年MM月dd日")}更新）</font></p>
-								 		</#if>
-							 		</#if>
 								</div>
 							</div>
 						</div>

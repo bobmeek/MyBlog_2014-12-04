@@ -36,7 +36,7 @@
 	$(document).on("change","#articleCategorySelect",function(e){
 		debugger;
 		menuId = $(this).val()=='全部'?1000000:$(this).find("option:selected").get(0).id;
-		showArticles(currentPage,menuId);
+		showArticles(1,menuId);
 	});
 	
 	//总页数
@@ -60,14 +60,26 @@
 			$.each(result.articles, function(i, article){
 						debugger;
 						var jArticle = JSON.stringify(article);
+						var privacy = article.privacy==0?'私密':'公开';
+						var type = article.menu.type==0?'nav':'category';
+						
+						//预览链接拼接
+						var href='';
+						if(article.menu.type==0)
+							href = type+'/'+article.menu.name+'/1/'+article.id+'/'+article.title;
+						else
+							href = type+'/'+article.menu.name+'/'+article.id+'/'+article.title;
+						
 						var content = "<tr>" + "<td style='display: none'>" + article.id + "</td>" 
 						+ "<td><input type='checkbox' value="+ article.id + "></td>" 
-						+ "<td>" + article.title + "</td>" 
-						+ "<td>" + article.author + "</td>" 
-						+  "<td>" + article.menu.name  + "</td>" 
-						+ "<td>" + article.releaseDate + "</td>"
-						+ "<td>" 
-						+ "<a href='#' data-target='#' data-toggle='modal'  class='btn btn-success article_update'>详细</a>" 
+						+ "<td style='vertical-align: middle;'>" + article.title + "</td>" 
+						+ "<td style='vertical-align: middle;'>" + article.author + "</td>" 
+						+  "<td style='vertical-align: middle;'>" + article.menu.name  + "</td>" 
+						+ "<td style='vertical-align: middle;'>" + article.releaseDate + "</td>"
+						+ "<td style='vertical-align: middle;'><button type='button' class='btn btn-info privacy_article_btn'>"+privacy+"</button></td>"
+						+ "<td style='vertical-align: middle;'>" 
+						+ "<a href="+href+"  class='btn btn-success article_show' target='_bank'>预览</a>"
+						+ "<a href='#' data-target='#' data-toggle='modal'  class='btn btn-warning article_update'>修改</a>" 
 						+ "<button type='button' id='delete_article_button' class='btn btn-danger delete'>删除</button>"
 						+ "</td>"
 						+ "</tr>";
@@ -87,7 +99,20 @@
 		currentPage==1?showArticles(currentPage,menuId):showArticles(--currentPage,menuId);
 	});
 	
-	
+	//停用/启用 用户
+	$(document).on('click','.privacy_article_btn',function(e){
+		debugger;
+		var id = parseInt($($(this).closest('tr').children().get(0)).text());
+		var article = JSON.parse(sessionStorage.getItem(id));
+		article.privacy = $(this).text()=='私密'?1:0;
+		article.articleTags = new Array();
+		article.category=new Object();
+		article.menu = new Object();
+		$.post('article/update',article,function(result){
+			showArticles(currentPage,menuId);
+		},'json');
+		
+	});
 	
 	$(document).on('click','.article_update',function(e){
 		debugger;

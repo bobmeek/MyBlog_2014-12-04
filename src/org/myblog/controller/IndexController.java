@@ -63,6 +63,17 @@ public class IndexController {
 	}
 	
 	
+	/**
+	 * 
+	 * @desc   [ 获取菜单信息/首页图片信息/系统配置信息 ]
+	 * @param  [ @param request
+	 * @param  [ @param session
+	 * @param  [ @param modelMap
+	 * @param  [ @return ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015-5-26 下午12:20:40 ] 
+	 *
+	 */
 	@SuppressWarnings("unchecked")
 	public ModelMap findInfo(HttpServletRequest request,HttpSession session,ModelMap modelMap){
 		//获取网站信息

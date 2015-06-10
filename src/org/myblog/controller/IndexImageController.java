@@ -69,7 +69,7 @@ public class IndexImageController {
 	@RequestMapping(value = "propaganda-img/upload")
 	public String uploadPropagandaImg(String title,String fileType,String indexImgNameOld,MultipartFile propagandaImg, HttpServletRequest request,HttpServletResponse response) throws IOException
 	{
-		 //可以在上传文件的同时接收其它参数
+		//可以在上传文件的同时接收其它参数
         //System.out.println("收到用户[" + uname + "]的文件上传请求");
         //如果用的是Tomcat服务器，则文件会上传到\\%TOMCAT_HOME%\\webapps\\YourWebProject\\resources\\upload\\文件夹中
         //这里实现文件上传操作用的是commons.io.FileUtils类,它会自动判断/upload是否存在,不存在会自动创建

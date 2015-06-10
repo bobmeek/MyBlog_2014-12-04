@@ -54,7 +54,7 @@
 				<div class="modal-body" style="height:550px;margin-top:20px;">
 					<input type="file"  id="propagandaImgFile" name="propagandaImg" class="btn-primary"  style="display: none;" >
 					<!-- <button class="btn btn-primary" title="上传首页宣传图片" id="indexImgBtn">上传首页宣传图片</button> -->
-					<div id='indexImageImgDIV' style='height:300px;border:1px solid #c5c5c5;'>
+					<div id='indexImageImgDIV' style='height:300px;border:1px solid #c5c5c5;cursor: pointer;'>
 						<img src="" id='indexImageImg' height="300px" style='max-width:100%;margin-left:30%' />
 						<i id='indexImgHolder' class='icon-picture icon-5x' style='color:#c5c5c5'>添加图片</i>
 					</div>

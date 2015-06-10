@@ -31,7 +31,20 @@
 	</div><!-- 顶部区域结束 -->
 	
 	<div id="subhead"><!-- 副标题区域开始 -->
-			<div class="subhead-bg">
+			<#assign banner="banner_pub.png" />
+
+			<#if programName=="美国项目">
+				<#assign banner="banner_us.png" />
+				<#elseif programName=="韩国项目">
+				<#assign banner="banner_korea.png" />
+				<#elseif programName=="欧盟项目">
+				<#assign banner="banner_uk.png" />
+				<#elseif programName=="澳新项目">
+				<#assign banner="banner_aoxin.png" />
+				<#elseif programName=="本硕连读项目">
+				<#assign banner="banner_pub.png" />
+			</#if>
+			<div class="subhead-bg" style='background: url(${basePath}/resources/front_base/img/program/${banner}); width: 1021px; height:134px; background-size: 100% 100%;'>
 					<div class="menus"><!-- 导航菜单开始 -->
 						<ul>
 							<#list navMenuMap?keys as menu>

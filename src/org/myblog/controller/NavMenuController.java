@@ -1,5 +1,6 @@
 package org.myblog.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -63,6 +64,7 @@ public class NavMenuController {
 		session.setAttribute("childMenuName", childMenuName);
 		modelMap.put("parentMenuName", menuName);
 		modelMap.put("childMenuName", childMenuName);
+		modelMap.put("programName", childMenuName);
 		if(!"".equals(childMenuName) && null!=childMenuName && !menuName.equals(childMenuName)){
 			menu = menuService.findByName(childMenuName);
 			if(null!=menu){
@@ -81,12 +83,24 @@ public class NavMenuController {
 			int totalCount = articleService.getTotalNumByMenuId(menu.getId());
 			Page page = PageUtil.createPage(pageCount, currentPage, totalCount);
 			List<ArticleVO> articles = articleService.findPageByMenuId(menu.getId(), page.getSrartIndex(), pageCount).getPageList();
+			
+			//将公开文章放到一个中介集合中,再赋值给原集合
+			List<ArticleVO> articlesTemp = new ArrayList<ArticleVO>();
+			for (int i = 0; i < articles.size(); i++) {
+				if(articles.get(i).getPrivacy()==1){
+					articlesTemp.add(articles.get(i));
+				}
+			}
+			articles = articlesTemp;
+			
 			if(null!=articles && articles.size()>0){
 				articles = (List<ArticleVO>) SortListUtil.sort(articles, "releaseDate",SortListUtil.ASC);
 				int totalPage = page.getTotalPage();
 				modelMap.put("totalCount", totalCount);
 				modelMap.put("currentPage", currentPage);
 				modelMap.put("totalPage", totalPage);
+				
+				
 				article = articles.get(0);
 			}
 			redirectURL = articles.size()>1?"navArticleList":"navArticleSummary";
@@ -108,6 +122,7 @@ public class NavMenuController {
 		modelMap.put("parentMenuName", (String) session.getAttribute("parentMenuName"));
 		modelMap.put("childMenuName", (String) session.getAttribute("childMenuName"));
 		modelMap.put("menus", (List<MenuVO>) session.getAttribute("menus"));
+		modelMap.put("programName", (String)session.getAttribute("childMenuName"));
 		return "navArticleInfo";
 	}
 	
