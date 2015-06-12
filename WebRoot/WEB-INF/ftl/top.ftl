@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_frame/highslide/highslide/highslide.css" />
 	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/index.css" />
 	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/articleInfo.css" />
 	
@@ -64,6 +65,14 @@
 			</div><!-- 导航菜单结束 -->
 			</div>
 		</div><!-- 副标题区域结束 -->
+		<script type="text/javascript" src="${basePath}/resources/front_frame/simditor/js/jquery.min.js"></script>
+		<script type="text/javascript" src="${basePath}/resources/front_frame/highslide/highslide/highslide-full.js"></script>
+<!-- 	<script type="text/javascript" src="resources/front_frame/highslide/highslide/highslide-with-gallery.js"></script> -->
+<!-- 	<script type="text/javascript" src="resources/front_frame/highslide/highslide/highslide-with-html.js"></script> -->
+		<script type="text/javascript" src="${basePath}/resources/front_frame/highslide/highslide/highslide.js"></script>
 	
+	
+		<script type="text/javascript" src="${basePath}/resources/front_base/js/showArticleInfo.js"></script>
+
 </body>
 </html>

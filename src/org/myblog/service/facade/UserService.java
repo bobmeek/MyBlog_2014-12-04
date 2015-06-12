@@ -30,6 +30,9 @@ public interface UserService extends BaseDao<UserVO, Integer>
 	/**添加用户**/
 	public void saveUser(UserVO user);
 	
+	/**修改密码**/
+	public int updateUserPwd(UserVO user);
+	
 	/**根据邮箱查找用户信息**/
 	public UserVO findByMail(String email);
 	

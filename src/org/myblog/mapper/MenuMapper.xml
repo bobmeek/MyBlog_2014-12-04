@@ -30,6 +30,9 @@
 		select * from menu where parent_id=#{parentId}
 	</select>
 	
+	<select id="nameIsExist" resultType="int">
+		select count(*) from menu where name=#{name}
+	</select>
 	
 	<insert id="add"  parameterType="menu" useGeneratedKeys="true" keyProperty="id">
 		insert into menu (parent_id,name,type,status,orders) values (#{parentId},#{name},#{type},#{status},#{orders})

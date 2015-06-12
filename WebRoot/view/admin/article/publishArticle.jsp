@@ -48,17 +48,56 @@
 				<label class="col-sm-2 control-label">文章分类</label>
 				<div class="col-sm-3" >
 					<input type="text" class="form-control" id="saveArticleMenu">
-					<div id='articleMenuTreeDIV' style='position:absolute;z-index: 2;'>
+					<div id='articleMenuTreeDIV' style='position:absolute;z-index: 10000;'>
 						<ul id='articleMenuTree' class='ztree' style='display: none;'></ul>
 					</div>
 				</div>
 				
+				
+				
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">发布时间</label>
+				<div class="container">
+				    <div class="row">
+				        <div class='col-sm-3'>
+				            <div class="form-group" style='margin-left:1px;'>
+				                <div class='input-group date' id='releaseDatetimepicker'>
+					                <span class="input-group-addon">
+					                        <span class="glyphicon glyphicon-calendar"></span>
+					                </span>
+				                    <input type='text' id='releaseDate' class="form-control" />
+				                </div>
+				            </div>
+				        </div>
+				    </div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-2 control-label">其他设置</label>
+				<label  class='checkbox-inline'>
+					<input type="checkbox" id='topLevel' style='margin-left: 1px;'>置顶
+				</label> 
+				<label  class='checkbox-inline'>
+					<input type="checkbox" id='highLight' style='margin-left:10px;'>醒目灯
+				</label> 
+				<label  class='checkbox-inline'>
+					<input type="checkbox" id='privacy' style='margin-left:10px;'>私密
+				</label> 
+				
 			</div>
 			
 			
+			
 		</form>
-		<div >
-			<textarea id="editor"  placeholder="这里输入内容" autofocus></textarea>	
+		<div>
+		   <!-- 加载编辑器的容器 -->
+		   <script id="editorContainer" name="content" style="width:100%;height:400px;" type="text/plain">
+        
+   		   </script>
+		   
 		</div>
 		
 		

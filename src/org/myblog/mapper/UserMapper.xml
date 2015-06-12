@@ -31,6 +31,9 @@
 		<!-- update user set username=#{username},salt=#{salt},userpwd=#{userpwd},email=#{email},register_time=#{registerTime},register_ip=#{registerIP},last_login_time=#{lastLoginTime},last_login_IP=#{lastLoginIP},is_disabled=#{isDisabled},is_email_active=#{isEmailActive},uid=#{uid} where
 		email=#{email} -->
 	</update>
+	<update id="updateUserPwd" parameterType="userExt">
+		UPDATE USER u SET u.`userpwd`=#{user.userpwd},u.salt=#{user.salt} WHERE id=#{user.id}
+	</update>
 	
 	<delete id="delete" parameterType="int">
 		delete u,ur FROM `user` u,user_role ur WHERE u.id=ur.user_id AND u.id=#{id}

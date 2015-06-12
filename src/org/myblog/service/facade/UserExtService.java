@@ -27,6 +27,8 @@ public interface UserExtService extends BaseDao<UserExtVO, Integer>
 	/**根据ID查找该用户详细信息**/
 	public UserExtVO findExtById(Integer id);
 	
+	 
+	
 	/**批量删除用户**/
 	public void deleteBatch(List<Integer> ids);
 }

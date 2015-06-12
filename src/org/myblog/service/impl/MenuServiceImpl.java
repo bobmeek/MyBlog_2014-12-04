@@ -34,5 +34,11 @@ public class MenuServiceImpl extends AbstractBaseDao<MenuVO, Integer> implements
 		return findListByParam(maps, operate);
 	}
 	
+	public int nameIsExist(String name){
+		String operate = ".nameIsExist";
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("name", name);
+		return isExist(maps, operate);
+	}
 }
 

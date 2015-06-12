@@ -48,6 +48,8 @@
 		UPDATE USER u,user_ext uext SET u.`email`=#{user.email},u.`is_disabled`=#{user.isDisabled},uext.`id_user`=#{user.id}, uext.`gender`=#{gender},uext.`birthday`=#{birthday},uext.`mobile`=#{mobile},uext.`head_img`=#{headImg},uext.`signature`=#{signature},uext.`qq`=#{qq},uext.`intro`=#{intro} WHERE u.`id`=uext.`id_user` AND uext.`id_user`=#{user.id}
 	</update>
 	
+
+	
 	<delete id="delete" parameterType="int">
 		DELETE u,uext FROM USER u,user_ext uext WHERE u.id=uext.id_user AND uext.id_user = #{id}
 	</delete>

@@ -230,6 +230,12 @@ public class UserController
 	public int updateUser(@RequestBody UserExtVO userExt)
 	{
 		
+		UserVO user = userExt.getUser();
+		//若密码不是"password"则修改密码
+		if(!"password".equals(user.getUserpwd())){
+			passwordHelper.encryptPassword(user);
+			userService.updateUserPwd(user);
+		}
 		userExtService.update(userExt);
 		return 1;
 	}

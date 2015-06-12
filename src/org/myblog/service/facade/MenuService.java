@@ -1,6 +1,8 @@
 package org.myblog.service.facade;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.myblog.base.BaseDao;
 import org.myblog.model.MenuVO;
@@ -39,4 +41,18 @@ public interface MenuService extends BaseDao<MenuVO, Integer> {
 	 *
 	 */
 	public List<MenuVO> findListByParentId(int id);
+	
+	
+	/**
+	 * 
+	 * @desc   [ 检验栏目名称是否存在 ]
+	 * @param  [ @param name
+	 * @param  [ @return ]
+	 * @author [ bobmeek ]   
+	 * @time   [ 2015-6-11 下午9:32:06 ] 
+	 *
+	 */
+	public int nameIsExist(String name); 
+	
+
 }

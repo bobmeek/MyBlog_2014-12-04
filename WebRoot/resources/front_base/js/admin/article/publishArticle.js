@@ -4,26 +4,17 @@ $(function() {
 	function Menu(){}
 	//获取选中栏目id
 	var selectedMenuId = 1;
-	
-	
-	toolbar = [ 'title', 'bold', 'italic', 'underline', 'color', '|', 'ol',
-			'ul', 'blockquote', 'code', '|', 'link', 'image', '|', 'indent',
-			'outdent' ];
-	var editor = new Simditor({
-		textarea : $('#editor'),
-		placeholder : '这里输入内容...',
-		pasteImage : true,
-		toolbar : toolbar, // 工具栏
-		defaultImage : '', // 编辑器插入图片时使用的默认图片
-		upload : {
-			url : 'article/upload/img', // 文件上传的接口地址
-			params : {articleName:$('#saveArticleTitle').val()}, // 键值对,指定文件上传接口的额外参数,上传的时候随文件一起提交
-			fileKey : 'fileDataFileName', // 服务器端获取文件数据的参数名
-			connectionCount : 3,
-			leaveConfirm : '正在上传文件'
-		},
-		markdown : true,
+	//默认发布时间
+    $('#releaseDatetimepicker').datetimepicker({
+    	locale: 'zh-cn',
+    	format: 'YYYY-MM-DD HH:mm',
+    	defaultDate: Time(time = + new Date, "%y-%M-%d %h:%m:%s")
+    });
+    $('#releaseDatetimepicker').on('dp.change',function(){
+		//alert($('#releaseDate').val());
 	});
+    
+	var editor = UE.getEditor('editorContainer');
 	
 	showCategory();
 	//单击左边树显示栏目管理
@@ -76,11 +67,17 @@ $(function() {
 		var article = new Article();
 		article.author = $('#currentUser').text();
 		article.title = $('#saveArticleTitle').val();
-		article.content = editor.getValue();
+		article.content = editor.getContent();
+		article.topLevel = $('#topLevel').is(':checked')?1:0;
+		article.highLight = $('#highLight').is(':checked')?1:0;
+		article.privacy = $('#privacy').is(':checked')?0:1;
 		article.menuId = selectedMenuId;
 		
-		var time = + new Date;
-		article.releaseDate = Time(time, "%y-%M-%d %h:%m:%s"); // xxxx-xx-xx xx:xx:xx
+//		var time = + new Date;
+//		article.releaseDate = Time(time, "%y-%M-%d %h:%m:%s"); // xxxx-xx-xx xx:xx:xx
+		
+		article.releaseDate = $('#releaseDate').val();
+		
 		$.post('article/save',article,function(result){
 			operateAfterHandler();
 			showCategory(null);
@@ -96,10 +93,14 @@ $(function() {
 		article.id = JSON.parse(sessionStorage.getItem('updateArticle')).id;
 		article.author = $('#currentUser').text();
 		article.title = $('#saveArticleTitle').val();
-		article.content = editor.getValue();
+		article.content = editor.getContent();
+		article.topLevel = $('#topLevel').is(':checked')?1:0;
+		article.highLight = $('#highLight').is(':checked')?1:0;
+		article.privacy = $('#privacy').is(':checked')?0:1;
 		article.menuId = selectedMenuId;
-		var time = + new Date;
-		article.releaseDate = Time(time, "%y-%M-%d %h:%m:%s"); // xxxx-xx-xx xx:xx:xx
+//		var time = + new Date;
+//		article.releaseDate = Time(time, "%y-%M-%d %h:%m:%s"); // xxxx-xx-xx xx:xx:xx
+		article.releaseDate = $('#releaseDate').val();
 		$.post('article/update',article,function(result){
 			operateAfterHandler();
 			showCategory(null);
@@ -180,15 +181,23 @@ $(function() {
 			$('#updateArticle').show();
 			$('#saveArticleTitle').val(article.title);
 			$('#saveArticleMenu').val(article.menu.name);
+			$('#releaseDate').val(article.releaseDate);
+			article.topLevel==0?$('#topLevel').removeAttr('checked'):$('#topLevel').prop('checked',true);
+			article.highLight==0?$('#highLight').removeAttr('checked'):$('#highLight').prop('checked',true);
+			article.privacy==0?$('#privacy').prop('checked',true):$('#privacy').removeAttr('checked');
 			selectedMenuId = article.menuId;
-			editor.setValue(article.content);
+			editor.setContent(article.content);
 		}else{
 			$('#publishArticleBreadcrumb').text('发布文章');
 			$('#saveArticle').show();
 			$('#updateArticle').hide();
 			$('#saveArticleTitle').val('');
 			$('#saveArticleMenu').val('');
-			editor.setValue('');
+			$('#releaseDate').val(Time(time = + new Date, "%y-%M-%d %h:%m:%s"));
+			$('#topLevel').removeAttr('checked');
+			$('#highLight').removeAttr('checked');
+			$('#privacy').removeAttr('checked');
+			editor.setContent('');
 		}
 	}
 	

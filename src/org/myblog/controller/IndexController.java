@@ -114,7 +114,8 @@ public class IndexController {
 			}else if(m.getType()==1 && m.getStatus()==1){
 				List<ArticleVO> articles = articleService.findListByMenuId(m.getId());
 				if(null!=articles && articles.size()>0){
-					articles = (List<ArticleVO>) SortListUtil.sort(articles, "id",SortListUtil.DESC);
+					//根据置顶与发布时间共同排序 , 优先级:置顶>发布时间
+					articles = (List<ArticleVO>) SortListUtil.sort(articles,new String[]{"topLevel","releaseDate"},new String[]{SortListUtil.DESC,SortListUtil.DESC});
 				}
 				categoryMenuMapTemp.put(m, articles);
 				

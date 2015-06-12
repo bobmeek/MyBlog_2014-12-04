@@ -26,9 +26,11 @@ public class ArticleVO implements Serializable
 	
 	private int commentCount; //文章评论数
 	
-	private int topLevel; //文章是否置顶，0表示置顶，1表示不置顶
+	private int topLevel = 0; //文章是否置顶，0-不置顶，1-置顶
 	
-	private int privacy = 1; //文章是否私密，0表示公开，1表示私密
+	private int highLight = 0; //文章是否高亮,0-不高亮,1-高亮
+	
+	private int privacy = 1; //文章是否私密，0-私密，1-公开
 	
 	
 	
@@ -43,7 +45,7 @@ public class ArticleVO implements Serializable
 	
 	public ArticleVO(Integer id, String title, String author, String content,
 			String releaseDate, int readCount, int commentCount, int topLevel,
-			int privacy, CategoryVO category, MenuVO menu,
+			int highLight,int privacy, CategoryVO category, MenuVO menu,
 			List<ArticleTagVO> articleTags, int cagegoryId, int menuId) {
 		super();
 		this.id = id;
@@ -54,6 +56,7 @@ public class ArticleVO implements Serializable
 		this.readCount = readCount;
 		this.commentCount = commentCount;
 		this.topLevel = topLevel;
+		this.highLight = highLight;
 		this.privacy = privacy;
 		this.category = category;
 		this.menu = menu;
@@ -126,6 +129,14 @@ public class ArticleVO implements Serializable
 	public void setTopLevel(int topLevel) {
 		this.topLevel = topLevel;
 	}
+	
+	public int getHighLight() {
+		return highLight;
+	}
+	
+	public void setHighLight(int highLight) {
+		this.highLight = highLight;
+	}
 
 	public int getPrivacy() {
 		return privacy;
@@ -185,7 +196,7 @@ public class ArticleVO implements Serializable
 				+ author + ", content=" + content + ", releaseDate="
 				+ releaseDate + ", readCount=" + readCount + ", commentCount="
 				+ commentCount + ", topLevel=" + topLevel + ", privacy="
-				+ privacy + ", category=" + category + ", menu=" + menu
+				+ privacy +", highLight="+ highLight + ", category=" + category + ", menu=" + menu
 				+ ", articleTags=" + articleTags + ", cagegoryId=" + cagegoryId
 				+ ", menuId=" + menuId + "]";
 	}

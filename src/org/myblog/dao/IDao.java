@@ -16,6 +16,9 @@ public interface IDao<T, PK extends Serializable>
 	// 修改操作
 	public void update(T entity); 
 	
+	//修改用户密码
+	public int updateUserPwd(Class<T> entityClass,Map<String,Object> maps,String operate);
+	
 	// 删除操作通过主键
 	public void delete(Class<T> entityClass, PK pk);  
 	

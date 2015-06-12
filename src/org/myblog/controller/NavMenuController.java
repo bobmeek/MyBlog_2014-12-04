@@ -94,7 +94,8 @@ public class NavMenuController {
 			articles = articlesTemp;
 			
 			if(null!=articles && articles.size()>0){
-				articles = (List<ArticleVO>) SortListUtil.sort(articles, "releaseDate",SortListUtil.ASC);
+				//根据置顶与发布时间共同排序 , 优先级:置顶>发布时间
+				articles = (List<ArticleVO>) SortListUtil.sort(articles,new String[]{"topLevel","releaseDate"},new String[]{SortListUtil.DESC,SortListUtil.DESC});
 				int totalPage = page.getTotalPage();
 				modelMap.put("totalCount", totalCount);
 				modelMap.put("currentPage", currentPage);

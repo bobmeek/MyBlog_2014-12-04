@@ -41,7 +41,9 @@ public class IDaoImpl<T, PK extends Serializable> extends SqlSessionDaoSupport i
 		System.out.println("IDaoImpl update method invoked - > entity: " + entity);
 		getSqlSession().update(entity.getClass().getName()+".update", entity);
 	}
-	
+	public int updateUserPwd(Class<T> entityClass,Map<String,Object> maps,String operate){
+		return getSqlSession().update(entityClass.getName() + operate, maps);
+	}
 
 	@Override
 	public T login(T entity) 

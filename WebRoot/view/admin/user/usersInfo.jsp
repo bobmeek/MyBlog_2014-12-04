@@ -81,7 +81,7 @@
 						</div>	
 			 		</div>
 			 		
-			 		<div style="width:310px;height:400px;float:left;border:1px solid #EDF3F4">
+			 		<div style="width:310px;height:450px;float:left;border:1px solid #EDF3F4">
 			 			<table class="show-userext"  id="show_userext_table">
 				 			<tr style="display: none;">
 				 				<td>ID</td>
@@ -90,6 +90,10 @@
 				 			<tr>
 				 				<td>用户名</td>
 				 				<td><span class="sp" id="username_span_update"></span><input type="text" class="form-control in" disabled="disabled" style="display: none;" id="username_text_update"/></td>
+				 			</tr>
+				 			<tr>
+				 				<td>密码</td>
+				 				<td><span class="sp" id="userpwd_span_update"></span><input type="password" value='password' class="form-control in" style="display: none;" id="userpwd_text_update"/></td>
 				 			</tr>
 				 			<tr>
 				 				<td>邮箱</td>

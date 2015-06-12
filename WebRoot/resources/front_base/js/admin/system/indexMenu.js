@@ -265,9 +265,18 @@ $(function(){
 	});
 	
 	function add(menu){
-		$.post("menu/add/childs",menu,function(result){
-			showMenuTree(currentNode);
+		debugger;
+		$.post("menu/checked",menu,function(result){
+			if(!result){
+				$.post("menu/add/childs",menu,function(result){
+					showMenuTree(currentNode);
+				},"json");
+			}else{
+				alert('该栏目名称重复,请添加唯一的栏目名称!');
+			}
 		},"json");
+		
+		
 	}
 	
 	function update(menu){

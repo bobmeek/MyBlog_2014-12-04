@@ -28,7 +28,12 @@
 					    <#if articles?exists>
 					        <#list articles as article>
 					            <li>
-					                <span>${(article.releaseDate?date("yyyy-MM-dd"))}   </span><a href="${basePath}/category/${categoryMenuName}/${article.id}/${article.title}">${article.title}</a>
+					                <span>${(article.releaseDate?date("yyyy-MM-dd"))}   </span>
+							         <#if article.highLight==1>
+										<a href="${basePath}/category/${categoryMenuName}/${article.id}/${article.title}" style='color:red;font-weight:bold;'>${article.title}</a>
+									<#else>
+										<a href="${basePath}/category/${categoryMenuName}/${article.id}/${article.title}">${article.title}</a>
+									</#if>
 					            </li>
 					        </#list>
 					    </#if>

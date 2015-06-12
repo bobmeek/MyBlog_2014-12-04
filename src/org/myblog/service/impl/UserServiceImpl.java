@@ -79,6 +79,14 @@ public class UserServiceImpl extends AbstractBaseDao<UserVO, Integer> implements
 		save(user); // 保存用户信息
 	}
 
+	public int updateUserPwd(UserVO user){
+		String operate = ".updateUserPwd";
+		Map<String,Object> maps = new HashMap<String,Object>();
+		maps.put("user", user);
+		return updateUserPwd(maps, operate);
+	
+	}
+	
 	public UserVO findByMail(String email)
 	{
 		String operate = ".findByMail";

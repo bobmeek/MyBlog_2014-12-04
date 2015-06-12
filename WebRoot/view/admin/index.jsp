@@ -24,13 +24,15 @@
 <link rel="stylesheet" href="resources/front_frame/boostrap_dropdowns+/css/dropdowns-enhancement.css" />
 <!-- bootstrap风格的树结构 -->
 <link rel="stylesheet" href="resources/front_frame/bootstrap_treegrid/css/treegird.bootstrap3.css" />
+<!-- datetimepicker -->
+<link rel='stylesheet' type='text/css' href='resources/front_frame/bootstrap_datetimepicker/build/css/bootstrap-datetimepicker.css'>
+
 <!-- zTree插件样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/zTreeStyle.css" />
 <!-- zTree插件Metro风格样式 -->
 <link rel="stylesheet" href="resources/front_frame/ztree/css/metroStyle/metroStyle.css" />
 
-<!-- 文章编辑器 -->
-<link rel="stylesheet" href="resources/front_frame/simditor/css/simditor.css" />
+
 <!-- 弹出框 -->
 <link rel="stylesheet" href="resources/front_frame/jquery_confirm/css/jquery-confirm.css" />	<!-- 引入jQuery模态对话框插件 -->
 
@@ -191,21 +193,25 @@
 	<script type="text/javascript" src="resources/front_frame/jquery/ajaxfileupload.js"></script>
 	<!-- 格式化时间 -->
 	<script type="text/javascript" src="resources/front_frame/time.js"></script>
-	
+	<!-- bootstrap时间插件 -->
+	<script type='text/javascript' src='resources/front_frame/bootstrap_datetimepicker/src/js/moment.js'></script>
+    <script type='text/javascript' src='resources/front_frame/bootstrap_datetimepicker/src/js/bootstrap-datetimepicker.js'></script>
+    <script type='text/javascript' src='resources/front_frame/bootstrap_datetimepicker/src/js/bootstrap-datetimepicker.zh-CN.js'></script> 
 	<!-- 第三方弹出框 -->
 	<script type="text/javascript" src="resources/front_frame/jquery_confirm/js/jquery-confirm.js"></script>
 	
 	<!-- 百度UEditor -->
-	<script type="text/javascript" src="resources/front_frame/ueditor_1.4.3/ueditor.config.js"></script>
-	<script type="text/javascript" src="resources/front_frame/ueditor_1.4.3/ueditor.all.js"></script>
+	<script type="text/javascript" src="resources/front_frame/ueditor/ueditor.config.js"></script>
+	<script type="text/javascript" src="resources/front_frame/ueditor/ueditor.all.js"></script>
+	
 	
 	
 	<!-- 文章编辑器 -->
-	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script>
+<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script> -->
+<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script> -->
+<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script> -->
+<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script> -->
+<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script> -->
 	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-autosave.js"></script> -->
@@ -234,6 +240,8 @@
 	<script type="text/javascript" src="resources/front_base/js/admin/system/indexMenu.js"></script>
 	<!-- 首页图片配置 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/indexImage.js"></script>
+	
+	
 	
 </body>
 </html>

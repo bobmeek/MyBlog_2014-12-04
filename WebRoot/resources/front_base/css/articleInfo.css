@@ -389,6 +389,8 @@
  		 float: left;
 	}
 	
+	
+	
 	/* 内容导航样式 */
 	.sub-content-pagenav
 	{
@@ -415,6 +417,17 @@
 		font-size: 14px;
 		padding: 0px 2px;
 		line-height: 30px;
+	}
+	
+	/* 内容中图片样式 */
+	.sub-content-image:hover{
+		cursor:url(/MyBlog_2014-12-04/resources/front_base/img/big.cur),auto!important; /**鼠标样式:放大镜**/
+        border-color:#39F;
+        opacity: 1;box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.8);
+        -moz-transform: scale(1.04, 1.04);
+        -ms-transform: scale(1.04, 1.04);
+        -webkit-transform: scale(1.04, 1.04);
+        transform: scale(1.04, 1.04);
 	}
 	
 	ul, ol, li 

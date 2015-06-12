@@ -17,6 +17,7 @@ $(function(){
 	$(".panel ul").on("click",function(event){
 		$(".page").hide();
 		var id = event.target.id;
+		debugger;
 		$("#"+id+"Page").show();
 		
 		$("").html();

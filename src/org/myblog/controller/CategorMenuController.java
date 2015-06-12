@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.myblog.common.SortListUtil;
 import org.myblog.common.page.Page;
 import org.myblog.common.page.PageUtil;
 import org.myblog.model.ArticleVO;
@@ -50,15 +51,17 @@ public class CategorMenuController {
 	
 	
 	/**获取栏目菜单的文章列表**/
+	@SuppressWarnings("unchecked")
 	@RequestMapping(value="{categoryMenuName}/{currentPage}")
 	public String showArticleList(@PathVariable String categoryMenuName,@PathVariable int currentPage,HttpServletRequest request,HttpSession session,ModelMap modelMap){
 		modelMap = indexController.findInfo(request, session, modelMap);
 		MenuVO menu = menuService.findByName(categoryMenuName);
-//		List<ArticleVO> articles = articleService.findListByMenuId(menu.getId());
 		int pageCount = 5;
 		int totalCount = articleService.getTotalNumByMenuId(menu.getId());
 		Page page = PageUtil.createPage(pageCount, currentPage, totalCount);
 		List<ArticleVO> articles = articleService.findPageByMenuId(menu.getId(), page.getSrartIndex(), pageCount).getPageList();
+		//根据置顶与发布时间共同排序 , 优先级:置顶>发布时间
+		articles = (List<ArticleVO>) SortListUtil.sort(articles,new String[]{"topLevel","releaseDate"},new String[]{SortListUtil.DESC,SortListUtil.DESC});
 		modelMap.put("totalCount", totalCount);
 		modelMap.put("totalPage", page.getTotalPage());
 		modelMap.put("articles", articles);

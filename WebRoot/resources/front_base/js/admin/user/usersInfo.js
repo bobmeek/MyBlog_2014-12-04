@@ -327,6 +327,9 @@ $(function(){
 		showUserExtCss();
 		var id = parseInt($(this).closest("tr").children("td").eq(0).text());
 		$.post("user/show/"+id+"/ext","",function(result){
+			$("#show_userext_table .sp").hide();
+			$("#show_userext_table .in").show();
+			
 			$("#id_span_update").html(result.user.id);
 			$("#username_span_update").html(result.user.username);
 			$("#email_span_update").html(result.user.email);
@@ -361,8 +364,8 @@ $(function(){
 		reset();
 		var id = $("#id_text_update").val();
 		var username = $("#username_text_update").val();
+		var userpwd = $("#userpwd_text_update").val();
 		var email = $("#email_text_update").val();
-		var userpwd = null;
 		var registerTime = null;
 		var registerIP = null;
 		var lastLoginTime = null;
@@ -498,6 +501,7 @@ function showUserExt(id)
 {
 	debugger;
 	$.post("user/show/"+id+"/ext","",function(result){
+		
 		$("#id_span_update").text(result.user.id);
 		$("#username_span_update").text(result.user.username);
 		$("#email_span_update").text(result.user.email);

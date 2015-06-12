@@ -77,19 +77,26 @@
 			
 		
 			
-            <#list categoryMenuMap?keys as menu>
-            <#assign articles=categoryMenuMap[menu] />
-	            <#if articles?exists>
-				<div class="three columns infobox">
-					<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="category/${menu}/1">更多 ></a></div>
-					<ul>
-					<#list articles as article>
-						<li><a  href="category/${menu}/${article.id}/${article.title}" target="_blank" title="${article.title}">${article.title}</a></li>
-					</#list>
-					</ul>
-				</div>
-				</#if>
-			</#list> 
+        <#list categoryMenuMap?keys as menu>
+        <#assign articles=categoryMenuMap[menu] />
+            <#if articles?exists>
+			<div class="three columns infobox">
+				<div class="infoboxtitle"><span>${menu}</span><span class="en">COOPERATION</span><a class="more" href="category/${menu}/1">更多></a></div>
+				<ul>
+				<#list articles as article>
+					<#if article_index lt 5>
+						<#if article.highLight==1>
+							<li><a href="category/${menu}/${article.id}/${article.title}" target="_blank" style='color:red;font-weight:bold;' title="${article.title}">${article.title}</a></li>
+						<#else>
+							<li><a href="category/${menu}/${article.id}/${article.title}" target="_blank" title="${article.title}">${article.title}</a></li>
+						</#if>
+					</#if>
+				</#list>
+				
+				</ul>
+			</div>
+			</#if>
+		</#list> 
 			
 			<div class="three columns infobox ljg">
 		  		<div class="infoboxtitle"><!-- <img src="images/topics.png"> --><span>服务中心</span><span class="en"> ENTRANCE</span><a class="more" href="javascript:void(0);" >更多 ></a></div>

@@ -26,6 +26,11 @@ public abstract class AbstractBaseDao<T, PK extends Serializable> implements Bas
 		idao.save(entity);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public int updateUserPwd(Map<String,Object> maps,String operate){
+		return idao.updateUserPwd(entityClass, maps, operate);
+	}
+	
 	@Override
 	@SuppressWarnings("unchecked")
 	public void delete(PK pk) 

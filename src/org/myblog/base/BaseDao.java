@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.myblog.common.Pager;
+import org.myblog.model.UserVO;
 
 
 public interface BaseDao<T, PK extends Serializable>  
@@ -22,6 +23,9 @@ public interface BaseDao<T, PK extends Serializable>
 	
 	// 修改操作
 	public void update(T entity); 
+	
+	//修改密码
+	public int updateUserPwd(Map<String,Object> maps,String operate);
 	
 	// 查询全部
 	public List<T> findAll();
