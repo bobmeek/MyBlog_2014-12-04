@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.myblog.model.RegistrationVO">
+
+
+	<resultMap type="registration" id="registrationResultMap">
+	
+		<id property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="gender" column="gender" />
+		<result property="province" column="province" />
+		<result property="qq" column="qq" />
+		<result property="professional" column="professional" />
+		<result property="totalScores" column="total_scores" />
+		<result property="englishScores" column="english_scores" />
+		<result property="ticketNumber" column="ticket_number" />
+		<result property="registrationNumber" column="registration_number" />
+		<result property="idNumber" column="id_number" />
+		<result property="homeAddress" column="home_address" />
+		<result property="phone" column="phone" />
+		<result property="time" column="time" />
+	</resultMap>
+	
+	
+	<delete id="delete">
+		delete from registration where id=#{id}
+	</delete>
+	<delete id="deleteBatch" parameterType="java.util.List">  
+	   DELETE  FROM registration WHERE id in
+	    <foreach collection="ids" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}
+	    </foreach>  
+	</delete>  
+	
+	<insert id="add"  parameterType="registration" useGeneratedKeys="true" keyProperty="id">
+		insert into registration (name,gender,province,qq,professional,total_scores,english_scores,ticket_number,registration_number,id_number,home_address,phone,time) values (#{name},#{gender},#{province},#{qq},#{professional},#{totalScores},#{englishScores},#{ticketNumber},#{registrationNumber},#{idNumber},#{homeAddress},#{phone},#{time})
+	</insert>
+	
+
+	<update id="update" parameterType="registration">
+		update registration set name=#{name},gender=#{gender},province=#{province},qq=#{qq},professional=#{professional},total_scores=#{totalScores},english_scores=#{englishScores},ticket_number=#{ticketNumber},registration_number=#{registrationNumber},id_number=#{idNumber},home_address=#{homeAddress},phone=#{phone},time=#{time} where id=#{id}
+	</update>
+	
+	<select id="findAll" resultMap="registrationResultMap">
+		select * from registration
+	</select>
+	<select id="findByPage" resultMap="registrationResultMap">
+		select * from registration ORDER BY time DESC limit #{pageNo},#{pageSize}
+	</select>
+	
+	<select id="findTotal" resultType="int" parameterType="int">
+		select count(*) from registration 
+	</select>
+
+</mapper>

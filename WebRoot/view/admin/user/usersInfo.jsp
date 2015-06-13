@@ -152,7 +152,6 @@
 					<form class="form-horizontal" action="article/showArticles">
 						<div class="form-group">
 							<label for="username_text_add" class="col-sm-2 control-label">用户名</label>
-
 							<div class="col-sm-9">
 								<div class="input-group">
 									<div class="input-group-addon">

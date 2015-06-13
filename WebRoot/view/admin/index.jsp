@@ -71,13 +71,10 @@
 					<shiro:hasPermission name="article:*">
 					<li><a href="#" id="articlesInfo">文章信息</a></li>
 					</shiro:hasPermission>
-					<shiro:hasPermission name="system:*">
-					<li><a href="#" id='categoryInfo'>栏目信息</a></li>
-					</shiro:hasPermission>
 				</ul>
 			</li>
 			</shiro:hasAnyRoles>
-				<shiro:hasPermission name="user:*">
+			<shiro:hasPermission name="user:*">
 			<li class="panel">
 				<a href="#users_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
 					<i class="icon-user icon-large"></i> 用户管理<b class="caret"></b>
@@ -88,6 +85,16 @@
 					<li><a href="#" id="usersInfo">用户信息管理</a></li>
 					<li><a href="#" id="usersRole">用户角色管理</a></li>
 					<li><a href="#" id="usersResource">用户资源管理</a></li>
+				</ul>
+			</li>
+			</shiro:hasPermission>
+			<shiro:hasPermission name="*">
+			<li class="panel">
+				<a href="#student_manage" class="dropdown-toggle collapsed" data-toggle="collapse" data-parent="#accordion">
+					<i class="icon-user icon-large"></i>学生管理<b class="caret"></b>
+				</a>
+				<ul id="student_manage" class="collapse list-unstyled sednav">
+					<li><a href="#" id="registrationInfo">报名信息管理</a></li>
 				</ul>
 			</li>
 			</shiro:hasPermission>
@@ -132,6 +139,15 @@
 		</div>
 		
 		<div id="show" >
+			<div id="publishArticlePage" class="page" style="display:visibility;">
+				<jsp:include page="article/publishArticle.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="articlesInfoPage" class="page" style="display:none;">
+				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
+			</div>
+			<div id="categoryInfoPage" class="page" style="display:none;">
+				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
+			</div>
 			<div id="personInfoPage" class="page" style="display:none;">
 				<jsp:include page="user/personInfo.jsp" flush="true"></jsp:include>
 			</div>		
@@ -144,15 +160,10 @@
 			<div id="usersResourcePage" class="page" style="display: none;">
 				<jsp:include page="user/usersResource.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="articlesInfoPage" class="page" style="display:none;">
-				<jsp:include page="article/articlesInfo.jsp" flush="true"></jsp:include>
+			<div id="registrationInfoPage" class="page" style="display:none;">
+				<jsp:include page="student/registrationInfo.jsp" flush="true"></jsp:include>
 			</div>
-			<div id="publishArticlePage" class="page" style="display:visibility;">
-				<jsp:include page="article/publishArticle.jsp" flush="true"></jsp:include>
-			</div>
-			<div id="categoryInfoPage" class="page" style="display:none;">
-				<jsp:include page="article/categoryInfo.jsp" flush="true"></jsp:include>
-			</div>
+			
 			<div id="dataBackupPage" class="page" style="display:none;">
 				<jsp:include page="system/dataBackup.jsp" flush="true"></jsp:include>
 			</div>
@@ -174,7 +185,7 @@
 	
 	
 	<!-- jquery主文件 -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script> -->
+	<!-- <script type="text/javascript" src="resources/front_frame/jquery/jquery-1.8.3.js"></script> -->
 	<script src="resources/front_frame/simditor/js/jquery.min.js"></script>
 	<!-- jqueryUI主文件 -->
 	<script type="text/javascript" src="resources/front_frame/jquery-ui/jquery-ui.js"></script>
@@ -206,15 +217,6 @@
 	
 	
 	
-	<!-- 文章编辑器 -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/module.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/hotkeys.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/uploader.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor.js"></script> -->
-<!-- 	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-dropzone.js"></script> -->
-	<!-- <script type="text/javascript" src="resources/front_frame/simditor/js/marked.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-markdown.js"></script>
-	<script type="text/javascript" src="resources/front_frame/simditor/js/simditor-autosave.js"></script> -->
 	<!-- 引起bootstrap弹框失效 -->
 	<!-- <script type="text/javascript" src="resources/front_frame/bootstrap/js/modal.js"></script>  -->
 	<!-- 文章编辑器 -->
@@ -222,16 +224,18 @@
 	
 	<!-- 后台管理主文件 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/admin.js"></script>
+	<!-- 所有文章信息 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
+	<!-- 个人用户文章信息 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script>
 	<!-- 用户信息 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersInfo.js"></script>
 	<!-- 用户角色 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersRole.js"></script>
 	<!-- 用户资源 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/user/usersResource.js"></script>
-	<!-- 所有文章信息 -->
-	<script type="text/javascript" src="resources/front_base/js/admin/article/articlesInfo.js"></script>
-	<!-- 个人用户文章信息 -->
-	<script type="text/javascript" src="resources/front_base/js/admin/article/publishArticle.js"></script>
+	<!-- 报名信息 -->
+	<script type="text/javascript" src="resources/front_base/js/admin/student/registrationInfo.js"></script>
 	<!-- 网站所有信息备份 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/dataBackup.js"></script>
 	<!-- 网站信息配置 -->
@@ -241,7 +245,7 @@
 	<!-- 首页图片配置 -->
 	<script type="text/javascript" src="resources/front_base/js/admin/system/indexImage.js"></script>
 	
-	
+
 	
 </body>
 </html>

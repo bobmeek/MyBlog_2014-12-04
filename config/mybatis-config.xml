@@ -15,6 +15,7 @@
 		<typeAlias type="org.myblog.model.SiteInfoVO" alias="siteinfo"/>
 		<typeAlias type="org.myblog.model.MenuVO" alias="menu"/>
 		<typeAlias type="org.myblog.model.IndexImageVO" alias="indeximg"/>
+		<typeAlias type="org.myblog.model.RegistrationVO" alias="registration"/>
 	</typeAliases>
 	
 </configuration>
