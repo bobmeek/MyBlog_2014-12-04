@@ -67,7 +67,7 @@
 	
 	<!-- 查询操作。根据文章id查询文章信息 -->
 	<select id="findById" resultMap="articleResultMap">
-		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.high_light,a.privacy,a.`id_menu`,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
+		select a.id as aid,a.title,a.author,a.content,a.release_date,a.read_count,a.top_level,a.high_light,a.privacy,a.`id_menu`,m.id,m.name,m.parent_id,c.name,t.tag_name from article a left join category c on a.id_category=c.id left join tag t
 		on a.id_tag_article_tag=t.id LEFT JOIN menu m ON a.`id_menu`=m.`id` where a.id=#{id}
 	</select>
 	
@@ -78,18 +78,6 @@
 		select a.id,a.title,a.author,a.release_date,a.`id_menu`,a.privacy,c.name,t.tag_name from article as a,category as c,article_tag as art,tag as t 
 		where a.id_category=c.id and a.id=art.id_article and art.id_tag=t.id and a.title like '%${title}%' ORDER BY a.release_date DESC
 	</select>
-	
-	<!-- 批量删除文章操作 -->
-	<delete id="bulk_delete" parameterType="java.util.List">
-		<![CDATA[delete from article where id in]]><foreach collection="list" item="num"  open="(" separator="," close=")">#{num}</foreach>	
-	</delete>
-	
-	<!-- 批量删除文章标签操作 -->
-	<delete id="bulk_delete2" parameterType="java.util.List">
-		<![CDATA[delete from article_tag where article_tag.id_article in]]>
-		<foreach collection="list" item="num"  open="(" separator="," close=")">#{num}</foreach>	
-	</delete>
-
 	
 	
 	

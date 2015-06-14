@@ -10,8 +10,6 @@
 	<meta name="renderer" content="webkit" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/index.css" /><!-- 首页页面css文件 -->
-	 <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">-->s
-	 <link rel="stylesheet" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.css">
 	<script type="text/javascript" src="${basePath}/resources/front_frame/jquery/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="${basePath}/resources/front_frame/bgstretcher/js/jquery-bgstretcher-3.3.0.min.js"></script><!-- 轮播图js文件 -->
 			

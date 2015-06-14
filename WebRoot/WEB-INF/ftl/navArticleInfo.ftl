@@ -3,7 +3,6 @@
 	<title>学院概况-汉口学院国际交流学院</title>
 </head>
 <body>
-	
 		<#include "top.ftl">
 		
 		<div id="sub-content"><!-- 中间大块区域 -->

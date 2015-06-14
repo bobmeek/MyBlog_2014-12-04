@@ -4,10 +4,14 @@
 		layout.css 为首页页面所需css文件
 	*/
 
+	@import url(/MyBlog_2014-12-04/resources/front_frame/bootstrap/css/font-awesome.css);
+	@import url(/MyBlog_2014-12-04/resources/front_frame/highslide/highslide/highslide.css);
 	@import url(normalize.css);
 	@import url(skeleton.css);
 	@import url(bgstretcher.css);
 	@import url(layout.css);
+	@import url(articleInfo.css);
+	
 	
 
 	

@@ -1,11 +1,8 @@
 <html>
 <head>
 	<title>学院概况-汉口学院国际交流学院</title>
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/normalize.css" /><!-- 主页面初始化CSS样式表1 -->
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/skeleton.css" /><!-- 主页面初始化CSS样式表2 -->
-    <link rel="stylesheet" type="text/css" href="${basePath}/resources/front_base/css/articleInfo.css" /><!-- 二级页面CSS样式表 -->
-	<!--<link rel="stylesheet" type="text/css" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.min.css" />-->
-	 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	 <link rel="stylesheet" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.min.css"><!-- 图标文件 -->
+
 	
 </head>
 <body>

@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_frame/highslide/highslide/highslide.css" />
 	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/index.css" />
-	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/articleInfo.css" />
-	
 </head>
 <body>
 		
@@ -42,7 +39,7 @@
 				<#assign banner="banner_uk.png" />
 				<#elseif programName=="澳新项目">
 				<#assign banner="banner_aoxin.png" />
-				<#elseif programName=="本硕连读项目">
+				<#else>
 				<#assign banner="banner_pub.png" />
 			</#if>
 			<div class="subhead-bg" style='background: url(${basePath}/resources/front_base/img/program/${banner}); width: 1021px; height:134px; background-size: 100% 100%;'>

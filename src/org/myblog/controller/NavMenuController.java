@@ -116,14 +116,21 @@ public class NavMenuController {
 	/**获取导航菜单的文章内容**/
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="{childMenuName}/{currentPage}/{articleId}/{articleTitle}")
-	public String showArticle(@PathVariable int articleId,HttpServletRequest request,HttpSession session,ModelMap modelMap){
+	public String showArticle(@PathVariable String childMenuName,@PathVariable int articleId,HttpServletRequest request,HttpSession session,ModelMap modelMap){
 		modelMap = indexController.findInfo(request, session, modelMap);
 		ArticleVO article = articleService.findById(articleId);
+		MenuVO menu = article.getMenu();
+		List<MenuVO> menus = menuService.findListByParentId(menu.getId());
+		
+		if(null==menus){
+			menus = menuService.findListByParentId(menu.getParentId());
+		}
+		
 		modelMap.put("article", article);
-		modelMap.put("parentMenuName", (String) session.getAttribute("parentMenuName"));
-		modelMap.put("childMenuName", (String) session.getAttribute("childMenuName"));
-		modelMap.put("menus", (List<MenuVO>) session.getAttribute("menus"));
-		modelMap.put("programName", (String)session.getAttribute("childMenuName"));
+		modelMap.put("parentMenuName",childMenuName);
+		modelMap.put("childMenuName",childMenuName);
+		modelMap.put("menus", menus);
+		modelMap.put("programName",childMenuName);
 		return "navArticleInfo";
 	}
 	

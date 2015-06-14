@@ -193,7 +193,7 @@
 	/* 导航菜单ul样式 */
 	.menus ul
 	{
-		 width:96%;
+		width:96%;
 	    margin:0 auto;
 	    padding:0px;
 	    margin-left: -250px;
@@ -202,7 +202,7 @@
 	/* 导航菜单li样式 */
 	.menus ul li
 	{
-		float:right;
+		 float:right;
 		 height:34px;
 		 /* background:url(../images/nav_jb_right.png) right center no-repeat; */
 		 background: #16447C;
@@ -210,7 +210,6 @@
 		 list-style: none;
 		 text-align:center;
 		 width:12%;
-		 
 	}
 
 	/* 导航菜单<a>标签样式 */
@@ -419,8 +418,13 @@
 		line-height: 30px;
 	}
 	
+	.sub-content-image{
+		max-width:100%;
+	}
+	
 	/* 内容中图片样式 */
 	.sub-content-image:hover{
+		max-width:100%;
 		cursor:url(/MyBlog_2014-12-04/resources/front_base/img/big.cur),auto!important; /**鼠标样式:放大镜**/
         border-color:#39F;
         opacity: 1;box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.8);
@@ -533,11 +537,12 @@
 	
 	/* 内容样式 */
 	.sub-content-p
-	{
+	/* {
 		margin: 20px 0px;
 		float: left;
 		width: 100%;
-	}
+		
+	} */
 	
 	/* 内容样式 */
 	/* .sub-contents
