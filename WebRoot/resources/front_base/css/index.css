@@ -1,19 +1,14 @@
 	/**
 		normalize.css、skeletion.css 2个css文件同为首页页面初始化所需css文件
 		bgstretcher.css 为首页焦点轮播图所需css文件
-		layout.css 为首页页面所需css文件
 	*/
 
-	@import url(/MyBlog_2014-12-04/resources/front_frame/bootstrap/css/font-awesome.css);
-	@import url(/MyBlog_2014-12-04/resources/front_frame/highslide/highslide/highslide.css);
 	@import url(normalize.css);
 	@import url(skeleton.css);
 	@import url(bgstretcher.css);
-	@import url(layout.css);
 	@import url(articleInfo.css);
+	@import url(/MyBlog_2014-12-04/resources/front_frame/bootstrap/css/font-awesome.min.css);
 	
-	
-
 	
 	/* 页面默认清理样式 */
 	body
@@ -22,7 +17,7 @@
 		padding: 0;
 		min-height: 670px;
 		font-family: "Microsoft Yahei";
-		
+		overflow: hidden;
 	}	
 	
 	/* 顶部区域样式 */
@@ -121,17 +116,23 @@
 		 float: left;
 	}
 	
+	/* 顶部右侧文字活动伪类样式 */
+	.top-right a:hover span
+	{
+		color: #679AD3;
+		text-decoration: underline;
+	}
+	
 	/* 顶部右侧搜索区域样式 */
 	.searchbox 
 	{
- 		float: right;
+ 	     float: right;
 		 margin-left: 10px;
 	}
 
 	/* 顶部右侧区域搜索框样式 */
 	.searchbox input.inputtext 
 	{
-		 background: url(../img/index/search-bg.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     	border: medium none;
     	color: #333;
     	float: left;
@@ -145,22 +146,15 @@
     	position: relative;
 	}
 	
-	.searchbox .fa-search
-	{
-		position: absolute;
-		right: 3px;
-		top: 13px;
-		cursor: pointer;
-	}
-	
 	/* 顶部右侧区域搜索按钮样式 */
 	.searchbox input.submit 
 	{
     	float: left;
-    	height: 20px;
+    	width: 24px;	
+    	height: 24px;
     	margin-left: -24px;
-    	width: 24px;
     	margin: 10px 0 10px -24px;
+    	cursor: pointer;
 	}
 	/** ==============================顶部区域样式结束================================== */
 
@@ -193,14 +187,12 @@
 	.head-nav li 
 	{
 		float: right;
-		/* background: url(../images/right-arrow.png) top right no-repeat; */
 		background: #16447C;
 		padding: 0px 10px;
 		height: 40px;
 		cursor:pointer;
 		position: relative;
 		left: 276px;
-		/* top: 10px; */
 		z-index: 3000;
 		opacity: 0.7;
 	}
@@ -217,7 +209,6 @@
 	
 	.head-nav li:hover
 	{
-		/* background: url(../images/right-arrow.png) top right no-repeat; */
 		background: #3277ae;
 	}
 	
@@ -239,7 +230,6 @@
         padding:5px 12px;
         white-space: nowrap;
         border-bottom: 1px dashed #979494;
-        /* background: url(../images/top-subnav-bg.png); */
         background: #16447C;
         border:0px;
 	}
@@ -249,8 +239,6 @@
     {
         height:20px;
         line-height:20px;
-        /* color: #c19a7b; */
-        /* color: #679ad3; */
         color: #FFF;
 	}
      
@@ -261,21 +249,17 @@
      
      .head-nav>li:hover 
      { 
-     	/* background: url(../images/topnav-cur.png) top right no-repeat; */
      	background: #16447C;
      }
 
 	/* 导航二级菜单活动伪类样式 */
      .head-nav table td:hover
      {
-         /* background: url(../images/top-subnav-bg-hover.png) repeat-x; */
-         /* background: #3277ae; */
          text-decoration: underline;
      }
         
      .head-nav table td:hover a
      {
-          /* color:black; */ /* 鼠标移动到二级菜单上改变<a>标签字体颜色 */
           text-decoration: underline;
 	} 
 	/** ==============================头部区域导航菜单样式结束================================== */
@@ -314,13 +298,14 @@
 	.infobox 
 	{
  		margin-top: -25px;
+ 		width: 220px; /* update: 解决IE8信息列表显示布局混乱bug */
 	}
 	
 	.infoboxtitle 
 	{
  		width: 100%;
 		height: 30px;
-		/* background: url(../images/infoboxtitle-bg.png) 0 0 repeat-x; */
+		margin-bottom: 6px;
 	}
 	
 	.infoboxtitle>span
@@ -367,7 +352,7 @@
 	.infobox ul li a 
 	{
  		width: 100%;
-		
+		overflow: hidden;
 		height: 25px;
 		line-height: 25px;
 		font-size: 12px;
@@ -384,25 +369,29 @@
 	.infobox-speciallink 
 	{
  		float: left;
-	 	padding: 8px;
-	 	line-height: 30px;
-	 	margin: 5px 0;
+	 	padding: 3px;
+	 	line-height: 20px;
+	 	margin: 3px 0;
 	 	font-size: 12px;
 	 	width: 90%;
-	 	opacity: 0.7;
-	 	color: #333;
+	 	color: #233B2A;
+	}
+	
+	.infobox-speciallink img
+	{
+		float: left;
 	}
 	
 	.infobox-speciallink:hover
 	{
 		text-decoration: underline;
 		color: #679AD3;
-	}
+	} 
 	
 	.infobox-speciallink img 
 	{
- 		width: 40px;
-		height: 40px;
+ 		width: 20px;
+		height: 20px;
 		float: left;
 		margin-right: 10px;
 	}
@@ -424,29 +413,30 @@
 	
 	.exlinks a:hover 
 	{
- 		/* background: #CCC; */
  		background: #679ad3;
  		border-radius: 4px;
 	}
 	
+	
+	
+	/* 底部版权区样式 */
 	#footer 
 	{
 		 position: fixed;
 		 bottom: 0;
 		 left: 0;
 		 height: 52px;
-		 /* background: #233B2A; */  /* 初始颜色 */
-		 /* background:  #363636; */ /* 保留颜色1 */
-		/* background: #385870; */
-		/* background: #0e4c92; */
-		/* background: #002147; */
-		/* background: #005faf; */
-		background: #16447c;
+     	 background: #16447c;
 		 width: 100%;
 		 padding: 4px 0;
 		 z-index: 1000;
 	}
 	
+	
+	.row
+	{
+		width: 1010px;
+	}
 	
 	#footer a, #footer .six, #footer .seven
 	{
@@ -505,17 +495,84 @@
 		 height: 100px;
 		 padding: 10px;
 		 background: #CCC;
-		 border-radius: 3px;
+		 border-radius: 5px;
 	}
 	
+	.linkitem
+	{
+		 position:relative;
+	}
 	
+	.qr
+	{
+   		position:absolute;
+   		top:-130px;
+	}
 	
+	.linkitem:hover .qr
+	{
+ 		display:block;
+	}
 	
+	/* 解决IE8导航和版权区兼容性问题 */
+	.six.columns
+	{
+ 		width: 485px;
+	}
 	
+	.sc-main
+	{
+ 		float:right;
+	}
+
+	.three.columns
+	{
+		 width: 225px;
+	}
 	
+	.nine.columns
+	{
+ 		width: 740px; /* update: width: 710px;*/
+	}
 	
+	/* @media all and(min-width: 550px) {
+		.column, .columns {
+		    margin-left: 4%; }
+	} */	
 	
-	
+	.three.columns.infobox{
+ width:220px;
+ /* margin-right: 36px; */
+}
+.three.columns.infobox ul{
+ /* margin-top:12px; */
+}
+
+.three.columns.infobox.ljg{
+ margin-right:0px;
+}
+.row.exlinks{
+ /* margin-top: 14px; */
+}
+
+.three.columns.infobox .infobox-speciallink{
+ /* padding: 4px 2px; */
+ /* margin-top:5px; */
+}
+
+.three.columns.infobox.ljg a.infobox-speciallink{
+ /* margin-top: 15px; */
+}
+
+.seven.columns.text{
+ width: 53%; 
+ float: left;
+}
+
+.five.columns.footerlinks.phablet-hide{
+ /* width: 55%;  */
+ float: right;
+}
 	
 	
 	
@@ -563,8 +620,6 @@
 		 background: url(../img/index/slider-next.png) 0 0 no-repeat;
 		 margin-right: 20px;
 	}
-
-	
 	
 	
 	

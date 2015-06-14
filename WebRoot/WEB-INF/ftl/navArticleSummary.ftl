@@ -2,6 +2,7 @@
 <head>
 	<title>学院概况-汉口学院国际交流学院</title>
 	
+	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/articleInfo.css" />
 	
 </head>
 <body>

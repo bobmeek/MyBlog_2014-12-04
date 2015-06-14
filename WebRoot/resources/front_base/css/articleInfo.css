@@ -1,4 +1,11 @@
 
+	
+	@import url(normalize.css);
+	@import url(skeleton.css);
+	@import url(/MyBlog_2014-12-04/resources/front_frame/bootstrap/css/font-awesome.min.css);
+	@import url(/MyBlog_2014-12-04/resources/front_frame/highslide/highslide/highslide.css);
+	
+
 	/* 页面默认清理样式 */
 	body
 	{
@@ -6,13 +13,12 @@
 		padding: 0;
 		min-height: 670px;
 		font-family: "Microsoft Yahei";
-		overflow: hidden;
+		ovflow: hidden;
 		overflow: scroll;
 	}	
 
 	.container
 	{
-		/* position: relative; */
 		max-width: 1021px;
 	}
 
@@ -122,7 +128,6 @@
 	/* 顶部右侧区域搜索框样式 */
 	.searchbox input.inputtext 
 	{
-		background: url("../img/index/search-bg.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     	border: medium none;
     	color: #333;
     	float: left;
@@ -148,9 +153,9 @@
 	.searchbox input.submit 
 	{
     	float: left;
-    	height: 20px;
+    	width: 24px;	
+    	height: 24px;
     	margin-left: -24px;
-    	width: 24px;
     	margin: 10px 0 10px -24px;
 	}
 	/** ==============================顶部区域样式结束================================== */
@@ -181,7 +186,6 @@
 	{
 		 height:34px;
 		 line-height:34px;
-		 /* background:url(../images/nav_bg.png) center repeat-x; */
 		 background: #16447C;
 		 opacity: 0.8;
 		 position:absolute;
@@ -204,7 +208,6 @@
 	{
 		 float:right;
 		 height:34px;
-		 /* background:url(../images/nav_jb_right.png) right center no-repeat; */
 		 background: #16447C;
 		 opacity: 0.9;
 		 list-style: none;
@@ -235,7 +238,6 @@
 		 white-space: nowrap;
 		 border:0px;
 		 font-size:12px;
-		 /* background:url(../images/top-subnav-bg.png); */
 		 background: #16447C;
 	}
 
@@ -250,7 +252,6 @@
 	/* 导航菜单<li>标签活动伪类样式 */
 	.menus ul li:hover
 	{
-		/* background:url(../images/nav_jb_down.png) right center no-repeat; */ /* 移动到导航菜单时右箭头背景图改变成下箭头背景图 */
 		background: #16447C;
 	}
 	
@@ -318,7 +319,6 @@
 		 font-weight: 700;
 		 color: #FFF;
 		 line-height: 30px;
-		 /* background: #33513A; */
 		 background: #16447C;
 		 padding: 5px 20px;
 		 margin-bottom: 0;
@@ -383,12 +383,9 @@
 		 font-size:26px;
  		 line-height:35px;
  		 color: #1C2D1F;
- 		 /* border-bottom: 4px solid #33513A; */
  		 border-bottom: 4px solid #16447C;
  		 float: left;
 	}
-	
-	
 	
 	/* 内容导航样式 */
 	.sub-content-pagenav
@@ -537,12 +534,11 @@
 	
 	/* 内容样式 */
 	.sub-content-p
-	/* {
-		margin: 20px 0px;
+	{
+		/* margin: 20px 0px;
 		float: left;
-		width: 100%;
-		
-	} */
+		width: 100%; */
+	}
 	
 	/* 内容样式 */
 	/* .sub-contents
@@ -573,21 +569,14 @@
 	#footer 
 	{
 		 position: fixed;
-		 bottom: 0;
 		 left: 0;
+		 bottom: 0;
+		 width: 100%;	
 		 height: 52px;
-		 /* background: #233B2A; */  /* 初始颜色 */
-		 /* background:  #363636; */ /* 保留颜色1 */
-		/* background: #385870; */
-		/* background: #0e4c92; */
-		/* background: #002147; */
-		/* background: #005faf; */
-		background: #16447c;
-		 width: 100%;
+		 background: #16447c;
 		 padding: 4px 0;
 		 z-index: 1000;
 	}
-	
 	
 	#footer a, #footer .six, #footer .seven
 	{
@@ -649,7 +638,21 @@
 		 border-radius: 3px;
 	}
 	
+	.linkitem
+	{
+		 position:relative;
+	}
 	
+	.qr
+	{
+   		position:absolute;
+   		top:-130px;
+	}
+	
+	.linkitem:hover .qr
+	{
+ 		display:block;
+	}
 	
 	
 	

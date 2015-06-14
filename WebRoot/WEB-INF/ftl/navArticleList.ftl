@@ -1,8 +1,8 @@
 <html>
 <head>
 	<title>学院概况-汉口学院国际交流学院</title>
-	 <link rel="stylesheet" href="${basePath}/resources/front_frame/bootstrap/css/font-awesome.min.css"><!-- 图标文件 -->
-
+	
+	<link rel="stylesheet" type="text/css"  href="${basePath}/resources/front_base/css/articleInfo.css" />
 	
 </head>
 <body>
