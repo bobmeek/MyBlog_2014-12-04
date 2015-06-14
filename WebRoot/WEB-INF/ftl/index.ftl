@@ -29,7 +29,7 @@
 				
 				<div class="top-right" style="height: 40px;"><!-- 顶部右侧区域开始 -->
 				    <a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/444.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">录取查询</span></a>
-				    <a href="javascript:void(0);" ><img  src="${basePath}/resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
+				    <a href="${basePath}/view/zxbm.html" ><img  src="${basePath}/resources/front_base/img/index/555.png" style="display: inline;" width="24px;" height="24px;"><span class="desktophd-hide">在线报名</span></a>
 	
 				    <div class="searchbox"><!-- 搜索区域 -->
 					    <form method="get" action="">

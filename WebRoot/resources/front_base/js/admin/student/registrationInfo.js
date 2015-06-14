@@ -87,6 +87,7 @@ $(function(){
 		registration.idNumber = $('#registrationIdNumberUpdate').val();
 		registration.time = Time(time = + new Date, "%y-%M-%d %h:%m");
 		registration.gender = $('input[name=registrationGenderUpdate]:checked').val();
+		debugger;
 		if(!checkIdNumber(registration.idNumber)){
 			$.post('registration/save/',registration,function(result){
 				operateAfterHandler();

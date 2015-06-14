@@ -97,8 +97,9 @@ public class RegistrationController {
 	@ResponseBody
 	public boolean isExist(@PathVariable String idNumber) throws Exception
 	{
+		System.out.println("idNumber= ================= " + idNumber);
 		int count = registrationService.idNumberIsExist(idNumber);
-		return count>1?true:false;
+		return count>=1?true:false;
 
 	}
 	
