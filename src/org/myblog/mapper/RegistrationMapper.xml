@@ -52,5 +52,9 @@
 	<select id="findTotal" resultType="int" parameterType="int">
 		select count(*) from registration 
 	</select>
+	
+	<select id="idNumberIsExist" resultType="int" parameterType="String">
+		select count(*) from registration where id_number=#{idNumber}
+	</select>
 
 </mapper>

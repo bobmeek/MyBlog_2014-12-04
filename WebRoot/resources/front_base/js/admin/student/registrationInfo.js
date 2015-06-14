@@ -87,13 +87,32 @@ $(function(){
 		registration.idNumber = $('#registrationIdNumberUpdate').val();
 		registration.time = Time(time = + new Date, "%y-%M-%d %h:%m");
 		registration.gender = $('input[name=registrationGenderUpdate]:checked').val();
-		$.post('registration/save/',registration,function(result){
-			operateAfterHandler();
-			show(currentPage);
-		},'json');
+		if(!checkIdNumber(registration.idNumber)){
+			$.post('registration/save/',registration,function(result){
+				operateAfterHandler();
+				show(currentPage);
+			},'json');
+		}else{
+			alert('该学生已经注册!');
+		}
 		
 		
 	});
+	
+	/**校验报名学生是否唯一**/
+	function checkIdNumber(idNumber){
+		var flag = false;
+		$.ajax({
+	        type:'POST',
+	        url:'registration/checked/'+idNumber,
+	        dataType:'json',
+	        async:false,
+	        success:function(result){
+	            flag = result;
+	        }
+	    });
+		return flag;
+	}
 	
 	
 	/**弹出修改界面**/
@@ -141,11 +160,14 @@ $(function(){
 		debugger;
 		$registration.time = $('#registrationTimeUpdate').val();
 		$registration.gender = $('input[name=registrationGenderUpdate]:checked').val();
-		$.post('registration/update/',$registration,function(result){
-			operateAfterHandler();
-			show(currentPage);
-		},'json');
-		
+		if(!checkIdNumber($registration.idNumber)){
+			$.post('registration/update/',$registration,function(result){
+				operateAfterHandler();
+				show(currentPage);
+			},'json');
+		}else{
+			alert('该学生已经注册!');
+		}
 		
 	});
 	

@@ -18,4 +18,12 @@ public class RegistrationServiceImpl extends AbstractBaseDao<RegistrationVO, Int
 		maps.put("ids", ids);
 		delete(maps, operate);
 	}
+	
+	
+	public int idNumberIsExist(String idNumber){
+		String operate = ".idNumberIsExist";
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("idNumber", idNumber);
+		return isExist(maps, operate);
+	}
 }

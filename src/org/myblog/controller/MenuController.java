@@ -79,13 +79,8 @@ public class MenuController {
 	@ResponseBody
 	public boolean isExist(String name) throws Exception
 	{
-//		boolean flag = false;
-		
 		int count = menuService.nameIsExist(name);
 		return count>0?true:false;
-//		if (count > 0)
-//			flag = true;
-//		return flag;
 
 	}
 }

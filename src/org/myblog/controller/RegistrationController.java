@@ -41,7 +41,7 @@ public class RegistrationController {
 		return 1;
 	}
 	
-	@RequestMapping(value="/delete/{id}/")
+	@RequestMapping(value="/delete/{id}")
 	@ResponseBody
 	public int delete(@PathVariable int id){
 		registrationService.delete(id);
@@ -92,5 +92,14 @@ public class RegistrationController {
 		return modelMap;
 	}
 	
+	
+	@RequestMapping(value = "/checked/{idNumber}", produces = "application/json")
+	@ResponseBody
+	public boolean isExist(@PathVariable String idNumber) throws Exception
+	{
+		int count = registrationService.idNumberIsExist(idNumber);
+		return count>1?true:false;
+
+	}
 	
 }
