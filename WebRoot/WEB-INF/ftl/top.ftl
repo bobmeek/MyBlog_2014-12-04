@@ -67,9 +67,22 @@
 <!-- 	<script type="text/javascript" src="resources/front_frame/highslide/highslide/highslide-with-gallery.js"></script> -->
 <!-- 	<script type="text/javascript" src="resources/front_frame/highslide/highslide/highslide-with-html.js"></script> -->
 		<script type="text/javascript" src="${basePath}/resources/front_frame/highslide/highslide/highslide.js"></script>
-	
-	
+		<script type="text/javascript" src="${basePath}/resources/front_frame/jquery-media/jquery.media.js"></script>
 		<script type="text/javascript" src="${basePath}/resources/front_base/js/showArticleInfo.js"></script>
-
+		<script>
+			 $(function() {
+				$('a').each(function(i){
+				if($(this).text().indexOf('.pdf')!=-1){
+					$(this).addClass('media');
+					$(this).attr("target","_bank");
+					$('a.media').media({width:700, height:600});
+					
+						
+				}
+  
+			});
+			 
+		    });  
+		</script>
 </body>
 </html>
