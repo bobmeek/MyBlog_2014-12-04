@@ -64,13 +64,13 @@
 
                     <div class="radio">
                         <label>
-                            <input type="radio" name="sex" id="sex-1">男
+                            <input type="radio" name="sex" id="sex-1" value="1" checked="checked">男
                         </label>
                     </div>
 
                     <div class="radio">
                         <label>
-                            <input type="radio" name="sex" id="sex-2">女
+                            <input type="radio" name="sex" id="sex-2"  value="0">女
                         </label>
                     </div>
 
@@ -81,10 +81,30 @@
                     <input type="text" class="form-control" name="province" id="name-1" class="form-control" placeholder="省份">
                 </div>
                 
+                 <div class="form-group">
+                    <label for="name-1" class="control-label">输入您的家庭住址</label>
+                    <input type="text" class="form-control" name="homeaddress" id="name-1" class="form-control" placeholder="家庭住址">
+                </div>
+                
+                 <div class="form-group">
+                    <label for="name-1" class="control-label">输入您的身份证号</label>
+                    <input type="text" class="form-control" name="id_number" id="name-1" class="form-control" placeholder="身份证号">
+                </div>
+                
                 <div class="form-group">
+                    <label for="name-1" class="control-label">输入您的手机号码</label>
+                    <input type="text" class="form-control" name="phone" id="name-1" class="form-control" placeholder="手机号码">
+                </div>
+                
+                 <div class="form-group">
+                    <label for="name-1" class="control-label">输入您的QQ</label>
+                    <input type="text" class="form-control" name="qq" id="name-1" class="form-control" placeholder="QQ">
+                </div>
+                
+              <!--   <div class="form-group">
                     <label for="pay-1" class="control-label">输入您的省份</label>
                     <select name=""  id="pay-1" class="form-control">
-                        <option value="" selected="selected">--请选择--</option>
+                        <option value="0" selected="selected">--请选择--</option>
 				        <option value="1" title="北京市" >北京市</option>
 				        <option value="2" title="上海市" >上海市</option>
 				        <option value="3" title="天津市" >天津市</option>
@@ -121,7 +141,7 @@
 				        <option value="34" title="台湾省" >台湾省</option>
                     </select>
                     <br>
-                </div>
+                </div> -->
                 
                 
                 <div class="form-group">
@@ -129,10 +149,7 @@
                     <input type="text" class="form-control" name="specialty"  id="name-1" class="form-control" placeholder="专业">
                 </div>
                 
-                <div class="form-group">
-                    <label for="name-1" class="control-label">输入您的QQ</label>
-                    <input type="text" class="form-control" name="qq" id="name-1" class="form-control" placeholder="QQ">
-                </div>
+               
                 
                 <div class="form-group">
                     <label for="name-1" class="control-label">输入您的高考总分数</label>
@@ -154,20 +171,6 @@
                     <input type="text" class="form-control" name="reg_number" id="name-1" class="form-control" placeholder="报名号">
                 </div>
                 
-                <div class="form-group">
-                    <label for="name-1" class="control-label">输入您的身份证号</label>
-                    <input type="text" class="form-control" name="id_number" id="name-1" class="form-control" placeholder="身份证号">
-                </div>
-                
-                <div class="form-group">
-                    <label for="name-1" class="control-label">输入您的家庭住址</label>
-                    <input type="text" class="form-control" name="homeaddress" id="name-1" class="form-control" placeholder="家庭住址">
-                </div>
-                
-                <div class="form-group">
-                    <label for="name-1" class="control-label">输入您的手机号码</label>
-                    <input type="text" class="form-control" name="phone" id="name-1" class="form-control" placeholder="手机号码">
-                </div>
 
               <!--   <div class="form-group">
                     <label for="pay-1" class="control-label">选择您的省份</label>
@@ -194,6 +197,7 @@
      <script type="text/javascript" src="../resources/front_frame/validation/formValidation.js"></script>
      <script type="text/javascript" src="../resources/front_frame/validation/bootstrap.js"></script>
     <script type="text/javascript" src="../resources/front_frame/validation/semantic.js"></script>
+    <script type="text/javascript" src="../resources/front_frame/time.js"></script>
     
     <script type="text/javascript">
 		
@@ -213,37 +217,31 @@
                             notEmpty: {
                                 message: '请输入您的姓名！<span style="color: red; font-weight: bold;">*（不能有空格，与身份证一致）</span>'
                             },
-                            
                             regexp: {
                                 regexp: /[\u4E00-\u9FA5\uF900-\uFA2D]/,
                                 message: '用户名只能包含中文！ '
                             },
                             stringLength: {
                                 min: 2,
-                                max: 20,
-                                message: '姓名必须是大于2且小于20个字符！'
+                                max: 6,
+                                message: '姓名必须是大于2且小于6个字符！'
                             }
                         }
                     },
-                    /* qq: {
+                    sex: {
                         validators: {
                             notEmpty: {
-                                message: '请输入您的QQ号码！'
-                            },
-                            regexp: {
-                                regexp:/[1-9][0-9]{4,}/,
-                                message: '请输入合法的QQ号码！ '
+                                message: '请输入您的性别！'
                             }
                         }
                     },
-                    homeaddress: {
+                    province: {
                         validators: {
                             notEmpty: {
-                                message: '请输入您的家庭住址！'
+                                message: '请输入您的省份！'
                             }
                         }
-                    }, */
-                    
+                    },
                     id_number: {
                         validators: {
                             notEmpty: {
@@ -255,8 +253,14 @@
                             }
                         }
                     },
-                    
-                    /* phone: {
+                    homeaddress: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的家庭住址！'
+                            }
+                        }
+                    },
+                    phone: {
                         validators: {
                             notEmpty: {
                                 message: '请输入您的手机号码！<span style="color: red; font-weight: bold;">*（手机需确保能联系上）</span>'
@@ -266,7 +270,69 @@
                                 message: '请输入合法的手机号码！ '
                             }
                         }
-                    } */
+                    },
+                    qq: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的QQ号码！'
+                            },
+                            regexp: {
+                                regexp:/[1-9][0-9]{4,}/,
+                                message: '请输入合法的QQ号码！ '
+                            }
+                        }
+                    },
+                    specialty: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的专业！'
+                            }
+                        }
+                    },
+                    gk_score: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的高考总分数！'
+                            },
+                            regexp: {
+                                regexp: /^\d+(\.\d{1})?$/,
+                                message: '高考总分数只能输入数字或带有小数点的数字！ '
+                            }
+                        }
+                    },
+                    englise_score: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的英语分数！'
+                            },
+		                    regexp: {
+		                        regexp: /^\d+(\.\d{1})?$/,
+		                        message: '英语分数只能输入数字或带有小数点的数字！ '
+		                    }
+                        }
+                    },
+                    no_ticket: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的准考证号！'
+                            },
+                            regexp: {
+		                        regexp: '^[0-9]*$',
+		                        message: '准考证号只能输入数字！ '
+		                    }
+                        }
+                    },
+                    reg_number: {
+                        validators: {
+                            notEmpty: {
+                                message: '请输入您的报名号！'
+                            },
+                            regexp: {
+		                        regexp: '^[0-9]*$',
+		                        message: '报名号只能输入数字！ '
+		                    }
+                        }
+                    }
                 }
             })
             .on('success.form.fv', function(e) {
@@ -290,18 +356,31 @@
         	    	var 	idNumber = $("input[name='id_number']").val(); 
         	    	var registration = new Object();
         	    	registration.name = $("input[name='username']").val(); 
+        	    	registration.gender = $("input[name='sex']").val(); 
+        	    	registration.province = $("input[name='province']").val(); 
         			registration.professional = $("input[name='specialty']").val(); 
         			registration.qq = $("input[name='qq']").val(); 
         			registration.homeAddress = $("input[name='homeaddress']").val();
+        			registration.idNumber = $("input[name='id_number']").val();
         			registration.phone = $("input[name='phone']").val(); 
-        			registration.time = Time( new Date(), "%y-%M-%d %h:%m");
+        			registration.gender = $('input[name=sex]:checked').val();
+        			registration.time = Time(time = + new Date, "%y-%M-%d %h:%m");
         	        
         	    	$.post('../registration/checked/'+idNumber ,"" , function(result)
         	    	{
-        	    		$.post('../registration/save/', registration, function(result)
-       	    			{
-       	    				
-       	    			});
+        	    		if(result == false)
+        	    		{
+        	    			$.post('../registration/save/', registration, function(result)
+   	       	    			{
+        	    				alert("你已成功通过汉口学院国际交流学院在线申请，相关老师将会通过电话与你联系，请注意接听！");
+        	    				window.location.href = "../index.html";
+   	       	    			});	
+        	    		}
+        	    		else
+        	    		{
+        	    			alert("该身份信息已被申请，请重新填写申请表！");
+        	    			window.location.reload();
+        	    		}
         	    	});	
         	    });
     });
