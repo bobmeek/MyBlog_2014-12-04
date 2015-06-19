@@ -72,6 +72,11 @@
  		border-right: 1px solid #333;
 	}
 	
+	.top-left li input
+	{
+		margin-right: 10px;
+	}
+	
 	/* 顶部右侧区域样式 */
 	.top-right 
 	{
